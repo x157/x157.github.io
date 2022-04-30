@@ -23,7 +23,7 @@
 
     {% include header.html %}
 
-    {{ content_header | default: "" }}
+    {{ content_header | default: "<!-- content_header empty -->" }}
 
     <div class="container">
       <section id="main_content">
@@ -31,7 +31,7 @@
       </section>
     </div>
 
-    {{ content_footer | default: "" }}
+    {{ content_footer | default: "<!-- content_footer empty -->" }}
 
     {% include footer.html %}
 
