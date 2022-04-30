@@ -1,3 +1,10 @@
+---
+title: How to make a game with UE5 LyraStarterGame
+---
+
+{% include_relative header.html %}
+
+
 Epic suggests using this massive starter game framework for new dev projects, and seeing all of the things that they've already done for us, it's not hard to imagine why.
 
 This thing is PACKED full of things that every game NEEDS but that isn't the least bit fun for devs, especially hobbyists like myself, to implement.
@@ -9,3 +16,6 @@ The cost to us is simply to learn how they've put things together, and furthermo
 It seems Epic intends for us to create a plugin and contain all of our own source and content there, such that they can eventually (how!?) update the LyraStarterGame code and content they've provided with additions, bug fixes, etc.
 
 [How To Create a GameFeature Plugin](./How-To-Create-a-GameFeature-Plugin)
+
+
+{% include_relative footer.html %}
