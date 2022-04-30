@@ -1,5 +1,5 @@
 ---
-title: How to Create a UE5 GameFeature Plugin for LyraStarterGame
+title: Create a UE5 GameFeature Plugin for LyraStarterGame
 back_links:
   - link: /UE5/
     name: UE5
@@ -8,12 +8,14 @@ back_links:
 ---
 
 
-# How to Create a UE5 GameFeature Plugin
+# Create a UE5 GameFeature Plugin
+
+To make a game based on Lyra, you need to create a GameFeature Plugin in your LyraStarterGame project.
 
 There isn't anything particularly special about this plugin except apparently it must go into the `Plugins/GameFeatures` directory.
 
 
-## Create New GameFeature Plugin
+## How to Create a UE5 GameFeature Plugin for Lyra
 
 With the LyraStarterGame project open in the UE5 editor, follow these steps:
 
@@ -28,7 +30,7 @@ When you create this, it will supply you with an initial, mostly empty `GameFeat
 Currently your plugin is broken.  In order to explore Lyra and extend from it, you need to explicitly declare some project dependencies.
 
 
-## Add Dependencies
+## Add Dependencies to Other Plugins
 
 - Open your `XistGame` data asset (whatever you named your plugin).
 - Change the `Current State` of your plugin to `Registered` (by default it should be `Active`)
