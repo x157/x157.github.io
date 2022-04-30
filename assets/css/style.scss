@@ -8,8 +8,12 @@ header {
   margin: 0;
 }
 
+header h2 {
+  margin: 0 0 10px 0;
+}
+
 .container.back_links {
-  margin: 0 auto 20px auto;
+  margin: 20px auto 20px auto;
 }
 
 .back_links_title {
@@ -17,7 +21,6 @@ header {
 }
 
 footer {
-  background: rgba(0,0,0,0.1);
   width: 100%;
   border-top: 1px dashed #b5e853;
   padding: 20px 0;

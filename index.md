@@ -3,7 +3,7 @@ is_site_index: true
 ---
 
 
-Welcome to X157's Dev Notes.
+Welcome to X157 Dev Notes.
 
 At the moment I'm working my way through UE5's Lyra Starter Game, learning both Unreal Engine and Lyra simultaneously.  In an attempt to save fellow simulants some discovery time, I'm hosting some notes here that I hope will be useful.
 
