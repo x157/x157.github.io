@@ -3,12 +3,12 @@
 
 @import "{{ site.theme }}";
 
-header {
+.header {
   padding: 20px 0 0 0;
   margin: 0 0 20px 0;
 }
 
-footer {
+.footer {
   background: rgba(0,0,0,0.1);
   width: 100%;
   border-top: 1px dashed #b5e853;
@@ -18,10 +18,10 @@ footer {
   text-align: center;
 }
 
-back_links {
+.container.back_links {
   margin: 0 0 20px 0;
 }
 
-back_links_title {
+.back_links_title {
   font-weight: bold;
 }
