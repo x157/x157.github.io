@@ -43,8 +43,9 @@ Currently your plugin is broken.  In order to explore Lyra and extend from it, y
 Your plugin now contains minimal default content.  There is the uplugin definition, the `GameFeatures.GameFeatureData` uasset config, an icon and
 required boilerplate C++ code.
 
+### Plugins/GameFeatures/XistGame directory list
 ```text
-.
+XistGame
 ├── Content
 │   └── XistGame.uasset
 ├── Resources
