@@ -1,8 +1,11 @@
 ---
 title: How to make a game with UE5 LyraStarterGame
+back_links:
+  - link: /UE5/
+    name: UE5
+  - link: /UE5/LyraStarterGame/
+    name: LyraStarterGame
 ---
-
-{% include_relative header.html %}
 
 
 # Make Your UE5 Game from Lyra
@@ -21,5 +24,3 @@ It seems Epic intends for us to create a plugin and contain all of our own sourc
 
 [How To Create a GameFeature Plugin](./How-To-Create-a-GameFeature-Plugin)
 
-
-{% include_relative footer.html %}

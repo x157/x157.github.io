@@ -1,8 +1,11 @@
 ---
 title: How to Create a UE5 GameFeature Plugin for LyraStarterGame
+back_links:
+  - link: /UE5/
+    name: UE5
+  - link: /UE5/LyraStarterGame/
+    name: LyraStarterGame
 ---
-
-{% include_relative header.html %}
 
 
 # How to Create a UE5 GameFeature Plugin
@@ -81,6 +84,3 @@ treated them all as engine-like code that you can rely on and use, but
 I'm a reader, but if you prefer a video, I found this to be helpful:
 
 [How to Create a LyraStarterGame Plugin and specify dependencies](https://youtu.be/Y67z-k0DkLY?t=163)
-
-
-{% include_relative footer.html %}

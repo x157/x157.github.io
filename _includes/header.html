@@ -1,3 +1,11 @@
 
 <!-- site wide header -->
 
+<!-- page defined back_links -->
+{% if page.back_links.size > 0 %}
+  &lt;&lt;
+{% for bl in page.back_links %}
+  <a href="{{ bl.link | absolute_url }}">{{ bl.name }}</a> /
+{% endfor %}
+  <span class="back_links_title">{{ page.title }}</span>
+{% endif %}
