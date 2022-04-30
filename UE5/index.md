@@ -1,5 +1,5 @@
 ---
-title: "X157's Unreal Engine 5 Notes"
+title: "Unreal Engine 5 Notes"
 ---
 
 

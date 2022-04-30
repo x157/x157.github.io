@@ -3,21 +3,21 @@
 
 <div class="container back_links">
 
-  &gt;&gt;
+    &gt;&gt;
 
 {% if page.is_site_index %}
 
-  <span class="back_links_title">X157 Home</span>
+    <span class="back_links_title">X157 Home</span>
 
 {% else %}
 
-  <a href="{{ site.url }}">X157</a>
+    <a href="{{ site.url }}">X157</a>
 
 {%   for bl in page.back_links %}
-  / <a href="{{ bl.link | absolute_url }}">{{ bl.name }}</a>
+    / <a href="{{ bl.link | absolute_url }}">{{ bl.name }}</a>
 {%   endfor %}
 
-  / <span class="back_links_title">{{ page.title }}</span>
+    / <span class="back_links_title">{{ page.title }}</span>
 
 {% endif %}
 

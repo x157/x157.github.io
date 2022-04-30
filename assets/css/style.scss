@@ -5,7 +5,15 @@
 
 .header {
   padding: 20px 0 0 0;
-  margin: 0 0 20px 0;
+  margin: 0;
+}
+
+.container.back_links {
+  margin: 0 auto 20px auto;
+}
+
+.back_links_title {
+  font-weight: bold;
 }
 
 .footer {
@@ -16,12 +24,4 @@
   margin: 40px 0 0 0;
   display: block;
   text-align: center;
-}
-
-.container.back_links {
-  margin: 0 0 20px 0;
-}
-
-.back_links_title {
-  font-weight: bold;
 }
