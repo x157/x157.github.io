@@ -5,6 +5,10 @@ title: How to make a game with UE5 LyraStarterGame
 {% include_relative header.html %}
 
 
+# Make Your UE5 Game from Lyra
+
+Don't start from scratch!  Start from Lyra.
+
 Epic suggests using this massive starter game framework for new dev projects, and seeing all of the things that they've already done for us, it's not hard to imagine why.
 
 This thing is PACKED full of things that every game NEEDS but that isn't the least bit fun for devs, especially hobbyists like myself, to implement.

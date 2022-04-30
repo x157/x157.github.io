@@ -5,14 +5,16 @@ title: How to Create a UE5 GameFeature Plugin for LyraStarterGame
 {% include_relative header.html %}
 
 
-# How to Create a UE5 GameFeature Plugin for LyraStarterGame
+# How to Create a UE5 GameFeature Plugin
 
 There isn't anything particularly special about this plugin except apparently it must go into the `Plugins/GameFeatures` directory.
 
 
 ## Create New GameFeature Plugin
 
-- UE5 Menu: `Edit` > `Plugins`
+With the LyraStarterGame project open in the UE5 editor, follow these steps:
+
+- UE5 Editor Menu: `Edit` > `Plugins`
 - Click `+ Add` button
 - Choose `Game Feature (with C++)` template
 - Name Plugin (I called mine `XistGame`)
