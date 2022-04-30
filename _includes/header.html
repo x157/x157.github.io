@@ -1,15 +1,24 @@
 
 <!-- site wide header -->
 
-{% if page.back_links.size > 0 %}
-<!-- page defined back_links -->
 <div class="container">
-  &lt;&lt;
-{% for bl in page.back_links %}
-  <a href="{{ bl.link | absolute_url }}">{{ bl.name }}</a> /
-{% endfor %}
-  <span class="back_links_title">{{ page.title }}</span>
-</div>
+
+  &gt;&gt;
+
+{% if page.is_site_index %}
+
+  <span class="back_links_title">X157 Home</span>
+
 {% else %}
-<!-- no page.back_links defined -->
+
+  <a href="{{ site.url }}">X157</a>
+
+{%   for bl in page.back_links %}
+  / <a href="{{ bl.link | absolute_url }}">{{ bl.name }}</a>
+{%   endfor %}
+
+  / <span class="back_links_title">{{ page.title }}</span>
+
 {% endif %}
+
+</div>

@@ -1,8 +1,5 @@
 ---
 title: "X157's Unreal Engine 5 Notes"
-back_links:
-  - link: /UE5/
-    name: UE5
 ---
 
 

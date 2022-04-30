@@ -3,8 +3,6 @@ title: How to make a game with UE5 LyraStarterGame
 back_links:
   - link: /UE5/
     name: UE5
-  - link: /UE5/LyraStarterGame/
-    name: LyraStarterGame
 ---
 
 

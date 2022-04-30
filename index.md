@@ -1,4 +1,5 @@
 ---
+is_site_index: true
 ---
 
 
