@@ -23,11 +23,15 @@
 
     {% include header.html %}
 
+    {{ content_header | default: "" }}
+
     <div class="container">
       <section id="main_content">
         {{ content }}
       </section>
     </div>
+
+    {{ content_footer | default: "" }}
 
     {% include footer.html %}
 
