@@ -22,3 +22,13 @@ It seems Epic intends for us to create a plugin and contain all of our own sourc
 
 [How To Create a GameFeature Plugin](./How-To-Create-a-GameFeature-Plugin)
 
+# References
+
+[Lyra Starter Game Overview (Epic Games)](https://www.youtube.com/watch?v=Fj1zCsYydD8)
+
+This video was released by Epic near the launch of 5.0 and is a must watch if you want an overview of Lyra and its big picture.
+
+Some interesting points in particular:
+
+[06:57 - What is an Experience](https://www.youtube.com/watch?v=Fj1zCsYydD8&t=417s)
+[09:57 - User facing Experience](https://www.youtube.com/watch?v=Fj1zCsYydD8&t=597s)
