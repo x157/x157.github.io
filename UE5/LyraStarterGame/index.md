@@ -30,7 +30,11 @@ This video was released by Epic near the launch of 5.0 and is a must watch if yo
 
 Some interesting points in particular:
 
-- [06:57 - What is an Experience](https://www.youtube.com/watch?v=Fj1zCsYydD8&t=417s)
-- [09:57 - User-Facing Experience](https://www.youtube.com/watch?v=Fj1zCsYydD8&t=597s)
-- [11:58 - Online Features](https://youtu.be/Fj1zCsYydD8?t=718s)
-- [13:21 - Scalability](https://youtu.be/Fj1zCsYydD8?t=801s)
+- [06:57 - What is an Experience](https://youtu.be/Fj1zCsYydD8?t=417)
+- [09:57 - User-Facing Experience](https://youtu.be/Fj1zCsYydD8?t=597)
+- [11:58 - Online Features](https://youtu.be/Fj1zCsYydD8?t=718)
+- [13:21 - Scalability](https://youtu.be/Fj1zCsYydD8?t=801)
+- [14:40 - UE5 Mannequins](https://youtu.be/Fj1zCsYydD8?t=880)
+- [16:21 - Cosmetics & Team Colors](https://youtu.be/Fj1zCsYydD8?t=981)
+- [23:48 - Input System](https://youtu.be/Fj1zCsYydD8?t=1428)
+- [26:19 - Level Design Greyboxing](https://youtu.be/Fj1zCsYydD8?t=1579)
