@@ -30,5 +30,5 @@ This video was released by Epic near the launch of 5.0 and is a must watch if yo
 
 Some interesting points in particular:
 
-[06:57 - What is an Experience](https://www.youtube.com/watch?v=Fj1zCsYydD8&t=417s)
-[09:57 - User facing Experience](https://www.youtube.com/watch?v=Fj1zCsYydD8&t=597s)
+- [06:57 - What is an Experience](https://www.youtube.com/watch?v=Fj1zCsYydD8&t=417s)
+- [09:57 - User facing Experience](https://www.youtube.com/watch?v=Fj1zCsYydD8&t=597s)
