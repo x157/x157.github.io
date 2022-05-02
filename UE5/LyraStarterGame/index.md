@@ -22,9 +22,20 @@ It seems Epic intends for us to create a plugin and contain all of our own sourc
 
 [How To Create a GameFeature Plugin](./How-To-Create-a-GameFeature-Plugin)
 
+# Step 2: Create New Map
+
+# Step 3: Create New Experience
+
+Set this as the default experience to load in your new map.
+
+# Step 4: Change Front-end to show this new experience
+
+Create user-facing experience to accomplish this (?)
+
+
 # References
 
-[Lyra Starter Game Overview (Epic Games)](https://www.youtube.com/watch?v=Fj1zCsYydD8)
+## [Lyra Starter Game Overview (Epic Games)](https://youtu.be/Fj1zCsYydD8)
 
 This video was released by Epic near the launch of 5.0 and is a must watch if you want an overview of Lyra and its big picture.
 
@@ -38,3 +49,19 @@ Some interesting points in particular:
 - [16:21 - Cosmetics & Team Colors](https://youtu.be/Fj1zCsYydD8?t=981)
 - [23:48 - Input System](https://youtu.be/Fj1zCsYydD8?t=1428)
 - [26:19 - Level Design Greyboxing](https://youtu.be/Fj1zCsYydD8?t=1579)
+
+## [Lyra Walkthrough Q&A](https://youtu.be/N1X7BgIQ4QY?t=431)
+
+- [0:10:55 - Creating a New Experience](https://youtu.be/N1X7BgIQ4QY?t=655)
+- [0:21:59 - Reference Viewer](https://youtu.be/N1X7BgIQ4QY?t=1319)
+- [0:24:13 - How to Set Game Executable Name](https://youtu.be/N1X7BgIQ4QY?t=1453) 
+- [0:26:28 - How to get EOS (Epic Online Subsystem) Working](https://youtu.be/N1X7BgIQ4QY?t=1588)
+- [0:29:47 - Overview of Lyra Inventory System](https://youtu.be/N1X7BgIQ4QY?t=1787)
+- [0:35:30 - Common Loading Screen](https://youtu.be/N1X7BgIQ4QY?t=2130)
+- [0:45:33 - Unreal Editor Network Latency Tools](https://youtu.be/N1X7BgIQ4QY?t=2733)
+- [0:50:04 - Developer Cheats & Tricks](https://youtu.be/N1X7BgIQ4QY?t=3004)
+- [0:51:14 - Team Colors])https://youtu.be/N1X7BgIQ4QY?t=3074)
+- [0:52:05 - Hero/Pawn Data Asset](https://youtu.be/N1X7BgIQ4QY?t=3125)
+- [1:00:27 - TIP: CTRL+B & CTRL+E Editor Shortcuts](https://youtu.be/N1X7BgIQ4QY?t=3627)
+- [1:01:57 - TIP: Viewport Favorites](https://youtu.be/N1X7BgIQ4QY?t=3757)
+- [1:03:12 - TIP: Menu: Tools > Search](https://youtu.be/N1X7BgIQ4QY?t=3792)
