@@ -1,5 +1,6 @@
 ---
 title: How to make a game with UE5 LyraStarterGame
+description: Learn how to make a new game based on UE5's Lyra Starter Game (LyraStarterGame)
 back_links:
   - link: /UE5/
     name: UE5
@@ -16,21 +17,30 @@ This thing is PACKED full of things that every game NEEDS but that isn't the lea
 
 The cost to us is simply to learn how they've put things together, and furthermore how to extend the framework they've built.
 
+
 # Step 1: Create a GameFeature Plugin
 
 It seems Epic intends for us to create a plugin and contain all of our own source and content there, such that they can eventually (how!?) update the LyraStarterGame code and content they've provided with additions, bug fixes, etc.
 
 [How To Create a GameFeature Plugin](./How-To-Create-a-GameFeature-Plugin)
 
+
 # Step 2: Create New Map
+
 
 # Step 3: Create New Experience
 
 Set this as the default experience to load in your new map.
 
+
 # Step 4: Change Front-end to show this new experience
 
 Create user-facing experience to accomplish this (?)
+
+
+# Step 5: Your guess is as good as mine! :D
+
+Currently working toward this.  Will update more as I learn more.
 
 
 # References
