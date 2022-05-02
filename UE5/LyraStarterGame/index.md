@@ -71,7 +71,7 @@ YouTube version (glitchy):
 - [0:35:30 - Common Loading Screen](https://youtu.be/N1X7BgIQ4QY?t=2130)
 - [0:45:33 - Unreal Editor Network Latency Tools](https://youtu.be/N1X7BgIQ4QY?t=2733)
 - [0:50:04 - Developer Cheats & Tricks](https://youtu.be/N1X7BgIQ4QY?t=3004)
-- [0:51:14 - Team Colors])https://youtu.be/N1X7BgIQ4QY?t=3074)
+- [0:51:14 - Team Colors](https://youtu.be/N1X7BgIQ4QY?t=3074)
 - [0:52:05 - Hero/Pawn Data Asset](https://youtu.be/N1X7BgIQ4QY?t=3125)
 - [1:00:27 - TIP: CTRL+B & CTRL+E Editor Shortcuts](https://youtu.be/N1X7BgIQ4QY?t=3627)
 - [1:01:57 - TIP: Viewport Favorites](https://youtu.be/N1X7BgIQ4QY?t=3757)
