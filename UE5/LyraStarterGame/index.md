@@ -35,6 +35,9 @@ Create user-facing experience to accomplish this (?)
 
 # References
 
+As I learn more about Lyra I'll try to document what and from where:
+
+
 ## [Lyra Starter Game Overview (Epic Games)](https://youtu.be/Fj1zCsYydD8)
 
 This video was released by Epic near the launch of 5.0 and is a must watch if you want an overview of Lyra and its big picture.
@@ -50,10 +53,18 @@ Some interesting points in particular:
 - [23:48 - Input System](https://youtu.be/Fj1zCsYydD8?t=1428)
 - [26:19 - Level Design Greyboxing](https://youtu.be/Fj1zCsYydD8?t=1579)
 
-## [Lyra Walkthrough Q&A](https://youtu.be/N1X7BgIQ4QY?t=431)
 
-- [0:10:55 - Creating a New Experience](https://youtu.be/N1X7BgIQ4QY?t=655)
-- [0:21:59 - Reference Viewer](https://youtu.be/N1X7BgIQ4QY?t=1319)
+## [Lyra Walkthru Q&A](https://www.twitch.tv/videos/1469444417)
+
+Twitch version:
+- [0:11:14 - Creating a New Experience](https://www.twitch.tv/videos/1469444417?t=0h11m14s)
+  - [0:22:54 - Create GameFeature Plugin](https://www.twitch.tv/videos/1469444417?t=0h22m54s)
+  - [0:23:52 - ? TOTO ?](https://www.twitch.tv/videos/1469444417?t=0h22m54s)
+  - [Modular Gameplay Video he references](https://www.twitch.tv/videos/1101918638?filter=archives&sort=time)
+- [0:26:08 - Reference Viewer](https://www.twitch.tv/videos/1469444417?t=0h26m08s)
+  - [Reference Viewer Screenshot](https://twitter.com/joatski/status/1453130573380206601/photo/1)
+
+YouTube version (glitchy):
 - [0:24:13 - How to Set Game Executable Name](https://youtu.be/N1X7BgIQ4QY?t=1453) 
 - [0:26:28 - How to get EOS (Epic Online Subsystem) Working](https://youtu.be/N1X7BgIQ4QY?t=1588)
 - [0:29:47 - Overview of Lyra Inventory System](https://youtu.be/N1X7BgIQ4QY?t=1787)
@@ -65,3 +76,9 @@ Some interesting points in particular:
 - [1:00:27 - TIP: CTRL+B & CTRL+E Editor Shortcuts](https://youtu.be/N1X7BgIQ4QY?t=3627)
 - [1:01:57 - TIP: Viewport Favorites](https://youtu.be/N1X7BgIQ4QY?t=3757)
 - [1:03:12 - TIP: Menu: Tools > Search](https://youtu.be/N1X7BgIQ4QY?t=3792)
+
+
+## [Modular Game Features](https://www.twitch.tv/videos/1101918638?filter=archives&sort=time)
+
+This video was recommended by Michael Noland in the Lyra Walkthru Q&A
+
