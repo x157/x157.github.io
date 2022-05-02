@@ -1,5 +1,6 @@
 ---
 title: Create a UE5 GameFeature Plugin for LyraStarterGame
+description: Describes the procedure by which to create a new UE5 GameFeature Plugin for Lyra Starter Game (LyraStarterGame)
 back_links:
   - link: /UE5/
     name: UE5
@@ -12,7 +13,7 @@ back_links:
 
 To make a game based on Lyra, you need to create a GameFeature Plugin in your LyraStarterGame project.
 
-There isn't anything particularly special about this plugin except apparently it must go into the `Plugins/GameFeatures` directory.
+There isn't anything particularly special about this plugin except it must go into the `Plugins/GameFeatures` directory.
 
 
 ## How to Create a UE5 GameFeature Plugin for Lyra
@@ -31,6 +32,9 @@ Currently your plugin is broken.  In order to explore Lyra and extend from it, y
 
 
 ## Add Dependencies to Other Plugins
+
+*This step is optional*.  You only need to do this if you want to extend your game from the base `ShooterCore`.
+If your game will not use any `ShooterCore` content at all, you can skip this step.
 
 - Open your `XistGame` data asset (whatever you named your plugin).
 - Change the `Current State` of your plugin to `Registered` (by default it should be `Active`)
@@ -76,13 +80,11 @@ are not modifying their files at all, this will have a much more minimal effect 
 treated them all as engine-like code that you can rely on and use, but
 **DO NOT modify**.
 
-<a href="./">
-    Continue your Lyra journey
-</a>
+[Continue your Lyra journey](./)
 
 
-## Alternate Video Tutorial
+## Want more info?
 
-I'm a reader, but if you prefer a video, I found this to be helpful:
-
-[How to Create a LyraStarterGame Plugin and specify dependencies](https://youtu.be/Y67z-k0DkLY?t=163)
+More information RE creating a GameFeature Plugin can be obtained by watching some of the
+[Epic Games developer discussions](./Epic-Games-Developer-Discussion-References)
+that I have annotated.
