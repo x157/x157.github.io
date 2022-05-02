@@ -16,9 +16,11 @@ This is a collection of some of the more interesting discussions I've reviewed b
 Not all of these are directly talking about LyraStarterGame, but they do cover relevant technologies that need to be understood to effectively morph LyraStarterGame into a custom game.
 
 
-## [Lyra Starter Game Overview (Epic Games)](https://youtu.be/Fj1zCsYydD8)
+## Lyra Starter Game Overview (Epic Games)
 
 This video was released by Epic near the launch of 5.0 and is a must watch if you want an overview of Lyra and its big picture.
+
+[Full Video](https://youtu.be/Fj1zCsYydD8)
 
 Some interesting points in particular:
 
@@ -32,7 +34,11 @@ Some interesting points in particular:
 - [26:19 - Level Design Greyboxing](https://youtu.be/Fj1zCsYydD8?t=1579)
 
 
-## [Lyra Walkthru Q&A](https://www.twitch.tv/videos/1469444417)
+## Lyra Walkthru Q&A
+
+This was a follow-up to the original video linked above.  The Twitch version is vastly superior to the YouTube version if you're going to watch the whole thing.
+
+[Full Video](https://www.twitch.tv/videos/1469444417)
 
 Twitch version:
 - [0:11:14 - Creating a New Experience](https://www.twitch.tv/videos/1469444417?t=0h11m14s)
@@ -56,9 +62,13 @@ YouTube version (glitchy):
 - [1:03:12 - TIP: Menu: Tools > Search](https://youtu.be/N1X7BgIQ4QY?t=3792)
 
 
-## [Modular Game Features](https://www.twitch.tv/videos/1101918638?filter=archives&sort=time)
+## Modular Game Features
 
 This video was recommended by Michael Noland in the Lyra Walkthru Q&A
+
+[Full Video](https://www.twitch.tv/videos/1101918638?filter=archives&sort=time)
+
+Points of interest:
 
 - [0:08:22 - Begin Discussion](https://www.twitch.tv/videos/1101918638?t=0h8m22s)
 - [0:09:06 - Modular Gameplay System Overview](https://www.twitch.tv/videos/1101918638?t=0h9m6s)
