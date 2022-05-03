@@ -25,9 +25,26 @@ It seems Epic intends for us to create a plugin and contain all of our own sourc
 [How To Create a GameFeature Plugin](./How-To-Create-a-GameFeature-Plugin)
 
 
-# Step 2: Create New Map
+# Step 2: Configure Asset Manager for Plugin
 
-*... work in progress ...*
+Once you have a plugin, you need to tell the Asset Manager where to find files for your plugin.
+
+[How to Configure Asset Manager for GameFeature Plugins](./How-To-Configure-AssetManager-for-GameFeature-Plugins)
+
+
+# Step 2: Create Default Objects
+
+All the default objects need to be based on Lyra code rather than on vanilla engine code.
+
+## Map
+
+`XistGame/Content/Maps/L_DevMap` default empty map
+
+
+## Player Pawn
+
+`XistGame/Content/Game/B_Hero` pawn derived from `Lyra/Content/Characters/Heros/B_Hero_Default`
+
 
 
 # Step 3: Create New Experience
