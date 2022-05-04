@@ -9,7 +9,16 @@ At the moment I'm working my way through UE5's Lyra Starter Game, learning both 
 
 I'm an expert C++ developer who has mentored developers and team leaders, but I have ZERO experience with game dev or UE5 going into this.  It should be fun.
 
+
 # UE5 Lyra Starter Game
 
-[Setting up a new Game using LyraStarterGame]({{ site.url }}/UE5/LyraStarterGame/)
+My primary focus at the moment:
 
+[Setting up a new Game using LyraStarterGame](./UE5/LyraStarterGame/)
+
+
+# General UE5 Tips & Tricks
+
+Things related to UE5 but not necessarily Lyra in particular:
+
+[General UE5 Tips & Tricks](./UE5/)
