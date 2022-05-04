@@ -15,7 +15,7 @@ Ideally I'll add other notes to this page as well but for now, check that out.
 # Windows Tricks RE UE5
 
 
-## `HKEY_CLASSES_ROOT\Unreal.ProjectFile` Registry Key
+## Registry Key: `HKEY_CLASSES_ROOT\Unreal.ProjectFile`
 
 This registry key configures the windows right click system menu options when you right click on `.uproject` files.
 
