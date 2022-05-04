@@ -50,3 +50,10 @@ In these examples my GameFeature Plugin is named `XistGame`
 ### PlayerMappableInputConfig
 
 <img src="./screenshots/GamePlugin-AssetManager/Index4.png" />
+
+
+# AssetManager Configuration Complete
+
+That should be it for now RE AssetManager.
+
+[Continue your Lyra journey](./)
