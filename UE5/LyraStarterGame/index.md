@@ -11,7 +11,7 @@ back_links:
 
 Don't start from scratch!  Start from Lyra.
 
-Epic suggests using this massive starter game framework for new dev projects, and seeing all of the things that they've already done for us, it's not hard to imagine why.
+Epic suggests using this massive starter game framework for new games, and seeing all of the things that they've already done for us, it's not hard to imagine why.
 
 This thing is PACKED full of things that every game NEEDS but that isn't the least bit fun for devs, especially hobbyists like myself, to implement.
 
@@ -20,23 +20,29 @@ The cost to us is simply to learn how they've put things together, and furthermo
 
 # Step 1: Create a GameFeature Plugin
 
-It seems Epic intends for us to create a plugin and contain all of our own source and content there, such that they can eventually (how!?) update the LyraStarterGame code and content they've provided with additions, bug fixes, etc.
+UE5+Lyra is set up such that you should never touch the base code.  Michael Noland says "think of Lyra like it's engine code."
+
+What we do then to create a new game is we make a "GameFeature Plugin" for Lyra.  It's less of a plugin in the traditional sense and more like a mod.
+
+By containing all of our work in our own plugin, we ensure it will be as easy as possible to integrate future upgrades, bug fixes, etc that Epic produces on the base Lyra framework.
 
 [How To Create a GameFeature Plugin](./How-To-Create-a-GameFeature-Plugin)
 
 
 # Step 2: Configure Asset Manager for Plugin
 
-Once you have a plugin, you need to tell the Asset Manager where to find files for your plugin.
+Once you have a plugin, you need to tell Lyra's Asset Manager where to find files for your plugin.
 
 [How to Configure Asset Manager for GameFeature Plugins](./How-To-Configure-AssetManager-for-GameFeature-Plugins)
 
 
 # Step 3: Create Your Dev Experience
 
-A map is now really more of an "experience" associated with key bindings, abilities and other data assets.
+An "Experience" in Lyra is essentially some form of user interaction.  It's a map along with a set of inputs and controls that may or may not be shared with other maps or other experiences.
 
-The first one you set up is the hardest, there is some boilerplate stuff that needs to be done for your mod.
+The first experience you set up is the hardest, there is some boilerplate stuff that needs to be done for your mod.
+
+For that reason we'll set up a purely development focussed experience so we'll have a basic starting point.
 
 [How to Create Your Dev Experience](./How-To-Create-New-GameFeature-Dev-Experience)
 
