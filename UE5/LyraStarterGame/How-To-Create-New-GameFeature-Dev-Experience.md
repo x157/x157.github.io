@@ -38,6 +38,34 @@ In my game, `B_XGCyborg` is the player's pawn.  It extends from `B_XGCharacterBa
     - `XistGame/Content/Game/B_XGCyborg`
 
 
+### Lyra Ability Set
+
+| Data Asset | Base Class |
+| --- | --- |
+| `Game/DA_XG_AbilitySet_Cyborg` | `LyraAbilitySet` |
+
+- Gameplay Abilities:
+  - Granted Gameplay Abilities:
+    0.
+      - Ability: `GA_Hero_Jump`
+      - Ability Lefel: 1
+      - Input Tag: `InputTag.Jump`
+
+
+### LyraAbilityTagRelationshipMapping
+
+| Data Asset | Base Class |
+| --- | --- |
+| `Game/DA_XG_TagRelationships` | `LyraAbilitySet` |
+
+- Ability
+  - Ability Tag Relationships
+    0. `(AbilityTag=(TagName="Ability.Type.Action"),AbilityTagsToBlock=(GameplayTags=),AbilityTagsToCancel=(GameplayTags=),ActivationRequiredTags=(GameplayTags=),ActivationBlockedTags=(GameplayTags=((TagName="Status.Death.Dead"),(TagName="Status.Death.Dying"))))`
+    1. `(AbilityTag=(TagName="Ability.Type.Action.Melee"),AbilityTagsToBlock=(GameplayTags=((TagName="Ability.Type.Action.Emote"))),AbilityTagsToCancel=(GameplayTags=((TagName="Ability.Type.Action.Emote"))),ActivationRequiredTags=(GameplayTags=),ActivationBlockedTags=(GameplayTags=))`
+    2. `(AbilityTag=(TagName="Ability.Type.Action.Drop"),AbilityTagsToBlock=(GameplayTags=((TagName="Ability.Type.Action.Emote"))),AbilityTagsToCancel=(GameplayTags=((TagName="Ability.Type.Action.Emote"))),ActivationRequiredTags=(GameplayTags=),ActivationBlockedTags=(GameplayTags=))`
+    3. `(AbilityTag=(TagName="Ability.Type.Action.Emote"),AbilityTagsToBlock=(GameplayTags=),AbilityTagsToCancel=(GameplayTags=),ActivationRequiredTags=(GameplayTags=),ActivationBlockedTags=(GameplayTags=((TagName="Movement.Mode.Falling"))))`
+
+
 ### Lyra Pawn Data
 
 In mod `Game` directory create a `LyraPawnData` data asset with a `DA_` name prefix.
@@ -49,19 +77,23 @@ Configure this asset:
 - Lyra
   - Pawn
     - Pawn Class: `B_XGCyborg` (mod custom)
+  - Abilities
+    - Ability Sets:
+      - Index 0 = `DA_XG_AbilitySet_Cyborg`
+    - Tag Relationship Mapping: `DA_XG_TagRelationships`
   - Input
-    - Input Config: `InputData_Hero` (default Lyra hero input)
+    - Input Config: `InputData_XistGame` (default Lyra hero input)
   - Camera
     - Default Camera Mode: `CM_ThirdPerson` (default Lyra camera)
 
 
 ### Input Mapping Context
 
-In mod `Input/Mappings` directory create a `InputMappingContext` data asset with a `IMC_` name prefix.
+Duplicate `Game/Content/Input/Mappings/IMC_Default_KBM`
 
-I named mine `IMC_XGKBM`
+Rename it `Mod/Content/Input/Mappings/IMC_XG_KBM`
 
-For now leave this blank.  Later you'll add mod-specific keyboard mappings here.
+Edit `IMC_XG_KBM` and remove any of the default input mappings that you don't want/need in your game.
 
 
 ### Lyra Input Config
@@ -70,7 +102,9 @@ In mod `Input/Configs` directory create a `LyraInputConfig` data asset with a `I
 
 I named mine `InputData_XGAddOns`
 
-For now leave this blank.  Later you'll add mod-specific input actions here.
+((InputAction=InputAction'"/Game/Input/Actions/IA_Move.IA_Move"',InputTag=(TagName="InputTag.Move")),(InputAction=InputAction'"/Game/Input/Actions/IA_Look_Mouse.IA_Look_Mouse"',InputTag=(TagName="InputTag.Look.Mouse")),(InputAction=InputAction'"/Game/Input/Actions/IA_Look_Stick.IA_Look_Stick"',InputTag=(TagName="InputTag.Look.Stick")),(InputAction=InputAction'"/Game/Input/Actions/IA_Crouch.IA_Crouch"',InputTag=(TagName="InputTag.Crouch")),(InputAction=InputAction'"/Game/Input/Actions/IA_AutoRun.IA_AutoRun"',InputTag=(TagName="InputTag.AutoRun")))
+
+((InputAction=InputAction'"/Game/Input/Actions/IA_Jump.IA_Jump"',InputTag=(TagName="InputTag.Jump")),(InputAction=InputAction'"/Game/Input/Actions/IA_Ability_Dash.IA_Ability_Dash"',InputTag=(TagName="InputTag.Ability.Dash")))
 
 
 ### Lyra Experience Action Set
@@ -88,9 +122,6 @@ Configure this asset:
         - Index 0:
           - Input Mapping: `IMC_XGKBM` (mod custom keybinds)
           - Priority: 1
-        - Index 1:
-          - Input Mapping: `IMC_Default_KBM` (lyra default keybinds)
-          - Priority: 0
   - Index 1: `Add Input Binds`
     - Input
       - Input Configs
@@ -98,8 +129,6 @@ Configure this asset:
 - Feature Dependencies
   - Game Features to Enable
     - Index 0: `XistGame` (mod name)
-
-In the setup above, we're using default Lyra MKB keybinds and overriding them with our mod custom keybinds.
 
 
 ### Gameplay Experience
