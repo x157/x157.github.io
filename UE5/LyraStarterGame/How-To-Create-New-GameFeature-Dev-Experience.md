@@ -24,31 +24,31 @@ The order in which you create these matters; some reference others.
 
 In mod `Game` directory, make a base player pawn for your mod.
 
-You'll likely want to derive your base pawn from Lyra's `B_Hero_Default`.
+You'll likely want to derive your base pawn from Lyra's `Content\Characters\Heros\B_Hero_Default`.
 
 Make sure you also take an extensive look at `ShooterCore/Content/Game/B_Hero_ShooterMannequin` to see how Epic set up their player pawn.  There are things in there you likely don't need, but there are also things you'll most certainly want to copy/extend.
 
-In my game, `B_XGCyborg` is the player's pawn.  It extends from `B_XGCharacterBase` which contains the pertinent parts of Epic's ShooterGame character.
+In my game, `B_XG_Character_Humanoid` is the player's pawn.  It extends from `B_XG_Character_Base` which contains the pertinent parts of Epic's ShooterGame character.
 
 
 ### Example Player Pawn Inheritance
 
 - `Lyra/Content/Characters/Heros/B_Hero_Default`
-  - `XistGame/Content/Game/B_XGCharacterBase`
-    - `XistGame/Content/Game/B_XGCyborg`
+  - `XistGame/Content/Game/B_XG_Character_Base`
+    - `XistGame/Content/Game/B_XG_Character_Humanoid`
 
 
 ### Lyra Ability Set
 
 | Data Asset | Base Class |
 | --- | --- |
-| `Game/DA_XG_AbilitySet_Cyborg` | `LyraAbilitySet` |
+| `Character/DA_XG_AbilitySet_Humanoid` | `LyraAbilitySet` |
 
 - Gameplay Abilities:
   - Granted Gameplay Abilities:
     0.
       - Ability: `GA_Hero_Jump`
-      - Ability Lefel: 1
+      - Ability Level: 1
       - Input Tag: `InputTag.Jump`
 
 
@@ -56,7 +56,7 @@ In my game, `B_XGCyborg` is the player's pawn.  It extends from `B_XGCharacterBa
 
 | Data Asset | Base Class |
 | --- | --- |
-| `Game/DA_XG_TagRelationships` | `LyraAbilitySet` |
+| `Game/DA_XG_TagRelationships` | `LyraAbilityTagRelationshipMapping` |
 
 - Ability
   - Ability Tag Relationships
@@ -66,23 +66,32 @@ In my game, `B_XGCyborg` is the player's pawn.  It extends from `B_XGCharacterBa
     3. `(AbilityTag=(TagName="Ability.Type.Action.Emote"),AbilityTagsToBlock=(GameplayTags=),AbilityTagsToCancel=(GameplayTags=),ActivationRequiredTags=(GameplayTags=),ActivationBlockedTags=(GameplayTags=((TagName="Movement.Mode.Falling"))))`
 
 
+### Lyra Input Config
+
+| Data Asset | Base Class |
+| --- | --- |
+| `Character/DA_XG_InputData_Humanoid` | `LyraInputConfig` |
+
+Duplicate `Game/Content/Input/InputData_Hero` to your new file name, then edit it and remove any inputs you don't want.
+
+
 ### Lyra Pawn Data
 
 In mod `Game` directory create a `LyraPawnData` data asset with a `DA_` name prefix.
 
-I named mine `DA_XGPlayerPawnData`
+I named mine `DA_XG_PawnData_Humanoid`
 
 Configure this asset:
 
 - Lyra
   - Pawn
-    - Pawn Class: `B_XGCyborg` (mod custom)
+    - Pawn Class: `B_XG_Character_Humanoid` (mod custom)
   - Abilities
     - Ability Sets:
-      - Index 0 = `DA_XG_AbilitySet_Cyborg`
+      - Index 0 = `DA_XG_AbilitySet_Humanoid`
     - Tag Relationship Mapping: `DA_XG_TagRelationships`
   - Input
-    - Input Config: `InputData_XistGame` (default Lyra hero input)
+    - Input Config: `DA_XG_InputData_Humanoid` (default Lyra hero input)
   - Camera
     - Default Camera Mode: `CM_ThirdPerson` (default Lyra camera)
 
@@ -91,27 +100,16 @@ Configure this asset:
 
 Duplicate `Game/Content/Input/Mappings/IMC_Default_KBM`
 
-Rename it `Mod/Content/Input/Mappings/IMC_XG_KBM`
+Rename it `Mod/Content/Input/IMC_XG_Default_KBM`
 
-Edit `IMC_XG_KBM` and remove any of the default input mappings that you don't want/need in your game.
-
-
-### Lyra Input Config
-
-In mod `Input/Configs` directory create a `LyraInputConfig` data asset with a `InputData_` name prefix.
-
-I named mine `InputData_XGAddOns`
-
-((InputAction=InputAction'"/Game/Input/Actions/IA_Move.IA_Move"',InputTag=(TagName="InputTag.Move")),(InputAction=InputAction'"/Game/Input/Actions/IA_Look_Mouse.IA_Look_Mouse"',InputTag=(TagName="InputTag.Look.Mouse")),(InputAction=InputAction'"/Game/Input/Actions/IA_Look_Stick.IA_Look_Stick"',InputTag=(TagName="InputTag.Look.Stick")),(InputAction=InputAction'"/Game/Input/Actions/IA_Crouch.IA_Crouch"',InputTag=(TagName="InputTag.Crouch")),(InputAction=InputAction'"/Game/Input/Actions/IA_AutoRun.IA_AutoRun"',InputTag=(TagName="InputTag.AutoRun")))
-
-((InputAction=InputAction'"/Game/Input/Actions/IA_Jump.IA_Jump"',InputTag=(TagName="InputTag.Jump")),(InputAction=InputAction'"/Game/Input/Actions/IA_Ability_Dash.IA_Ability_Dash"',InputTag=(TagName="InputTag.Ability.Dash")))
+Edit `IMC_XG_Default_KBM` and remove any of the default input mappings that you don't want/need in your game.
 
 
 ### Lyra Experience Action Set
 
 In mod `Experiences` directory create a `LyraExperienceActionSet` data asset with a `LAS_` name prefix.
 
-I named mine `LAS_XGSharedInput`
+I named mine `LAS_XG_SharedInput`
 
 Configure this asset:
 
@@ -120,12 +118,12 @@ Configure this asset:
     - Input
       - Input Mappings
         - Index 0:
-          - Input Mapping: `IMC_XGKBM` (mod custom keybinds)
+          - Input Mapping: `IMC_XG_Default_KBM` (mod custom keybinds)
           - Priority: 1
   - Index 1: `Add Input Binds`
     - Input
       - Input Configs
-        - Index 0: `InputData_XGAddOns` (mod custom)
+        - Index 0: `DA_XG_InputData_Humanoid` (mod custom)
 - Feature Dependencies
   - Game Features to Enable
     - Index 0: `XistGame` (mod name)
@@ -133,17 +131,19 @@ Configure this asset:
 
 ### Gameplay Experience
 
-In mod `Experiences` directory create a new `LyraExperienceDefinition` child blueprint with a `B_` name prefix.
+Duplicate `ShooterCore/Content/Experiences/B_ShooterGame_Elimination`
 
-I named mine `B_XGDevExperience`
+Name it `B_XG_Experience_Dev`
 
 Configure this asset:
 
 - Gameplay
   - Game Features to Enable:
     - Index 0: `XistGame` (mod name)
-  - Default Pawn Data: `DA_XGPlayerPawnData` (mod custom)
-  - Action Sets: `LAS_XGSharedInput` (mod custom)
+  - Default Pawn Data: `DA_XG_PawnData_Humanoid` (mod custom)
+  - Action Sets: `LAS_XG_SharedInput` (mod custom)
+  - Actions
+    - Actions: *(delete everything here, make it an empty array)*
 
 
 ## Dev Map
@@ -155,7 +155,7 @@ I named mine `L_DevMap`
 Configure this asset (its `World Settings`):
 
 - Game Mode
-  - Default Gameplay Experience: `B_XGDevExperience` (mod custom)
+  - Default Gameplay Experience: `B_XG_Experience_Dev` (mod custom)
 
 You don't need much here right now.  A plane, a light and a `LyraPlayerStart` actor should do it.
 

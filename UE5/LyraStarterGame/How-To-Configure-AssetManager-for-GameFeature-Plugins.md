@@ -27,6 +27,14 @@ You need to ensure there is an entry for each of the following data types:
 In these examples my GameFeature Plugin is named `XistGame`
 
 
+### If you just want to import this rather than entering by hand:
+
+Copy this text and right-click-paste it onto the `Primary Asset Types to Scan` array:
+```text
+((PrimaryAssetType="LyraExperienceDefinition",AssetBaseClass="/Script/LyraGame.LyraExperienceDefinition",bHasBlueprintClasses=True,Directories=((Path="/XistGame/Experiences"))),(PrimaryAssetType="LyraUserFacingExperienceDefinition",AssetBaseClass="/Script/LyraGame.LyraUserFacingExperienceDefinition",Directories=((Path="/XistGame/Experiences/Playlists"))),(PrimaryAssetType="LyraExperienceActionSet",AssetBaseClass="/Script/LyraGame.LyraExperienceActionSet",Directories=((Path="/XistGame/Experiences"))),(PrimaryAssetType="World",AssetBaseClass="/Script/Engine.World",Directories=((Path="/XistGame/Maps"))),(PrimaryAssetType="PlayerMappableInputConfig",AssetBaseClass="/Script/EnhancedInput.PlayerMappableInputConfig",Directories=((Path="/XistGame/Input/Configs"),(Path="/Game/Input/Configs"))))
+```
+
+
 ### LyraExperienceDefinition
 
 <img src="./screenshots/GamePlugin-AssetManager/Index0.png" />

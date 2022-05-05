@@ -28,8 +28,6 @@ With the LyraStarterGame project open in the UE5 editor, follow these steps:
 
 When you create this, it will supply you with an initial, mostly empty `GameFeatures.GameFeatureData` data asset, named after your game.
 
-Currently your plugin is broken.  In order to explore Lyra and extend from it, you need to explicitly declare some project dependencies.
-
 
 ## Add Dependencies to Other Plugins
 
