@@ -24,19 +24,19 @@ The order in which you create these matters; some reference others.
 
 | Data Asset | Base Class |
 | --- | --- |
-| `Characters/B_XG_Character_Base` | `Lyra:Characters/Heros/B_Hero_Default` |
+| `Characters/B_XG_Character_Base` | `Lyra`:`Characters/Heros/B_Hero_Default` |
 | `Characters/B_XG_Character_Humanoid` | `Characters/B_XG_Character_Base` |
 
-Make sure you also take an extensive look at `ShooterCore:Game/B_Hero_ShooterMannequin` to see how Epic set up their player pawn.  There are things in there you likely don't need, but there are also things you'll most certainly want to copy/extend.
+Make sure you also take an extensive look at `ShooterCore`:`Game/B_Hero_ShooterMannequin` to see how Epic set up their player pawn.  There are things in there you likely don't need, but there are also things you'll most certainly want to copy/extend.
 
 In XistGame, `B_XG_Character_Humanoid` is the player pawn.  It extends from `B_XG_Character_Base` which contains the pertinent parts of Epic's ShooterGame character.
 
 
 ### XistGame Player Pawn Inheritance
 
-- `Lyra:Characters/Heros/B_Hero_Default`
-  - `XistGame:Characters/B_XG_Character_Base`
-    - `XistGame:Characters/B_XG_Character_Humanoid`
+- `Lyra`:`Characters/Heros/B_Hero_Default`
+  - `XistGame`:`Characters/B_XG_Character_Base`
+    - `XistGame`:`Characters/B_XG_Character_Humanoid`
 
 
 ## Lyra Ability Set
@@ -47,8 +47,8 @@ In XistGame, `B_XG_Character_Humanoid` is the player pawn.  It extends from `B_X
 
 - Gameplay Abilities:
   - Granted Gameplay Abilities:
-    0.
-      - Ability: `Lyra:Characters/Heroes/Abilities/GA_Hero_Jump`
+    - 0:
+      - Ability: `Lyra`:`Characters/Heroes/Abilities/GA_Hero_Jump`
       - Ability Level: 1
       - Input Tag: `InputTag.Jump`
 
@@ -94,7 +94,7 @@ Just copy this and paste it into `Ability Tag Relationships` if you want the def
 | --- | --- |
 | `Input/DA_XG_InputData_Humanoid` | C++ `LyraInputConfig` |
 
-Duplicate `Lyra:Input/InputData_Hero` to your new file name, then edit it and remove any inputs you don't want.
+Duplicate `Lyra`:`Input/InputData_Hero` to your new file name, then edit it and remove any inputs you don't want.
 
 
 ## Lyra Pawn Data
@@ -110,12 +110,12 @@ Configure this asset:
     - Pawn Class: `B_XG_Character_Humanoid`
   - Abilities
     - Ability Sets:
-      0. `DA_XG_AbilitySet_Humanoid`
+      - 0: `DA_XG_AbilitySet_Humanoid`
     - Tag Relationship Mapping: `DA_XG_TagRelationships`
   - Input
     - Input Config: `DA_XG_InputData_Humanoid`
   - Camera
-    - Default Camera Mode: `CM_ThirdPerson` (default Lyra camera)
+    - Default Camera Mode: `Lyra`:`CM_ThirdPerson`
 
 
 ## Input Mapping Context
@@ -124,7 +124,7 @@ Configure this asset:
 | --- | --- |
 | `Input/IMC_XG_Default_KBM` | C++ `InputMappingContext` |
 
-Duplicate `Lyra:Input/Mappings/IMC_Default_KBM`
+Duplicate `Lyra`:`Input/Mappings/IMC_Default_KBM`
 
 Edit `IMC_XG_Default_KBM` and remove any of the default input mappings that you don't want/need in your game.
 
@@ -139,19 +139,19 @@ Configure this asset:
 
 - Actions to Perform
   - Actions
-    0. `Add Input Mapping`
+    - 0: `Add Input Mapping`
       - Input
         - Input Mappings
-          0.
+          - 0:
             - Input Mapping: `IMC_XG_Default_KBM`
             - Priority: 1
-    1. `Add Input Binds`
+    - 1: `Add Input Binds`
       - Input
         - Input Configs
-          0. `DA_XG_InputData_Humanoid`
+          - 0: `DA_XG_InputData_Humanoid`
 - Feature Dependencies
   - Game Features to Enable
-    0. `XistGame` (mod name)
+    - 0: `XistGame` (mod name)
 
 
 ## Gameplay Experience
@@ -160,16 +160,16 @@ Configure this asset:
 | --- | --- |
 | `Experiences/B_XG_Experience_Dev` | C++ `LyraExperienceDefinition` |
 
-Duplicate `ShooterCore:Experiences/B_ShooterGame_Elimination`
+Duplicate `ShooterCore`:`Experiences/B_ShooterGame_Elimination`
 
 Configure this asset:
 
 - Gameplay
   - Game Features to Enable:
-    0. `XistGame` (mod name)
+    - 0: `XistGame` (mod name)
   - Default Pawn Data: `DA_XG_PawnData_Humanoid`
   - Action Sets:
-    0. `LAS_XG_SharedInput`
+    - 0: `LAS_XG_SharedInput`
 - Actions
   - Actions: *(delete everything here, make it an empty array)*
 
