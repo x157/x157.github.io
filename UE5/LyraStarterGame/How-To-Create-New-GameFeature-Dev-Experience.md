@@ -188,10 +188,10 @@ Configure this asset (its `World Settings`):
 You don't need much here right now.  A plane, a light and a C++ `LyraPlayerStart` actor should do it.
 
 
-# GameFeature Dev Experience Complete
+# Next Step: ???
 
 You should now have an empty level that you can play in PIE.  It will spawn in your character and you should have basic movement keybindings available.
 
-
-[Continue your Lyra journey](./)
+[???](???)
+or go back to [Lyra Starter Game](./)
 

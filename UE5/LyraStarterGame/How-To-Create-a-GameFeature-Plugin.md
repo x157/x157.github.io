@@ -68,17 +68,12 @@ XistGame
 ```
 
 
-## Your Game Awaits
+## Next Step: Configure Asset Manager
 
-Now that you have your own plugin, make sure that **all** of the changes you want
-to make to the base Lyra stuff happens in new files in your own plugin.
+Now that you have a plugin, you need to configure Asset Manager so that it knows where to find your game's components.
 
-Epic may one day significantly change the way some or all of Lyra works.  If you
-are not modifying their files at all, this will have a much more minimal effect on you, it will be much easier for you to incorporate their updates since you've
-treated them all as engine-like code that you can rely on and use, but
-**DO NOT modify**.
-
-[Continue your Lyra journey](./)
+[Configure Asset Manager](./How-To-Configure-AssetManager-for-GameFeature-Plugins)
+or go back to [Lyra Starter Game](./)
 
 
 ## Want more info?

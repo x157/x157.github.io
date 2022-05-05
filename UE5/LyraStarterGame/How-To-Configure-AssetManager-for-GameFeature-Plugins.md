@@ -60,8 +60,10 @@ Copy this text and right-click-paste it onto the `Primary Asset Types to Scan` a
 <img src="./screenshots/GamePlugin-AssetManager/Index4.png" />
 
 
-# AssetManager Configuration Complete
+# Next Step: Create Dev Experience
 
-That should be it for now RE AssetManager.
+Now that Asset Manager can find your stuff, it's time to actually make stuff!
 
-[Continue your Lyra journey](./)
+[Create Dev Experience](./How-To-Create-New-GameFeature-Dev-Experience)
+or go back to [Lyra Starter Game](./)
+
