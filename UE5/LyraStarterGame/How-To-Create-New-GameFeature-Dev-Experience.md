@@ -22,142 +22,170 @@ The order in which you create these matters; some reference others.
 
 ## Player Pawn
 
-In mod `Game` directory, make a base player pawn for your mod.
+| Data Asset | Base Class |
+| --- | --- |
+| `Characters/B_XG_Character_Base` | `Lyra:Characters/Heros/B_Hero_Default` |
+| `Characters/B_XG_Character_Humanoid` | `Characters/B_XG_Character_Base` |
 
-You'll likely want to derive your base pawn from Lyra's `Content\Characters\Heros\B_Hero_Default`.
+Make sure you also take an extensive look at `ShooterCore:Game/B_Hero_ShooterMannequin` to see how Epic set up their player pawn.  There are things in there you likely don't need, but there are also things you'll most certainly want to copy/extend.
 
-Make sure you also take an extensive look at `ShooterCore/Content/Game/B_Hero_ShooterMannequin` to see how Epic set up their player pawn.  There are things in there you likely don't need, but there are also things you'll most certainly want to copy/extend.
-
-In my game, `B_XG_Character_Humanoid` is the player's pawn.  It extends from `B_XG_Character_Base` which contains the pertinent parts of Epic's ShooterGame character.
-
-
-### Example Player Pawn Inheritance
-
-- `Lyra/Content/Characters/Heros/B_Hero_Default`
-  - `XistGame/Content/Game/B_XG_Character_Base`
-    - `XistGame/Content/Game/B_XG_Character_Humanoid`
+In XistGame, `B_XG_Character_Humanoid` is the player pawn.  It extends from `B_XG_Character_Base` which contains the pertinent parts of Epic's ShooterGame character.
 
 
-### Lyra Ability Set
+### XistGame Player Pawn Inheritance
+
+- `Lyra:Characters/Heros/B_Hero_Default`
+  - `XistGame:Characters/B_XG_Character_Base`
+    - `XistGame:Characters/B_XG_Character_Humanoid`
+
+
+## Lyra Ability Set
 
 | Data Asset | Base Class |
 | --- | --- |
-| `Character/DA_XG_AbilitySet_Humanoid` | `LyraAbilitySet` |
+| `Characters/DA_XG_AbilitySet_Humanoid` | C++ `LyraAbilitySet` |
 
 - Gameplay Abilities:
   - Granted Gameplay Abilities:
     0.
-      - Ability: `GA_Hero_Jump`
+      - Ability: `Lyra:Characters/Heroes/Abilities/GA_Hero_Jump`
       - Ability Level: 1
       - Input Tag: `InputTag.Jump`
 
 
-### LyraAbilityTagRelationshipMapping
+## Lyra Ability Tag Relationship Mapping
 
 | Data Asset | Base Class |
 | --- | --- |
-| `Game/DA_XG_TagRelationships` | `LyraAbilityTagRelationshipMapping` |
+| `Game/DA_XG_TagRelationships` | C++ `LyraAbilityTagRelationshipMapping` |
+
+Note that XistGame doesn't actually use these, I'm just having them here as an example of the kinds of relationships tags can have since these actions make sense that they're cancelling/blocking whatever.  Feel free to leave the relationships blank if you really want a blank project, or keep these for the sake of illustration.
+
+Just copy this and paste it into `Ability Tag Relationships` if you want the default 4.
+
+```text
+((AbilityTag=(TagName="Ability.Type.Action"),ActivationBlockedTags=(GameplayTags=((TagName="Status.Death.Dead"),(TagName="Status.Death.Dying")))),(AbilityTag=(TagName="Ability.Type.Action.Melee"),AbilityTagsToBlock=(GameplayTags=((TagName="Ability.Type.Action.Emote"))),AbilityTagsToCancel=(GameplayTags=((TagName="Ability.Type.Action.Emote")))),(AbilityTag=(TagName="Ability.Type.Action.Drop"),AbilityTagsToBlock=(GameplayTags=((TagName="Ability.Type.Action.Emote"))),AbilityTagsToCancel=(GameplayTags=((TagName="Ability.Type.Action.Emote")))),(AbilityTag=(TagName="Ability.Type.Action.Emote"),ActivationBlockedTags=(GameplayTags=((TagName="Movement.Mode.Falling")))))
+```
 
 - Ability
-  - Ability Tag Relationships
-    0. `(AbilityTag=(TagName="Ability.Type.Action"),AbilityTagsToBlock=(GameplayTags=),AbilityTagsToCancel=(GameplayTags=),ActivationRequiredTags=(GameplayTags=),ActivationBlockedTags=(GameplayTags=((TagName="Status.Death.Dead"),(TagName="Status.Death.Dying"))))`
-    1. `(AbilityTag=(TagName="Ability.Type.Action.Melee"),AbilityTagsToBlock=(GameplayTags=((TagName="Ability.Type.Action.Emote"))),AbilityTagsToCancel=(GameplayTags=((TagName="Ability.Type.Action.Emote"))),ActivationRequiredTags=(GameplayTags=),ActivationBlockedTags=(GameplayTags=))`
-    2. `(AbilityTag=(TagName="Ability.Type.Action.Drop"),AbilityTagsToBlock=(GameplayTags=((TagName="Ability.Type.Action.Emote"))),AbilityTagsToCancel=(GameplayTags=((TagName="Ability.Type.Action.Emote"))),ActivationRequiredTags=(GameplayTags=),ActivationBlockedTags=(GameplayTags=))`
-    3. `(AbilityTag=(TagName="Ability.Type.Action.Emote"),AbilityTagsToBlock=(GameplayTags=),AbilityTagsToCancel=(GameplayTags=),ActivationRequiredTags=(GameplayTags=),ActivationBlockedTags=(GameplayTags=((TagName="Movement.Mode.Falling"))))`
+  - Ability Tag Relationships:
+    - 0: `Ability.Type.Action`
+      - Activation Blocked Tags:
+        - `Status.Death.Dead`
+        - `Status.Death.Dying`
+    - 1: `Ability.Type.Action.Melee`
+      - Ability Tags to Block
+        - `Ability.Type.Action.Emote`
+      - Ability Tags to Cancel
+        - `Ability.Type.Action.Emote`
+    - 2: `Ability.Type.Action.Drop`
+      - Ability Tags to Block
+        - `Ability.Type.Action.Emote`
+      - Ability Tags to Cancel
+        - `Ability.Type.Action.Emote`
+    - 3: `Ability.Type.Action.Emote`
+      - Activation Blocked Tags:
+        - `Movement.Mode.Falling`
 
 
-### Lyra Input Config
+## Lyra Input Config
 
 | Data Asset | Base Class |
 | --- | --- |
-| `Character/DA_XG_InputData_Humanoid` | `LyraInputConfig` |
+| `Input/DA_XG_InputData_Humanoid` | C++ `LyraInputConfig` |
 
-Duplicate `Game/Content/Input/InputData_Hero` to your new file name, then edit it and remove any inputs you don't want.
+Duplicate `Lyra:Input/InputData_Hero` to your new file name, then edit it and remove any inputs you don't want.
 
 
-### Lyra Pawn Data
+## Lyra Pawn Data
 
-In mod `Game` directory create a `LyraPawnData` data asset with a `DA_` name prefix.
-
-I named mine `DA_XG_PawnData_Humanoid`
+| Data Asset | Base Class |
+| --- | --- |
+| `Characters/DA_XG_PawnData_Humanoid` | C++ `LyraPawnData` |
 
 Configure this asset:
 
 - Lyra
   - Pawn
-    - Pawn Class: `B_XG_Character_Humanoid` (mod custom)
+    - Pawn Class: `B_XG_Character_Humanoid`
   - Abilities
     - Ability Sets:
-      - Index 0 = `DA_XG_AbilitySet_Humanoid`
+      0. `DA_XG_AbilitySet_Humanoid`
     - Tag Relationship Mapping: `DA_XG_TagRelationships`
   - Input
-    - Input Config: `DA_XG_InputData_Humanoid` (default Lyra hero input)
+    - Input Config: `DA_XG_InputData_Humanoid`
   - Camera
     - Default Camera Mode: `CM_ThirdPerson` (default Lyra camera)
 
 
-### Input Mapping Context
+## Input Mapping Context
 
-Duplicate `Game/Content/Input/Mappings/IMC_Default_KBM`
+| Data Asset | Base Class |
+| --- | --- |
+| `Input/IMC_XG_Default_KBM` | C++ `InputMappingContext` |
 
-Rename it `Mod/Content/Input/IMC_XG_Default_KBM`
+Duplicate `Lyra:Input/Mappings/IMC_Default_KBM`
 
 Edit `IMC_XG_Default_KBM` and remove any of the default input mappings that you don't want/need in your game.
 
 
-### Lyra Experience Action Set
+## Lyra Experience Action Set
 
-In mod `Experiences` directory create a `LyraExperienceActionSet` data asset with a `LAS_` name prefix.
-
-I named mine `LAS_XG_SharedInput`
+| Data Asset | Base Class |
+| --- | --- |
+| `Experiences/LAS_XG_SharedInput` | C++ `LyraExperienceActionSet` |
 
 Configure this asset:
 
-- Actions
-  - Index 0: `Add Input Mapping`
-    - Input
-      - Input Mappings
-        - Index 0:
-          - Input Mapping: `IMC_XG_Default_KBM` (mod custom keybinds)
-          - Priority: 1
-  - Index 1: `Add Input Binds`
-    - Input
-      - Input Configs
-        - Index 0: `DA_XG_InputData_Humanoid` (mod custom)
+- Actions to Perform
+  - Actions
+    0. `Add Input Mapping`
+      - Input
+        - Input Mappings
+          0.
+            - Input Mapping: `IMC_XG_Default_KBM`
+            - Priority: 1
+    1. `Add Input Binds`
+      - Input
+        - Input Configs
+          0. `DA_XG_InputData_Humanoid`
 - Feature Dependencies
   - Game Features to Enable
-    - Index 0: `XistGame` (mod name)
+    0. `XistGame` (mod name)
 
 
-### Gameplay Experience
+## Gameplay Experience
 
-Duplicate `ShooterCore/Content/Experiences/B_ShooterGame_Elimination`
+| Data Asset | Base Class |
+| --- | --- |
+| `Experiences/B_XG_Experience_Dev` | C++ `LyraExperienceDefinition` |
 
-Name it `B_XG_Experience_Dev`
+Duplicate `ShooterCore:Experiences/B_ShooterGame_Elimination`
 
 Configure this asset:
 
 - Gameplay
   - Game Features to Enable:
-    - Index 0: `XistGame` (mod name)
-  - Default Pawn Data: `DA_XG_PawnData_Humanoid` (mod custom)
-  - Action Sets: `LAS_XG_SharedInput` (mod custom)
-  - Actions
-    - Actions: *(delete everything here, make it an empty array)*
+    0. `XistGame` (mod name)
+  - Default Pawn Data: `DA_XG_PawnData_Humanoid`
+  - Action Sets:
+    0. `LAS_XG_SharedInput`
+- Actions
+  - Actions: *(delete everything here, make it an empty array)*
 
 
-## Dev Map
+## World: Dev Map
 
-In mod `Maps` directory create a new `World` map with a `L_` name prefix.
-
-I named mine `L_DevMap`
+| Data Asset | Base Class |
+| --- | --- |
+| `Maps/L_DevMap` | C++ `World` |
 
 Configure this asset (its `World Settings`):
 
 - Game Mode
   - Default Gameplay Experience: `B_XG_Experience_Dev` (mod custom)
 
-You don't need much here right now.  A plane, a light and a `LyraPlayerStart` actor should do it.
+You don't need much here right now.  A plane, a light and a C++ `LyraPlayerStart` actor should do it.
 
 
 # GameFeature Dev Experience Complete
