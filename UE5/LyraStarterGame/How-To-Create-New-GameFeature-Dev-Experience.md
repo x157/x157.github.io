@@ -24,19 +24,61 @@ The order in which you create these matters; some reference others.
 
 | Data Asset | Base Class |
 | --- | --- |
-| `Characters/B_XG_Character_Base` | `Lyra`:`Characters/Heros/B_Hero_Default` |
+| `Characters/B_XG_Character_Base` | `Lyra.Characters/Heros/B_Hero_Default` |
 | `Characters/B_XG_Character_Humanoid` | `Characters/B_XG_Character_Base` |
 
-Make sure you also take an extensive look at `ShooterCore`:`Game/B_Hero_ShooterMannequin` to see how Epic set up their player pawn.  There are things in there you likely don't need, but there are also things you'll most certainly want to copy/extend.
+Make sure you also take an extensive look at `ShooterCore.Game/B_Hero_ShooterMannequin` to see how Epic set up their player pawn.  There are things in there you likely don't need, but there are also things you'll most certainly want to copy/extend.
 
 In XistGame, `B_XG_Character_Humanoid` is the player pawn.  It extends from `B_XG_Character_Base` which contains the pertinent parts of Epic's ShooterGame character.
 
+If you do copy things from `B_Hero_ShooterMannequin`, make sure you apply [this bug fix](https://youtu.be/8qTc2IcG31g).  You'll also have to remove the `ShooterCore`-specific code and references they use there.
 
 ### XistGame Player Pawn Inheritance
 
-- `Lyra`:`Characters/Heros/B_Hero_Default`
-  - `XistGame`:`Characters/B_XG_Character_Base`
-    - `XistGame`:`Characters/B_XG_Character_Humanoid`
+- `Lyra.Characters/Heros/B_Hero_Default`
+  - `XistGame.Characters/B_XG_Character_Base`
+    - `XistGame.Characters/B_XG_Character_Humanoid`
+
+### Things I copied from B_Hero_ShooterMannequin
+
+I found these things to be interesting general-purpose items and decided to add them to `B_XG_Character_Base` as they apply to all characters in team-based games, not just shooters.
+
+#### Events
+
+- `OnBeginPlay`
+  - Initialize team
+  - Wait for pawn to fully init before showing in game
+- `LyraHealthComponent.OnHealthChanged`
+  - Report damage to `AIPerceptionStimuliSource` component
+- `PawnCosmeticsComponent.OnCharacterPartsChanged`
+  - Set team colors
+  - Note I applied [this bug fix](https://youtu.be/8qTc2IcG31g)
+- `ListenForTeam`
+  - Set team colors whenever team changes
+- `PawnExtComponent.OnPawnReadyToInitialize`
+  - Show pawn
+- 
+
+#### Functions
+
+- `ConstructionScript`
+  - Set up character to use default "unarmed" animation layer
+- `CreateOrUpdateOutlineIfNeeded`
+  - Init or update character team outline color
+    - Using `Lyra.Game/Effects/Materials/PostProcess/MPP_Outline_Inst`
+- `OnTeamOrCosmeticsChanged`
+  - Update character team outline color
+  - Update character team mesh color
+- `OnRep_PlayerInfo`
+  - Update team color
+
+### Things I did not copy from B_Hero_ShooterMannequin
+
+- Inventory
+  - Characters spawn with empty inventory
+- Weapon slot hotkeys
+  - All of the "swap weapon" hotkeys are `ShooterCore`-specific and have been removed
+- UI elements
 
 
 ## Lyra Ability Set
@@ -45,10 +87,16 @@ In XistGame, `B_XG_Character_Humanoid` is the player pawn.  It extends from `B_X
 | --- | --- |
 | `Characters/DA_XG_AbilitySet_Humanoid` | C++ `LyraAbilitySet` |
 
+Copy paste `Granted Gameplay Abilities`:
+
+```text
+((Ability=BlueprintGeneratedClass'"/Game/Characters/Heroes/Abilities/GA_Hero_Jump.GA_Hero_Jump_C"',InputTag=(TagName="InputTag.Jump")))
+```
+
 - Gameplay Abilities:
   - Granted Gameplay Abilities:
     - 0:
-      - Ability: `Lyra`:`Characters/Heroes/Abilities/GA_Hero_Jump`
+      - Ability: `Lyra.Characters/Heroes/Abilities/GA_Hero_Jump`
       - Ability Level: 1
       - Input Tag: `InputTag.Jump`
 
@@ -59,7 +107,7 @@ In XistGame, `B_XG_Character_Humanoid` is the player pawn.  It extends from `B_X
 | --- | --- |
 | `Game/DA_XG_TagRelationships` | C++ `LyraAbilityTagRelationshipMapping` |
 
-Note that XistGame doesn't actually use these, I'm just having them here as an example of the kinds of relationships tags can have since these actions make sense that they're cancelling/blocking whatever.  Feel free to leave the relationships blank if you really want a blank project, or keep these for the sake of illustration.
+Note that XistGame doesn't actually use these yet, I'm just having them here as an example of the kinds of relationships tags can have since these actions make sense that they're cancelling/blocking whatever.  Feel free to leave the relationships blank if you really want a blank project, or keep these for the sake of illustration.
 
 Just copy this and paste it into `Ability Tag Relationships` if you want the default 4.
 
@@ -94,7 +142,7 @@ Just copy this and paste it into `Ability Tag Relationships` if you want the def
 | --- | --- |
 | `Input/DA_XG_InputData_Humanoid` | C++ `LyraInputConfig` |
 
-Duplicate `Lyra`:`Input/InputData_Hero` to your new file name, then edit it and remove any inputs you don't want.
+Duplicate `Lyra.Input/InputData_Hero` to your new file name, then edit it and remove any inputs you don't want.
 
 
 ## Lyra Pawn Data
@@ -115,7 +163,7 @@ Configure this asset:
   - Input
     - Input Config: `DA_XG_InputData_Humanoid`
   - Camera
-    - Default Camera Mode: `Lyra`:`CM_ThirdPerson`
+    - Default Camera Mode: `Lyra.CM_ThirdPerson`
 
 
 ## Input Mapping Context
@@ -124,7 +172,7 @@ Configure this asset:
 | --- | --- |
 | `Input/IMC_XG_Default_KBM` | C++ `InputMappingContext` |
 
-Duplicate `Lyra`:`Input/Mappings/IMC_Default_KBM`
+Duplicate `Lyra.Input/Mappings/IMC_Default_KBM`
 
 Edit `IMC_XG_Default_KBM` and remove any of the default input mappings that you don't want/need in your game.
 
@@ -134,6 +182,12 @@ Edit `IMC_XG_Default_KBM` and remove any of the default input mappings that you 
 | Data Asset | Base Class |
 | --- | --- |
 | `Experiences/LAS_XG_SharedInput` | C++ `LyraExperienceActionSet` |
+
+Copy+Paste Config `Actions to Perform`:
+
+```text
+(GameFeatureAction_AddInputContextMapping'"/XistGame/Experiences/LAS_XG_SharedInput.LAS_XG_SharedInput:GameFeatureAction_AddInputContextMapping_0"',GameFeatureAction_AddInputBinding'"/XistGame/Experiences/LAS_XG_SharedInput.LAS_XG_SharedInput:GameFeatureAction_AddInputBinding_0"')
+```
 
 Configure this asset:
 
@@ -154,13 +208,24 @@ Configure this asset:
     - 0: `XistGame` (mod name)
 
 
+## Lyra Team Creation Component
+
+| Data Asset | Base Class |
+| --- | --- |
+| `Game/B_XG_TeamSetup_TwoTeams` | C++ `LyraTeamCreationComponent` |
+
+Duplicate `ShooterCore.Game/B_TeamSetup_TwoTeams`
+
+I changed team 1 to be green instead of red.
+
+
 ## Gameplay Experience
 
 | Data Asset | Base Class |
 | --- | --- |
 | `Experiences/B_XG_Experience_Dev` | C++ `LyraExperienceDefinition` |
 
-Duplicate `ShooterCore`:`Experiences/B_ShooterGame_Elimination`
+Duplicate `ShooterCore.Experiences/B_ShooterGame_Elimination`
 
 Configure this asset:
 
@@ -171,7 +236,8 @@ Configure this asset:
   - Action Sets:
     - 0: `LAS_XG_SharedInput`
 - Actions
-  - Actions: *(delete everything here, make it an empty array)*
+  - Actions:
+    - 0: 
 
 
 ## World: Dev Map
