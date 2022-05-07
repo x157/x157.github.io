@@ -17,6 +17,8 @@ This thing is PACKED full of things that every game NEEDS but that isn't the lea
 
 The cost to us is simply to learn how they've put things together, and furthermore how to extend the framework they've built.
 
+The procedure documented below was used to create [LyraStarterGame GameFeature Plugin Template](https://github.com/x157/LyraStarterGame-GameFeature-Plugin-Template) which is open source on Github to serve as an example empty plugin.
+
 
 # Step 1: Create a GameFeature Plugin
 
