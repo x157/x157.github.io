@@ -219,6 +219,18 @@ Duplicate `ShooterCore.Game/B_TeamSetup_TwoTeams`
 I changed team 1 to be green instead of red.
 
 
+## Lyra Pick Random Manny or Quinn Character
+
+| Data Asset | Base Class |
+| --- | --- |
+| `Characters/Cosmetics/B_XG_PickRandomCharacter` | C++ `ULyraControllerComponent_CharacterParts` |
+
+Duplicate `ShooterCore.Characters/Cosmetics/B_PickRandomCharacter`
+
+- Fix `BeginPlay` bug in Lyra BP
+  - It needs to call the parent `BeginPlay` before it does anything else
+
+
 ## Gameplay Experience
 
 | Data Asset | Base Class |
@@ -237,7 +249,13 @@ Configure this asset:
     - 0: `LAS_XG_SharedInput`
 - Actions
   - Actions:
-    - 0: 
+    - 0: `Add Components`
+      - Add `B_XG_TeamSetup_TwoTeams` to `LyraGameState`
+        - *replace existing `B_TeamSetup_TwoTeams`*
+        - Server only
+      - Add `B_XG_PickRandomCharacter` to `LyraGameState`
+        - *replace existing bugged `B_PickRandomCharacter`*
+        - Server only
 
 
 ## World: Dev Map
