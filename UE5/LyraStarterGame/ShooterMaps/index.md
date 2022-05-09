@@ -11,40 +11,36 @@ back_links:
 
 # Plugin: ShooterMaps
 
+The `ShooterMaps` plugin uses `ShooterCore` for the base game play.  It defines some maps and experiences as follows:
+
 
 # Map: L_Expanse
 
-- Map: `L_Expanse`
-  - Experience: `B_ShooterGame_Elimination`
+The `L_Expanse` map is an arena-like level.  There are some weapon spawn actors, teleport actors, etc.
+
+This map uses the `B_ShooterGame_Elimination` experience, which determines the game logic, scoring, win states, etc.
 
 
-# Experience: B_ShooterGame_Elimination
+# Outline: Experience: B_ShooterGame_Elimination
 
 - Experience: `B_ShooterGame_Elimination`
   - Activate `ShooterCore` GameFeature Plugin
   - Pawn Data: `HeroData_ShooterGame`
-
     - Pawn Class: `B_Hero_ShooterMannequin`
     - Ability Sets:
       - `AbilitySet_ShooterHero`
-
-        - Abilities: GA_Hero_Jump, GA_Hero_Death, GA_Hero_Dash, GA_Emote, GA_QuickbarSlots, GA_ADS, GA_Grenade, GA_DropWeapon, GA_Melee, GA_SpawnEffect, LyraGameplayAbility_Reset
+        - Abilities: `GA_Hero_Jump`, `GA_Hero_Death`, `GA_Hero_Dash`, `GA_Emote`, `GA_QuickbarSlots`, `GA_ADS`, `GA_Grenade`, `GA_DropWeapon`, `GA_Melee`, `GA_SpawnEffect`, `LyraGameplayAbility_Reset`
         - Effects: `GS_IsPlayer` (sets `Lyra.Player` tag)
-
     - Tag Relationships: `TagRelationships_ShooterHero`
     - Input Config: `InputData_Hero`
     - Camera Mode: `CM_ThirdPerson`
-
   - Abilities:
     - `LyraPlayerState` injections:
       - `AbilitySet_Elimination`
-
         - Abilities: `GA_ShowLeaderboard_TDM`, `GA_AutoRespawn`
-
   - Components:
     - `LyraGameState` injections:
       - `B_TeamDeathMatchScoring` (client+server)
-
         - Type: `UGameStateComponent` > `B_ShooterGameScoring_Base`
         - Logic:
           - `Wait for Experience Ready`, then:
@@ -70,9 +66,7 @@ back_links:
             - Listen for Gameplay Cues, update score
               - `Lyra.Elimination.Message`
               - `Lyra.Assist.Message`
-
       - `B_MusicManagerComponent_Elimination` (client only)
-
         - Type: `UActorComponent` > `B_MusicManagerComponent`
         - Logic: 
           - Set Is Menu = False
@@ -87,15 +81,12 @@ back_links:
               - Set `Intensity` audio parameter
             - `Receive Player Death` function sets max alpha 1.0
             - `Receive Weapon Fire` function sets alpha based on weapon fire strength
-
       - `B_ShooterBotSpawner` (server only)
-
         - Type: `ULyraBotCreationComponent`
         - Tick Group: `During Physics`
         - Num Bots to Create: `3`
         - Assign random bot names
         - Bot Controller Class: `B_AI_Controller_LyraShooter`
-
           - Type: `ULyraPlayerBotController`
           - Logic:
             - BeginPlay:
@@ -110,30 +101,23 @@ back_links:
               - Set `AIPerception` team ID
             - `OnUnPossess` event:
               - Call `OnDeathStarted` custom event
-
       - `B_TeamSetup_TwoTeams` (server only)
-      
         - Type: `ULyraTeamCreationComponent`
         - Teams to Create:
           - 1 = `TeamDA_Red`
           - 2 = `TeamDA_Blue`
-
       - `B_TeamSpawningRules` (server only)
-
         - Type: `UTDM_PlayerSpawningManagementComponent`
         - Tick Group: `Pre Physics`
         - Logic (C++):
           - Try to find `ALyraPlayerStart` farthest from enemy teams
-
     - `Controller` injections *(both Player and AI)*:
       - `B_PickRandomCharacter`
-
         - Type: C++ `ULyraControllerComponent_CharacterParts`
         - Logic:
           - `BeginPlay` event:
             - **DOES NOT CALL PARENT BEGINPLAY** (seems to be a bug)
             - `AddCharacterPart` randomly either `B_Manny` or `B_Quinn`
-
   - Widgets:
     - `W_ScoreWidget_Elimination` into `HUD.Slot.TeamScore` slot
 
