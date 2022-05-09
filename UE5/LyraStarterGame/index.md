@@ -17,7 +17,7 @@ This thing is PACKED full of things that every game NEEDS but that isn't the lea
 
 The cost to us is simply to learn how they've put things together, and furthermore how to extend the framework they've built.
 
-The procedure documented below was used to create [LyraStarterGame GameFeature Plugin Template](https://github.com/x157/LyraStarterGame-GameFeature-Plugin-Template) which is open source on Github to serve as an example empty plugin.
+The procedure documented below was used to create [Lyra-Mod-XistGame](https://github.com/x157/Lyra-Mod-XistGame) which is open source on Github to serve as an example empty plugin.
 
 
 # Step 1: Create a GameFeature Plugin
@@ -49,11 +49,13 @@ For that reason we'll set up a purely development focussed experience so we'll h
 [How to Create Your Dev Experience](./How-To-Create-New-GameFeature-Dev-Experience)
 
 
-# Step N: Change Front-end to show this new experience
+# Step 4: Customize the FrontEnd
 
-Create user-facing experience to accomplish this (?)
+Time to make the game look and feel more like you and less like stock Lyra.
 
-*... work in progress ...*
+Here we'll cover how to customize the look and feel of the front-end user experience, namely the menu.
+
+[Customize the Lyra FrontEnd](./How-To-Customize-Lyra-FrontEnd)
 
 
 # Step N: Your guess is as good as mine! :D

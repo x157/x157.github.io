@@ -244,7 +244,7 @@ Configure this asset:
 
 | Data Asset | Base Class |
 | --- | --- |
-| `Maps/L_DevMap` | C++ `World` |
+| `Maps/L_XG_DevMap` | C++ `World` |
 
 Configure this asset (its `World Settings`):
 
@@ -254,10 +254,15 @@ Configure this asset (its `World Settings`):
 You don't need much here right now.  A plane, a light and a C++ `LyraPlayerStart` actor should do it.
 
 
-# Next Step: ???
+### Update Project Settings
+
+Now you should update your project settings to use `L_XG_DevMap` as the default, if that is your desired setup.
+
+
+# Next Step: Customize the Lyra FrontEnd
 
 You should now have an empty level that you can play in PIE.  It will spawn in your character and you should have basic movement keybindings available.
 
-[???](???)
+[Customize the Lyra FrontEnd](./How-To-Customize-Lyra-FrontEnd)
 or go back to [Lyra Starter Game](./)
 
