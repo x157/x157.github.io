@@ -97,7 +97,8 @@ The `L_ShooterGym` map in `ShooterCore` uses the `B_ShooterGame_Elimination` exp
 
 ## Ability Sets
 
-These ability sets are injected into `LyraPlayerState`
+
+### `LyraPlayerState` injections:
 
 | Component | Parent Class |
 | --- | --- |
@@ -140,36 +141,6 @@ These ability sets are injected into `LyraPlayerState`
 
 # Game Logic
 
-## `NameplateManagerComponent` logic
-
-- Keep track of all actors needing nameplates
-- Use `W_Nameplate` UI widget
-
-## `B_AccoladeRelay` logic
-
-- Listen for `Lyra.ShooterGame.Accolade` gameplay cues
-- Do stuff RE accolades
-
-## `B_ShooterBotSpawner` logic
-
-- Num Bots to Create: `3`
-- Assign random bot names
-- Bot Controller Class: `B_AI_Controller_LyraShooter`
-  - Type: `ULyraPlayerBotController`
-  - Logic:
-    - BeginPlay:
-      - `Wait for Experience Ready`, then:
-        - `Run Behavior Tree` = `BT_Lyra_Shooter_Bot`
-      - Register `OnDeathStarted` custom event on pawn's `Lyra Health Component`.`OnDeathStarted` event
-    - `OnDeathStarted` custom event:
-      - Clear blackboard
-      - Stop `BrainComponent` logic
-    - `OnPossess` event:
-      - Start `BrainComponent` logic
-      - Set `AIPerception` team ID
-    - `OnUnPossess` event:
-      - Call `OnDeathStarted` custom event
-
 ## `B_TeamSetup_TwoTeams` logic
 
 - Teams to Create:
@@ -183,8 +154,29 @@ These ability sets are injected into `LyraPlayerState`
 ## `B_PickRandomCharacter` Logic
 
 - `BeginPlay` event:
-  - **DOES NOT CALL PARENT BEGINPLAY** (seems to be a bug)
-  - `AddCharacterPart` randomly either `B_Manny` or `B_Quinn`
+  - `AddCharacterPart` randomly choose either `B_Manny` or `B_Quinn` body parts
+  - <warning>Does NOT call Parent BeginPlay</warning> *(seems to be a bug)*
+
+## `B_ShooterBotSpawner` logic
+
+- Num Bots to Create: `3`
+- Assign random bot names
+- Bot Controller Class: `B_AI_Controller_LyraShooter` < `ULyraPlayerBotController`
+
+## `B_AI_Controller_LyraShooter` logic
+
+- BeginPlay:
+  - `Wait for Experience Ready`, then:
+    - `Run Behavior Tree` = `BT_Lyra_Shooter_Bot`
+  - Register `OnDeathStarted` custom event on pawn's `Lyra Health Component`.`OnDeathStarted` event
+- `OnPossess` event:
+  - Start `BrainComponent` logic
+  - Set `AIPerception` team ID
+- `OnUnPossess` event:
+  - Call `OnDeathStarted` custom event
+- `OnDeathStarted` custom event:
+  - Clear blackboard
+  - Stop `BrainComponent` logic
 
 ## `B_TeamDeathMatchScoring` logic
 
@@ -225,3 +217,14 @@ These ability sets are injected into `LyraPlayerState`
   - Set `Intensity` audio parameter
 - `Receive Player Death` function sets max alpha 1.0
 - `Receive Weapon Fire` function sets alpha based on weapon fire strength
+
+## `NameplateManagerComponent` logic
+
+- Keep track of all actors needing nameplates
+- Use `W_Nameplate` UI widget
+
+## `B_AccoladeRelay` logic
+
+- Listen for `Lyra.ShooterGame.Accolade` gameplay cues
+- Do stuff RE accolades
+
