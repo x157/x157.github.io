@@ -41,20 +41,33 @@ Both of the experiences in `ShooterMaps` use the following common settings
 ## Gameplay
 
 - Activate `ShooterCore` GameFeature Plugin
-- Pawn Data: `HeroData_ShooterGame`
-  - Pawn Class: `B_Hero_ShooterMannequin`
+
+
+### Pawn Data: `HeroData_ShooterGame`
+
+- Pawn Class: `B_Hero_ShooterMannequin`
+- Tag Relationships: `TagRelationships_ShooterHero`
+- Input Config: `InputData_Hero`
+- Camera Mode: `CM_ThirdPerson`
+
+#### Ability Set: `AbilitySet_ShooterHero`
+
+- Abilities: `GA_Hero_Jump`, `GA_Hero_Death`, `GA_Hero_Dash`, `GA_Emote`, `GA_QuickbarSlots`, `GA_ADS`, `GA_Grenade`, `GA_DropWeapon`, `GA_Melee`, `GA_SpawnEffect`, `LyraGameplayAbility_Reset`
+- Effects: `GS_IsPlayer` (sets `Lyra.Player` tag)
+
+
 
 
 ## Action Sets
 
 
-### `LAS_ShooterGame_SharedInput`
+### Action Set: `LAS_ShooterGame_SharedInput`
 
 - Input Mapping: `IMC_ShooterGame_KBM`
 - Input Config: `InputData_ShooterGame_Addons`
 
 
-### `LAS_ShooterGame_StandardComponents`
+### Action Set: `LAS_ShooterGame_StandardComponents`
 
 #### `LyraPlayerController` injections:
 
@@ -76,11 +89,10 @@ Both of the experiences in `ShooterMaps` use the following common settings
 | `NameplateSource` | `ULyraQuickBarComponent` | `During Physics` | Client |
 
 
-### `LAS_ShooterGame_StandardHUD`
+### Action Set: `LAS_ShooterGame_StandardHUD`
 
 - Layout: `W_ShooterHUDLayout`
-
-#### Widgets
+- Widgets:
 
 | Slot ID | Widget | Note |
 | --- | --- | --- |
@@ -97,7 +109,7 @@ Both of the experiences in `ShooterMaps` use the following common settings
 | `HUD.Slot.LeftSideTouchRegion` | `W_TouchRegion_Left` | |
 
 
-### `EAS_BasicShooterAccolades`
+### Action Set: `EAS_BasicShooterAccolades`
 
 #### `GameStateBase` injections:
 
@@ -107,32 +119,6 @@ Both of the experiences in `ShooterMaps` use the following common settings
 | `B_ElimStreakProcessor` | `UElimStreakProcessor` < `UGameplayMessageProcessor` | `During Physics` | Server only |
 | `AssistProcessor` (C++) | `UGameplayMessageProcessor` | `During Physics` |Server only |
 | `B_AccoladeRelay` | `UGameplayMessageProcessor` | `During Physics` | Client + Server |
-
-
-## Ability Sets
-
-
-### `AbilitySet_ShooterHero`
-
-- Abilities: `GA_Hero_Jump`, `GA_Hero_Death`, `GA_Hero_Dash`, `GA_Emote`, `GA_QuickbarSlots`, `GA_ADS`, `GA_Grenade`, `GA_DropWeapon`, `GA_Melee`, `GA_SpawnEffect`, `LyraGameplayAbility_Reset`
-- Effects: `GS_IsPlayer` (sets `Lyra.Player` tag)
-  - Tag Relationships: `TagRelationships_ShooterHero`
-  - Input Config: `InputData_Hero`
-  - Camera Mode: `CM_ThirdPerson`
-
-#### `LyraGameState` injections:
-
-| Component | Parent Class | Tick Group | Scope |
-| --- | --- | --- | --- |
-| `B_ShooterBotSpawner` | `ULyraBotCreationComponent` | `During Physics` | Server |
-| `B_TeamSetup_TwoTeams` | `ULyraTeamCreationComponent` | <todo>default?</todo> | Server |
-| `B_TeamSpawningRules` | `UTDM_PlayerSpawningManagementComponent` | `Pre Physics` | Server |
-
-#### `Controller` injections: *(Player + AI both)*
-
-| Component | Parent Class | Tick Group | Scope |
-| --- | --- | --- | --- |
-| `B_PickRandomCharacter` | `ULyraControllerComponent_CharacterParts` | *default?* | Client + Server |
 
 
 # Game Logic
@@ -176,3 +162,24 @@ Both of the experiences in `ShooterMaps` use the following common settings
   - `BeginPlay` event:
     - **DOES NOT CALL PARENT BEGINPLAY** (seems to be a bug)
     - `AddCharacterPart` randomly either `B_Manny` or `B_Quinn`
+
+
+
+
+##### `LyraGameState` injections:
+
+| Component | Parent Class | Tick Group | Scope |
+| --- | --- | --- | --- |
+| `B_ShooterBotSpawner` | `ULyraBotCreationComponent` | `During Physics` | Server |
+| `B_TeamSetup_TwoTeams` | `ULyraTeamCreationComponent` | <todo>default?</todo> | Server |
+| `B_TeamSpawningRules` | `UTDM_PlayerSpawningManagementComponent` | `Pre Physics` | Server |
+
+##### `Controller` injections: *(Player + AI both)*
+
+| Component | Parent Class | Tick Group | Scope |
+| --- | --- | --- | --- |
+| `B_PickRandomCharacter` | `ULyraControllerComponent_CharacterParts` | *default?* | Client + Server |
+
+
+
+
