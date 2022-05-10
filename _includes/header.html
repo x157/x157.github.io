@@ -17,7 +17,11 @@
     / <a href="{{ bl.link | absolute_url }}">{{ bl.name }}</a>
 {%   endfor %}
 
+{%   if page.back_link_title %}
+    / <span class="back_links_title">{{ page.back_link_title }}</span>
+{%   else %}
     / <span class="back_links_title">{{ page.title }}</span>
+{%   endif %}
 
 {% endif %}
 
