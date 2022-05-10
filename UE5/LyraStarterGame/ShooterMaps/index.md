@@ -1,5 +1,5 @@
 ---
-title: ShooterMaps Blueprints Overview
+title: ShooterMaps Dissection
 description: High level overview of LyraStarterGame's ShooterMaps plugin, settings and blueprints
 back_links:
   - link: /UE5/
@@ -9,24 +9,47 @@ back_links:
 ---
 
 
-# Plugin: ShooterMaps
+# ShooterMaps Dissection
 
 The `ShooterMaps` plugin uses `ShooterCore` for the base game play.  It defines some maps and experiences as follows:
 
 
-# Map: L_Expanse
+## Interesting Map Dissection
 
-The `L_Expanse` map is an arena-like level.  There are some weapon spawn actors, teleport actors, etc.
+Common experience settings are further below, but 2 maps in particular warrant further dissection as they implement two different types of experience.
 
-This map uses the `B_ShooterGame_Elimination` experience, which determines the game logic, scoring, win states, etc.
+- [L_Expanse](./Expanse) -- team death match (elimination) experience
+- [L_Convolution_Blockout](./Convolution_Blockout) -- team control point experience
 
 
-# Outline: Experience: B_ShooterGame_Elimination
+## Other Maps
 
-- Experience: `B_ShooterGame_Elimination`
+- L_Expanse_Blockout
+- L_FiringRange_WP
+  - Essentially a test map
+  - Contains all the elements of the other maps, in a compact area, and the bots hit like kittens.
+- L_ShooterFrontendBackground
+  - This map is hard-coded into Lyra to be the front-end's lobby background scene.
+  - Worth looking at to see how they did the cinematic camera sequence, if nothing else.
+
+
+# Common ShooterCore Experience Settings
+
+Both of the experiences in `ShooterMaps` use the following common settings:
+
   - Activate `ShooterCore` GameFeature Plugin
   - Pawn Data: `HeroData_ShooterGame`
     - Pawn Class: `B_Hero_ShooterMannequin`
+    - Action Sets:
+
+
+
+
+      - TODO
+
+
+
+
     - Ability Sets:
       - `AbilitySet_ShooterHero`
         - Abilities: `GA_Hero_Jump`, `GA_Hero_Death`, `GA_Hero_Dash`, `GA_Emote`, `GA_QuickbarSlots`, `GA_ADS`, `GA_Grenade`, `GA_DropWeapon`, `GA_Melee`, `GA_SpawnEffect`, `LyraGameplayAbility_Reset`
@@ -34,53 +57,8 @@ This map uses the `B_ShooterGame_Elimination` experience, which determines the g
     - Tag Relationships: `TagRelationships_ShooterHero`
     - Input Config: `InputData_Hero`
     - Camera Mode: `CM_ThirdPerson`
-  - Abilities:
-    - `LyraPlayerState` injections:
-      - `AbilitySet_Elimination`
-        - Abilities: `GA_ShowLeaderboard_TDM`, `GA_AutoRespawn`
   - Components:
     - `LyraGameState` injections:
-      - `B_TeamDeathMatchScoring` (client+server)
-        - Type: `UGameStateComponent` > `B_ShooterGameScoring_Base`
-        - Logic:
-          - `Wait for Experience Ready`, then:
-            - Start `Phase_Warmup` game phase
-              - Attach `GameStarted` custom event to end of `Phase_Warmup` game phase
-          - `GameStarted` custom event
-            - Set game state like max # kills to win, max time to end game
-            - Start timer to tick game clock every second
-              - Calls `CountDown` custom event each second
-            - If lots of players then enable data layer with extra spawn points
-            - Reset all players
-            - Reset all other misc actors
-          - `CountDown` custom event
-            - update game clock
-            - when out of time, call `HandleVictory` function
-          - `OnEliminationScored` function
-            - Base class calls this each time someone is killed
-            - Child class calls `HandleVictory` if one team reaches the winning threshold
-          - `HandleVictory` function
-            - Send `GameplayCue.ShooterGame.UserMessage.MatchDecided` cue
-            - Start `Phase_Post_Game` game phase
-          - (via base class)
-            - Listen for Gameplay Cues, update score
-              - `Lyra.Elimination.Message`
-              - `Lyra.Assist.Message`
-      - `B_MusicManagerComponent_Elimination` (client only)
-        - Type: `UActorComponent` > `B_MusicManagerComponent`
-        - Logic: 
-          - Set Is Menu = False
-          - (via base class)
-            - Begin Play:
-              - Set `mx_System` as Game State Music System
-              - Listen for `Lyra.Elimination.Message` cues, call `Receive Player Death` function
-              - Listen for `Lyra.Damage.Taken.Message` cues, if local player then call `Receive Weapon Fire` function
-            - Every Tick:
-              - Set `LookDir` audio controller parameter
-              - Set `Alpha Mvmt` audio parameter based on current move speed
-              - Set `Intensity` audio parameter
-            - `Receive Player Death` function sets max alpha 1.0
-            - `Receive Weapon Fire` function sets alpha based on weapon fire strength
       - `B_ShooterBotSpawner` (server only)
         - Type: `ULyraBotCreationComponent`
         - Tick Group: `During Physics`
@@ -118,6 +96,3 @@ This map uses the `B_ShooterGame_Elimination` experience, which determines the g
           - `BeginPlay` event:
             - **DOES NOT CALL PARENT BEGINPLAY** (seems to be a bug)
             - `AddCharacterPart` randomly either `B_Manny` or `B_Quinn`
-  - Widgets:
-    - `W_ScoreWidget_Elimination` into `HUD.Slot.TeamScore` slot
-
