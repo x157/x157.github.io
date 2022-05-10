@@ -69,26 +69,29 @@ Both of the experiences in `ShooterMaps` use the following common settings:
       - `LAS_ShooterGame_StandardHUD`
         - Layout: `W_ShooterHUDLayout`
         - Widgets:
+
           | Slot ID | Widget |
-          |`HUD.Slot.EliminationFeed` | `W_EliminationFeed` |
-          |`HUD.Slot.Equipment` | `W_QuickBar` |
-          |`HUD.Slot.TopAccolades` | `W_AccoladeHostWidget` |
-          |`HUD.Slot.Reticle` | `W_WeaponReticleHost` |
-          |`HUD.Slot.PerfStats.Graph` | `W_PerfStatContainer_GraphOnly` |
-          |`HUD.Slot.PerfStats.Text` | `W_PerfStatContainer_TextOnly` |
-          |`HUD.Slot.LeftSideTouchInputs` | `W_OnScreenJoystick_Left` |
-          |`HUD.Slot.RightSideTouchInputs` | `W_OnScreenJoystick_Right` |
-          |`HUD.Slot.RightSideTouchInputs` | `W_FireButton` <problem>?? BUG: DUPLICATE SLOT ID ??</problem> |
-          |`HUD.Slot.RightSideTouchRegion` | `W_TouchRegion_Right` |
-          |`HUD.Slot.LeftSideTouchRegion` | `W_TouchRegion_Left` |
+          | `HUD.Slot.EliminationFeed` | `W_EliminationFeed` |
+          | `HUD.Slot.Equipment` | `W_QuickBar` |
+          | `HUD.Slot.TopAccolades` | `W_AccoladeHostWidget` |
+          | `HUD.Slot.Reticle` | `W_WeaponReticleHost` |
+          | `HUD.Slot.PerfStats.Graph` | `W_PerfStatContainer_GraphOnly` |
+          | `HUD.Slot.PerfStats.Text` | `W_PerfStatContainer_TextOnly` |
+          | `HUD.Slot.LeftSideTouchInputs` | `W_OnScreenJoystick_Left` |
+          | `HUD.Slot.RightSideTouchInputs` | `W_OnScreenJoystick_Right` |
+          | `HUD.Slot.RightSideTouchInputs` | `W_FireButton` <problem>?? BUG: DUPLICATE SLOT ID ??</problem> |
+          | `HUD.Slot.RightSideTouchRegion` | `W_TouchRegion_Right` |
+          | `HUD.Slot.LeftSideTouchRegion` | `W_TouchRegion_Left` |
       - `EAS_BasicShooterAccolades`
         - Inject into `GameStateBase`:
+
           | Component | Parent Class | Tick Group | Scope |
           | `B_ElimChainProcessor` | `UElimChainProcessor` < `UGameplayMessageProcessor` | `During Physics` | Server only |
           | `B_ElimStreakProcessor` | `UElimStreakProcessor` < `UGameplayMessageProcessor` | `During Physics` | Server only |
           | `AssistProcessor` (C++) | `UGameplayMessageProcessor` | `During Physics` |Server only |
           | `B_AccoladeRelay` | `UGameplayMessageProcessor` | `During Physics` | Client + Server |
-          - Logic:
+
+          - `B_AccoladeRelay` Logic:
             - Listen for `Lyra.ShooterGame.Accolade` gameplay cues
             - Do stuff RE accolades
     - Ability Sets:
