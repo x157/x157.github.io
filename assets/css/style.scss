@@ -20,8 +20,9 @@ header h2 {
   font-weight: bold;
 }
 
-#main_content h4, h5, h6 {
+h4, h5, h6, #main_content h4, #main_content h5, #main_content h6 {
   font-size: 16px;
+  text-transform: none;
 }
 
 code.highlighter-rouge {
