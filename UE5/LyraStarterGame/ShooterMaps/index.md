@@ -45,27 +45,15 @@ Both of the experiences in `ShooterMaps` use the following common settings:
         - Input Mapping: `IMC_ShooterGame_KBM`
         - Input Config: `InputData_ShooterGame_Addons`
       - `LAS_ShooterGame_StandardComponents`
-        - Inject into `LyraPlayerController`:
-          - `B_NiagaraNumberPopComponent`
-            - Parent: C++ `ULyraNumberPopComponentNiagraText`
-            - Tick Group: `During Physics`
-            - Client only
-          - `NameplateManagerComponent`
-            - Parent: C++ `UControllerComponent`
-            - Tick Group: `During Physics`
-            - Client only
-            - Purpose:
-              - Keep track of all actors needing nameplates
-              - Use `W_Nameplate` UI widget
-        - Inject into `Controller` *(Player + AI both)*:
-          - `B_QuickBarComponent`
-            - 
-            - Client + Server
-        - Inject into `B_Hero_ShooterMannequin`
-          - `NameplateSource`
-            - Parent: C++ `ULyraQuickBarComponent`
-            - Tick Group: `During Physics`
-            - Client only
+
+        | Inject Into | Component | Parent Class | Tick Group | Scope |
+        | LyraPlayerController | `B_NiagaraNumberPopComponent` | `ULyraNumberPopComponentNiagraText` | `During Physics` | Client |
+        | LyraPlayerController | `NameplateManagerComponent` | `UControllerComponent` | `During Physics` | Client |
+        | `Controller` *(Player + AI both)* | `B_QuickBarComponent` | *default?* | Client + Server |
+        | `B_Hero_ShooterMannequin` | `NameplateSource` | `ULyraQuickBarComponent` | `During Physics` | Client |
+        - `NameplateManagerComponent` Purpose:
+          - Keep track of all actors needing nameplates
+          - Use `W_Nameplate` UI widget
       - `LAS_ShooterGame_StandardHUD`
         - Layout: `W_ShooterHUDLayout`
         - Widgets:
@@ -102,41 +90,37 @@ Both of the experiences in `ShooterMaps` use the following common settings:
     - Input Config: `InputData_Hero`
     - Camera Mode: `CM_ThirdPerson`
   - Components:
-    - `LyraGameState` injections:
-      - `B_ShooterBotSpawner` (server only)
-        - Type: `ULyraBotCreationComponent`
-        - Tick Group: `During Physics`
-        - Num Bots to Create: `3`
-        - Assign random bot names
-        - Bot Controller Class: `B_AI_Controller_LyraShooter`
-          - Type: `ULyraPlayerBotController`
-          - Logic:
-            - BeginPlay:
-              - `Wait for Experience Ready`, then:
-                - `Run Behavior Tree` = `BT_Lyra_Shooter_Bot`
-              - Register `OnDeathStarted` custom event on pawn's `Lyra Health Component`.`OnDeathStarted` event
-            - `OnDeathStarted` custom event:
-              - Clear blackboard
-              - Stop `BrainComponent` logic
-            - `OnPossess` event:
-              - Start `BrainComponent` logic
-              - Set `AIPerception` team ID
-            - `OnUnPossess` event:
-              - Call `OnDeathStarted` custom event
-      - `B_TeamSetup_TwoTeams` (server only)
-        - Type: `ULyraTeamCreationComponent`
-        - Teams to Create:
-          - 1 = `TeamDA_Red`
-          - 2 = `TeamDA_Blue`
-      - `B_TeamSpawningRules` (server only)
-        - Type: `UTDM_PlayerSpawningManagementComponent`
-        - Tick Group: `Pre Physics`
-        - Logic (C++):
-          - Try to find `ALyraPlayerStart` farthest from enemy teams
-    - `Controller` injections *(both Player and AI)*:
-      - `B_PickRandomCharacter`
-        - Type: C++ `ULyraControllerComponent_CharacterParts`
+
+    | Inject Into | Component | Parent Class | Tick Group | Scope |
+    | `LyraGameState` | `B_ShooterBotSpawner` | `ULyraBotCreationComponent` | `During Physics` | Server |
+    | `LyraGameState` | `B_TeamSetup_TwoTeams` | `ULyraTeamCreationComponent` | *default?* | Server |
+    | `LyraGameState` | `B_TeamSpawningRules` | `UTDM_PlayerSpawningManagementComponent` | `Pre Physics` | Server |
+    | `Controller` *(Player + AI)* | `B_PickRandomCharacter` | `ULyraControllerComponent_CharacterParts` | *default?* | Client + Server |
+    - `B_ShooterBotSpawner` logic:
+      - Num Bots to Create: `3`
+      - Assign random bot names
+      - Bot Controller Class: `B_AI_Controller_LyraShooter`
+        - Type: `ULyraPlayerBotController`
         - Logic:
-          - `BeginPlay` event:
-            - **DOES NOT CALL PARENT BEGINPLAY** (seems to be a bug)
-            - `AddCharacterPart` randomly either `B_Manny` or `B_Quinn`
+          - BeginPlay:
+            - `Wait for Experience Ready`, then:
+              - `Run Behavior Tree` = `BT_Lyra_Shooter_Bot`
+            - Register `OnDeathStarted` custom event on pawn's `Lyra Health Component`.`OnDeathStarted` event
+          - `OnDeathStarted` custom event:
+            - Clear blackboard
+            - Stop `BrainComponent` logic
+          - `OnPossess` event:
+            - Start `BrainComponent` logic
+            - Set `AIPerception` team ID
+          - `OnUnPossess` event:
+            - Call `OnDeathStarted` custom event
+    - `B_TeamSetup_TwoTeams` logic:
+      - Teams to Create:
+        - 1 = `TeamDA_Red`
+        - 2 = `TeamDA_Blue`
+    - `B_TeamSpawningRules` logic (via C++ base class):
+      - Try to find `ALyraPlayerStart` farthest from enemy teams
+    - `B_PickRandomCharacter` Logic:
+      - `BeginPlay` event:
+        - **DOES NOT CALL PARENT BEGINPLAY** (seems to be a bug)
+        - `AddCharacterPart` randomly either `B_Manny` or `B_Quinn`
