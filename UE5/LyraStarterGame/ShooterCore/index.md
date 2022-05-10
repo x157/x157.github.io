@@ -155,7 +155,7 @@ The `L_ShooterGym` map in `ShooterCore` uses the `B_ShooterGame_Elimination` exp
 
 - `BeginPlay` event:
   - `AddCharacterPart` randomly choose either `B_Manny` or `B_Quinn` body parts
-  - <warning>Does NOT call Parent BeginPlay</warning> *(seems to be a bug)*
+  - <problem>Does NOT call Parent BeginPlay</problem> *(seems to be a bug)*
 
 ## `B_ShooterBotSpawner` logic
 
@@ -222,6 +222,45 @@ The `L_ShooterGym` map in `ShooterCore` uses the `B_ShooterGame_Elimination` exp
 
 - Keep track of all actors needing nameplates
 - Use `W_Nameplate` UI widget
+
+## `NameplateSource` logic
+
+- Begin Play:
+  - Broadcast to other players that self should have a nameplate
+  - Register for `Gameplay.Message.Nameplate.Discover` gameplay cues
+    - When receiving one, respond and register self
+- End Play:
+  - Broadcast to other players to remove self as a nameplate object
+
+## `B_NiagaraNumberPopComponent` logic
+
+Base class `ULyraNumberPopComponent`
+
+- When damage is done/taken, briefly display a damage number
+
+## `B_QuickBarComponent` logic
+
+Base class `ULyraQuickBarComponent`
+
+- Manage the 3 quick bar slots
+  - which equipment is in which slot
+- Allow swapping which equipment is active
+
+## `B_ElimChainProcessor` logic
+
+Base class `UElimChainProcessor`
+
+- Keep track of how many players were eliminated since we last died.
+
+## `B_ElimStreakProcessor` logic
+
+Base class `UElimStreakProcessor`
+
+- Keep track of long streaks of kills (5, 10, 15, 20).
+
+## `AssistProcessor` logic
+
+- Keep track of number of kill assists this player has.
 
 ## `B_AccoladeRelay` logic
 
