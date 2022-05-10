@@ -41,15 +41,66 @@ Both of the experiences in `ShooterMaps` use the following common settings:
   - Pawn Data: `HeroData_ShooterGame`
     - Pawn Class: `B_Hero_ShooterMannequin`
     - Action Sets:
-
-
-
-
-      - TODO
-
-
-
-
+      - `LAS_ShooterGame_SharedInput`
+        - Input Mapping: `IMC_ShooterGame_KBM`
+        - Input Config: `InputData_ShooterGame_Addons`
+      - `LAS_ShooterGame_StandardComponents`
+        - Inject into `LyraPlayerController`:
+          - `B_NiagaraNumberPopComponent`
+            - Parent: C++ `ULyraNumberPopComponentNiagraText`
+            - Tick Group: `During Physics`
+            - Client only
+          - `NameplateManagerComponent`
+            - Parent: C++ `UControllerComponent`
+            - Tick Group: `During Physics`
+            - Client only
+            - Purpose:
+              - Keep track of all actors needing nameplates
+              - Use `W_Nameplate` UI widget
+        - Inject into `Controller` *(Player + AI both)*:
+          - `B_QuickBarComponent`
+            - 
+            - Client + Server
+        - Inject into `B_Hero_ShooterMannequin`
+          - `NameplateSource`
+            - Parent: C++ `ULyraQuickBarComponent`
+            - Tick Group: `During Physics`
+            - Client only
+      - `LAS_ShooterGame_StandardHUD`
+        - Layout: `W_ShooterHUDLayout`
+        - Widgets:
+          - Slot `HUD.Slot.EliminationFeed` == `W_EliminationFeed`
+          - Slot `HUD.Slot.Equipment` == `W_QuickBar`
+          - Slot `HUD.Slot.TopAccolades` == `W_AccoladeHostWidget`
+          - Slot `HUD.Slot.Reticle` == `W_WeaponReticleHost`
+          - Slot `HUD.Slot.PerfStats.Graph` == `W_PerfStatContainer_GraphOnly`
+          - Slot `HUD.Slot.PerfStats.Text` == `W_PerfStatContainer_TextOnly`
+          - Slot `HUD.Slot.LeftSideTouchInputs` == `W_OnScreenJoystick_Left`
+          - Slot `HUD.Slot.RightSideTouchInputs` == `W_OnScreenJoystick_Right`
+          - Slot `HUD.Slot.RightSideTouchInputs` == `W_FireButton` **?? BUG: DUPLICATE SLOT ID ??**
+          - Slot `HUD.Slot.RightSideTouchRegion` == `W_TouchRegion_Right`
+          - Slot `HUD.Slot.LeftSideTouchRegion` == `W_TouchRegion_Left`
+      - `EAS_BasicShooterAccolades`
+        - Inject into `GameStateBase`:
+          - `B_ElimChainProcessor`
+            - Parent: `UElimChainProcessor` < `UGameplayMessageProcessor`
+            - Tick Group: `During Physics`
+            - Server only
+          - `B_ElimStreakProcessor`
+            - Parent: `UElimStreakProcessor` < `UGameplayMessageProcessor`
+            - Tick Group: `During Physics`
+            - Server only
+          - `AssistProcessor` (C++)
+            - Parent: `UGameplayMessageProcessor`
+            - Tick Group: `During Physics`
+            - Server only
+          - `B_AccoladeRelay`
+            - Parent: `UGameplayMessageProcessor`
+            - Tick Group: `During Physics`
+            - Client + Server
+            - Logic:
+              - Listen for `Lyra.ShooterGame.Accolade` gameplay cues
+              - Do stuff RE accolades
     - Ability Sets:
       - `AbilitySet_ShooterHero`
         - Abilities: `GA_Hero_Jump`, `GA_Hero_Death`, `GA_Hero_Dash`, `GA_Emote`, `GA_QuickbarSlots`, `GA_ADS`, `GA_Grenade`, `GA_DropWeapon`, `GA_Melee`, `GA_SpawnEffect`, `LyraGameplayAbility_Reset`
