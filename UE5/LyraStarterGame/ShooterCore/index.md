@@ -1,5 +1,5 @@
 ---
-title: ShooterCore Dissection | LyraStarterGame
+title: ShooterCore Dissection \| LyraStarterGame
 description: High level overview of LyraStarterGame's ShooterMaps plugin, settings and blueprints
 back_links:
   - link: /UE5/
