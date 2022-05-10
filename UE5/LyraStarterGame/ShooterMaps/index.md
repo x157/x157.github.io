@@ -18,8 +18,8 @@ The `ShooterMaps` plugin uses `ShooterCore` for the base game play.  It defines 
 
 Common experience settings are further below, but 2 maps in particular warrant further dissection as they implement two different types of experience.
 
-- [L_Expanse](./Expanse) -- team death match (elimination) experience
-- [L_Convolution_Blockout](./Convolution_Blockout) -- team control point experience
+- L_[Expanse](./Expanse) -- team death match (elimination) experience
+- L_[Convolution_Blockout](./Convolution_Blockout) -- team control point experience
 
 
 ## Other Maps
@@ -69,38 +69,28 @@ Both of the experiences in `ShooterMaps` use the following common settings:
       - `LAS_ShooterGame_StandardHUD`
         - Layout: `W_ShooterHUDLayout`
         - Widgets:
-          - Slot `HUD.Slot.EliminationFeed` == `W_EliminationFeed`
-          - Slot `HUD.Slot.Equipment` == `W_QuickBar`
-          - Slot `HUD.Slot.TopAccolades` == `W_AccoladeHostWidget`
-          - Slot `HUD.Slot.Reticle` == `W_WeaponReticleHost`
-          - Slot `HUD.Slot.PerfStats.Graph` == `W_PerfStatContainer_GraphOnly`
-          - Slot `HUD.Slot.PerfStats.Text` == `W_PerfStatContainer_TextOnly`
-          - Slot `HUD.Slot.LeftSideTouchInputs` == `W_OnScreenJoystick_Left`
-          - Slot `HUD.Slot.RightSideTouchInputs` == `W_OnScreenJoystick_Right`
-          - Slot `HUD.Slot.RightSideTouchInputs` == `W_FireButton` **?? BUG: DUPLICATE SLOT ID ??**
-          - Slot `HUD.Slot.RightSideTouchRegion` == `W_TouchRegion_Right`
-          - Slot `HUD.Slot.LeftSideTouchRegion` == `W_TouchRegion_Left`
+          | Slot ID | Widget |
+          |`HUD.Slot.EliminationFeed` | `W_EliminationFeed` |
+          |`HUD.Slot.Equipment` | `W_QuickBar` |
+          |`HUD.Slot.TopAccolades` | `W_AccoladeHostWidget` |
+          |`HUD.Slot.Reticle` | `W_WeaponReticleHost` |
+          |`HUD.Slot.PerfStats.Graph` | `W_PerfStatContainer_GraphOnly` |
+          |`HUD.Slot.PerfStats.Text` | `W_PerfStatContainer_TextOnly` |
+          |`HUD.Slot.LeftSideTouchInputs` | `W_OnScreenJoystick_Left` |
+          |`HUD.Slot.RightSideTouchInputs` | `W_OnScreenJoystick_Right` |
+          |`HUD.Slot.RightSideTouchInputs` | `W_FireButton` <problem>?? BUG: DUPLICATE SLOT ID ??</problem> |
+          |`HUD.Slot.RightSideTouchRegion` | `W_TouchRegion_Right` |
+          |`HUD.Slot.LeftSideTouchRegion` | `W_TouchRegion_Left` |
       - `EAS_BasicShooterAccolades`
         - Inject into `GameStateBase`:
-          - `B_ElimChainProcessor`
-            - Parent: `UElimChainProcessor` < `UGameplayMessageProcessor`
-            - Tick Group: `During Physics`
-            - Server only
-          - `B_ElimStreakProcessor`
-            - Parent: `UElimStreakProcessor` < `UGameplayMessageProcessor`
-            - Tick Group: `During Physics`
-            - Server only
-          - `AssistProcessor` (C++)
-            - Parent: `UGameplayMessageProcessor`
-            - Tick Group: `During Physics`
-            - Server only
-          - `B_AccoladeRelay`
-            - Parent: `UGameplayMessageProcessor`
-            - Tick Group: `During Physics`
-            - Client + Server
-            - Logic:
-              - Listen for `Lyra.ShooterGame.Accolade` gameplay cues
-              - Do stuff RE accolades
+          | Component | Parent Class | Tick Group | Scope |
+          | `B_ElimChainProcessor` | `UElimChainProcessor` < `UGameplayMessageProcessor` | `During Physics` | Server only |
+          | `B_ElimStreakProcessor` | `UElimStreakProcessor` < `UGameplayMessageProcessor` | `During Physics` | Server only |
+          | `AssistProcessor` (C++) | `UGameplayMessageProcessor` | `During Physics` |Server only |
+          | `B_AccoladeRelay` | `UGameplayMessageProcessor` | `During Physics` | Client + Server |
+          - Logic:
+            - Listen for `Lyra.ShooterGame.Accolade` gameplay cues
+            - Do stuff RE accolades
     - Ability Sets:
       - `AbilitySet_ShooterHero`
         - Abilities: `GA_Hero_Jump`, `GA_Hero_Death`, `GA_Hero_Dash`, `GA_Emote`, `GA_QuickbarSlots`, `GA_ADS`, `GA_Grenade`, `GA_DropWeapon`, `GA_Melee`, `GA_SpawnEffect`, `LyraGameplayAbility_Reset`
