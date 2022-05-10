@@ -37,36 +37,41 @@ Common experience settings are further below, but 2 maps in particular warrant f
 
 Both of the experiences in `ShooterMaps` use the following common settings
 
+
 ## Gameplay
 
 - Activate `ShooterCore` GameFeature Plugin
 - Pawn Data: `HeroData_ShooterGame`
   - Pawn Class: `B_Hero_ShooterMannequin`
 
+
 ## Action Sets
+
 
 ### `LAS_ShooterGame_SharedInput`
 
 - Input Mapping: `IMC_ShooterGame_KBM`
 - Input Config: `InputData_ShooterGame_Addons`
 
+
 ### `LAS_ShooterGame_StandardComponents`
 
-- `LyraPlayerController` injections:
+#### `LyraPlayerController` injections:
 
 | Component | Parent Class | Tick Group | Scope |
-| `B_NiagaraNumberPopComponent` | `ULyraNumberPopComponentNiagraText` | `During Physics` | Client |
+| `B_NiagaraNumberPopComponent` | `ULyraNumberPopComponent_NiagaraText` | `During Physics` | Client |
 | `NameplateManagerComponent` | `UControllerComponent` | `During Physics` | Client |
 
-- `Controller` injections: *(Player + AI both)*
+#### `Controller` injections: *(Player + AI both)*
 
 | Component | Parent Class | Tick Group | Scope |
-| `B_QuickBarComponent` | *default?* | Client + Server |
+| `B_QuickBarComponent` | `ULyraQuickBarComponent` | `During Physics` | Client + Server |
 
-- `B_Hero_ShooterMannequin` injections:
+#### `B_Hero_ShooterMannequin` injections:
 
 | Component | Parent Class | Tick Group | Scope |
 | `NameplateSource` | `ULyraQuickBarComponent` | `During Physics` | Client |
+
 
 ### `LAS_ShooterGame_StandardHUD`
 
@@ -87,9 +92,10 @@ Both of the experiences in `ShooterMaps` use the following common settings
 | `HUD.Slot.RightSideTouchRegion` | `W_TouchRegion_Right` | |
 | `HUD.Slot.LeftSideTouchRegion` | `W_TouchRegion_Left` | |
 
+
 ### `EAS_BasicShooterAccolades`
 
-- `GameStateBase` injections:
+#### `GameStateBase` injections:
 
 | Component | Parent Class | Tick Group | Scope |
 | `B_ElimChainProcessor` | `UElimChainProcessor` < `UGameplayMessageProcessor` | `During Physics` | Server only |
@@ -100,6 +106,7 @@ Both of the experiences in `ShooterMaps` use the following common settings
 
 ## Ability Sets
 
+
 ### `AbilitySet_ShooterHero`
 
 - Abilities: `GA_Hero_Jump`, `GA_Hero_Death`, `GA_Hero_Dash`, `GA_Emote`, `GA_QuickbarSlots`, `GA_ADS`, `GA_Grenade`, `GA_DropWeapon`, `GA_Melee`, `GA_SpawnEffect`, `LyraGameplayAbility_Reset`
@@ -108,17 +115,18 @@ Both of the experiences in `ShooterMaps` use the following common settings
   - Input Config: `InputData_Hero`
   - Camera Mode: `CM_ThirdPerson`
 
-- `LyraGameState` injections:
+#### `LyraGameState` injections:
 
 | Component | Parent Class | Tick Group | Scope |
 | `B_ShooterBotSpawner` | `ULyraBotCreationComponent` | `During Physics` | Server |
 | `B_TeamSetup_TwoTeams` | `ULyraTeamCreationComponent` | <todo>default?</todo> | Server |
 | `B_TeamSpawningRules` | `UTDM_PlayerSpawningManagementComponent` | `Pre Physics` | Server |
 
-- `Controller` injections: *(Player + AI both)*
+#### `Controller` injections: *(Player + AI both)*
 
 | Component | Parent Class | Tick Group | Scope |
 | `B_PickRandomCharacter` | `ULyraControllerComponent_CharacterParts` | *default?* | Client + Server |
+
 
 # Game Logic
 
