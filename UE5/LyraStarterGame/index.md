@@ -1,9 +1,10 @@
 ---
-title: How to make a game with UE5 LyraStarterGame
+title: LyraStarterGame Overview
 description: Learn how to make a new game based on UE5's Lyra Starter Game (LyraStarterGame)
 back_links:
   - link: /UE5/
     name: UE5
+back_link_title: LyraStarterGame
 ---
 
 
@@ -16,6 +17,20 @@ Epic suggests using this massive starter game framework for new games, and seein
 This thing is PACKED full of things that every game NEEDS but that isn't the least bit fun for devs, especially hobbyists like myself, to implement.
 
 The cost to us is simply to learn how they've put things together, and furthermore how to extend the framework they've built.
+
+
+# Module Dissections
+
+In an effort to understand the material Epic has provided us to start with, I am dissecting the GameFeature plugins they shipped to understand what they do, how they're similar and how they differ from one another.
+
+- Logic Dissection:
+
+| [ShooterCore](./ShooterCore/) | Base framework for a shooter game |
+| ShooterMaps | *(coming soon)* |
+| TopDownArena | *(coming soon)* |
+
+
+# How to Make a Game with LyraStarterGame
 
 The procedure documented below was used to create [Lyra-Mod-XistGame](https://github.com/x157/Lyra-Mod-XistGame) which is open source on Github to serve as an example empty plugin.
 
