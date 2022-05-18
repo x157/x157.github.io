@@ -29,7 +29,8 @@ Some interesting points in particular:
 - [11:58 - Online Features](https://youtu.be/Fj1zCsYydD8?t=718)
 - [13:21 - Scalability](https://youtu.be/Fj1zCsYydD8?t=801)
 - [14:40 - UE5 Mannequins](https://youtu.be/Fj1zCsYydD8?t=880)
-- [16:21 - Cosmetics & Team Colors](https://youtu.be/Fj1zCsYydD8?t=981)
+- [16:21 - Cosmetics & Animations](https://youtu.be/Fj1zCsYydD8?t=981)
+- [20:41 - Team Colors](https://youtu.be/Fj1zCsYydD8?t=1241)
 - [23:48 - Input System](https://youtu.be/Fj1zCsYydD8?t=1428)
 - [26:19 - Level Design Greyboxing](https://youtu.be/Fj1zCsYydD8?t=1579)
 

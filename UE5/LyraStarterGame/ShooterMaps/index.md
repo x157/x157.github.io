@@ -171,14 +171,14 @@ Both of the experiences in `ShooterMaps` use the following common settings
 | Component | Parent Class | Tick Group | Scope |
 | --- | --- | --- | --- |
 | `B_ShooterBotSpawner` | `ULyraBotCreationComponent` | `During Physics` | Server |
-| `B_TeamSetup_TwoTeams` | `ULyraTeamCreationComponent` | <todo>default?</todo> | Server |
+| `B_TeamSetup_TwoTeams` | `ULyraTeamCreationComponent` | <todo>???</todo> | Server |
 | `B_TeamSpawningRules` | `UTDM_PlayerSpawningManagementComponent` | `Pre Physics` | Server |
 
 ##### `Controller` injections: *(Player + AI both)*
 
 | Component | Parent Class | Tick Group | Scope |
 | --- | --- | --- | --- |
-| `B_PickRandomCharacter` | `ULyraControllerComponent_CharacterParts` | *default?* | Client + Server |
+| `B_PickRandomCharacter` | `ULyraControllerComponent_CharacterParts` | <todo>???</todo> | Client + Server |
 
 
 
