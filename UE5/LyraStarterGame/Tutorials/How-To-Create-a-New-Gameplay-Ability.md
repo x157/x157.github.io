@@ -30,11 +30,7 @@ We will:
 
 The end result will be: Pressing keyboard `G` will cause our `LyraGameplayAbility` to execute.
 
-Prefer video?  If so jump over to my YouTube tutorial video covering this topic.
-
-
-<todo>Link YouTube Video here</todo>
-
+Prefer video?  If so jump over to my [YouTube tutorial video](https://youtu.be/4C-2JiyJft8) covering this topic.
 
 *Note: The naming convention here is not going to be ideal because this ability is intended only for developer use. For a real ability you'd want to name it something that actually represents what you intend this ability to do. So rather than "Ability G" you'd want to use for example "Ice Trap Ability" or "Shoot Rocket Ability" or whatever, disassociating it with the input required to make the ability happen.*
 
@@ -57,7 +53,7 @@ In `Gameplay Tags` > `Gameplay Tag List`, add a new tag.
 Name the new tag `InputTag.Ability.G`
 
 
-## 3. Add the Input Action to your Input Mapping Context
+## 3. Add Keyboard Mapping
 
 Open the `InputMappingContext` where you want the `G` ability to be active.  Mine is called `IMC_XG_Default_KBM`.
 
@@ -74,7 +70,7 @@ Tip: If you don't know which `InputMappingContext` to modify:
     - Keep this open, you'll probably need it in the next step also.
 
 
-## 4. Add Input Action-to-Tag Mapping
+## 4. Map Input Data to Input Tag
 
 Open the `LyraInputConfig` where you want to be able to use the `G` ability.  Mine is called `DA_XG_InputData_Player`.
 
@@ -134,6 +130,5 @@ In this simple example, my `PerformAction` just calls `DebugPrint`, but you can 
 
 If you have any issues, particularly finding where the appropriate data assets are that you should be editing, check out my YouTube video tutorial on this topic:
 
-
-<todo>Link Video Here</todo>
+[YouTube Video Tutorial](https://youtu.be/4C-2JiyJft8)
 

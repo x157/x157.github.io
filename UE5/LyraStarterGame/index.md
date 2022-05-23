@@ -70,7 +70,7 @@ Time to make the game look and feel more like you and less like stock Lyra.
 
 Here we'll cover how to customize the look and feel of the front-end user experience, namely the menu.
 
-[Customize the Lyra FrontEnd](./How-To-Customize-Lyra-FrontEnd)
+[Customize the Lyra FrontEnd](./How-To-Customize-Lyra-FrontEnd) *Work in progress*
 
 
 # Step N: Your guess is as good as mine! :D
@@ -78,6 +78,11 @@ Here we'll cover how to customize the look and feel of the front-end user experi
 Currently working toward this.  Will update more as I learn more.
 
 *... work in progress ...*
+
+
+# Tutorials
+
+- [How to: Create a New Gameplay Ability](./Tutorials/How-To-Create-a-New-Gameplay-Ability)
 
 
 # References
