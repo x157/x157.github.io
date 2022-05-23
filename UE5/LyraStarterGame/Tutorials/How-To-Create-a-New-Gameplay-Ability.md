@@ -15,47 +15,57 @@ back_link_title: New Gameplay Ability
 # How To: Create a New Gameplay Ability
 
 
-For this tutorial we're going to make a new ability that executes whenever the player pushes the `G` key on their keyboard.
-
-The naming convention here is not going to be great, because this ability is intended only for developer use.  For a real ability you'd want to name it something that actually represents what you intend to happen during this ability.
+For this tutorial we're going to make a new ability that executes each time the player pushes their keyboard `G` key.
 
 In this tutorial we will:
 
-- Connect to Lyra's Enhanced Input system:
-  - Create an Input Action
-  - Associate it with a new Gameplay `InputTag`
-  - Map the Input Action to the `G` key on the keyboard
-  - Map the Input Action to the new `InputTag`
-- Create a new Gameplay Ability:
-  - Create the code to do whatever action you want
-  - Add it to the player's Ability Set, associated with its `InputTag`
+- Create new assets:
+  - Create a new `InputAction` data asset (`IA_G`)
+  - Create a new Gameplay `InputTag` data asset (`InputTag.Actions.G`)
+  - Create a new `LyraGameplayAbility` blueprint (`B_XG_Player_G`)
+- Map these assets:
+  - Map the keyboard `G` key to the `InputAction`
+  - Map the `InputAction` to the `InputTag`
+  - Map the `InputTag` to the `LyraGameplayAbility`
+
+The end result will be: Pressing keyboard `G` will cause `LyraGameplayAbility` to execute.
+
+*Note: The naming convention here is not going to be ideal because this ability is intended only for developer use. For a real ability you'd want to name it something that actually represents what you intend this ability to do. So rather than "Ability G" you'd want to use for example "Ice Trap Ability" or "Shoot Rocket Ability" or whatever, disassociating it with the input required to make the ability happen.*
 
 
 ## 1. Create a New Input Action
 
-Right click in content browser, `Input` > `Input Action`
+Right click in the editor content browser, choose: `Input` > `Input Action`
 
 Name it `IA_G`, configure it as in this screenshot:
 
 ![IA_G Configuration](./screenshots/HTCANGA/IA_G.png)
 
 
-## 2. Create new `InputTag.Ability.G` Gameplay Tag
+## 2. Create new Gameplay Tag
 
 Open Project Settings, click `Project` > `GameplayTags`.
 
-In `Gameplay Tags` > `Gameplay Tag List`, add a new tag named `InputTag.Ability.G`
+In `Gameplay Tags` > `Gameplay Tag List`, add a new tag.
+
+Name the new tag `InputTag.Ability.G`
 
 
-## 3. Add `IA_G` to your `InputMappingContext`
+## 3. Add the Input Action to your Input Mapping Context
 
-Open the `InputMappingContext` where you want the `G` ability to be active.  Mine is called `IMC_XG_Default_KBM`, it contains all of the default key binds I want to be active for my player.
+Open the `InputMappingContext` where you want the `G` ability to be active.  Mine is called `IMC_XG_Default_KBM`.
 
 Add `IA_G` to the list of `Mappings` > `Mappings`. Configure it as in this screenshot:
 
 ![IA_G added to Input Mapping Context](./screenshots/HTCANGA/IMC_XG_Default_KBM--Add-IA_G.png)
 
-Tip: If you don't know where yours is, open your Experience data asset (whichever Experience is configured in your current map), and look in the `Gameplay` > `Action Sets`.  Open each action set and look for one with an `Add Input Mapping` action.  The input mapping config listed here is the one you want to modify.  (Keep this file open, it likely also defines an `Add Input Binds` action which you'll need in the next step.)
+Tip: If you don't know which `InputMappingContext` to modify:
+- Open your Map
+- Open the Map's Experience
+- Look in `Gameplay` > `Action Sets`
+  - Open each action set and look for one with an `Add Input Mapping` action.
+    - The Input Config listed here is the one you'll want to modify.
+    - Keep this open, you'll probably need it in the next step also.
 
 
 ## 4. Add Input Action-to-Tag Mapping
@@ -78,13 +88,11 @@ Tip: If you don't know which `LyraInputConfig` data asset to modify:
 
 Right click on content browser, `Blueprint Class`, in All Classes search for `LyraGameplayAbility`.  I named mine `GA_XG_Player_G`.
 
-Here is the code:
+Here is the Event Graph:
 
-![GA_XG_Player_G ActivateAbility Event](./screenshots/HTCANGA/GA_XG_Player_G--K2_OnActivateAbility.png)
+![GA_XG_Player_G Event Graph](./screenshots/HTCANGA/GA_XG_Player_G--EventGraph.png)
 
-![GA_XG_Player_G OnEndAbility Event](./screenshots/HTCANGA/GA_XG_Player_G--K2_OnEndAbility.png)
-
-Here is the `DebugPrint` function, which is not at all important to this demo other than to explain why the debug strings are formatted the way they are:
+Here is the `DebugPrint` function, which is not at all important to this demo other than to show you there is nothing magical happening in here:
 
 ![GA_XG_Player_G DebugPrint](./screenshots/HTCANGA/GA_XG_Player_G--DebugPrint.png)
 
