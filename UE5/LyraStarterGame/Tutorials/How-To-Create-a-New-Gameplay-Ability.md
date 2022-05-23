@@ -15,20 +15,26 @@ back_link_title: New Gameplay Ability
 # How To: Create a New Gameplay Ability
 
 
-For this tutorial we're going to make a new ability that executes each time the player pushes their keyboard `G` key.
+For this tutorial we're going to make a new ability that executes each time the player presses the keyboard `G` key.
 
-In this tutorial we will:
+We will:
 
 - Create new assets:
-  - Create a new `InputAction` data asset (`IA_G`)
-  - Create a new Gameplay `InputTag` data asset (`InputTag.Actions.G`)
-  - Create a new `LyraGameplayAbility` blueprint (`B_XG_Player_G`)
-- Map these assets:
-  - Map the keyboard `G` key to the `InputAction`
-  - Map the `InputAction` to the `InputTag`
-  - Map the `InputTag` to the `LyraGameplayAbility`
+  - `InputAction` data asset (`IA_G`)
+  - `InputTag` Gameplay Tag (`InputTag.Actions.G`)
+  - `LyraGameplayAbility` blueprint (`B_XG_Player_G`)
+- Connect these assets to Lyra:
+  - Map keyboard to `InputAction`
+  - Map `InputAction` to `InputTag`
+  - Map `InputTag` to `LyraGameplayAbility`
 
-The end result will be: Pressing keyboard `G` will cause `LyraGameplayAbility` to execute.
+The end result will be: Pressing keyboard `G` will cause our `LyraGameplayAbility` to execute.
+
+Prefer video?  If so jump over to my YouTube tutorial video covering this topic.
+
+
+<todo>Link YouTube Video here</todo>
+
 
 *Note: The naming convention here is not going to be ideal because this ability is intended only for developer use. For a real ability you'd want to name it something that actually represents what you intend this ability to do. So rather than "Ability G" you'd want to use for example "Ice Trap Ability" or "Shoot Rocket Ability" or whatever, disassociating it with the input required to make the ability happen.*
 
