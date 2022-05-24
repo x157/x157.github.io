@@ -5,3 +5,5 @@ Gemfile.lock
 .jekyll-cache
 # Win WSL garbage
 *\:Zone.Identifier
+# IntelliJ Idea
+.idea
