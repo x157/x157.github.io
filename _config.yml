@@ -3,3 +3,11 @@ description: One simulant attempts to share insight with others.
 theme: jekyll-theme-hacker
 show_downloads: true
 google_analytics:
+layout: default
+markdown: kramdown
+timezone: "America/Los_Angeles"
+highlighter: rouge
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
