@@ -16,6 +16,7 @@ To set it up, follow the steps below.  For additional reading, consider: [Testin
 
 
 ## Set up [WSL](https://docs.microsoft.com/en-us/windows/wsl/setup/environment) - Windows Linux Subsystem
+- [Install WSL](https://docs.microsoft.com/en-us/windows/wsl/setup/environment) - Linux on Windows
 - requires Reboot
 
 ## Install [Jekyll](https://jekyllrb.com/docs/)
@@ -30,18 +31,12 @@ To set it up, follow the steps below.  For additional reading, consider: [Testin
   - to install:
     ```shell
     gem install github-pages
-    
-    gem install jekyll-coffeescript
-    gem install jekyll-default-layout
-    gem install jekyll-gist
-    gem install jekyll-github-metadata
-    gem install jekyll-optional-front-matter
-    gem install jekyll-paginate
-    gem install jekyll-readme-index
-    gem install jekyll-relative-links
-    gem install jekyll-titles-from-headings
+    gem install jekyll-theme-hacker
     ```
-  - Regularly update all of these gems to stay up to date with Github
+  - Update these gems whenever you get out of sync with Github
+    ```shell
+    gem update github-pages jekyll-theme-hacker
+    ```
 
 ## Clone this repo
 - Repo MUST BE:
@@ -53,12 +48,13 @@ To set it up, follow the steps below.  For additional reading, consider: [Testin
   cd x157.github.io
   ./script/bootstrap
   ```
-  - If `bootstrap` fails, check for and fix errors and try again.
+  - While `bootstrap` fails, find + fix errors + try again.
 
 ## View your local copy
 ```shell
 cd x157.github.io
-bundle exec jekyll serve --livereload
+bundle exec jekyll serve
 ```
 - Open browser to [http://localhost:4000](http://localhost:4000)
-- `--livereload` tag causes Jekyll to automatically reload modified source files without requiring a restart
+- *Notice: You may need to restart Jekyll each time you save a file in order to see the change.*
+  - If so, try the `--livereload` option in `jekyll serve`
