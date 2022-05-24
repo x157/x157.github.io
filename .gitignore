@@ -3,3 +3,5 @@ _site
 Gemfile.lock
 *.gem
 .jekyll-cache
+# Win WSL garbage
+*\:Zone.Identifier
