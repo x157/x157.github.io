@@ -92,8 +92,8 @@ body {
   padding: 0;
   background: #151515 url("../images/bkg.png") 0 0;
   color: #eaeaea;
-  font-size: 16px;
-  line-height: 1.5;
+  font-size: 14px;
+  line-height: 1.2;
   font-family: Verdana, Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace
 }
 
@@ -119,7 +119,7 @@ li {
 header {
   background: rgba(0, 0, 0, 0.1);
   width: 100%;
-  border-bottom: 1px dashed #b5e853;
+  border-bottom: 1px dashed #00ff00;
   padding: 20px 0 0 0;
   margin: 0
 }
@@ -129,8 +129,8 @@ header h1 {
   line-height: 1.5;
   margin: 0 0 0 -40px;
   font-weight: bold;
-  font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
-  color: #b5e853;
+  font-family: Verdana, Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+  color: #00ff00;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(181, 232, 83, 0.1), 0 0 10px rgba(181, 232, 83, 0.1);
   letter-spacing: -1px;
   -webkit-font-smoothing: antialiased
@@ -173,7 +173,7 @@ section img {
 h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
   font-family: Verdana, Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
-  color: #b5e853;
+  color: #00ff00;
   letter-spacing: -0.03em;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(181, 232, 83, 0.1), 0 0 10px rgba(181, 232, 83, 0.1)
 }
@@ -227,7 +227,7 @@ pre {
   border: 1px solid rgba(255, 255, 255, 0.15);
   padding: 10px;
   font-size: 16px;
-  color: #b5e853;
+  color: #00ff00;
   border-radius: 2px;
   word-wrap: normal;
   overflow: auto;
@@ -250,7 +250,7 @@ table {
 
 th {
   text-align: left;
-  border-bottom: 1px dashed #b5e853;
+  border-bottom: 1px dashed #00ff00;
   padding: 5px 10px
 }
 
@@ -261,8 +261,8 @@ td {
 hr {
   height: 0;
   border: 0;
-  border-bottom: 1px dashed #b5e853;
-  color: #b5e853
+  border-bottom: 1px dashed #00ff00;
+  color: #00ff00
 }
 
 .btn {
@@ -274,7 +274,7 @@ hr {
   border-bottom: 2px solid rgba(0, 0, 0, 0.7);
   border-top: 2px solid #000;
   color: rgba(255, 255, 255, 0.8);
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: Verdana, Helvetica, Arial, sans-serif;
   font-weight: bold;
   font-size: 13px;
   text-decoration: none;
@@ -300,8 +300,8 @@ hr {
 }
 
 a {
-  color: #63c0f5;
-  text-shadow: 0 0 5px rgba(104, 182, 255, 0.5)
+  color: #ff40ff;
+  text-shadow: 0 0 5px rgba(154, 20, 204, 0.5)
 }
 
 .cf:before, .cf:after {
@@ -333,7 +333,7 @@ a {
 
 footer {
   width: 100%;
-  border-top: 1px dashed #b5e853;
+  border-top: 1px dashed #00ff00;
   padding: 20px 0;
   margin: 40px 0 0 0;
   display: block;

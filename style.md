@@ -1,7 +1,6 @@
 ---
 title: Style Visualization
 description: See the various html elements all on one page
-back_links:
 back_link_title: Style Visualization
 ---
 
@@ -59,3 +58,12 @@ catch (...)
 	return 1;
 }
 ```
+
+------------------------------------------------------------
+
+# Header 1 with `code` and [link](./)
+## Header 2 with `code` and [link](./)
+### Header 3 with `code` and [link](./)
+#### Header 4 with `code` and [link](./)
+##### Header 5 with `code` and [link](./)
+###### Header 6 with `code` and [link](./)
