@@ -151,7 +151,7 @@ header h1:before {
 header h2 {
   font-size: 18px;
   font-weight: 300;
-  color: #666
+  color: #666;
   margin: 0 0 10px 0
 }
 
@@ -196,13 +196,13 @@ h1, h2, h3, h4, h5, h6 {
 
 #main_content h5 {
   font-size: 18px;
-  text-transform: none
+  text-transform: none;
   margin: 0 0 5px 0
 }
 
 #main_content h6 {
   font-size: 16px;
-  text-transform: none
+  text-transform: none;
   color: #999;
   margin: 0 0 5px 0
 }
@@ -236,15 +236,15 @@ pre {
 
 code.highlighter-rouge {
   background: rgba(0, 0, 0, 0.2);
-  border: 0
-  padding: 0px 3px;
+  border: 0;
+  padding: 0 3px;
   margin: 0px -3px;
   color: #b0eeb0;
   border-radius: 2px
 }
 
 table {
-  width: auto
+  width: auto;
   margin: 0 0 20px 0
 }
 
@@ -271,8 +271,7 @@ hr {
   padding: 8px 18px;
   border-radius: 50px;
   border: 2px solid rgba(0, 0, 0, 0.7);
-  border-bottom: 2px solid rgba(0, 0, 0, 0.7);
-  border-top: 2px solid #000;
+  border-top-color: #000;
   color: rgba(255, 255, 255, 0.8);
   font-family: Verdana, Helvetica, Arial, sans-serif;
   font-weight: bold;
