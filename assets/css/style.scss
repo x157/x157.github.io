@@ -339,9 +339,26 @@ footer {
   text-align: center
 }
 
+tip {
+  font-style: italic
+}
+
+tip:before {
+  content: "Tip: ";
+  color: #00ff00;
+  font-weight: bold
+}
+
 todo {
   background-color: #444400;
   font-style: italic
+}
+
+todo:before {
+  content: "TODO: ";
+  background-color: #444400;
+  font-style: italic;
+  font-weight: bold
 }
 
 problem {
