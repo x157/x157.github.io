@@ -154,7 +154,7 @@ This action set is also the only one with an `EAS_` prefix rather than `LAS_` wh
 ## Experience Widgets
 
 | Slot ID | Widget |
-| --- | --- | --- |
+| --- | --- |
 | `HUD.Slot.TeamScore` | `W_ScoreWidget_Elimination` |
 
 

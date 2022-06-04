@@ -8,6 +8,16 @@ This site uses:
 - the [Hacker](https://github.com/pages-themes/hacker) GitHub Pages theme
 
 
+# Preferred Editor
+
+I'm a JetBrains fanboi.  I edit this repository with:
+
+- [IntelliJ IDEA](https://www.jetbrains.com/idea/)
+  - Plugin: [Liquid](https://plugins.jetbrains.com/plugin/14388-liquid)
+  - Plugin: [Markdown](https://plugins.jetbrains.com/plugin/7793-markdown)
+  - Plugin: [Ruby](https://plugins.jetbrains.com/plugin/1293-ruby)
+  - Plugin: [YAML](https://plugins.jetbrains.com/plugin/13126-yaml)
+
 # Local Testing
 
 I'm now able to locally test x157.github.io on my Windows workstation thanks to WSL.  It's amazing to have Linux on Windows.  Thanks WSL!
