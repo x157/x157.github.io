@@ -13,9 +13,9 @@ back_link_title: Style Visualization
 
 Paragraph with `code` and [link](./)
 
-| Plain      | Code   | Link       |
-|------------|--------|------------|
-| text       | `text` | [text](./) |
+| Plain | Code   | Link       | Ymark                            | Nmark                           |
+|-------|--------|------------|----------------------------------|---------------------------------|
+| text  | `text` | [text](./) | ![yes](/assets/images/Ymark.png) | ![no](/assets/images/Nmark.png) |
 
 - Bullet list
 - with `code`
