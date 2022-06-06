@@ -10,7 +10,33 @@ back_link_title: Tutorials
 ---
 
 
-# LyraStarterGame Tutorials
+# Getting Started Tutorials
 
-- [How to Create a New Gameplay Ability](./How-To-Create-a-New-Gameplay-Ability)
+You can't really do much at all with Lyra until you create your own LyraStarterGame project.
 
+- [Getting Started: Set Up a New LyraStarterGame Project](../Getting-Started-Setting-Up-a-New-LyraStarterGame-Project)
+
+
+# More Advanced Tutorials
+
+Once you're up and running:
+
+- [How to: Fix Unarmed Animation Bugs](./How-To-Fix-Lyra-Unarmed-Animation-Bugs)
+- [How to: Create a New Gameplay Ability](./How-To-Create-a-New-Gameplay-Ability)
+- [How to: Send Client Gameplay Ability Data to Server in C++](./How-To-Send-Client-Gameplay-Ability-Data-to-Server-in-C++)
+
+Related material:
+
+- [UE5 Gameplay Ability System Conceptual Overview](/UE5/GameplayAbilitySystem/)
+
+
+# Interesting but not Particularly Useful
+
+- [Upgrade ALyraPawn to use Gameplay Ability System](https://youtu.be/Y_j3PWhYgk4)
+  - Unfortunately because UE5 completely ignores network replication for pawn movement, even if you upgrade the Pawn to support GAS, you still can't **MOVE** it in a networked game without writing 10000 lines of code.
+  - It was still interesting to see how to add GAS to a new class so this tutorial is useful mainly for that purpose.
+
+
+# Works in Progress
+
+- [How to: Customize the Lyra FrontEnd](../How-To-Customize-Lyra-FrontEnd)

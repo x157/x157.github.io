@@ -23,10 +23,11 @@ The cost to us is simply to learn how they've put things together, and furthermo
 
 First, you need to create your own LyraStarterGame project:
 
-- [Getting Started: Set Up a new LyraStarterGame Project](./Getting-Started-Setting-Up-a-New-LyraStarterGame-Project)
+- [Getting Started: Set Up a New LyraStarterGame Project](./Getting-Started-Setting-Up-a-New-LyraStarterGame-Project)
 
 Once you're up and running:
 
+- [How to: Fix Lyra's Unarmed Animation Bugs](./Tutorials/How-To-Fix-Lyra-Unarmed-Animation-Bugs)
 - [How to: Create a New Gameplay Ability](./Tutorials/How-To-Create-a-New-Gameplay-Ability)
 - [How to: Send Client Gameplay Ability Data to Server in C++](./Tutorials/How-To-Send-Client-Gameplay-Ability-Data-to-Server-in-C++)
 
@@ -37,6 +38,7 @@ Related material:
 Works in progress:
 
 - [How to: Customize the Lyra FrontEnd](./How-To-Customize-Lyra-FrontEnd)
+
 
 # Module Dissections
 
