@@ -146,7 +146,6 @@ else:
     ActivateAbilityWithTargetData( TargetData )  // XCL method
 
     ASC->ConsumeClientReplicatedTargetData()
-    EndAbility()
 ```
 
 
@@ -213,7 +212,10 @@ related game crashes.  This is a (Lyra?) Gameplay Ability System requirement.
 ```c++
 void UExampleClientToServerAbility::ActivateLocalPlayerAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData)
 {
+	// Compute the TargetData
 	FVector ClientLocation = FVector::ZeroVector;  // some value you compute
+
+	// Format the TargetData for GAS RPC
 
 	FGameplayAbilityTargetDataHandle TargetDataHandle;
 	FGameplayAbilityTargetData_LocationInfo* TargetData = new FGameplayAbilityTargetData_LocationInfo(); //** USE OF new() IS **REQUIRED** **
@@ -223,6 +225,7 @@ void UExampleClientToServerAbility::ActivateLocalPlayerAbility(const FGameplayAb
 
 	TargetDataHandle.Add(TargetData);
 
+	// Notify self (local client) *AND* server that TargetData is ready to be processed
 	NotifyTargetDataReady(TargetDataHandle, FGameplayTag());  // send with a gameplay tag, or empty
 }
 ```
@@ -237,26 +240,37 @@ It also runs on the server as authoritative code after the `TargetData` is recei
 ```c++
 void UExampleClientToServerAbility::ActivateAbilityWithTargetData(const FGameplayAbilityTargetDataHandle& TargetDataHandle, FGameplayTag ApplicationTag)
 {
-	if (const FGameplayAbilityTargetData* TargetData = TargetDataHandle.Get(0))
+	// retrieve data
+	const FGameplayAbilityTargetData* TargetData = TargetDataHandle.Get(0);
+	if (!TargetData)
 	{
-		const FVector ClientLocation = TargetData->GetOrigin().GetLocation();
-
-		if (CurrentActorInfo->IsNetAuthority())
-		{
-			// Server: do data validation here
-			if (ClientLocation.X < 0)  // if negative X is prohibited by server for some reason
-			{
-				CancelAbility(CurrentSpecHandle, CurrentActorInfo, CurrentActivationInfo, true);
-				return;
-			}
-		}
-
-		//////////////////////////////////////////////////////////////////////
-		// Client & Server both -- data is valid, perform the ability with it
-		//////////////////////////////////////////////////////////////////////
-
-		// in this case we just log a message:
-		XCL_GALOG(TEXT("ClientLocation = %s"), *ClientLocation.ToString());
+		// client sent us bad data
+		CancelAbility(CurrentSpecHandle, CurrentActorInfo, CurrentActivationInfo, true);
+		return;
 	}
+
+	// decode data
+	const FVector ClientLocation = TargetData->GetOrigin().GetLocation();
+
+	// Server: Validate data
+	const bool bIsServer = CurrentActorInfo->IsNetAuthority();
+	if (bIsServer)
+	{
+		if (ClientLocation.X < 0)  // if negative X is prohibited by server for some reason
+		{
+			CancelAbility(CurrentSpecHandle, CurrentActorInfo, CurrentActivationInfo, true);
+			return;
+		}
+	}
+
+	//////////////////////////////////////////////////////////////////////
+	// Client & Server both -- data is valid, activate the ability with it
+	//////////////////////////////////////////////////////////////////////
+
+	// in this case we just log a message:
+	XCL_GALOG(TEXT("ClientLocation = %s"), *ClientLocation.ToString());
+
+	// this is an instant ability, end it immediately (only replicate if bIsServer)
+	EndAbility(CurrentSpecHandle, CurrentActorInfo, CurrentActivationInfo, bIsServer, false);
 }
 ```
