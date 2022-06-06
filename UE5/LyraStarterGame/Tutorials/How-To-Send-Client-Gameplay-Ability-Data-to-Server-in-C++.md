@@ -56,7 +56,7 @@ My `XCL`_`GameplayAbility` base class handles this distinction, and it is an imp
 
 # Implementation Considerations
 
-We create a new virtual method `ExecuteAbilityWithTargetData` and call it either as the local player client
+We create a new virtual method `ActivateAbilityWithTargetData` and call it either as the local player client
 or as the server.
 
 In this method, we run both local player and server code.  This is purely the "do the ability now" code in the
@@ -69,13 +69,13 @@ We expect the client's results will match the server, but the server must valida
 
 - Compute required `TargetData` that isn't known to the server (mouse data, etc)
 - Send `TargetData` to the server via RPC
-- Call `ExecuteAbilityWithTargetData`(`TargetData`)
+- Call `ActivateAbilityWithTargetData`(`TargetData`)
 
 ## Server Logic
 
 - Listen for `AbilitySystemComponent` `TargetDataSet` events
 - On each `TargetDataSet` event:
-  - Call `ExecuteAbilityWithTargetData`(`TargetData`)
+  - Call `ActivateAbilityWithTargetData`(`TargetData`)
 
 My specific implementation is `XCL`_`GameplayAbility_ClientToServer`, detailed below.
 
@@ -91,13 +91,13 @@ This class adds 2 new virtual methods:
   - Must be called by `ActivateLocalPlayerAbility` once `TargetData` has been computed.
 
 
-- `ExecuteAbilityWithTargetData`
+- `ActivateAbilityWithTargetData`
   - Executed by `NotifyTargetDataReady`
     - As local player
     - As server
 
 
-## `ExecuteAbilityWithTargetData`
+## `ActivateAbilityWithTargetData`
 
 This method is the key to the `ClientToServer` ability model. 
 
@@ -118,14 +118,14 @@ It is the responsibility of `ActivateLocalPlayerAbility` to call `NotifyTargetDa
 On the local player client, calling this does both:
 
 - Send the `TargetData` to the server via RPC.
-- Run `ExecuteAbilityWithTargetData` as a local client to predict the effect of the ability.
+- Run `ActivateAbilityWithTargetData` as a local client to predict the effect of the ability.
 
 The local changes stay local but the expectation is the server calculations are the same,
 and so the updated state replicated out to other clients is the same result as your local prediction.
 
 When the `TargetData` RPC is received by the server:
 
-- Run `ExecuteAbilityWithTargetData` as the server, replicate result to clients.
+- Run `ActivateAbilityWithTargetData` as the server, replicate result to clients.
 
 
 ### `XCL`_`GameplayAbility_ClientToServer`::`NotifyTargetDataReady` Implementation
@@ -143,7 +143,7 @@ else:
     if local player is remote from server:
         AbilitySystemComponent->CallServerSetReplicatedTargetData( TargetData )
 
-    ExecuteAbilityWithTargetData( TargetData )  // XCL method
+    ActivateAbilityWithTargetData( TargetData )  // XCL method
 
     ASC->ConsumeClientReplicatedTargetData()
     EndAbility()
@@ -171,7 +171,7 @@ This example class shows how to implement a `ClientToServer` ability.  Only two 
   - Gather the `TargetData` info and invoke `NotifyTargetDataReady`
 
 
-- `ExecuteAbilityWithTargetData` override `XCL`_`GameplayAbility_ClientToServer`
+- `ActivateAbilityWithTargetData` override `XCL`_`GameplayAbility_ClientToServer`
   - Runs on both the client and server to execute the ability with the `TargetData`.
 
 
@@ -193,7 +193,7 @@ protected:
 	//~End of UXCL_GameplayAbility interface
 
 	//~UXCL_GameplayAbility_ClientToServer interface
-	virtual void ExecuteAbilityWithTargetData(const FGameplayAbilityTargetDataHandle& TargetDataHandle, FGameplayTag ApplicationTag) override;
+	virtual void ActivateAbilityWithTargetData(const FGameplayAbilityTargetDataHandle& TargetDataHandle, FGameplayTag ApplicationTag) override;
 	//~End of UXCL_GameplayAbility_ClientToServer interface
 
 };
@@ -228,14 +228,14 @@ void UExampleClientToServerAbility::ActivateLocalPlayerAbility(const FGameplayAb
 ```
 
 
-## `ExecuteAbilityWithTargetData` Implementation
+## `ActivateAbilityWithTargetData` Implementation
 
 This runs on the local player client as prediction code.
 
 It also runs on the server as authoritative code after the `TargetData` is received from the client.
 
 ```c++
-void UExampleClientToServerAbility::ExecuteAbilityWithTargetData(const FGameplayAbilityTargetDataHandle& TargetDataHandle, FGameplayTag ApplicationTag)
+void UExampleClientToServerAbility::ActivateAbilityWithTargetData(const FGameplayAbilityTargetDataHandle& TargetDataHandle, FGameplayTag ApplicationTag)
 {
 	if (const FGameplayAbilityTargetData* TargetData = TargetDataHandle.Get(0))
 	{
