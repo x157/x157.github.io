@@ -217,3 +217,4 @@ I highly recommend thoroughly reading through these if you want a deep understan
 
 - [tranek's GASDocumentation](https://github.com/tranek/GASDocumentation)
 - [Engine Source: GameplayAbilities Plugin](https://github.com/EpicGames/UnrealEngine/tree/release/Engine/Plugins/Runtime/GameplayAbilities)
+- [UE4 Gameplay Ability System Wiki Archive](https://unreal.gg-labs.com/wiki-archives/networking/gameplay-abilities-and-you)
