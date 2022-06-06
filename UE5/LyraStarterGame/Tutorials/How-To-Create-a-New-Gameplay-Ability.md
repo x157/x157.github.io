@@ -1,6 +1,6 @@
 ---
-title: LyraStarterGame Tutorials
-description: LyraStarterGame Tutorials - Learn how to do cool stuff with LyraStarterGame
+title: How to Create a New Gameplay Ability
+description: How to bind a key to a Gameplay Ability in LyraStarterGame
 back_links:
   - link: /UE5/
     name: UE5

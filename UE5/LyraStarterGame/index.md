@@ -28,8 +28,15 @@ First, you need to create your own LyraStarterGame project:
 Once you're up and running:
 
 - [How to: Create a New Gameplay Ability](./Tutorials/How-To-Create-a-New-Gameplay-Ability)
-- [How to: Customize the Lyra FrontEnd](./How-To-Customize-Lyra-FrontEnd) *Work in progress*
+- [How to: Send Client Gameplay Ability Data to Server in C++](./Tutorials/How-To-Send-Client-Gameplay-Ability-Data-to-Server-in-C++)
 
+Related material:
+
+- [UE5 Gameplay Ability System Conceptual Overview](/UE5/GameplayAbilitySystem/)
+
+Works in progress:
+
+- [How to: Customize the Lyra FrontEnd](./How-To-Customize-Lyra-FrontEnd)
 
 # Module Dissections
 

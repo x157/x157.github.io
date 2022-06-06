@@ -9,10 +9,12 @@ description: General notes and thoughts about Unreal Engine 5 (UE5)
 At the moment I'm mostly focusing on understanding and extending the UE5
 [Lyra Starter Game](./LyraStarterGame/).
 
-Ideally I'll add other notes to this page as well but for now, check that out.
+As part of that effort I am also learning about UE5's
+[Gameplay Ability System](./GameplayAbilitySystem/),
+mostly in the context of its LyraStarterGame implementation.
 
 
-# Windows Tricks RE UE5
+# Windows Tips & Tricks
 
 
 ## Registry Key: `HKEY_CLASSES_ROOT\Unreal.ProjectFile`
@@ -26,6 +28,8 @@ You can configure exactly which version of UnrealVersionSelector is used, or see
 - `shell\run` ~ `UnrealVersionSelector.exe`
 - `shell\rungenproj` ~ `UnrealVersionSelector.exe /projectfiles "%1"`
 - `shell\switchversion` ~ `UnrealVersionSelector.exe`
+
+I used this info to make a shell script to clean my project, rebuild project files and then do a fresh clean build.
 
 
 # Excellent Video References

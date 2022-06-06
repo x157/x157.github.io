@@ -12,9 +12,10 @@ I'm an expert C++ developer who has mentored developers and team leaders, but I 
 
 # UE5 Lyra Starter Game
 
-My primary focus at the moment:
+My primary focus at the moment: [Developing a Game with UE5 LyraStarterGame](./UE5/LyraStarterGame/)
 
-[Setting up a new Game using LyraStarterGame](./UE5/LyraStarterGame/)
+This led me to the related, relevant topic of
+[UE5's Gameplay Ability System](./UE5/GameplayAbilitySystem/)
 
 
 # General UE5 Tips & Tricks
