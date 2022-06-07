@@ -253,9 +253,17 @@ Configure this asset:
       - Add `B_XG_TeamSetup_TwoTeams` to `LyraGameState`
         - *replace existing `B_TeamSetup_TwoTeams`*
         - Server only
-      - Add `B_XG_PickRandomCharacter` to `LyraGameState`
+      - Add `B_XG_PickRandomCharacter` to `Controller`
         - *replace existing bugged `B_PickRandomCharacter`*
         - Server only
+
+Note that `B_PickRandomCharacter` is being added to the base `AController` class.
+
+It goes to `AController` specifically so that both Bots (`AAIController`) and Players
+(`APlayerController`) will get the functionality of randomly spawning as either Manny or Quinn.
+
+Though `AController` does not support modular gameplay itself, we're still able to inject components into classes
+that derive from it, including the modular derivatives that Lyra uses.
 
 
 ## World: Dev Map
@@ -277,10 +285,18 @@ You don't need much here right now.  A plane, a light and a C++ `LyraPlayerStart
 Now you should update your project settings to use `L_XG_DevMap` as the default, if that is your desired setup.
 
 
-# Next Step: Customize the Lyra FrontEnd
+### Thank you
 
-You should now have an empty level that you can play in PIE.  It will spawn in your character and you should have basic movement keybindings available.
+Quick shout-out to `braheem`@github who identified
+[an error](https://github.com/x157/x157.github.io/issues/1)
+in the process that has now been fixed above.  Thank you!
 
-[Customize the Lyra FrontEnd](./How-To-Customize-Lyra-FrontEnd)
-or go back to [Lyra Starter Game](./)
+
+# Process Complete
+
+You now have your own experience that you can modify to suit your needs.  All of its dependencies are in your own
+project so you can change those as well.
+
+[Back to LyraStarterGame](/UE5/LyraStarterGame/)
+
 
