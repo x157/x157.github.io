@@ -4,10 +4,8 @@ description:
 back_links:
   - link: /UE5/
     name: UE5
-  - link: /UE5/LyraStarterGame/
-    name: LyraStarterGame
-  - link: /UE5/LyraStarterGame/Tutorials/
-    name: Tutorials
+  - link: /UE5/GameplayAbilitySystem/
+    name: GameplayAbilitySystem
 back_link_title: Gameplay Ability Client-Server RPC
 ---
 
@@ -87,14 +85,15 @@ which is derived from `XCL`_`GameplayAbility`.
 
 This class adds 2 new virtual methods:
 
-#### `NotifyTargetDataReady`
-  - You must call from `ActivateLocalPlayerAbility` once `TargetData` has been computed.
+#### `ActivateAbilityWithTargetData` *(Abstract)*
 
-
-#### `ActivateAbilityWithTargetData`
-  - Executed by `NotifyTargetDataReady`
+- Executed by `NotifyTargetDataReady`
     - As local player
     - As server
+
+#### `NotifyTargetDataReady`
+
+- You must call from `ActivateLocalPlayerAbility` once `TargetData` has been computed.
 
 
 ## `ActivateAbilityWithTargetData`
@@ -128,9 +127,12 @@ and so the updated state replicated out to other clients is the same result as y
 - Run `ActivateAbilityWithTargetData` as the server, replicate result to clients.
 
 
-### `XCL`_`GameplayAbility_ClientToServer`::`NotifyTargetDataReady` Implementation
+### `NotifyTargetDataReady` Logic
 
-This implementation handles both cases: local player and remote server.
+This method is fully implemented in `XCL_GameplayAbility_ClientToServer` so derived classes don't need to
+do anything with this at all except understand what is happening.
+
+This implementation works both for local players and for remote players connected to the server.
 
 ```
 if invalid ability:
@@ -145,8 +147,11 @@ else:
 
     ActivateAbilityWithTargetData( TargetData )  // XCL method
 
-    ASC->ConsumeClientReplicatedTargetData()
+    AbilitySystemComponent->ConsumeClientReplicatedTargetData()
 ```
+
+The exact [C++ code](#XCL_GameplayAbility_ClientToServer__NotifyTargetDataReady)
+for `NotifyTargetDataReady` is listed below for reference.
 
 
 # `AbilitySystemComponent` : `TargetData` RPC
@@ -272,5 +277,110 @@ void UExampleClientToServerAbility::ActivateAbilityWithTargetData(const FGamepla
 
 	// this is an instant ability, end it immediately (only replicate if bIsServer)
 	EndAbility(CurrentSpecHandle, CurrentActorInfo, CurrentActivationInfo, bIsServer, false);
+}
+```
+
+
+<a id="XCL_GameplayAbility_ClientToServer__NotifyTargetDataReady"></a>
+# `UXCL_GameplayAbility_ClientToServer`
+
+The code below is something you will absolutely want to incoporate into any GameplayAbility class
+that needs to send data from the client to the server.
+
+You can choose to put this in the base ability, but I didn't.  Instead, my base ability is general purpose and can
+be used for anything.
+(I covered the base `XCL_GameplayAbility` in the conceptual overview linked at the top of this tutorial.)
+
+My choice was to derive from the base `XCL_GameplayAbility` using a `ClientToServer` variant,
+such that all abilities that require this functionality can get it,
+but the base class is open for wildly different and conflicting flows.
+
+
+## `NotifyTargetDataReady` Implementation
+
+
+```c++
+void UXCL_GameplayAbility_ClientToServer::NotifyTargetDataReady(const FGameplayAbilityTargetDataHandle& InData, FGameplayTag ApplicationTag)
+{
+	UAbilitySystemComponent* ASC = CurrentActorInfo->AbilitySystemComponent.Get();
+	check(ASC);
+
+	// [xist] is this (from Lyra) like an "if is handle valid?" check? seems so, keeping it as such.
+	if (!ASC->FindAbilitySpecFromHandle(CurrentSpecHandle))
+	{
+		CancelAbility(CurrentSpecHandle, CurrentActorInfo, CurrentActivationInfo, false);  // do not replicate
+		return;
+	}
+
+	// if commit fails, cancel ability
+	if (!CommitAbility(CurrentSpecHandle, CurrentActorInfo, CurrentActivationInfo))
+	{
+		CancelAbility(CurrentSpecHandle, CurrentActorInfo, CurrentActivationInfo, true);  // replicate cancellation
+		return;
+	}
+
+	// true if we need to replicate this target data to the server
+	const bool bShouldNotifyServer = CurrentActorInfo->IsLocallyControlled() && !CurrentActorInfo->IsNetAuthority();
+
+	// Start a scoped prediction window
+	FScopedPredictionWindow	ScopedPrediction(ASC);
+
+	// Lyra does this memcopy operation; const cast paranoia is real. We'll keep it.
+	// Take ownership of the target data to make sure no callbacks into game code invalidate it out from under us
+	const FGameplayAbilityTargetDataHandle LocalTargetDataHandle(MoveTemp(const_cast<FGameplayAbilityTargetDataHandle&>(InData)));
+
+	// if this isn't the local player on the server, then notify the server
+	if (bShouldNotifyServer)
+		ASC->CallServerSetReplicatedTargetData(CurrentSpecHandle, CurrentActivationInfo.GetActivationPredictionKey(), LocalTargetDataHandle, ApplicationTag, ASC->ScopedPredictionKey);
+
+	// Execute the ability we've now successfully committed
+	ActivateAbilityWithTargetData(LocalTargetDataHandle, ApplicationTag);
+
+	// We've processed the data, clear it from the RPC buffer
+	ASC->ConsumeClientReplicatedTargetData(CurrentSpecHandle, CurrentActivationInfo.GetActivationPredictionKey());
+}
+```
+
+## `ActivateServerAbility` Implementation
+
+`XCL_GameplayAbility_ClientToServer` overrides the default server ability execution.
+It does nothing other than listen for
+`AbilitySystemComponent`'s `AbilityTargetDataSet` event.
+
+Each time the client invokes the RPC with `TargetData`, the server executes `NotifyTargetDataReady`(`TargetData`)
+
+```c++
+void UXCL_GameplayAbility_ClientToServer::ActivateServerAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData)
+{
+	UAbilitySystemComponent* ASC = ActorInfo->AbilitySystemComponent.Get();
+	check(ASC);
+
+	// plug into AbilitySystemComponent to receive Target Data from client
+	NotifyTargetDataReadyDelegateHandle = ASC->AbilityTargetDataSetDelegate(Handle, ActivationInfo.GetActivationPredictionKey()).AddUObject(this, &ThisClass::NotifyTargetDataReady);
+}
+```
+
+
+## `EndAbilityCleanup` Implementation
+
+As we hooked into `AbilitySystemComponent`'s delegate on `ActivateServerAbility`,
+we must ensure to remove the hook when the ability ends.
+
+You can put this in your `EndAbility`, but I'm using my custom `EndAbilityCleanup` hook
+from `XCL_GameplayAbility` that makes derived
+class code much simpler and with far less copy/paste.
+
+```c++
+void UXCL_GameplayAbility_ClientToServer::EndAbilityCleanup(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, bool bReplicateEndAbility, bool bWasCancelled)
+{
+	UAbilitySystemComponent* ASC = CurrentActorInfo->AbilitySystemComponent.Get();
+	check(ASC);
+
+	// clean up the mess we made in ASC
+	ASC->AbilityTargetDataSetDelegate(CurrentSpecHandle, CurrentActivationInfo.GetActivationPredictionKey()).Remove(NotifyTargetDataReadyDelegateHandle);
+	ASC->ConsumeClientReplicatedTargetData(CurrentSpecHandle, CurrentActivationInfo.GetActivationPredictionKey());
+
+	// run base class cleanup operations too
+	Super::EndAbilityCleanup(Handle, ActorInfo, ActivationInfo, bReplicateEndAbility, bWasCancelled);
 }
 ```

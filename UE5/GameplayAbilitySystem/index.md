@@ -185,7 +185,7 @@ which obscure the actual underlying mechanics.
 Having studied the available blueprints and their underlying C++, I put together a tutorial
 for fellow C++ developers:
 
-[How To: Send Client Gameplay Ability Data to Server in C++](/UE5/LyraStarterGame/Tutorials/How-To-Send-Client-Gameplay-Ability-Data-to-Server-in-C++)
+[How To: Send Client Gameplay Ability Data to Server in C++](./How-To-Send-Client-Gameplay-Ability-Data-to-Server-in-C++)
 
 
 ### Net Execution Policy: `LocalOnly`
