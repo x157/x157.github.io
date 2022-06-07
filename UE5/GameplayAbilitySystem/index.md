@@ -10,6 +10,7 @@ back_link_title: Gameplay Ability System
 
 # UE5 Gameplay Ability System Conceptual Overview
 
+If you prefer video, see my YouTube video covering this topic: [Gameplay Ability System Conceptual Overview](https://youtu.be/hx5NjvH64ug)
 
 [LyraStarterGame](/UE5/LyraStarterGame/)
 implements UE5's Gameplay Ability System.  In general it's quite easy to use once you understand
