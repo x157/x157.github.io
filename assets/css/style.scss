@@ -2,7 +2,7 @@
 ---
 
 .highlight {
-  color: #d0d0d0
+  color: #cccccc
 }
 
 .highlight table td {
@@ -14,7 +14,7 @@
 }
 
 .highlight .w {
-  color: #d0d0d0
+  color: #cccccc
 }
 
 .highlight .err {
@@ -23,19 +23,19 @@
 }
 
 .highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs {
-  color: #888
+  color: #008800
 }
 
-.highlight .cp {
-  color: #f4bf75
+.highlight .cp, .highlight .nl {
+  color: #3388bb
 }
 
-.highlight .o, .highlight .ow {
-  color: #f4bf75
+.highlight .cpf, .o, .highlight .ow {
+  color: #cccccc
 }
 
 .highlight .p, .highlight .pi {
-  color: #d0d0d0
+  color: #cccccc
 }
 
 .highlight .gi {
@@ -52,11 +52,11 @@
 }
 
 .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
-  color: #aa759f
+  color: #3388bb
 }
 
 .highlight .kc, .highlight .kt, .highlight .kd {
-  color: #d28445
+  color: #3388bb
 }
 
 .highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
@@ -71,8 +71,12 @@
   color: #8f5536
 }
 
+.highlight .n {
+  color: #cccccc
+}
+
 .highlight .nt, .highlight .nn, .highlight .nc, .highlight .no {
-  color: #f4bf75
+  color: #3388bb
 }
 
 .highlight .na {
@@ -80,11 +84,11 @@
 }
 
 .highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
-  color: #90a959
+  color: #a95992
 }
 
 .highlight .ss {
-  color: #90a959
+  color: #a95992
 }
 
 body {
@@ -247,7 +251,7 @@ code.highlighter-rouge {
   background: rgba(40, 40, 40, 0.4);
   border: 0;
   border-radius: 2px;
-  color: #ccffcc;
+  color: #cccccc;
 }
 
 table {
