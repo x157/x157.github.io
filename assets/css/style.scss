@@ -182,7 +182,8 @@ h1 code, h1 code.highlighter-rouge,
 h2 code, h2 code.highlighter-rouge,
 h3 code, h3 code.highlighter-rouge,
 h4 code, h4 code.highlighter-rouge,
-h5 code, h5 code.highlighter-rouge {
+h5 code, h5 code.highlighter-rouge,
+h6 code, h6 code.highlighter-rouge {
   color: #00cc00;
 }
 
@@ -208,14 +209,9 @@ h5 code, h5 code.highlighter-rouge {
   margin: 0 0 5px 0
 }
 
-h6 code, h6 code.highlighter-rouge {
-  color: #999;
-}
-
 #main_content h6 {
   font-size: 16px;
   text-transform: none;
-  color: #999;
   margin: 0 0 5px 0
 }
 
@@ -239,6 +235,7 @@ pre {
   border: 1px solid rgba(255, 255, 255, 0.15);
   padding: 10px;
   font-size: 16px;
+  tab-size: 4;
   color: #00cc00;
   border-radius: 2px;
   word-wrap: normal;

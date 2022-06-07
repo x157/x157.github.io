@@ -87,11 +87,11 @@ which is derived from `XCL`_`GameplayAbility`.
 
 This class adds 2 new virtual methods:
 
-- `NotifyTargetDataReady`
-  - Must be called by `ActivateLocalPlayerAbility` once `TargetData` has been computed.
+#### `NotifyTargetDataReady`
+  - You must call from `ActivateLocalPlayerAbility` once `TargetData` has been computed.
 
 
-- `ActivateAbilityWithTargetData`
+#### `ActivateAbilityWithTargetData`
   - Executed by `NotifyTargetDataReady`
     - As local player
     - As server
@@ -115,7 +115,7 @@ the outcome of the server's calculation.
 
 It is the responsibility of `ActivateLocalPlayerAbility` to call `NotifyTargetDataReady`.
 
-On the local player client, calling this does both:
+###### On the local player client, calling this does both:
 
 - Send the `TargetData` to the server via RPC.
 - Run `ActivateAbilityWithTargetData` as a local client to predict the effect of the ability.
@@ -123,7 +123,7 @@ On the local player client, calling this does both:
 The local changes stay local but the expectation is the server calculations are the same,
 and so the updated state replicated out to other clients is the same result as your local prediction.
 
-When the `TargetData` RPC is received by the server:
+###### When the `TargetData` RPC is received by the server:
 
 - Run `ActivateAbilityWithTargetData` as the server, replicate result to clients.
 
