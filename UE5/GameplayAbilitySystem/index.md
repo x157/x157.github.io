@@ -76,15 +76,15 @@ The useful part of their example is how they allow for blueprint compatibility, 
 at if that's of interest to you.
 
 
-# `XCL`_`GameplayAbility`: Base Ability Class
+# `XCL_GameplayAbility`: Base Ability Class
 
-I have created my own Gameplay Ability `XCL`_`GameplayAbility` that derives from
+I have created my own Gameplay Ability `XCL_GameplayAbility` that derives from
 `ULyraGameplayAbility` and adds some quality of life improvements.
 
 In addition to providing more suitable `ActivateAbility` base class behavior, it also significantly reduces the
 boilerplate and duplicate code required to implement an event.
 
-`XCL`_`GameplayAbility` allows for two implementations for the same ability - one for local
+`XCL_GameplayAbility` allows for two implementations for the same ability - one for local
 players and one for the server.
 
 `ActivateAbility` implementation:
@@ -100,7 +100,7 @@ It automatically invokes either the local player variant or the server variant d
 
 
 <a id="xcl-gameplayability-network-modes"></a>
-### `XCL`_`GameplayAbility` Network Mode Variants
+### `XCL_GameplayAbility` Network Mode Variants
 
 | Network Mode     | Variant      | Note                          | Method Invoked               |
 |------------------|--------------|-------------------------------|------------------------------|
@@ -112,7 +112,7 @@ It automatically invokes either the local player variant or the server variant d
 
 ### Default implementation
 
-By default in `XCL`_`GameplayAbility` no native action is taken at all.  Blueprint events are called, if they exist, but
+By default in `XCL_GameplayAbility` no native action is taken at all.  Blueprint events are called, if they exist, but
 otherwise nothing happens.
 
 Thus it's very easy to implement blueprint support for either the local player or server ability variants, you have a

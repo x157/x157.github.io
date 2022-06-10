@@ -22,162 +22,102 @@ The concept is the same -- client prepares data and invokes an RPC on the server
 are specific to the Gameplay Ability System.
 
 
-# Network Execution = `LocalPredicted`
+## Some C++ Seems to be Required
 
-To generate data on the client and send it to the server, you your ability must use the `LocalPredicted`
-network execution mode.  In this mode, abilities will run on both the client and the server.
+An important note for Blueprint users is that **some** C++ does seem to be required to enable the client to
+send the TargetData RPC to the server.
 
-To correctly implement the ability on a multiplayer network, the local client must act differently than the server,
-as illustrated below.
+This seems to be due to the unique mechanism that the Gameplay Ability System uses for its RPC.
+
+You can still implement MOST of your ability in Blueprints, but you MUST provide some sort of C++
+method for the blueprints to call that actually creates and initializes the TargetData in a way
+that is compatible with `AbilitySystemComponent`'s expectations.
 
 
-## Local Player Responsibility
+### C++ Quick Links
 
-1. Make the `TargetData` location known to the server via RPC.
-2. Execute the server code (or an approximation of it) to provide local prediction of the server's actions.
+If you already know conceptually how all of this works and you just want to jump ahead to the C++
+code, here are your links:
 
-`TargetData` can contain vectors, lists of actors, hit results, etc.
+- [Create TargetData Struct using C++ new operator](#ExampleClientToServerAbility__ActivateLocalPlayerAbility)
+- [Execute AbilitySystemComponent RPC when appropriate](#XCL_GameplayAbility_ClientToServer__NotifyTargetDataReady)
+
+There is more code below explaining how this all fits together, but the above are the things
+that you absolutely must implement in C++ to enable Client-Server RPC capability.
+
+
+# Client-Server Ability Concept
+
+Conceptually, sending data from the client to the server is very easy.  Here is how it works in terms
+of a Gameplay Ability:
+
+
+## Client Responsibility
+
+1. Generate `TargetData` that is known only to the client (e.g. mouse position, etc).
+2. Make the `TargetData` known to the server via RPC.
+3. Execute the server code (or an approximation of it) to provide local prediction of the server's actions.
+    1. If standalone mode, or if player is local to the server, server code is executed with authority.
 
 
 ## Server Responsibility
 
 1. Wait for `TargetData` to arrive from the client.
-2. Validate client `TargetData` -- some clients like to cheat.
+2. Validate client `TargetData` -- some clients like to cheat!
 3. Execute the server code using validated data.
 
 
-In the case of a Listen Server, abilities of the player on the server must be treated like a player,
-not like the server, so it should perform the Local Player Responsibility above.  Furthermore, abilities
-from remote clients will also be run, and the Server Responsibility must be performed in those cases.
-
-My `XCL`_`GameplayAbility` base class handles this distinction, and it is an important one you must consider.
-
-# Implementation Considerations
-
-We create a new virtual method `ActivateAbilityWithTargetData` and call it either as the local player client
-or as the server.
-
-In this method, we run both local player and server code.  This is purely the "do the ability now" code in the
-larger process of activating a Gameplay Ability.
-
-We expect the client's results will match the server, but the server must validate the data to prevent cheating.
 
 
-## Client Logic
+# XCL Solution: ClientToServer Abstraction
 
-- Compute required `TargetData` that isn't known to the server (mouse data, etc)
-- Send `TargetData` to the server via RPC
-- Call `ActivateAbilityWithTargetData`(`TargetData`)
+My solution to this problem is to extend from my base `XCL_GameplayAbility` with a focus on making it very
+easy to create `ClientToServer` abilities with minimal duplication of code.
 
-## Server Logic
+With the setup described here, every new Gameplay Ability I create in the future
+that needs to send data from the client to the server will derive from the
+`XCL_GameplayAbility_ClientToServer` class and will only have to implement 2 methods to be fully functional:
 
-- Listen for `AbilitySystemComponent` `TargetDataSet` events
-- On each `TargetDataSet` event:
-  - Call `ActivateAbilityWithTargetData`(`TargetData`)
-
-My specific implementation is `XCL`_`GameplayAbility_ClientToServer`, detailed below.
+- `ActivateLocalPlayerAbility` = Generate `TargetData` and call `NotifyTargetDataReady`
+- `ActivateAbilityWithTargetData` = Run the ability with known `TargetData`
 
 
-# `XCL`_`GameplayAbility_ClientToServer`
+## `XCL_GameplayAbility_ClientToServer` Implementation
 
-The solution to the `ClientToServer` ability model is implemented in this class
-which is derived from `XCL`_`GameplayAbility`.
+Derives from base `XCL_GameplayAbility`.
 
-This class adds 2 new virtual methods:
+New methods:
 
-#### `ActivateAbilityWithTargetData` *(Abstract)*
+- [ActivateAbilityWithTargetData](#ExampleClientToServerAbility__ActivateAbilityWithTargetData) (link goes to `UExampleClientToServerAbility` implementation)
+  - Abstract - you must implement this
+- [NotifyTargetDataReady](#XCL_GameplayAbility_ClientToServer__NotifyTargetDataReady)
+  - You must call this from `ActivateLocalPlayerAbility` once `TargetData` is known
 
-- Executed by `NotifyTargetDataReady`
-    - As local player
-    - As server
+`XCL_GameplayAbility` overrides:
 
-#### `NotifyTargetDataReady`
-
-- You must call from `ActivateLocalPlayerAbility` once `TargetData` has been computed.
-
-
-## `ActivateAbilityWithTargetData`
-
-This method is the key to the `ClientToServer` ability model. 
-
-This is called in multiple contexts in different
-[Network Modes](/UE5/GameplayAbilitySystem/#xcl-gameplayability-network-modes).
-Make sure you understand this concept.
-
-If you are the server, you must validate the client input because some clients like to cheat.
-
-If you are the local player, you should do the same things as the server to effectively predict
-the outcome of the server's calculation.
-
-
-## `NotifyTargetDataReady`
-
-It is the responsibility of `ActivateLocalPlayerAbility` to call `NotifyTargetDataReady`.
-
-###### On the local player client, calling this does both:
-
-- Send the `TargetData` to the server via RPC.
-- Run `ActivateAbilityWithTargetData` as a local client to predict the effect of the ability.
-
-The local changes stay local but the expectation is the server calculations are the same,
-and so the updated state replicated out to other clients is the same result as your local prediction.
-
-###### When the `TargetData` RPC is received by the server:
-
-- Run `ActivateAbilityWithTargetData` as the server, replicate result to clients.
-
-
-### `NotifyTargetDataReady` Logic
-
-This method is fully implemented in `XCL_GameplayAbility_ClientToServer` so derived classes don't need to
-do anything with this at all except understand what is happening.
-
-This implementation works both for local players and for remote players connected to the server.
-
-```
-if invalid ability:
-    CancelAbility()
-
-else if CommitAbility() fails:
-    CancelAbility()
-
-else:
-    if local player is remote from server:
-        AbilitySystemComponent->CallServerSetReplicatedTargetData( TargetData )
-
-    ActivateAbilityWithTargetData( TargetData )  // XCL method
-
-    AbilitySystemComponent->ConsumeClientReplicatedTargetData()
-```
-
-The exact [C++ code](#XCL_GameplayAbility_ClientToServer__NotifyTargetDataReady)
-for `NotifyTargetDataReady` is listed below for reference.
-
-
-# `AbilitySystemComponent` : `TargetData` RPC
-
-The `AbilitySystemComponent` (provided by Lyra's GAS implementation) has a delegate we hook into called
-`AbilityTargetDataSetDelegate`.
-
-We configure it such that every time the server receives a `TargetData` from a client,
-it calls `NotifyTargetDataReady`(`TargetData`).
-
-This also requires us to do some cleanup during `EndAbility`() which we'll accomplish via
-the `EndAbilityCleanup`() 
+- [ActivateServerAbility](#XCL_GameplayAbility_ClientToServer__ActivateServerAbility) : subscribe to `AbilitySystemComponent` events
+  - Invoke `NotifyTargetDataReady` on each `ASC.TargetDataSet` event
+- [EndAbilityCleanup](#XCL_GameplayAbility_ClientToServer__EndAbilityCleanup) : clean up event listener
 
 
 # `UExampleClientToServerAbility`
 
-This example class shows how to implement a `ClientToServer` ability.  Only two methods must be defined to accomplish this:
+This example class shows how to implement a `ClientToServer` ability.
+Only two methods must be defined to accomplish this:
 
 
-- `ActivateLocalPlayerAbility` override `XCL`_`GameplayAbility`
-  - Gather the `TargetData` info and invoke `NotifyTargetDataReady`
+##### `ActivateLocalPlayerAbility` (override `XCL_GameplayAbility`)
+- Client only
+  - Gather the `TargetData` info
+  - Invoke `NotifyTargetDataReady`
 
 
-- `ActivateAbilityWithTargetData` override `XCL`_`GameplayAbility_ClientToServer`
-  - Runs on both the client and server to execute the ability with the `TargetData`.
+###### `ActivateAbilityWithTargetData` (override `XCL_GameplayAbility_ClientToServer`)
+- Client + Server
+  - Execute the ability with the `TargetData`
 
+
+## `UExampleClientToServerAbility.h`
 
 ```c++
 #pragma once
@@ -204,10 +144,15 @@ protected:
 ```
 
 
+<a id="ExampleClientToServerAbility__ActivateLocalPlayerAbility"></a>
 ## `ActivateLocalPlayerAbility` Implementation
 
+This method demonstrates the required boilerplate C++ code that you must run in order to create a `TargetData`
+struct that can be sent to the server via `AbilitySystemComponent`'s RPC mechanism.
+
 You can add pretty much any value into `TargetData` by deriving from `FGameplayAbilityTargetData`.  That base class
-is required by UE5.
+is required by UE5.  In the example below I'm using a `FGameplayAbilityTargetData_LocationInfo` struct, which simply
+allows for an `FTransform` as the `TargetData`.
 
 In the below example we just send the value `FVector::ZeroVector` as the `TargetData` location.
 
@@ -225,8 +170,8 @@ void UExampleClientToServerAbility::ActivateLocalPlayerAbility(const FGameplayAb
 	FGameplayAbilityTargetDataHandle TargetDataHandle;
 	FGameplayAbilityTargetData_LocationInfo* TargetData = new FGameplayAbilityTargetData_LocationInfo(); //** USE OF new() IS **REQUIRED** **
 
-	TargetData->SourceLocation.LocationType = EGameplayAbilityTargetingLocationType::LiteralTransform;
-	TargetData->SourceLocation.LiteralTransform = FTransform(ClientLocation);
+	TargetData->TargetLocation.LocationType = EGameplayAbilityTargetingLocationType::LiteralTransform;
+	TargetData->TargetLocation.LiteralTransform = FTransform(ClientLocation);
 
 	TargetDataHandle.Add(TargetData);
 
@@ -236,11 +181,18 @@ void UExampleClientToServerAbility::ActivateLocalPlayerAbility(const FGameplayAb
 ```
 
 
+<a id="ExampleClientToServerAbility__ActivateAbilityWithTargetData"></a>
 ## `ActivateAbilityWithTargetData` Implementation
 
-This runs on the local player client as prediction code.
+This is an example of how you might implement `ActivateAbilityWithTargetData`.
 
-It also runs on the server as authoritative code after the `TargetData` is received from the client.
+This runs on the local player client as prediction code
+AND on the server as authoritative code
+after the `TargetData` is received from the client.
+
+In this example all we do is log the `ClientLocation` that we retrieve from the
+`TargetData` the client sent, but you could spawn a black hole there and consume the world,
+or whatever else you prefer.
 
 ```c++
 void UExampleClientToServerAbility::ActivateAbilityWithTargetData(const FGameplayAbilityTargetDataHandle& TargetDataHandle, FGameplayTag ApplicationTag)
@@ -255,7 +207,7 @@ void UExampleClientToServerAbility::ActivateAbilityWithTargetData(const FGamepla
 	}
 
 	// decode data
-	const FVector ClientLocation = TargetData->GetOrigin().GetLocation();
+	const FVector ClientLocation = TargetData->GetEndPoint();
 
 	// Server: Validate data
 	const bool bIsServer = CurrentActorInfo->IsNetAuthority();
@@ -281,14 +233,14 @@ void UExampleClientToServerAbility::ActivateAbilityWithTargetData(const FGamepla
 ```
 
 
-<a id="XCL_GameplayAbility_ClientToServer__NotifyTargetDataReady"></a>
+<a id="XCL_GameplayAbility_ClientToServer"></a>
 # `UXCL_GameplayAbility_ClientToServer`
 
-The code below is something you will absolutely want to incoporate into any GameplayAbility class
+The code below is something you will absolutely want to incorporate into any GameplayAbility class
 that needs to send data from the client to the server.
 
-You can choose to put this in the base ability, but I didn't.  Instead, my base ability is general purpose and can
-be used for anything.
+You can choose to put this in your base ability class, but I didn't.
+Instead, my base ability is general purpose and can be used for any type of data flow.
 (I covered the base `XCL_GameplayAbility` in the conceptual overview linked at the top of this tutorial.)
 
 My choice was to derive from the base `XCL_GameplayAbility` using a `ClientToServer` variant,
@@ -296,7 +248,18 @@ such that all abilities that require this functionality can get it,
 but the base class is open for wildly different and conflicting flows.
 
 
+<a id="XCL_GameplayAbility_ClientToServer__NotifyTargetDataReady"></a>
 ## `NotifyTargetDataReady` Implementation
+
+This code shows the boilerplate C++ code required to send the client-computed `TargetData` to the server if the
+local player is a remote client.
+
+Whether the local player is local to the server or remote from the server, either way the ability
+itself gets executed as well via `ActivateAbilityWithTargetData`.
+
+You could potentially move the `CommitAbility` call out of here if you need to for some reason.
+Having it here ensures the client doesn't attempt to execute the ability unless it thinks the Commit will
+actually succeed on the server.
 
 
 ```c++
