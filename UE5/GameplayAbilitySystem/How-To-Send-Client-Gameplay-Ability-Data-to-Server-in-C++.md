@@ -16,7 +16,7 @@ Before you read this, I recommend quickly reviewing my high level
 [Gameplay Ability System Conceptual Overview](/UE5/GameplayAbilitySystem/).
 
 If you  prefer video, see my YouTube video covering this topic:
-[UE5 Client to Server Gameplay Ability: Target Data RPC](https://youtu.be/VvkIuUnk05M)
+[UE5 Gameplay Ability: Client to Server Target Data RPC](https://youtu.be/VvkIuUnk05M)
 
 Client-Server RPC is a bit different in the Gameplay Ability System than it is in other areas of UE5
 because the RPC must be routed through the `UAbilitySystemComponent` attached to the ability's owner.
