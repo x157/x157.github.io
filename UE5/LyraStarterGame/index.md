@@ -18,6 +18,8 @@ This thing is PACKED full of things that every game NEEDS but that isn't the lea
 
 The cost to us is simply to learn how they've put things together, and furthermore how to extend the framework they've built.
 
+[Extending Lyra: Development Considerations](./Development-Considerations)
+
 
 # Tutorials
 
