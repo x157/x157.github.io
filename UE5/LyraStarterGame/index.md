@@ -39,7 +39,7 @@ Related material:
 
 Works in progress:
 
-- [How to: Customize the Lyra FrontEnd](./How-To-Customize-Lyra-FrontEnd)
+- [How to: Customize the Lyra FrontEnd](./How-To-Customize-Lyra-FrontEnd) (incomplete)
 
 
 # Module Dissections

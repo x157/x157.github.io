@@ -95,5 +95,11 @@ Change project settings to load this experience by default:
 
 ## Customize the menu itself
 
+TODO
 
+Also there is quite a lot more TODO here, but the above will hopefully
+help get you started.  If you've followed along so far, you should
+have enough insight to continue on your own from here.
 
+I hope to come back to this at some point once I've actually built a
+game that requires a menu for players to use.  `:)`
