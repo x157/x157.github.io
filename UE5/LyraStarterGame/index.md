@@ -36,6 +36,7 @@ Once you're up and running:
 Related material:
 
 - [UE5 Gameplay Ability System Conceptual Overview](/UE5/GameplayAbilitySystem/)
+- [LyraStarterGame Interaction System](./Interactions/)
 
 Works in progress:
 
