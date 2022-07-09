@@ -130,15 +130,14 @@ uses the `LocalPredicted` `NetExecutionPolicy`, so it runs on both the client
 and the server.
 
 A [`UAbilityTask_GrantNearbyInteraction`](#UAbilityTask_GrantNearbyInteraction)
-Gameplay Task is immediately created
-on the server and replicates to the client.
+Gameplay Task is immediately created on the server.
 
 
 <a id="UAbilityTask_GrantNearbyInteraction"></a>
 ### Gameplay Task: `UAbilityTask_GrantNearbyInteraction`
 
-This task sets a recurring timer to scan for interactable objects in front
-of the player every X interval (configurable; default 0.1 seconds).
+This task sets a recurring timer to scan for interactable objects
+in a sphere around the player every X interval (configurable; default 0.1 seconds).
 
 Each time it scans, it looks for objects that implement the
 `IInteractableTarget` interface.  This interface may be implemented
@@ -156,6 +155,22 @@ The task constructs a list of all `FInteractionOption` for all
 interactable objects detected in each sphere trace.
 For every `FInteractionOption` detected, it then grants the `PlayerState`
 whatever Gameplay Ability is defined by that option.
+
+#### Network Gameplay Note
+
+The [Official Lyra Interaction System Docs](https://docs.unrealengine.com/5.0/en-US/lyra-sample-game-interaction-system-in-unreal-engine/)
+states:
+
+    You can increase the InteractionScanRate float to be at a larger radius
+    than your InteractionRange, otherwise, replication will not deliver the
+    ability to the client soon enough.
+
+I believe this is a typo.  They intended to say you should increase the
+`InteractionScanRange` to be larger than the `InteractionRange`.
+
+This seems like a good idea for networked games, note however they
+did not actually do this in the Inventory example, which seems to be
+an oversight since they explicitly called it out in their docs.
 
 
 <a id="UAbilityTask_WaitForInteractableTargets_SingleLineTrace"></a>
