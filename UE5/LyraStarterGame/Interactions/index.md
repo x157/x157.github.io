@@ -84,7 +84,7 @@ that your player chooses when to activate:
     from the world and places it in the player's inventory
 
 
-<a id="#GA_Interact"></a>
+<a id="GA_Interact"></a>
 ## Gameplay Ability: GA_Interact
 
 Path: `ShooterMaps`/`PROTO`/`InventoryTest`/`Input`/`Abilities`/`GA_Interact`
@@ -119,7 +119,7 @@ by [`UAbilityTask_WaitForInteractableTargets_SingleLineTrace`](#UAbilityTask_Wai
 The key press is detected in the `GA_Interact` event graph.
 
 
-<a id="#ULyraGameplayAbility_Interact"></a>
+<a id="ULyraGameplayAbility_Interact"></a>
 ### Base C++ Class: `ULyraGameplayAbility_Interact`
 
 `GA_Interact` uses `ULyraGameplayAbility_Interact` as its base C++ class.
@@ -134,7 +134,7 @@ Gameplay Task is immediately created
 on the server and replicates to the client.
 
 
-<a id="#UAbilityTask_GrantNearbyInteraction"></a>
+<a id="UAbilityTask_GrantNearbyInteraction"></a>
 ### Gameplay Task: `UAbilityTask_GrantNearbyInteraction`
 
 This task sets a recurring timer to scan for interactable objects in front
@@ -158,7 +158,7 @@ For every `FInteractionOption` detected, it then grants the `PlayerState`
 whatever Gameplay Ability is defined by that option.
 
 
-<a id="#UAbilityTask_WaitForInteractableTargets_SingleLineTrace"></a>
+<a id="UAbilityTask_WaitForInteractableTargets_SingleLineTrace"></a>
 ### Gameplay Task: `UAbilityTask_WaitForInteractableTargets_SingleLineTrace`
 
 This task sets a recurring timer to scan for the first interactable
@@ -178,7 +178,7 @@ broadcasts the `InteractableObjectsChanged` delegate, which
 option is currently available to the player, if any.
 
 
-<a id="#B_InteractableRock"></a>
+<a id="B_InteractableRock"></a>
 ## Interactable Object: `B_InteractableRock`
 
 Path: `ShooterMaps`/`PROTO`/`InventoryTest`/`B_InteractableRock`
@@ -226,7 +226,7 @@ in Blueprints for each type of item that the user should be able to
 pick up and put in their inventory.
 
 
-<a id="#GA_Interaction_Collect"></a>
+<a id="GA_Interaction_Collect"></a>
 ## Gameplay Ability: `GA_Interaction_Collect`
 
 This Gameplay Ability is granted to the `PlayerState` by an interactable
@@ -255,7 +255,7 @@ When activated, this Gameplay Ability:
 - Plays a pickup animation
 
 
-<a id="#How_to_Experience_Epics_Inventory_Prototype"></a>
+<a id="How_to_Experience_Epics_Inventory_Prototype"></a>
 # How to Experience Epic's Inventory Prototype
 
 Path: `ShooterMaps`/`PROTO`/`InventoryTest`/`L_InventoryTestMap`
