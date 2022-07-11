@@ -76,6 +76,7 @@ The useful part of their example is how they allow for blueprint compatibility, 
 at if that's of interest to you.
 
 
+<a id="XCL_GameplayAbility"></a>
 # `XCL_GameplayAbility`: Base Ability Class
 
 I have created my own Gameplay Ability `XCL_GameplayAbility` that derives from
