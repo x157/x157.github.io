@@ -9,6 +9,7 @@ back_links:
 back_link_title: Development Considerations
 ---
 
+
 # Extending Lyra: Development Considerations
 
 For my purposes, my goal is to **NEVER MODIFY** base Lyra code or
@@ -19,7 +20,7 @@ future Lyra releases into my code.  If they make bug fixes to code I'm
 using, I want those.  If they add new features, I'd like to be able to
 implement them as easily as possible.
 
-The caveat here is that it is impossible to merge binary files,
+The problem here is that **it is impossible to merge binary files**,
 and so if I make any changes at all to binary assets then if Epic ever
 updates them it will be a nightmarish set of days/weeks for me to manually
 inspect the state of every binary file before and after the change and try
