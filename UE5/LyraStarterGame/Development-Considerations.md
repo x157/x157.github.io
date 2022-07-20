@@ -1,11 +1,11 @@
 ---
-title: Extending LyraStarterGame: Development Considerations
-description: Considerations for developing a game based on LyraStarterGame
+title: "Extending LyraStarterGame: Development Considerations"
+description: "Considerations for developing a game based on LyraStarterGame"
 back_links:
-  - link: /UE5/
-    name: UE5
-  - link: /UE5/LyraStarterGame/
-    name: LyraStarterGame
+- link: /UE5/
+  name: UE5
+- link: /UE5/LyraStarterGame/
+  name: LyraStarterGame
 back_link_title: Development Considerations
 ---
 
