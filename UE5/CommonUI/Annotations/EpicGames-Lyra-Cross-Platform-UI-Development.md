@@ -16,10 +16,6 @@ back_link_title: "Lyra Cross-Platform UI Development"
 
 Published 2022-04-21 by Nick Darnell, Principal Programmer @ Epic Games.
 
-Unfortunately this was published on Epic's dev site, which does not support
-annotated links, so you'll have to fast-forward to the interesting spots
-on your own.
-
 This deals with Lyra, but focuses on the CommonUI plugin since that is what
 Epic used in Lyra.
 
@@ -28,6 +24,10 @@ Epic used in Lyra.
 
 
 ## Annotation
+
+Unfortunately this was published on Epic's dev site, which does not support
+annotated links, so you'll have to fast-forward to the interesting spots
+on your own.
 
 
 ### 00:27 - Overview of Lyra User Interface
