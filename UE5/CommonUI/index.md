@@ -13,6 +13,13 @@ Epic's `CommonUI` plugin is what
 [LyraStarterGame](../LyraStarterGame/)
 uses to control the flow of user input.
 
+This plugin allows the automation of a lot of platform-specific behavior in the UI.
+For example, buttons can be automatically shown/hidden depending on the platform
+type, and it is very easy to test different platforms in the Editor.
+
+This documentation is being based primarily on the setup of `CommonUI` in `LyraStarterGame`.
+
+
 ## Considerations for Usage
 
 When using `CommonUI`, **DO NOT add widgets directly to the viewport**.
@@ -34,6 +41,9 @@ at the top of the highest priority visible layer
 at any given time.
 
 To support this, your widgets must be derived from `UCommonActivatableWidget`.
+
+
+# TODO ADD MORE HIGH LEVEL INFO
 
 
 <a id="Annotations"></a>
