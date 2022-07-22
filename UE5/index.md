@@ -39,19 +39,16 @@ This registry key configures the windows right click system menu options when yo
 
 ### Child Registry Keys
 
-| Registry Key          | Sub-key   | Data                                                |
-|-----------------------|-----------|-----------------------------------------------------|
-| `shell\open`          |           | `Open`                                              |
-| `shell\open`          | `command` | `UnrealVersionSelector.exe` `/editor` `"%1"`        |
-|                       |           |                                                     |
-| `shell\run`           |           | `Launch Game`                                       |
-| `shell\run`           | `command` | `UnrealVersionSelector.exe` `/game` `"%1"`          |
-|                       |           |                                                     |
-| `shell\rungenproj`    |           | `Generate Visual Studio project files`              |
-| `shell\rungenproj`    | `command` | `UnrealVersionSelector.exe` `/projectfiles` `"%1"`  |
-|                       |           |                                                     |
-| `shell\switchversion` |           | `Switch Unreal Engine version...`                   |
-| `shell\switchversion` | `command` | `UnrealVersionSelector.exe` `/switchversion` `"%1"` |
+| Registry Key                  | Data                                                |
+|-------------------------------|-----------------------------------------------------|
+| `shell\open`                  | Open                                                |
+| `shell\open\command`          | `UnrealVersionSelector.exe` `/editor` `"%1"`        |
+| `shell\run`                   | Launch Game                                         |
+| `shell\run\command`           | `UnrealVersionSelector.exe` `/game` `"%1"`          |
+| `shell\rungenproj`            | Generate Visual Studio project files                |
+| `shell\rungenproj\command`    | `UnrealVersionSelector.exe` `/projectfiles` `"%1"`  |
+| `shell\switchversion`         | Switch Unreal Engine version...                     |
+| `shell\switchversion\command` | `UnrealVersionSelector.exe` `/switchversion` `"%1"` |
 
 
 ### Default Root Directory
