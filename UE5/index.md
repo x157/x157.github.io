@@ -9,9 +9,23 @@ description: General notes and thoughts about Unreal Engine 5 (UE5)
 At the moment I'm mostly focusing on understanding and extending the UE5
 [Lyra Starter Game](./LyraStarterGame/).
 
-As part of that effort I am also learning about UE5's
-[Gameplay Ability System](./GameplayAbilitySystem/),
-mostly in the context of its LyraStarterGame implementation.
+To understand Lyra, you also need an understanding of these UE5 plugins:
+
+- [Common UI](./CommonUI/)
+- Enhanced Input System *(todo)*
+- [Gameplay Ability System](./GameplayAbilitySystem/)
+
+
+# Video References
+
+If you're looking to learn more about UE5, particularly related to
+[LyraStarterGame](/UE5/LyraStarterGame/)
+and related engine concepts, check out my video annotations:
+
+#### Epic Developer Discussions
+
+- [Common UI Annotations](./CommonUI/#Annotations)
+- [LyraStarterGame Annotations](./LyraStarterGame/Epic-Games-Developer-Discussion-References)
 
 
 # Windows Tips & Tricks
