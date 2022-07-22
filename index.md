@@ -14,12 +14,19 @@ I'm an expert C++ developer who has mentored developers and team leaders, but I 
 
 My primary focus at the moment: [Developing a Game with UE5 LyraStarterGame](./UE5/LyraStarterGame/)
 
-This led me to the related, relevant topic of
-[UE5's Gameplay Ability System](./UE5/GameplayAbilitySystem/)
+This led me to study these related, relevant [UE5](./UE5/) topics:
+
+- [Common UI](./UE5/CommonUI/) Plugin
+- [Gameplay Ability System](./UE5/GameplayAbilitySystem/)
 
 
-# General UE5 Tips & Tricks
+# Video References
 
-Things related to UE5 but not necessarily Lyra in particular:
+If you're looking to learn more about UE5, particularly related to
+[LyraStarterGame](./UE5/LyraStarterGame/)
+and related engine concepts, check out my video annotations:
 
-[General UE5 Tips & Tricks](./UE5/)
+#### Epic Developer Discussions
+
+- [Common UI Annotations](./CommonUI/#Annotations)
+- [LyraStarterGame Annotations](./LyraStarterGame/Epic-Games-Developer-Discussion-References)
