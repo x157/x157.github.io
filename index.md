@@ -28,5 +28,5 @@ and related engine concepts, check out my video annotations:
 
 #### Epic Developer Discussions
 
-- [Common UI Annotations](./CommonUI/#Annotations)
-- [LyraStarterGame Annotations](./LyraStarterGame/Epic-Games-Developer-Discussion-References)
+- [Common UI Annotations](./UE5/CommonUI/#Annotations)
+- [LyraStarterGame Annotations](./UE5/LyraStarterGame/Epic-Games-Developer-Discussion-References)
