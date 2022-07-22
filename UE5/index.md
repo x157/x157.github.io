@@ -19,22 +19,30 @@ mostly in the context of its LyraStarterGame implementation.
 
 ## Registry Key: `HKEY_CLASSES_ROOT\Unreal.ProjectFile`
 
-This registry key configures the windows right click system menu options when you right click on `.uproject` files.
+This registry key configures the windows right click system menu options when you right-click on `.uproject` files.
 
 ![Example uproject Right Click Menu](./screenshots/uproject-right-click-example.png)
 
-You can configure exactly which version of UnrealVersionSelector is used, or see exactly what the paths and parameters are by inspecting these keys:
+### Child Registry Keys
 
-- `shell\run` ~ `UnrealVersionSelector.exe`
-- `shell\rungenproj` ~ `UnrealVersionSelector.exe /projectfiles "%1"`
-- `shell\switchversion` ~ `UnrealVersionSelector.exe`
+| Registry Key          | Sub-key   | Data                                                |
+|-----------------------|-----------|-----------------------------------------------------|
+| `shell\open`          |           | `Open`                                              |
+| `shell\open`          | `command` | `UnrealVersionSelector.exe` `/editor` `"%1"`        |
+|                       |           |                                                     |
+| `shell\run`           |           | `Launch Game`                                       |
+| `shell\run`           | `command` | `UnrealVersionSelector.exe` `/game` `"%1"`          |
+|                       |           |                                                     |
+| `shell\rungenproj`    |           | `Generate Visual Studio project files`              |
+| `shell\rungenproj`    | `command` | `UnrealVersionSelector.exe` `/projectfiles` `"%1"`  |
+|                       |           |                                                     |
+| `shell\switchversion` |           | `Switch Unreal Engine version...`                   |
+| `shell\switchversion` | `command` | `UnrealVersionSelector.exe` `/switchversion` `"%1"` |
 
-I used this info to make a shell script to clean my project, rebuild project files and then do a fresh clean build.
 
+### Default Root Directory
 
-# Excellent Video References
+The default root is where you installed the Epic Games Launcher, or you can change this
+if you have a custom engine:
 
-If you're looking to learn more about UE5, particularly related to LyraStarterGame
-and related engine concepts, check out my
-[Epic Games Developer Discussions](./LyraStarterGame/Epic-Games-Developer-Discussion-References)
-annotations.
+    ... / Epic Games / Launcher / Engine / Binaries / ... / UnrealVersionSelector.exe
