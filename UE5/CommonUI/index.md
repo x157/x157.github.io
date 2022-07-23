@@ -24,7 +24,6 @@ This documentation is being based heavily on the setup of `CommonUI` in `LyraSta
 
 You create a Base UI Widget, for example in your `PlayerController`,
 which is the one and only widget you explicitly `Add to Viewport`.
-All other widgets then get pushed onto different layers of the Base UI.
 
 **DO NOT add other widgets directly to the viewport**.
 
@@ -38,10 +37,10 @@ This setup allows Common UI to manage menu navigation using Gamepad buttons, Key
 
 This event is provided by Common UI, along with its companion `OnDeactivated`.
 
-These are the events to use to do things like change widget focus based on widgets being made
+These are the events where you should do things like change widget focus based on widgets being made
 visible or invisible during game play.
 
-Widgets are not deleted, they're often reused, and `OnActivated` and `OnDeactivated` are called often.
+Widgets are not deleted, they're often reused. `OnActivated` and `OnDeactivated` are called often.
 
 
 ### `CommonActivatableWidget` Event: `GetDesiredFocusTarget`
@@ -51,6 +50,9 @@ The most likely return value is `self`, e.g. focus the widget that was most rece
 
 If you override this in C++, this BP version of this function will not be called
 unless you explicitly call it yourself.
+
+This seems to be particularly important when using non-pointer input devices for menu navigation,
+like Gamepad buttons or Keyboard keys.
 
 
 ## Input Handling
@@ -65,9 +67,9 @@ and likely must implement `GetDesiredFocusTarget`.
 Widget inputs are configured via:
 
 - `DataTable` with row type `CommonInputActionDataBase`
-- One or more `ControllerData` assets derived from `CommonInputBaseControllerData`
+- One or more `CommonInputBaseControllerData`-derived `ControllerData` assets
   - These reference the input action `DataTable`
-- Custom BP/Object derived from `CommonUIInputData`
+- Custom `CommonUIInputData`-derived BP/Object
   - This references the input action `DataTable`
   - Configures Universal Input Actions, like:
     - Continue
