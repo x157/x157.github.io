@@ -74,6 +74,13 @@ Widget inputs are configured via:
     - Back/Cancel
     - possibly others
 
+See [Epic's Official Common UI Quickstart Guide](https://docs.unrealengine.com/5.0/en-US/common-ui-quickstart-guide-for-unreal-engine/)
+for an overview of how you might configure the assets mentioned above.
+
+Epic's Inside Unreal episode
+[Introduction to CommonUI](./Annotations/EpicGames-Introduction-to-CommonUI)
+also covered a lengthy demo of configuring these settings in a new project.
+
 
 ### Project Settings: Common Input
 
@@ -132,6 +139,8 @@ widgets to use the appropriate style.
 
 
 ## External References
+
+For more insight into Common UI, I recommend:
 
 - [benui's Common UI Intro](https://benui.ca/unreal/common-ui-intro/)
 - [benui's Deep Dive into Common UI Buttons](https://benui.ca/unreal/common-ui-button/)
