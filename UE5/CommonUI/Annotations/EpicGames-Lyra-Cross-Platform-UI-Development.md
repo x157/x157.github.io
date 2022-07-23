@@ -19,23 +19,27 @@ Published 2022-04-21 by Nick Darnell, Principal Programmer @ Epic Games.
 This deals with Lyra, but focuses on the CommonUI plugin since that is what
 Epic used in Lyra.
 
+The first 24 minutes of this video is a good high level overview of how Common UI is
+implemented in Lyra 5.0, including C++ and Blueprints.
+
 [Full Video](https://dev.epicgames.com/community/learning/talks-and-demos/k88P/lyra-cross-platform-ui-development)
 (45m)
 
 
-## Annotation
+# Annotation
 
 Unfortunately this was published on Epic's dev site, which does not support
-annotated links, so you'll have to fast-forward to the interesting spots
+incoming annotated links, so you'll have to fast-forward to the interesting spots
 on your own.
 
-
-### 00:27 - Overview of Lyra User Interface
+## Overview of Lyra User Interface
+  - 00:27 - Overview of Lyra User Interface
   - 01:05 - Lyra "Pretend Platforms" for easy cross-platform UI development
   - 02:11 - How Lyra Front-end is set up to support cross-platform UI
   - 03:13 - Review Platform-specific INIs
 
-#### 05:24 - Overview of how CommonUI + Lyra interact
+## Overview of how CommonUI + Lyra interact
+  - 05:24 - Overview of how CommonUI + Lyra interact
   - 06:01 - C++: Lyra Setting Screen (`ULyraSettingScreen`)
   - 07:00 - C++: Lyra Game Viewport Client (`ULyraGameViewportClient`)
     - Mainly showcases base C++ class `UCommonGameViewportClient`
@@ -45,14 +49,16 @@ on your own.
     - 09:22 - Activatable widget hierarchy
       - Important to get input: You must be the root-most activated widget
 
-##### 09:52 - **How to debug Activatable widget hierarchy**
-  - Console command: `CommonUI.DumpActivatableTree`
+## **How to debug Activatable widget hierarchy**
+  - 09:52 - Console command: `CommonUI.DumpActivatableTree`
 
-##### 11:01 - How to add Activatable Widgets to the Viewport
+## How to add Activatable Widgets to the Viewport
+  - 11:01 - How to add Activatable Widgets to the Viewport
   - 11:40 - Lyra Game UI Manager
   - 12:41 - Example what happens when a player joins
 
-### 13:20 - Primary Game Layout
+## Primary Game Layout
+  - 13:20 - Primary Game Layout
   - 13:33 - `B_LyraUIPolicy` Game Policy
     - 13:39 - `W_OverallUILayout` Game Layout
       - Register layers:
@@ -67,14 +73,16 @@ on your own.
         - Derive your own for other functionality
 
 
-### 16:46 - `W_LyraFrontEnd` Lyra Front-end
+## `W_LyraFrontEnd` Lyra Front-end
+  - 16:46 - `W_LyraFrontEnd` Lyra Front-end
   - Added to `UI.Layer.Menu`
   - 17:35 - Important: Use **Soft Class** References in `Push Content to Layer for Player`
     - This is a Load time optimization
   - 19:02 - Lyra Front-end visual example of content swapping on layers
 
 
-### 19:21 - How it works in Native C++
+## How it works in Native C++
+  - 19:21 - How it works in Native C++
   - 19:33 - *(example)* Enable PS5 Platform Emulation mode
   - 20:10 - Inject `B_LyraFrontEndStateComponent` into `LyraGameState` (client only)
   - 20:42 - C++ `ULyraFrontEndStateComponent` < `UGameStateComponent`
@@ -88,7 +96,8 @@ on your own.
             - Suspend player input
 
 
-### 24:40 Art Discussion
-  - Intro: Art Discussion w/ Rhys Harwell, Principal UI Artist
+# Art Discussion
+  - 24:40 Intro to Art Discussion
+    - by Rhys Harwell, Principal UI Artist, Epic Games
 
 *I haven't annotated the Art discussion, I suck at art.* `:)`
