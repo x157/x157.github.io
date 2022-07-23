@@ -53,6 +53,12 @@ To support this, your widgets must be derived from `UCommonActivatableWidget`.
 - [Lyra Cross-Platform UI Development](./Annotations/EpicGames-Lyra-Cross-Platform-UI-Development) (45m)
   - How CommonUI was implemented in LyraStarterGame
   - Good big picture overview of a CommonUI implementation
+- [Introduction to CommonUI](./Annotations/EpicGames-Introduction-to-CommonUI) (2h 41m)
+  - Effectively a 2.5 hour brain dump
+  - How to add CommonUI to a new project
+  - Show off some common styling options
+  - Full Blueprint implementation, with numerous notes to "do not actually do it this way"
+    - Intended really only as an example
 
 
 <a id="Annotations_Other"></a>
