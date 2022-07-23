@@ -129,3 +129,9 @@ widgets to use the appropriate style.
 
 
 <a id="Annotations_Other"></a>
+
+
+## External References
+
+- [benui's Common UI Intro](https://benui.ca/unreal/common-ui-intro/)
+- [benui's Deep Dive into Common UI Buttons](https://benui.ca/unreal/common-ui-button/)
