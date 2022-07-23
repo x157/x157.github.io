@@ -37,6 +37,7 @@ Related material:
 
 - [UE5 Gameplay Ability System Conceptual Overview](/UE5/GameplayAbilitySystem/)
 - [UE5 Enhanced Input Gameplay Abilities -- Pressed Trigger vs Down Trigger](https://youtu.be/P-dyHJhoqxA)
+- [UE5 Common UI](/UE5/CommonUI/) = foundation for Lyra UI
 - [LyraStarterGame Interaction System](./Interactions/)
 
 Works in progress:
