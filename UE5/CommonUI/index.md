@@ -32,7 +32,7 @@ All other widgets get pushed onto the appropriate `CommonUI` Layer that you set 
 
 This setup allows Common UI to manage menu navigation using Gamepad buttons, Keyboard keys, etc.
 
-To support this, your widgets must be derived from C++ `CommonActivatableWidget`.
+To support this, your widget must be derived from C++ [`CommonActivatableWidget`](#CommonActivatableWidget).
 
 
 ### Example: Lyra Common UI Layers
@@ -45,7 +45,18 @@ In ascending priority order, Lyra defines these Common UI Layers as stacks with 
 - `UI.Layer.Modal` - Prompt/Confirmation Dialog layer
 
 
-### `CommonActivatableWidget` Event: `OnActivated`
+<a id="CommonActivatableWidget"></a>
+## Base Widget Class: `CommonActivatableWidget`
+
+`CommonActivatableWidget` should be used as the base class.
+This gives you access to support for many new common C++ events.
+
+<todo-p>
+Find/Link to good CommonActivatableWidget documentation
+</todo-p>
+
+
+### Event: `CommonActivatableWidget`.`OnActivated`
 
 This event is provided by Common UI, along with its companion `OnDeactivated`.
 
@@ -55,7 +66,7 @@ visible or invisible during game play.
 Widgets are not deleted, they're often reused. `OnActivated` and `OnDeactivated` are called often.
 
 
-### `CommonActivatableWidget` Event: `GetDesiredFocusTarget`
+### Event: `CommonActivatableWidget`.`GetDesiredFocusTarget`
 
 You likely need to tell Common UI which widget should be focussed when a given widget is activated.
 The most likely return value is `self`, e.g. focus the widget that was most recently activated.
@@ -154,6 +165,7 @@ For more insight into Common UI, I recommend:
 - [benui's Common UI Intro](https://benui.ca/unreal/common-ui-intro/)
 - [benui's Deep Dive into Common UI Buttons](https://benui.ca/unreal/common-ui-button/)
   - Insight into Common UI Buttons, how to design and use them
-- [Volkiller Games: Common UI Input system in Unreal Engine 5](https://youtu.be/q05jmFyeb0c)
+- [Volkiller Games: Common UI Input system in Unreal Engine 5](https://youtu.be/q05jmFyeb0c) (6m)
   - This video primarily details the initial project setup
   - Also shows off Controller-specific button icons
+- [Volkiller Games: Common Button and Common Activatable widget Unreal Engine 5](https://youtu.be/HUGtsOqTIp8) (6m)
