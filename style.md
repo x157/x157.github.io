@@ -34,6 +34,12 @@ paragraph with a <problem>&lt;problem/&gt;</problem> in it
 
 ------------------------------------------------------------
 
+<todo-p>
+Value inside &lt;todo-p/&gt; tag
+</todo-p>
+
+------------------------------------------------------------
+
 paragraph between h rules
 
 ------------------------------------------------------------

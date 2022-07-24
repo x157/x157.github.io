@@ -357,7 +357,8 @@ footer {
 }
 
 tip {
-  font-style: italic
+  font-style: italic;
+  display: inline-block;
 }
 
 tip:before {
@@ -368,7 +369,9 @@ tip:before {
 
 todo {
   background-color: #444400;
-  font-style: italic
+  font-style: italic;
+  display: inline;
+  padding: 0.5em;
 }
 
 todo:before {
@@ -378,6 +381,23 @@ todo:before {
   font-weight: bold
 }
 
+todo-p {
+  background-color: #444400;
+  font-style: italic;
+  display: block;
+  padding: 0.5em;
+  margin: 0.5em;
+}
+
+todo-p:before {
+  content: "TODO: ";
+  background-color: #444400;
+  font-style: italic;
+  font-weight: bold
+}
+
+
 problem {
+  display: inline-block;
   background-color: #800000
 }
