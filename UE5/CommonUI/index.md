@@ -32,6 +32,18 @@ All other widgets get pushed onto the appropriate `CommonUI` Layer that you set 
 
 This setup allows Common UI to manage menu navigation using Gamepad buttons, Keyboard keys, etc.
 
+To support this, your widgets must be derived from C++ `CommonActivatableWidget`.
+
+
+### Example: Lyra Common UI Layers
+
+In ascending priority order, Lyra defines these Common UI Layers as stacks with associated Gameplay Tags:
+
+- `UI.Layer.Game` - UI relating directly to gameplay
+- `UI.Layer.GameMenu` - For example: Inventory UI
+- `UI.Layer.Menu` - Main Menu layer
+- `UI.Layer.Modal` - Prompt/Confirmation Dialog layer
+
 
 ### `CommonActivatableWidget` Event: `OnActivated`
 
@@ -61,9 +73,6 @@ Input is directed by Common UI to the Widget that currently has focus
 (by default the one at the top of the highest priority visible layer)
 at any given time.
 
-To support this, your widgets must be derived from C++ `CommonActivatableWidget`
-and likely must implement `GetDesiredFocusTarget`.
-
 Widget inputs are configured via:
 
 - `DataTable` with row type `CommonInputActionDataBase`
@@ -76,13 +85,6 @@ Widget inputs are configured via:
     - Back/Cancel
     - possibly others
 
-See [Epic's Official Common UI Quickstart Guide](https://docs.unrealengine.com/5.0/en-US/common-ui-quickstart-guide-for-unreal-engine/)
-for an overview of how you might configure the assets mentioned above.
-
-Epic's Inside Unreal episode
-[Introduction to CommonUI](./Annotations/EpicGames-Introduction-to-CommonUI)
-also covered a lengthy demo of configuring these settings in a new project.
-
 
 ### Project Settings: Common Input
 
@@ -94,14 +96,11 @@ also covered a lengthy demo of configuring these settings in a new project.
   - Etc
 
 
-### Example: Lyra Common UI Layers
+#### Resources to Better Understand Input & Project Setup for Common UI
 
-In ascending priority order, Lyra defines these Common UI Layers as stacks with associated Gameplay Tags:
-
-- `UI.Layer.Game`
-- `UI.Layer.GameMenu`
-- `UI.Layer.Menu`
-- `UI.Layer.Modal`
+- [Epic's Official Common UI Quickstart Guide](https://docs.unrealengine.com/5.0/en-US/common-ui-quickstart-guide-for-unreal-engine/) (text + screenshot doc)
+- Volkiller Games: [Common UI Input system in Unreal Engine 5](https://youtu.be/q05jmFyeb0c) (5 minute video)
+- Epic's Inside Unreal episode: [Introduction to CommonUI](./Annotations/EpicGames-Introduction-to-CommonUI) (2.5 hour video)
 
 
 ## Shared Style Assets
@@ -120,6 +119,14 @@ widgets to use the appropriate style.
 - `CommonButtonStyle`
 - `CommonTextStyle`
 - others?
+
+
+## Debugging Common UI
+
+### Console command: `CommonUI.DumpActivatableTree`
+
+If you enter the above console command you will get an output log dump of debug information
+that can be helpful to understand what the current Common UI display stack looks like.
 
 
 <a id="Annotations"></a>
@@ -146,3 +153,7 @@ For more insight into Common UI, I recommend:
 
 - [benui's Common UI Intro](https://benui.ca/unreal/common-ui-intro/)
 - [benui's Deep Dive into Common UI Buttons](https://benui.ca/unreal/common-ui-button/)
+  - Insight into Common UI Buttons, how to design and use them
+- [Volkiller Games: Common UI Input system in Unreal Engine 5](https://youtu.be/q05jmFyeb0c)
+  - This video primarily details the initial project setup
+  - Also shows off Controller-specific button icons
