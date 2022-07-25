@@ -332,6 +332,10 @@ a {
   text-shadow: 0 0 5px rgba(154, 20, 204, 0.5)
 }
 
+a code, a code.highlighter-rouge {
+  color: #ffc0ff;
+}
+
 .cf:before, .cf:after {
   content: "";
   display: table
