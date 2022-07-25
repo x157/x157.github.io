@@ -12,12 +12,13 @@ This is part of [How Common UI is Setup in LyraStarterGame](./).
 Read that as well for more info.
 
 
-## What is: Lyra UI Messaging Subsystem
+## Lyra UI Messaging Subsystem
 
-The `LyraUIMessaging` subsystem is a derivative of `CommonMessagingSubsystem`,
-a Local Player Subsystem provided by the `CommonGame` plugin.
+### `LyraUIMessagingSubsystem` : public `CommonMessagingSubsystem` from `CommonGame`
 
-The Lyra UI Messaging Subsystem provides these common capabilities:
+The Lyra UI Messaging Subsystem manages the `UI.Layer.Modal` layer of the UI Layout.
+
+This subsystem provides these common capabilities:
 
 - Show Confirmation Dialog
 - Show Error Dialog

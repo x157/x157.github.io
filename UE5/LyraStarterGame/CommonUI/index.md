@@ -21,18 +21,26 @@ For general information about `CommonUI`, see my [Common UI Overview](/UE5/Commo
 
 ### UI Layers (Activatable Widget Stacks)
 
-- `UI.Layer.Game` - Things like the HUD.
-- `UI.Layer.GameMenu` - "Menus" specifically related to gameplay, like maybe an in game inventory UI.
-- `UI.Layer.Menu` - Things like the settings screen.
-- `UI.Layer.Modal` - Confirmation dialogs, error dialogs.
+#### `UI.Layer.Game`
+- Things like the HUD.
+- Layer Root is expected to be assigned by the Lyra Experience
 
+###### Example: `W_ShooterHUDLayout`
+- `B_ShooterGame_Elimination` Experience
+  - Activate `LAS_ShooterGame_StandardHUD` Action Set
+    - Assign `UI.Layer.Game` = `W_ShooterHUDLayout`
+    - Assign other widgets to slots defined by this HUD
 
-## Experience-configured HUD Layout
+#### `UI.Layer.GameMenu`
+- "Menus" specifically related to gameplay, like maybe an in game inventory UI.
 
-The `UI.Layer.Game` layer root is expected to be assigned by the Lyra Experience.
+#### `UI.Layer.Menu`
+- Things like the settings screen.
 
-For example in the `B_ShooterGame_Elimination` experience:
+#### `UI.Layer.Modal`
+- Confirmation dialogs, error dialogs.
 
-- Activate Action Set: `LAS_ShooterGame_StandardHUD`
-  - Assign `UI.Layer.Game` = `W_ShooterHUDLayout`
-    - Also assigns other widgets to slots defined by this HUD
+###### Managed by `LyraUIMessagingSubsystem`
+- [Lyra UI Messaging Subsystem](./LyraUIMessagingSubsystem)
+  - Confirmation Dialog
+  - Error Dialog
