@@ -1,6 +1,7 @@
 ---
 title: "Unreal Engine 5"
 description: "General notes and thoughts about Unreal Engine 5 (UE5)"
+breadcrumb_name: UE5
 ---
 
 
