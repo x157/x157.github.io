@@ -182,15 +182,6 @@ h1, h2, h3, h4, h5, h6 {
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(181, 232, 83, 0.1), 0 0 10px rgba(181, 232, 83, 0.1)
 }
 
-h1 code, h1 code.highlighter-rouge,
-h2 code, h2 code.highlighter-rouge,
-h3 code, h3 code.highlighter-rouge,
-h4 code, h4 code.highlighter-rouge,
-h5 code, h5 code.highlighter-rouge,
-h6 code, h6 code.highlighter-rouge {
-  color: #00cc00;
-}
-
 #main_content h1 {
   font-size: 30px
 }
@@ -235,7 +226,7 @@ blockquote {
 }
 
 pre {
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(40, 40, 40, 0.8);
   border: 1px solid rgba(255, 255, 255, 0.15);
   padding: 10px;
   font-size: 16px;
@@ -247,11 +238,32 @@ pre {
   overflow-y: hidden
 }
 
+h1 code, h1 code.highlighter-rouge,
+h2 code, h2 code.highlighter-rouge,
+h3 code, h3 code.highlighter-rouge,
+h4 code, h4 code.highlighter-rouge,
+h5 code, h5 code.highlighter-rouge {
+  color: #00cc00;
+  background: rgba(40, 40, 40, 0.8);
+}
+
+h6 {
+  color: #cccccc;
+  font-weight: bolder;
+}
+
+h6 code, h6 code.highlighter-rouge {
+  background: rgba(40, 40, 40, 0.8);
+  font-weight: bolder;
+}
+
 code.highlighter-rouge {
-  background: rgba(40, 40, 40, 0.4);
-  border: 0;
-  border-radius: 2px;
   color: #bbffbb;
+  background: rgba(60, 60, 60, 0.8);
+}
+
+code {
+  padding: 0.25em;
 }
 
 table {
