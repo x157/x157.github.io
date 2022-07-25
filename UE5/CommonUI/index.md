@@ -16,7 +16,9 @@ This plugin allows the automation of a lot of platform-specific behavior in the 
 For example, buttons can be automatically shown/hidden depending on the platform
 type, and it is very easy to test different platforms in the Editor.
 
-This documentation is being based heavily on the setup of `CommonUI` in `LyraStarterGame`.
+This documentation is being based heavily on
+[How `LyraStarterGame` implements `CommonUI`](/UE5/LyraStarterGame/CommonUI/).
+See that link for detailed information on how `LyraStarterGame` configures and uses `CommonUI`.
 
 
 ## Considerations for Usage
