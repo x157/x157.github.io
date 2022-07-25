@@ -12,6 +12,20 @@ This is part of [How Common UI is Setup in LyraStarterGame](./).
 Read that as well for more info.
 
 
+# Project Settings: Gameplay Tags
+
+#### `DefaultGameplayTags.ini`
+
+```ini
+[/Script/GameplayTags.GameplayTagsSettings]
++GameplayTagList=(Tag="UI.Action.Back",DevComment="")
++GameplayTagList=(Tag="UI.Layer.Game",DevComment="")
++GameplayTagList=(Tag="UI.Layer.GameMenu",DevComment="")
++GameplayTagList=(Tag="UI.Layer.Menu",DevComment="")
++GameplayTagList=(Tag="UI.Layer.Modal",DevComment="")
+```
+
+
 # Project Settings: `Plugins` / `Common UI Input Settings`
 
 `UI.Action.Escape` Action Tag assigned to:
