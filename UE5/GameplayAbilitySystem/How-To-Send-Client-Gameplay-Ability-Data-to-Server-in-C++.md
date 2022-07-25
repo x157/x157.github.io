@@ -115,7 +115,7 @@ Only two methods must be defined to accomplish this:
   - Invoke `NotifyTargetDataReady`
 
 
-###### `ActivateAbilityWithTargetData` (override `XCL_GameplayAbility_ClientToServer`)
+##### `ActivateAbilityWithTargetData` (override `XCL_GameplayAbility_ClientToServer`)
 - Client + Server
   - Execute the ability with the `TargetData`
 
