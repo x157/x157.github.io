@@ -13,16 +13,23 @@
 
     <a href="{{ site.url }}">X157</a>
 
-{%   for bl in page.back_links %}
+{%     if page.breadcrumb_path %}
+{%         assign breadcrumb_path = "/" %}
+{%         assign breadcrumb_dirs = page.breadcrumb_path | split: "/" %}
+{%         for d in breadcrumb_dirs %}
+{%             assign breadcrumb_path = breadcrumb_path | append: d | append: "/" %}
+    / <a href="{{ breadcrumb_path | absolute_url }}">{{ d }}</a>
+{%         endfor %}
+    / <span class="back_links_title">{{ page.breadcrumb_name | default: page.title }}</span>
+
+{%     else %}
+
+{%         for bl in page.back_links %}
     / <a href="{{ bl.link | absolute_url }}">{{ bl.name }}</a>
-{%   endfor %}
+{%         endfor %}
+    / <span class="back_links_title">{{ page.back_link_title | default: page.breadcrumb_name | default: page.title }}</span>
 
-{%   if page.back_link_title %}
-    / <span class="back_links_title">{{ page.back_link_title }}</span>
-{%   else %}
-    / <span class="back_links_title">{{ page.title }}</span>
-{%   endif %}
-
+{%     endif %}
 {% endif %}
 
 </div>
