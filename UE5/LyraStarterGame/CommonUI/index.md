@@ -34,7 +34,11 @@ For general information about `CommonUI`, see my [Common UI Overview](/UE5/Commo
 
 ### `UI.Layer.GameMenu`
 - "Menus" specifically related to gameplay, like maybe an in game inventory UI.
-- <todo>Find what uses this layer</todo>
+  - Not in use in current shipping version of Lyra
+    - Prototype Inventory map incorrectly tries to use this, but it doesn't work correctly.
+- You can implement this yourself in your game
+  - Make sure you make the root a `LyraHUDLayout` widget
+    - Then add other widgets to the root as needed for your game
 
 ### `UI.Layer.Menu`
 - Things like the settings screen.
