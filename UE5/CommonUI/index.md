@@ -135,7 +135,7 @@ widgets to use the appropriate style.
 
 ## Debugging Common UI
 
-### Console command: `CommonUI.DumpActivatableTree`
+###### Console command: `CommonUI.DumpActivatableTree`
 
 If you enter the above console command you will get an output log dump of debug information
 that can be helpful to understand what the current Common UI display stack looks like.

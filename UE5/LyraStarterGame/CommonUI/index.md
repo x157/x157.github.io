@@ -12,10 +12,12 @@ This document describes how the `CommonUI` plugin is set up and used by `LyraSta
 
 For general information about `CommonUI`, see my [Common UI Overview](/UE5/CommonUI/).
 
+
 ## Overall UI Layout
 
 - [Project Settings](./ProjectSettings)
 - [Default UI Policy](./DefaultUIPolicy)
+
 
 ## UI Layers (Activatable Widget Stacks)
 
@@ -62,3 +64,13 @@ input tags and on each event push the BP-defined `EscapeMenuClass` to
 `UI.Layer.Menu`
 
 The `UI.Action.Escape` event is defined in [Project Settings](./ProjectSettings)
+
+
+## Debugging
+
+When you're wondering which widgets are currently active, you can use this console command to get
+an output log dump from Common UI:
+
+###### Console Debug command: `CommonUI.DumpActivatableTree`
+
+
