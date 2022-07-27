@@ -4,14 +4,14 @@ description: See the various html elements all on one page
 back_link_title: Style Visualization
 ---
 
-# Header 1 with `code` and [link](./)
-## Header 2 with `code` and [link](./)
-### Header 3 with `code` and [link](./)
-#### Header 4 with `code` and [link](./)
-##### Header 5 with `code` and [link](./)
-###### Header 6 with `code` and [link](./)
+# Header 1 `code` [link](./) and [`code` link](./)
+## Header 2 `code` [link](./) and [`code` link](./)
+### Header 3 `code` [link](./) and [`code` link](./)
+#### Header 4 `code` [link](./) and [`code` link](./)
+##### Header 5 `code` [link](./) and [`code` link](./)
+###### Header 6 `code` [link](./) and [`code` link](./)
 
-Paragraph with `code` and [link](./)
+Paragraph with `code` and [link](./) and [`code` link](./)
 
 | Plain | Code   | Link       | Ymark                            | Nmark                           |
 |-------|--------|------------|----------------------------------|---------------------------------|
