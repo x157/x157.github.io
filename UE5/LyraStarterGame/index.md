@@ -18,7 +18,10 @@ This thing is PACKED full of things that every game NEEDS but that isn't the lea
 
 The cost to us is simply to learn how they've put things together, and furthermore how to extend the framework they've built.
 
-[Extending Lyra: Development Considerations](./Development-Considerations)
+Ready to create your own LyraStarterGame project?
+
+- [Getting Started: Set Up a New LyraStarterGame Project](./Getting-Started-Setting-Up-a-New-LyraStarterGame-Project)
+- [Extending Lyra: Development Considerations](./Development-Considerations)
 
 
 # Lyra Concepts
@@ -35,10 +38,6 @@ The cost to us is simply to learn how they've put things together, and furthermo
 - [LyraStarterGame Interaction System](./Interactions/)
   - Epic's example interaction system to get you started building your own
 
-
-Ready to create your own LyraStarterGame project?
-
-- [Getting Started: Set Up a New LyraStarterGame Project](./Getting-Started-Setting-Up-a-New-LyraStarterGame-Project)
 
 Bug fixes:
 
