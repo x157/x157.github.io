@@ -21,25 +21,28 @@ The cost to us is simply to learn how they've put things together, and furthermo
 [Extending Lyra: Development Considerations](./Development-Considerations)
 
 
-# Tutorials
+# Lyra Concepts
 
-First, you need to create your own LyraStarterGame project:
+- Common UI "owns" player input
+  - [How Common UI is Setup in Lyra](./CommonUI/)
+  - [High Level Overview of Common UI in General](/UE5/CommonUI/)
+- Gameplay Ability System
+  - [How to: Create a New Gameplay Ability](./Tutorials/How-To-Create-a-New-Gameplay-Ability)
+  - GAS Learning Resources:
+    - [UE5 Gameplay Ability System Conceptual Overview](/UE5/GameplayAbilitySystem/)
+    - [How to: Send Client Gameplay Ability Data to Server in C++](/UE5/GameplayAbilitySystem/How-To-Send-Client-Gameplay-Ability-Data-to-Server-in-C++)
+    - [UE5 Enhanced Input Gameplay Abilities -- Pressed Trigger vs Down Trigger](https://youtu.be/P-dyHJhoqxA)
+- [LyraStarterGame Interaction System](./Interactions/)
+  - Epic's example interaction system to get you started building your own
+
+
+Ready to create your own LyraStarterGame project?
 
 - [Getting Started: Set Up a New LyraStarterGame Project](./Getting-Started-Setting-Up-a-New-LyraStarterGame-Project)
 
-Once you're up and running:
+Bug fixes:
 
 - [How to: Fix Lyra's Unarmed Animation Bugs](./Tutorials/How-To-Fix-Lyra-Unarmed-Animation-Bugs)
-- [How to: Create a New Gameplay Ability](./Tutorials/How-To-Create-a-New-Gameplay-Ability)
-- [How to: Send Client Gameplay Ability Data to Server in C++](/UE5/GameplayAbilitySystem/How-To-Send-Client-Gameplay-Ability-Data-to-Server-in-C++)
-- [How Common UI is Setup in LyraStarterGame](./CommonUI/)
-
-Related material:
-
-- [UE5 Gameplay Ability System Conceptual Overview](/UE5/GameplayAbilitySystem/)
-- [UE5 Enhanced Input Gameplay Abilities -- Pressed Trigger vs Down Trigger](https://youtu.be/P-dyHJhoqxA)
-- [UE5 Common UI](/UE5/CommonUI/) = foundation for Lyra UI
-- [LyraStarterGame Interaction System](./Interactions/)
 
 Works in progress:
 
