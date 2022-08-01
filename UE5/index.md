@@ -17,6 +17,11 @@ To understand Lyra, you also need an understanding of these UE5 plugins:
 - [Gameplay Ability System](./GameplayAbilitySystem/)
 
 
+# Engine Tips & Tricks
+
+- [How to Build (and Use) a Custom Engine](./Engine/)
+
+
 # Windows Tips & Tricks
 
 - [Windows Registry Keys: `HKEY_CLASSES_ROOT\Unreal.ProjectFile`](./Windows-Registry-Keys)
