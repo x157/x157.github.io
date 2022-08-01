@@ -11,6 +11,10 @@ back_link_title: Interactions
 
 # LyraStarterGame Interaction System
 
+If you prefer video, check out my
+[YouTube Video: UE5 LyraStarterGame Prototype Interaction System](https://youtu.be/jm0qX5KkLQs)
+which covers this topic.
+
 The [Official UE5 Lyra Interaction Docs](https://docs.unrealengine.com/5.0/en-US/lyra-sample-game-interaction-system-in-unreal-engine/)
 are definitely worth reading.  However, IMO they were clearly written by someone
 who has far more knowledge about Lyra and Unreal Engine than I have,
@@ -165,12 +169,17 @@ states:
     than your InteractionRange, otherwise, replication will not deliver the
     ability to the client soon enough.
 
-I believe this is a typo.  They intended to say you should increase the
-`InteractionScanRange` to be larger than the `InteractionRange`.
+This is a typo.  They intended to say you should increase the
+`InteractionScanRange` (**Range**, not Rate) to be larger than the `InteractionRange`.
 
-This seems like a good idea for networked games, note however they
-did not actually do this in the Inventory example, which seems to be
-an oversight since they explicitly called it out in their docs.
+In the prototype sample, Epic is using 500cm as the `InteractionScanRange`,
+compared to only 200cm for the `InteractionRange`.
+So the Lyra prototype uses a 2.5x increase in the scan range
+compared to the activation range.
+
+`InteractionScanRange` is set in `LyraGameplayAbility_Interact.h`,
+while `InteractionRange` is set in the `GA_Interact` invocation of
+`Wait for Interactable Targets Single Line Trace`.
 
 
 <a id="UAbilityTask_WaitForInteractableTargets_SingleLineTrace"></a>
