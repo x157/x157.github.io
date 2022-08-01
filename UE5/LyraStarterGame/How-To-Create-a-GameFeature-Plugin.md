@@ -72,12 +72,12 @@ XistGame
 
 Now that you have a plugin, you need to configure Asset Manager so that it knows where to find your game's components.
 
-[Configure Asset Manager](./How-To-Configure-AssetManager-for-GameFeature-Plugins)
+[Configure Asset Manager](/UE5/LyraStarterGame/Setup/GameFeatureData-AssetManager)
 or go back to [Lyra Starter Game](./)
 
 
 ## Want more info?
 
-More information RE creating a GameFeature Plugin can be obtained by watching some of the
+More information RE creating a GameFeature Plugin can be obtained by watching some
 [Epic Games developer discussions](./Epic-Games-Developer-Discussion-References)
 that I have annotated.
