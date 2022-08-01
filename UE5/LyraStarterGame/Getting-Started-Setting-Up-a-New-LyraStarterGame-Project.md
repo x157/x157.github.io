@@ -29,11 +29,15 @@ bug fixes, etc that Epic produces on the base Lyra framework.
 [How To Create a GameFeature Plugin](./How-To-Create-a-GameFeature-Plugin)
 
 
-# Step 2: Configure Asset Manager for Plugin
+# Step 2: Configure Game Feature Data
 
 Once you have a plugin, you need to tell Lyra's Asset Manager where to find files for your plugin.
 
 [How to Configure Asset Manager for GameFeature Plugins](./How-To-Configure-AssetManager-for-GameFeature-Plugins)
+
+You'll also need to add a Gameplay Cue path so you can make custom Cues:
+
+[Add GameplayCue Path to GameFeatureData](./Setup/GameFeatureData-AddGameplayCuePath)
 
 
 # Step 3: Create Your Dev Experience
