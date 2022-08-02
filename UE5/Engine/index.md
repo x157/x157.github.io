@@ -6,7 +6,7 @@ breadcrumb_name: "Engine"
 ---
 
 
-# UE5: Using a Custom Engine Build
+# Building a Custom UE5 Engine
 
 
 Before you download the UE5 source, make sure you are familiar with this material:
@@ -52,19 +52,36 @@ Dev
         └── Source
 ```
 
-Now assume you have your own game project, `MyAwesomeGameProject`.
+Now assume you have your own game project, `XistGame`.
 
-You need to put it inside the `Dev/UE5` directory, like this:
+You need to put it inside the `/Dev/UE5` directory, like this:
 
 ```text
 Dev
 └── UE5
     ├── Engine
-    └── MyAwesomeGameProject
-        └── MyAwesomeGameProject.uproject
+    └── XistGame
+        ├── Content
+        ├── Source
+        ├── ...
+        └── XistGame.uproject
 ```
 
-This seems odd, but it's the UE5 workflow.
-Your project must be INSIDE the UE5 repository,
+This is the UE5 workflow.  Your project must be INSIDE the UE5 repository.
 
-Your `MyAwesomeGameProject` will share the same parent directory as the UE5 `Engine` directory.
+Your `XistGame` will share the same parent directory as the UE5 `Engine` directory.
+
+
+## How to Generate Project Files
+
+To generate the project files for your project that uses this engine,
+use this command:
+
+```bash
+cd "C:\Dev\UE5" && "Engine/Binaries/Win64/UnrealVersionSelector-Win64-Shipping.exe" /projectfiles "XistGame/XistGame.uproject"
+```
+
+The path to `UnrealVersionSelector` will be different for different platforms.
+
+The key is you want the one you're building in `Engine`/`Binaries`/**YOUR_PLATFORM**/`UnrealVersionSelector`
+
