@@ -67,8 +67,8 @@ binary format, and there are many pains in the asses of developers all around
 the world.
 
 Indeed, in their own source control diffs, they present the assets in text
-so you can see whether anything has actually changed!  For fuck's sake, just
-keep it in text anyway Epic!!  What the actual fuck?
+so you can see whether anything has actually changed!  Just
+keep it in text anyway Epic!  ??!!
 
 I digress.  Binary assets suck.  Don't try to reuse or extend them, just
 duplicate them and use your own.
