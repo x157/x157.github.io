@@ -1,6 +1,6 @@
 ---
 title: "Unreal Engine 5: The Engine"
-description: "Discussion of Unreal Engine 5 and how to use it"
+description: "Discussion of Unreal Engine 5, including how to use a Custom Engine that you can modify yourself."
 breadcrumb_path: "UE5"
 breadcrumb_name: "Engine"
 ---
@@ -17,7 +17,13 @@ Unless you know what you are doing, you will probably want the `release` branch,
 recent official release of the engine.
 
 
-## Install .NET v4.5 for VS 2022
+## Windows: Install .NET v4.5 for VS 2022
+
+<tip>UE5 requires .NET v4.5 and will NOT work with v4.8</tip>
+
+<problem>
+YOU DO NOT WANT TO USE .NET v4.8.
+</problem>
 
 If you are using Visual Studio 2022, you will likely need to manually download
 and install .NET v4.5 framework, which is required by UE5 as of 5.0.3, but is
@@ -28,10 +34,6 @@ no longer supported by Microsoft.
 You'll want to make sure .NET v4.5 is installed BEFORE you try to build the engine.
 You will know that you need this if Visual Studio 2022 gives you a warning that .NET v4.5
 is missing.  It will ask if you want to upgrade the project to use v4.8.
-
-<problem>
-YOU DO NOT WANT TO UPGRADE TO USE .NET v4.8.
-</problem>
 
 If you try to compile with v4.8, it will compile mostly OK, and
 then your engine/game will crash a lot in places it has no business crashing.
