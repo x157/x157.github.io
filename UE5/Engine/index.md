@@ -29,7 +29,11 @@ You'll want to make sure .NET v4.5 is installed BEFORE you try to build the engi
 You will know that you need this if Visual Studio 2022 gives you a warning that .NET v4.5
 is missing.  It will ask if you want to upgrade the project to use v4.8.
 
-YOU DO NOT WANT TO UPGRADE TO USE .NET v4.8.  Shit will break.  It will compile mostly OK, and
+<problem>
+YOU DO NOT WANT TO UPGRADE TO USE .NET v4.8.
+</problem>
+
+If you try to compile with v4.8, it will compile mostly OK, and
 then your engine/game will crash a lot in places it has no business crashing.
 
 **UE5 requires .NET v4.5.** Install it via the methodology described at the above link.
@@ -39,7 +43,7 @@ then your engine/game will crash a lot in places it has no business crashing.
 
 Assume you checkout the
 [UnrealEngine Github repository](https://github.com/EpicGames/UnrealEngine)
-to `C:\Dev\UE5` (Windows) or `/Dev/UE5` (Linux/Mac).
+to `D:\Dev\UE5` (Windows) or `/Dev/UE5` (Linux/Mac).
 
 You'll end up with a directory structure that looks something like this:
 
@@ -78,10 +82,16 @@ To generate the project files for your project that uses this engine,
 use this command:
 
 ```bash
-cd "C:\Dev\UE5" && "Engine/Binaries/Win64/UnrealVersionSelector-Win64-Shipping.exe" /projectfiles "XistGame/XistGame.uproject"
+cd /Dev/UE5
+./Engine/Binaries/Win64/UnrealVersionSelector.exe /projectfiles "XistGame/XistGame.uproject"
 ```
 
-The path to `UnrealVersionSelector` will be different for different platforms.
+The directory path to `UnrealVersionSelector` will be different for different platforms.
+The name will also vary depending on your build.
 
 The key is you want the one you're building in `Engine`/`Binaries`/**YOUR_PLATFORM**/`UnrealVersionSelector`
+
+For example, building from the `ue5-release` branch on Win 11 x64, the actual path for me is:
+
+`D:\Dev\UE5\Engine\Binaries\Win64\UnrealVersionSelector-Win64-Shipping.exe`
 
