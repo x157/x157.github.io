@@ -26,6 +26,9 @@ Ready to create your own LyraStarterGame project?
 
 # Lyra Concepts
 
+- Your game code must be organized into one or more Lyra [GameFeature Plugins](/UE5/GameFeatures/)
+  - Try to only modify your own GameFeature plugins.
+    - In general you don't want to modify Lyra itself much, if at all.
 - Common UI "owns" player input
   - [How Common UI is Setup in Lyra](./CommonUI/)
   - [High Level Overview of Common UI in General](/UE5/CommonUI/)
