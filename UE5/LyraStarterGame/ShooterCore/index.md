@@ -14,7 +14,7 @@ back_link_title: ShooterCore Game Logic Dissection
 
 `ShooterCore` defines a lot more functionality than it shows off.  In addition to the one map it provides, it is also used by `ShooterMaps` to showcase more maps and experiences.
 
-In this high level game logic dissection we'll take a look at what mades the game do what it does.  This isn't going to get into details of animation, menus, music or other aspects of the game.  This is purely focused on the logic.
+In this high level game logic dissection we'll take a look at what makes the game do what it does.  This isn't going to get into details of animation, menus, music or other aspects of the game.  This is purely focused on the logic.
 
 
 # Experience: `B_ShooterGame_Elimination`
