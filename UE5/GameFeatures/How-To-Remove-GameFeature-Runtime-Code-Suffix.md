@@ -126,7 +126,8 @@ $Files = $GrepMatch | Select-Object Path | Sort-Object {$_.Path} | Get-Unique -A
 # Replace all references of $RuntimeName in the affected $Files with $PluginName
 foreach ($Item in ($Files | Get-Item)) {
     $old = Get-Content -Path $Item.FullName  # read file
-    $new = $old -replace $RuntimeName,$PluginName  # replace string references
+    $new = $old.Replace($RuntimeName, $PluginName)  # replace XistGameRuntime references
+    $new = $new.Replace($RuntimeName.ToUpper(), $PluginName.ToUpper())  # replace XISTGAMERUNTIME references
     Write-Host "Replace file:" $Item.Name
     $new | Set-Content -Path $Item.FullName  # write file with new contents
 }
