@@ -31,6 +31,14 @@ Though PowerShell supposedly works on Mac + Linux, I imagine many of you may not
 In your case, PowerShell is very easy to understand and you can use this as procedural
 documentation to inspire you to do the same on your system.
 
+**NOTE: THIS DOES NOT WORK ON BINARY `.uasset` FILES**
+
+If you want to do this, you need to do it when you first create your GameFeature plugin,
+**BEFORE** you start adding binary assets.
+
+This procedure works on C++, C# and `uplugin` files but NOT on Blueprints.
+Binary `.uasset` files are a pain.
+
 
 # 1) Create New Game Feature Plugin in UE5 Editor
 
