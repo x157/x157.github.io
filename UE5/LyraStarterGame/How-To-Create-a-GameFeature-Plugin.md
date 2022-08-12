@@ -67,6 +67,20 @@ XistGame
 └── XistGame.uplugin
 ```
 
+### Don't like those default "Runtime" names?
+
+If you don't like having files named `XistGameRuntime` (and API export code `XISTGAMERUNTIME_API`)
+then you can change them now.
+
+I'm anal and it bugged me to see `XISTGAMERUNTIME_API` everywhere rather than
+`XISTGAME_API` everywhere.  I know (and don't really care) that my plugin is being
+loaded at runtime.  I don't need to see it all over the code!
+
+If you want to change this, **NOW IS THE TIME**.  This is totally optional,
+but if you wait, it may not be easy to change it later.
+
+[How to: Remove "Runtime" Suffix from GameFeature Plugin Code Names](/UE5/GameFeatures/How-To-Remove-GameFeature-Runtime-Code-Suffix)
+
 
 ## Next Step: Configure Asset Manager
 
