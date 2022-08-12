@@ -12,14 +12,16 @@ At the moment I'm mostly focusing on understanding and extending the UE5
 
 To understand Lyra, you also need an understanding of these UE5 plugins:
 
-- [Common UI](./CommonUI/)
+- [Common UI](./CommonUI/) + CommonGame
 - Enhanced Input System *(todo)*
 - [Gameplay Ability System](./GameplayAbilitySystem/)
+- [GameFeature Plugins](./GameFeatures/)
 
 
 # Engine Tips & Tricks
 
 - [How to Build (and Use) a Custom Engine](./Engine/)
+- [How to Remove "Runtime" name suffix from GameFeature Plugin Code Names](./GameFeatures/How-To-Remove-GameFeature-Runtime-Code-Suffix)
 
 
 # Windows Tips & Tricks
