@@ -65,7 +65,7 @@ $UProjectFile = "D:/Dev/UE5/XistGame/XistGame.uproject"
 $EngineRoot = "D:/Dev/UE5"  ##  e.g. "D:/Dev/UE5"
 
 ##  e.g. D:/Dev/UE5/Engine/Binaries/Win64/UnrealVersionSelector.exe
-$UnrealVersionSelector = $EngineBin + "/Engine/Binaries/Win64/UnrealVersionSelector.exe"
+$UnrealVersionSelector = $EngineRoot + "/Engine/Binaries/Win64/UnrealVersionSelector.exe"
 ```
 
 In the example calculation of `$EngineRoot` above, I've cloned the UnrealEngine source into `D:/Dev/UE5`.
