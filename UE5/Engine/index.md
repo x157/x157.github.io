@@ -21,14 +21,17 @@ what I'm doing here.
 ## Custom Engine Command: `-switchversionsilent`
 
 If you're running a Custom Engine, you should generate your project files using
-the `switchversionsilent` command.
+the `-switchversionsilent` command.
 
 ```powershell
 ####  Assign $EngineRoot as $UProjectFile's custom engine (if it isn't already),
-####  then Generate Visual Studio project files...
+####  and Generate Visual Studio project files...
 
 & $UnrealVersionSelector -switchversionsilent $UProjectFile $EngineRoot
 ```
+
+You don't need to explicitly execute the `-projectfiles` as well;
+`-switchversionsilent` will implicitly also execute `-projectfiles`.
 
 See [How to Compute these PowerShell Variables](#How_to_Compute_these_PowerShell_Variables)
 below for specifics.  In particular, `$EngineRoot` must be the `Engine` PARENT directory,
