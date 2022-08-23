@@ -144,12 +144,11 @@ When you change the engine from one branch to another, sometimes the Git repo ca
 a funky state.  To fix issues:
 
 ```powershell
-# clean up your existing branch to make it easier to swap
+# clean up your existing branch to make it possible to cleanly swap
 git reset --hard
 git clean -xfd
 
-git checkout ue5-main  # whatever engine branch you want
-git clean -xfd  # clean again for good measure
+git checkout release  # whatever engine branch you want
 
 ./Setup.bat
 ./GenerateProjectFiles.bat
