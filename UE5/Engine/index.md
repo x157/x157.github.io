@@ -138,6 +138,34 @@ Unless you know what you are doing, you will probably want the `release` branch,
 recent official release of the engine.
 
 
+## Procedure for Changing Engine Branches
+
+When you change the engine from one branch to another, sometimes the Git repo can get into
+a funky state.  To fix issues:
+
+```powershell
+# clean up your existing branch to make it easier to swap
+git reset --hard
+git clean -xfd
+
+git checkout ue5-main  # whatever engine branch you want
+git clean -xfd  # clean again for good measure
+
+./Setup.bat
+./GenerateProjectFiles.bat
+
+# It's now safe to rebuild the engine
+```
+
+Sometimes when changing branches even after executing a `git reset --hard`, Git will still
+tell you that there are local changes to UE5.  The  solution is to run `git clean -xfd` which
+removes all of the `Setup.bat` downloaded files, so you end up with a truly-clean repository.
+
+Then when you run `Setup.bat` it will download the appropriate version of those files for the
+branch you have selected, rather than a perhaps-completely-incompatible set of files for the
+old branch.
+
+
 ## Windows: Install .NET v4.5 for VS 2022
 
 <tip>UE5 requires .NET v4.5 and will NOT work with v4.8</tip>
