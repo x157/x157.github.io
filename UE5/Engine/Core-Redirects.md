@@ -8,19 +8,28 @@ breadcrumb_name: "Core Redirects"
 
 # UE5 Core Redirects
 
+[Skip ahead to the `CoreRedirects` Documentation](#CoreRedirects_Documentation)
+or continue reading for a conceptual overview of how to use Core Redirects.
+
+
+# How to use Core Redirects
+
 To replace an old C++ class with a new one, or to refactor a C++ class, you need to take
 additional steps to update Blueprint assets, since (brace for it) assets are stored as binaries.
 
-Because of this, you must take these additional steps during development:
+Because of this, you must take these additional steps during development any time a C++ name changes:
 
 1. Create `[CoreRedirects]` INI
 2. Run `-fixupredirects` command
 3. Remove `[CoreRedirects]` INI
 4. Commit Redirected Binaries
 
-*Epic, seriously, please give us TEXT BASED SOURCE and
+*Epic **!!** Please give us TEXT BASED SOURCE and
 (radical new software idea) generate the binaries from it.
-Binary source is annoying.*
+Binary source is an inefficient waste of every developer's time
+and the bane of every merge reviewer. Free us from binary source!
+Please! Thanks.*
+`:D`
 
 
 ## 1) Create `[CoreRedirects]` INI
@@ -58,6 +67,9 @@ Commit the new, updated binaries to source control and then remove the `CoreRedi
 section of your `Default.ini` without it ever having entered source control.
 
 
+---
+
+<a id="CoreRedirects_Documentation"></a>
 # `[CoreRedirects]` Documentation
 
 These two examples both redirect `OldClass` to `NewClass`, assuming `OldClass` is in `Module`:
