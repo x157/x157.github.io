@@ -20,6 +20,7 @@ To understand Lyra, you also need an understanding of these UE5 plugins:
 
 # Engine Tips & Tricks
 
+- [Core Redirects: How to Redirect Blueprints to new/refactored C++](./Engine/Core-Redirects)
 - [How to Build (and Use) a Custom Engine](./Engine/)
 - [How to Remove "Runtime" name suffix from GameFeature Plugin Code Names](./GameFeatures/How-To-Remove-GameFeature-Runtime-Code-Suffix)
 
