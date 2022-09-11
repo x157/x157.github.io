@@ -1,6 +1,6 @@
 ---
-title: "Unreal Engine 5: The Engine"
-description: "Discussion of Unreal Engine 5, including how to use a Custom Engine that you can modify yourself."
+title: "UE5 Core Redirects"
+description: "Overview of C++ Core Redirects in Unreal Engine 5: what they are and how to use them"
 breadcrumb_path: "UE5/Engine"
 breadcrumb_name: "Core Redirects"
 ---
