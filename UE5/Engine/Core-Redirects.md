@@ -8,10 +8,15 @@ breadcrumb_name: "Core Redirects"
 
 # UE5 Core Redirects
 
-[Skip ahead to the `CoreRedirects` Documentation](#CoreRedirects_Documentation)
-or continue reading for a conceptual overview of how to use Core Redirects.
+Skip ahead to:
+
+- [How to use Core Redirects](#HowToUse)
+- [Core Redirect Documentation](#CoreRedirects_Documentation)
+- [Game Feature Plugin Workaround](#GameFeaturePluginWorkaround)
+  - if you know how this works but Game Feature Plugins are still bugged
 
 
+<a id="HowToUse"></a>
 # How to use Core Redirects
 
 To replace an old C++ class with a new one, or to refactor a C++ class, you need to take
@@ -58,7 +63,7 @@ The above command will redirect all the binary assets that refer to `OldName` to
 
 ###### DO NOT COMMIT CORE REDIRECTS TO SOURCE CONTROL IN GENERAL
 
-The purpose of these is to effectively atomically update all binaries that use `OldName` --> `NewName`
+The purpose of these is to effectively atomically update all binaries from `OldName` 🡒 `NewName`
 so there is no continuation of the usage of the name `OldName`.
 
 ## 4) Commit Redirected Binaries
@@ -91,9 +96,9 @@ You can also add options or add a value change map:
 ### Which INI path to use?
 
 - Engine = `Engine/Config/BaseEngine.ini`
-- Game Module = `Game/Config/DefaultEngine.ini`
-- Game `PLUGIN` Plugin = `Game/Plugins/PLUGIN/Config/DefaultPLUGIN.ini`
-- Game `FEATURE` GameFeatures Plugin = `Game/Plugins/GameFeatures/FEATURE/Config/DefaultFEATURE.ini` *(see [note](#Note_GameFeaturesRedirectsBroken))*
+- Game = `Game/Config/DefaultEngine.ini`
+- `PLUGIN` Plugin = `Game/Plugins/PLUGIN/Config/DefaultPLUGIN.ini`
+- `FEATURE` Game Feature Plugin = `Game/Plugins/GameFeatures/FEATURE/Config/DefaultFEATURE.ini` *(see [note](#Note_GameFeaturesRedirectsBroken))*
 
 
 # Renaming a Plugin
@@ -115,16 +120,38 @@ on GitHub and I'll update as needed.
 
 
 <a id="Note_GameFeaturesRedirectsBroken"></a>
-## Redirects for GameFeatures Plugins
+<a id="GameFeaturePluginWorkaround"></a>
+## Redirects for Game Feature Plugins
 
-###### NOTE: C++ Core Redirects do not work for GameFeatures Plugins as of 5.0.3
+###### NOTE: C++ Core Redirects are bugged for Game Feature Plugins as of 5.0.3
 
 I submitted a bug report to Epic, hopefully they fix it soon.  Assuming they've fixed it,
-the above is how it is *supposed to work*.
+the above is how it is *supposed to work* once it gets fixed.
 
-Content Redirects work fine in GameFeatures, but C++ Core Redirects do not work.
-For now if you want  to change your C++ names, you'll have to manually change
-every Blueprint that refers to them.
+If it's still not working as of your version of Unreal Engine, Epic has provided the following
+workaround, which is what they use in their internal Game Feature Plugins:
+
+1. Use INI file name `Plugin.ini` rather than `DefaultPlugin.ini`
+   - Example: `Game/Plugins/GameFeatures/FEATURE/Config/FEATURE.ini`
+2. Due to differences in how Game Feature INIs are processed, you cannot use the `+` operator in the INI
+   - Thus you can only redirect one thing at a time
+
+So for example to redirect `XistGame.OldName` to `XistGame.NewName`, where `XistGame` is the name
+of my Game Feature Plugin:
+
+```ini
+[CoreRedirects]
+ClassRedirects=(OldName="/Script/XistGame.OldName",NewName="/Script/XistGame.NewName")
+```
+
+And if you also want to redirect `OldName2` to `NewName2`, you have to run the redirect command
+multiple times, once for each name.
+
+Note that in the future the use of this non-standard filename may cause warnings or errors.  If you see
+that, it means the bug has been fixed and you don't need to use this workaround any longer.
+
+Special thanks to Ben Zeigler @ Epic
+for confirming the bug and providing the workaround.
 
 
 # Reference
@@ -134,3 +161,4 @@ For more information see the official docs:
 - [Official UE5 Core Redirects Documentation](https://docs.unrealengine.com/5.0/en-US/core-redirects/)
 - [Fixup Redirector From Editor](https://docs.unrealengine.com/5.0/en-US/redirectors/)
 - [UE Forum Post: How to Rename a Plugin?](https://forums.unrealengine.com/t/how-can-i-rename-a-plugin-and-not-break-all-blueprints/343240)
+- [Engine Bug UE-163425](https://issues.unrealengine.com/issue/UE-163425)
