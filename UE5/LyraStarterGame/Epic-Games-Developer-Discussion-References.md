@@ -147,4 +147,3 @@ and Jose Villarroel (Gameplay Animation Programmer)
 - [1:58:01 - Q: How does foot locking work?](https://youtu.be/5O-nTNMB19Y?t=7081)
 - [2:00:58 - Q: What are pose drivers in post processing Anim BPs?](https://youtu.be/5O-nTNMB19Y?t=7258)
 - [2:02:13 - Outro](https://youtu.be/5O-nTNMB19Y?t=7333)
-- 
