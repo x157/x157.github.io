@@ -1,10 +1,8 @@
 ---
-title: LyraStarterGame Overview
-description: Learn how to make a new game based on UE5's Lyra Starter Game (LyraStarterGame)
-back_links:
-  - link: /UE5/
-    name: UE5
-back_link_title: LyraStarterGame
+title: "LyraStarterGame Overview"
+description: "Learn how to make a new game based on UE5's Lyra Starter Game (LyraStarterGame)"
+breadcrumb_path: "UE5"
+breadcrumb_name: "LyraStarterGame"
 ---
 
 
@@ -38,8 +36,18 @@ Ready to create your own LyraStarterGame project?
     - [UE5 Gameplay Ability System Conceptual Overview](/UE5/GameplayAbilitySystem/)
     - [How to: Send Client Gameplay Ability Data to Server in C++](/UE5/GameplayAbilitySystem/How-To-Send-Client-Gameplay-Ability-Data-to-Server-in-C++)
     - [UE5 Enhanced Input Gameplay Abilities -- Pressed Trigger vs Down Trigger](https://youtu.be/P-dyHJhoqxA)
-- [LyraStarterGame Interaction System](./Interactions/)
-  - Epic's example interaction system to get you started building your own
+
+# Lyra Gameplay Systems
+
+- [Interaction System](./Interactions/)
+  - Epic's prototype interaction system
+  - Not ready for you to use yourself, but a great resource to teach you to build your own Interaction System
+- [Inventory System](./Inventory/)
+  - The base system of items that can be stored in a Pawn's inventory
+- [Equipment System](./Equipment/)
+  - Inventory extension: Inventory Items that are pieces of equipment usable by Pawns
+- [Weapon System](./Weapons/)
+  - Equipment extension: Equipment Items that are weapons usable by Pawns
 
 
 Bug fixes:
@@ -48,7 +56,7 @@ Bug fixes:
 
 Works in progress:
 
-- [How to: Customize the Lyra FrontEnd](./How-To-Customize-Lyra-FrontEnd) (incomplete)
+- [How to: Customize the Lyra FrontEnd](./How-To-Customize-Lyra-FrontEnd) *(incomplete; coming eventually)*
 
 
 # Module Dissections
@@ -59,7 +67,7 @@ In an effort to understand the material Epic has provided us to start with, I am
 |-------------------------------|-----------------------------------|
 | [ShooterCore](./ShooterCore/) | Base framework for a shooter game |
 | [ShooterMaps](./ShooterMaps/) | Implementation of ShooterCore     |
-| TopDownArena                  | *(coming soon)*                   |
+| TopDownArena                  | *(coming eventually)*             |
 
 
 # References
