@@ -89,7 +89,14 @@ This component:
 <a id="WeaponDebugSettings"></a>
 ## Weapon Debug Settings
 
+`ULyraWeaponDebugSettings` is an implementation of a new UE5 feature, `UDeveloperSettingsBackedByCVars`.
 
+Definitely read this class if you want to have similar functionality in your game, which I recommend
+since this makes gameplay debugging significantly easier.
+
+Lyra supports the option to compile out weapon debugging, good for production.  When developing
+a ranged weapon you should absolutely turn these debugging features on
+unless you like to needlessly waste your own time.
 
 
 <a id="WeaponSpawner"></a>
