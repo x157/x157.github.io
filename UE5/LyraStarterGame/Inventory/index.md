@@ -14,30 +14,16 @@ The Inventory System is the base upon which the
 [Lyra Equipment System](/UE5/LyraStarterGame/Equipment/) and
 [Lyra Weapon System](/UE5/LyraStarterGame/Weapons/) are built.
 
-Note that in general this system is pretty bare-bones.  Most of the pieces are there,
-but nothing is exported, nothing is virtual, almost nothing is documented.  There are
-numerous TODO items and some stub code that's commented out that would all add additional
-interesting functionality.
-
-There are also a few naming convention conflicts including cases where
-methods are named such that it seems that either the method implementation does not
-do what it is supposed to, or the method name was poorly chosen and not representative
-of the expected method behavior, but due to the extreme lack of documentation and code
-comments, it's impossible to know with certainty which is the case.
-
-The Inventory System is a skeleton that looks as if the focus was on getting it functional
-in a first revision, with no real attempt at flushing the system out, making it easy to use
-or, most importantly for Lyra developers, making it easy to extend.
-Hopefully Epic flushes this system out further in the future.
-
-All of that being said, there is a lot of code here (including the Equipment and Weapons systems that
-are based on this), and for the most part it seems to work reasonably well for Lyra's
+There is a lot of code here (including the Equipment and Weapons systems),
+and for the most part it seems to work reasonably well for Lyra's
 use case.  It is a good starting point that should give you a decent idea what Epic is thinking
 with respect to inventory implementation.
 
-Probably the best path forward at this point for a Lyra developer who doesn't work at Epic
-is to duplicate this code into your Game Feature, refactor the names to be your own
-names and then modify your copy of the code as you see fit.  That is the path I am taking.
+Note that in my particular case, some fundamental changes were needed to support my game
+requirements, however if your game is similar to Lyra's ShooterGame then you may not need
+to do so yourself. My best path forward was to duplicate this code into my Game Feature,
+refactor the names (`Lyra`🡒`XCL`) and then modify my version of the code.
+It was fairly easy to do, it took about an hour.
 
 Conversely, you could just start hacking the Lyra code itself to do what you want, but then
 you will lose the ability to merge future Lyra updates from Epic, so that
