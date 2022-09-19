@@ -38,8 +38,8 @@ This is potentially confusing, so be aware of it.
 - [Pickup Definition](#PickupDefinition) (constant)
   - Defines a Weapon/Item in the world that can be picked up
 - [QuickBar Component](#QuickBarComponent) (Controller Component)
+  - The player's only interface to the Equipment Manager
   - Controls which piece of Equipment the Pawn has equipped at any given time
-  - The player's interface to the Equipment Manager
 
 ## Related Gameplay Abilities
 
@@ -111,14 +111,22 @@ Controls which item the Pawn has equipped.
 - Manages which item is equipped via Equipment Manager
 
 Note that in Lyra the QuickBar Component is **required** to be able to use equipment.
-While this works fine in Lyra, it isn't a particularly good general-purpose (base)
-implementation IMO.
+While this works fine in Lyra's simple ShooterGame concept,
+I can't say I'm a huge fan of this design choice.
+
+The key to Lyra's QuickBar-based Equipment System is
+`ULyraQuickBarComponent`::`SetActiveSlotIndex_Implementation`,
+which is the only piece of code in Lyra that causes equipment to be equipped or unequipped.
+
+`SetActiveSlotIndex_Implementation` calls `UnequipItemInSlot` (unequip item in old slot, if any)
+followed by `EquipItemInSlot` (equip item in new slot, if any).
+In both cases the under-the-hood work is performed by the
+[Equipment Manager](#EquipmentManager).
 
 The QuickBar Component has virtually no utility for AI Bots and yet every Bot is forced
 to have one.  In my game, there are WAAAAAY more Bots than there are players, and so
-having to put components that are only useful for players on every Bot is terribly
+having to put components that are only useful for players on every Bot is fairly
 inefficient in my case.
-
 It seems rather easy to remove this dependency, and so in my own Equipment System
 implementation, that is what I plan to do.
 
