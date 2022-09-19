@@ -17,28 +17,11 @@ The Inventory System is the base upon which the
 There is a lot of code here (including the Equipment and Weapons systems),
 and for the most part it seems to work reasonably well for Lyra's
 use case.  It is a good starting point that should give you a decent idea what Epic is thinking
-with respect to inventory implementation.
+with respect to inventory implementation.  There is also some
+[room for improvement](#ConstructiveCriticism),
+which I address below.
 
-Note that in my particular case, some fundamental changes were needed to support my game
-requirements, however if your game is similar enough to Lyra's ShooterGame then you may not need
-to do so yourself.  For example one major flaw in Lyra's Inventory implementation is that
-it does not adequately handle item stack counts.  There is code to allow for item stack
-counts, but it is confused, inconsistent, and ultimately non-functional.  This doesn't affect
-Lyra, since all Item stack sizes == `1` in Lyra, but in my game I do want Item stack sizes
-and so I had to fix this in my implementation.
-
-My best path forward was to duplicate this code into my Game Feature,
-refactor the names (`Lyra`🡒`XCL`) and then modify my version of the code.
-It was fairly easy to do, it took about 2 hours.
-*(FAR LESS time than if I had tried to build this all from scratch).*
-
-Conversely, you could just start hacking the Lyra code itself to do what you want, but then
-you will lose the ability to merge future Lyra updates from Epic, so that
-is not the path that I took.  *(If you haven't already read it,
-[Lyra Development Considerations](/UE5/LyraStarterGame/Development-Considerations)
-explains why I don't want to modify Lyra code/assets directly unless absolutely necessary).*
-
-Note that this code is multiplayer-compatible.  If you aren't super familiar with UE network replication,
+Note that this code supports multiplayer games.  If you aren't super familiar with UE network replication,
 definitely read through these classes.  They demonstrate a method to serialize array diffs over the
 network in UE methodology that I am quite sure will be useful in the future.
 
@@ -53,10 +36,9 @@ network in UE methodology that I am quite sure will be useful in the future.
 - [Item Instance](#ItemInstance)
   - A particular instance of a generic Item Definition
 - [Inventory Manager](#InventoryManager) (Controller component)
-  - Allows adding/removing Item Instances in inventory
-  - Keeps track of the Item Instances in inventory
+  - Keeps track of the Item Instances in a Pawn's Inventory
 - [`IPickupable` Interface](#IPickupable)
-  - Defines what actually goes into inventory when an item is picked up
+  - Defines what actually goes into Inventory when an item is picked up
 
 
 <a id="ItemDefinition"></a>
@@ -173,3 +155,76 @@ In order for an item to be able to be picked up, it must support this pure virtu
 
 `GetPickupInventory` must be implemented by your item, which tells the base code how to add
 the item to an inventory.
+
+
+<a id="ConstructiveCriticism"></a>
+# Constructive Criticism
+
+In my case, some fundamental changes were needed to the base Lyra Inventory System
+to support my game requirements.
+
+If your game is similar enough to Lyra's ShooterGame then this may not affect you at all, but
+in case it does, I figured I'd shed some light on what I had to do to make this work for me.
+
+For example, one major flaw in Lyra's Inventory implementation is that
+it does not adequately handle item stack counts.  There is code to allow for item stack
+counts, but it is confused, inconsistent, and ultimately non-functional.  This doesn't affect
+Lyra's ShooterGame, since all Item stack sizes == `1` in Lyra.
+In my game I do want Item stack sizes, so I had to fix this in my implementation.
+
+There were other issues as well, primarily due to the difference in how I want my Inventory
+to work compared to Lyra.
+
+
+# XCL Method: Duplicate to Extend
+
+For XCL I decided the best path forward was to duplicate this code into my Game Feature,
+refactor the names (`Lyra`🡒`XCL`) and then modify my version of the code.
+It was fairly easy to do, it took about 2 hours.
+
+I imagine it would have taken far longer to type this all out myself, so I think overall
+it is a net time savings to essentially rebase Epic's code into my GFP.
+
+Conversely, you could just start hacking the Lyra code itself to do what you want, but then
+you will lose the ability to merge future Lyra updates from Epic, so that
+is not the path that I took.  *(If you haven't already read it,
+[Lyra Development Considerations](/UE5/LyraStarterGame/Development-Considerations)
+explains why I don't want to modify Lyra code/assets directly unless absolutely necessary).*
+
+## XCL Duplication Procedure
+
+1. Duplicate Code as in the table below
+2. Refactor all `Lyra` names to `XCL`
+   - class names
+   - method names
+   - variable names
+   - file names
+   - etc
+3. Rename files with inconsistent naming convention
+4. Modify native Gameplay Tag names in the newly imported files: `Lyra` 🡒 `XCL`
+
+I duplicated Public source:
+
+| Lyra C++ Path                      | XCL GameFeature Plugin Source          | Scope   | Relative Path  |
+|------------------------------------|----------------------------------------|---------|----------------|
+| `__LYRA__/Equipment/*.h`           | `Plugins/GameFeatures/XCL/Source/XCL/` | Public  | `/Equipment/`  |
+| `__LYRA__/Inventory/*.h`           | `Plugins/GameFeatures/XCL/Source/XCL/` | Public  | `/Inventory/`  |
+| `__LYRA__/Weapons/*.h`             | `Plugins/GameFeatures/XCL/Source/XCL/` | Public  | `/Weapons/`    |
+| `__LYRA__/UI/Weapons/__WIDGET__.h` | `Plugins/GameFeatures/XCL/Source/XCL/` | Public  | `/UI/Weapons/` |
+
+and Private source:
+
+| Lyra C++ Path                        | XCL GameFeature Plugin Source                     | Scope   | Relative Path  |
+|--------------------------------------|---------------------------------------------------|---------|----------------|
+| `__LYRA__/Equipment/*.cpp`           | `Plugins/GameFeatures/XCL/Source/XCL/` | Private | `/Equipment/`  |
+| `__LYRA__/Inventory/*.cpp`           | `Plugins/GameFeatures/XCL/Source/XCL/` | Private | `/Inventory/`  |
+| `__LYRA__/Weapons/*.cpp`             | `Plugins/GameFeatures/XCL/Source/XCL/` | Private | `/Weapons/`    |
+| `__LYRA__/UI/Weapons/__WIDGET__.cpp` | `Plugins/GameFeatures/XCL/Source/XCL/` | Private | `/UI/Weapons/` |
+
+Template Variables:
+
+- `__LYRA__` == `Source/LyraGame`
+- `__WIDGET__` == `LyraReticleWidgetBase`
+  - I only duplicated one widget: `LyraReticleWidgetBase`
+    - This one is required by the base Weapon code
+  - If you need others, duplicate them in the same way
