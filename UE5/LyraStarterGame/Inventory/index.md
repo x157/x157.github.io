@@ -20,20 +20,27 @@ use case.  It is a good starting point that should give you a decent idea what E
 with respect to inventory implementation.
 
 Note that in my particular case, some fundamental changes were needed to support my game
-requirements, however if your game is similar to Lyra's ShooterGame then you may not need
-to do so yourself. My best path forward was to duplicate this code into my Game Feature,
+requirements, however if your game is similar enough to Lyra's ShooterGame then you may not need
+to do so yourself.  For example one major flaw in Lyra's Inventory implementation is that
+it does not adequately handle item stack counts.  There is code to allow for item stack
+counts, but it is confused, inconsistent, and ultimately non-functional.  This doesn't affect
+Lyra, since all Item stack sizes == `1` in Lyra, but in my game I do want Item stack sizes
+and so I had to fix this in my implementation.
+
+My best path forward was to duplicate this code into my Game Feature,
 refactor the names (`Lyra`🡒`XCL`) and then modify my version of the code.
-It was fairly easy to do, it took about an hour.
+It was fairly easy to do, it took about 2 hours.
+*(FAR LESS time than if I had tried to build this all from scratch).*
 
 Conversely, you could just start hacking the Lyra code itself to do what you want, but then
 you will lose the ability to merge future Lyra updates from Epic, so that
-is not the path that I will take.  *(If you haven't already read it,
+is not the path that I took.  *(If you haven't already read it,
 [Lyra Development Considerations](/UE5/LyraStarterGame/Development-Considerations)
 explains why I don't want to modify Lyra code/assets directly unless absolutely necessary).*
 
 Note that this code is multiplayer-compatible.  If you aren't super familiar with UE network replication,
 definitely read through these classes.  They demonstrate a method to serialize array diffs over the
-network in UE methodology that I found interesting.
+network in UE methodology that I am quite sure will be useful in the future.
 
 
 ## Inventory Concepts
