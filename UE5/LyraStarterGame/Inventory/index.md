@@ -173,7 +173,9 @@ Lyra's ShooterGame, since all Item stack sizes == `1` in Lyra.
 In my game I do want Item stack sizes, so I had to fix this in my implementation.
 
 There were other issues as well, primarily due to the difference in how I want my Inventory
-to work compared to Lyra.
+to work compared to Lyra.  For example, I want to be able to read the inventory of ALL Pawns,
+not just locally controlled Pawns, so putting the Inventory Manager on the Controller was
+a non-starter for me.
 
 
 # XCL Method: Duplicate to Extend
