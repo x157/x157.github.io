@@ -170,12 +170,12 @@ in case it does, I figured I'd shed some light on what I had to do to make this 
 
 Here are some of the issues with Lyra's Inventory System that I am modifying in my derivative implementation:
 
-- Inconsistent, inadequate handling of item stack counts
-  - There is code to allow for item stack counts, but it is ultimately non-functional and all stacks are effectively limited to size = `1`
+- Non-functional handling of item stack counts
+  - There is code to allow for item stack counts, but it is ultimately not fully implemented and all stacks are effectively limited to size = `1`
     - *This doesn't really affect Lyra's ShooterGame, since all Item stack sizes == `1` in Lyra*
       - Ammo in Lyra isn't an inventory item, it is instead an attribute of the weapon, so it is not affected by this limitation
 - Lyra does not support the concept of "filling stacks"
-  *(not surprising since stack sizes are not functionally implemented)*
+  *(not surprising given unimplemented stack sizes)*
   - Lyra assumes you will ALWAYS create a new item instance when adding something to the inventory;
     it does not allow for updating of existing items
   - If I can stack up to 200x Things in a slot, then when I pick up 10x Things, I don't want a new stack
@@ -183,27 +183,24 @@ Here are some of the issues with Lyra's Inventory System that I am modifying in 
     new stacks with the remainder as needed
     - I'd also like to know how many Things I successfully added; `0/10`? `3/10`? `10/10`?
 - Lyra does not support the concept of "Inventory is Full" or otherwise "Failed to add to Inventory" conditions
-  - The underlying Inventory code will never fail to add things
+  - The underlying Inventory code will never fail to add new item stacks
   - The only way Lyra puts things into Inventory is via the QuickBar, which is how they limit the inventory size
 - Lyra puts the Inventory Manager on the Controller, so it is only available on the server
   and on the client that locally controls the Pawn
   - In my game, players need to be able to view/modify the inventory of AI Bots on their team, which required
     moving this component to the Pawn itself rather than its Controller
-- See [Garashka: Fixing Lyra's Inventory System](https://garashka.github.io/LyraDocs/lyra/fixing-inventory-system)
-  doc for a discussion of more issues specific to Lyra 5.0.3's prototype demo
 
 I could go on...
 
-Again, this is not to say the Lyra code is bad.  It's NOT bad.  It just doesn't implement inventories in the way
-that I want to implement them in my game.
+Again, this is not to say the Lyra code is bad.  It's NOT bad.  It just doesn't implement inventories in a way
+that I can easily extend for my different game requirements.
 
-Given that the Lyra Inventory System isn't bad, it also is not a particularly good base inventory system.
-What I mean is that it handles Lyra's ShooterGame inventory just fine, and the code is easy to follow.
-However it also makes some significant assumptions (see above)
-which result in it being **difficult to extend** the Lyra Inventory system.
-It is not a good base implementation, it is instead a good example implementation.
+Given that the Lyra Inventory System isn't bad, it is also **not** a particularly good Base Inventory System either.
+It does adequately handle Lyra's minimal ShooterGame inventory requirements and the code is easy to follow.
+However, it is also **not generally configurable**,
+resulting in code that is difficult to extend without significant modification.
 
-Given that it is not very extensible, I adopted the "Duplicate to Extend" methodology for my own Inventory System.
+Thus, Lyra's Inventory System is not a good base implementation, though it is a good example and starting point.
 
 
 <a id="DuplicateToExtend"></a>
@@ -261,3 +258,15 @@ Template Variables:
   - I only duplicated one widget: `LyraReticleWidgetBase`
     - This one is required by the base Weapon code
   - If you need others, duplicate them in the same way
+
+
+# How to experience Lyra's Inventory System
+
+TLDR the Inventory Prototype Experience is non-functional in UE 5.0.3.
+
+How to experience it:
+
+- Editor-only quick hack: [X157 Dev Notes: How to Experience Epic's Prototype Inventory System](/UE5/LyraStarterGame/Interactions/#How_to_Experience_Epics_Inventory_Prototype)
+- Game-compatible fix: [Garashka: Fixing Lyra's Inventory System](https://garashka.github.io/LyraDocs/lyra/fixing-inventory-system)
+  for an in-depth look at the underlying Experience issues and related fixes
+
