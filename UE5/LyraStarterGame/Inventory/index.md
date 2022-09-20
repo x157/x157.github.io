@@ -171,20 +171,20 @@ in case it does, I figured I'd shed some light on what I had to do to make this 
 Here are some of the issues with Lyra's Inventory System that I am modifying in my derivative implementation:
 
 - Non-functional handling of item stack counts
-  - There is code to allow for item stack counts, but it is ultimately not fully implemented and all stacks are effectively limited to size = `1`
+  - There is code to allow for item stack counts, but it is ultimately not fully implemented
+    - Stacks are thus effectively limited to size = `1`
     - *This doesn't really affect Lyra's ShooterGame, since all Item stack sizes == `1` in Lyra*
       - Ammo in Lyra isn't an inventory item, it is instead an attribute of the weapon, so it is not affected by this limitation
-- Lyra does not support the concept of "filling stacks"
-  *(not surprising given unimplemented stack sizes)*
-  - Lyra assumes you will ALWAYS create a new item instance when adding something to the inventory;
-    it does not allow for updating of existing items
-  - If I can stack up to 200x Things in a slot, then when I pick up 10x Things, I don't want a new stack
-    with 10x Things; I want to add Things to my existing stacks until they hit the max 200x AND THEN add
-    new stacks with the remainder as needed
-    - I'd also like to know how many Things I successfully added; `0/10`? `3/10`? `10/10`?
-- Lyra does not support the concept of "Inventory is Full" or otherwise "Failed to add to Inventory" conditions
-  - The underlying Inventory code will never fail to add new item stacks
-  - The only way Lyra puts things into Inventory is via the QuickBar, which is how they limit the inventory size
+  - Lyra thus does not support the concept of "filling stacks"
+    - Lyra **always creates a new item instance** when adding something to the inventory;
+      it does not allow for updating of counts of existing item stacks
+    - If I can stack up to 200x Things in a slot, then when I pick up 10x Things, I don't want a new stack
+      with 10x Things; I want to add Things to my existing stacks until they hit the max 200x AND THEN add
+      new stacks with the remainder as needed
+      - I'd also like to know how many Things I successfully added; `0/10`? `3/10`? `10/10`?
+  - Lyra does not support the concept of "Inventory is Full" or otherwise "Failed to add to Inventory" conditions
+      - The underlying Inventory code will never fail to add new item stacks
+      - The only way Lyra puts things into Inventory is via the QuickBar, which is how they limit the inventory size
 - Lyra puts the Inventory Manager on the Controller, so it is only available on the server
   and on the client that locally controls the Pawn
   - In my game, players need to be able to view/modify the inventory of AI Bots on their team, which required
