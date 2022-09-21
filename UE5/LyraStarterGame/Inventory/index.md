@@ -165,16 +165,20 @@ the item to an inventory.
 In my case, some fundamental changes were needed to the base Lyra Inventory System
 to support my game requirements.
 
-If your game is similar enough to Lyra's ShooterGame then this may not affect you at all, but
-in case it does, I figured I'd shed some light on what I had to do to make this work for me.
+If your game is similar enough to Lyra's ShooterGame then this may not affect you very much.
+My approach to fix these issues for my use case is discussed below.
+
+### Issues with Lyra Inventory System as a Base Implementation
 
 Here are some of the issues with Lyra's Inventory System that I am modifying in my derivative implementation:
 
 - Non-functional handling of item stack counts
-  - There is code to allow for item stack counts, but it is ultimately not fully implemented
+  - There is code to allow for item stack counts, but it is not fully implemented
     - Stacks are thus effectively limited to size = `1`
-    - *This doesn't really affect Lyra's ShooterGame, since all Item stack sizes == `1` in Lyra*
-      - Ammo in Lyra isn't an inventory item, it is instead an attribute of the weapon, so it is not affected by this limitation
+    - This doesn't materially affect Lyra's ShooterGame, since Item stack sizes == `1` in Lyra
+      - E.g. `1` Pistol or `1` Rifle
+      - Ammo in Lyra does not correspond to Inventory Items
+        - Because ammo is a weapon attribute it is not affected by this Item Stack count limitation
   - Lyra thus does not support the concept of "filling stacks"
     - Lyra **always creates a new item instance** when adding something to the inventory;
       it does not allow for updating of counts of existing item stacks
@@ -195,7 +199,7 @@ I could go on...
 Again, this is not to say the Lyra code is bad.  It's NOT bad.  It just doesn't implement inventories in a way
 that I can easily extend for my different game requirements.
 
-Given that the Lyra Inventory System isn't bad, it is also **not** a particularly good Base Inventory System either.
+Given that the Lyra Inventory System isn't bad, it is also **not** a good Base Inventory System either.
 It does adequately handle Lyra's minimal ShooterGame inventory requirements and the code is easy to follow.
 However, it is also **not generally configurable**,
 resulting in code that is difficult to extend without significant modification.
@@ -230,7 +234,7 @@ explains why I don't want to modify Lyra code/assets directly unless absolutely 
    - variable names
    - file names
    - etc
-3. Rename files with inconsistent naming convention
+3. Rename files for consistent naming convention
 4. Modify native Gameplay Tag names in the newly imported files: `Lyra` 🡒 `XCL`
 
 I duplicated Public headers:
