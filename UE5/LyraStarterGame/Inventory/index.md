@@ -228,7 +228,7 @@ explains why I don't want to modify Lyra code/assets directly unless absolutely 
 ## XCL Duplication Procedure
 
 1. Duplicate Code as in the table below
-2. Refactor all `Lyra` names to `XCL`
+2. Refactor all `Lyra` names to `XCL` *(only refactor code **in the imported directories**)*
    - class names
    - method names
    - variable names
