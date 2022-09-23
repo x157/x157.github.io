@@ -10,6 +10,9 @@ breadcrumb_name: "Inventory System"
 
 This is an overview of the Inventory System in [LyraStarterGame](/UE5/LyraStarterGame/).
 
+If you prefer video, 
+[see my YouTube that covers this topic](https://youtu.be/MMiDMn0fJRU).
+
 The Inventory System is the base upon which the
 [Lyra Equipment System](/UE5/LyraStarterGame/Equipment/) and
 [Lyra Weapon System](/UE5/LyraStarterGame/Weapons/) are built.
