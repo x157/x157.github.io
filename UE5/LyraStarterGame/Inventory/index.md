@@ -224,9 +224,11 @@ it has been a clear net time savings to go this route.
 
 Conversely, you could just start hacking the Lyra code itself to do what you want, but then
 you will lose the ability to merge future Lyra updates from Epic, so that
-is not the path that I took.  *(If you haven't already read it,
-[Lyra Development Considerations](/UE5/LyraStarterGame/Development-Considerations)
-explains why I don't want to modify Lyra code/assets directly unless absolutely necessary).*
+is not the path that I took.
+
+*I recommend familiarizing yourself with
+[Lyra Development Considerations](/UE5/LyraStarterGame/Development-Considerations),
+it explains why I don't want to modify Lyra code/assets directly unless absolutely necessary.*
 
 ## XCL Duplication Procedure
 
