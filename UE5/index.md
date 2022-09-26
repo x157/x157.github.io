@@ -18,6 +18,11 @@ To understand Lyra, you also need an understanding of these UE5 plugins:
 - [GameFeature Plugins](./GameFeatures/)
 
 
+# Unreal Engine Annotations
+
+- [Perforce Version Control Fundamentals](./Annotations/Inside-Unreal/EpicGames-Version-Control-Fundamentals) *(technically optional; essentially required)*
+
+
 # Engine Tips & Tricks
 
 - [Core Redirects: How to Redirect Blueprints to new/refactored C++](./Engine/Core-Redirects)
