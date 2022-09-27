@@ -191,7 +191,9 @@ Here are some of the issues with Lyra's Inventory System that I am modifying in 
       - I'd also like to know how many Things I successfully added; `0/10`? `3/10`? `10/10`?
   - Lyra does not support the concept of "Inventory is Full" or otherwise "Failed to add to Inventory" conditions
       - The underlying Inventory code will never fail to add new item stacks
-      - The only way Lyra puts things into Inventory is via the QuickBar, which is how they limit the inventory size
+      - The only way Lyra puts things into Inventory is via the
+        [Equipment System QuickBar](../Equipment/#QuickBarComponent),
+        which is how they limit the inventory size
 - Lyra puts the Inventory Manager on the Controller, so it is only available on the server
   and on the client that locally controls the Pawn
   - In my game, players need to be able to view/modify the inventory of AI Bots on their team, which required
