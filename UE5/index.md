@@ -16,6 +16,7 @@ To understand Lyra, you also need an understanding of these UE5 plugins:
 - Enhanced Input System *(todo)*
 - [Gameplay Ability System](./GameplayAbilitySystem/)
 - [GameFeature Plugins](./GameFeatures/)
+- [`ModularGameplay` Plugin](./ModularGameplay/)
 
 
 # Unreal Engine Annotations
