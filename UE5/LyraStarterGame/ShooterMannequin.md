@@ -283,8 +283,5 @@ This is a very simple BP.  It inherits from `ALyraCharacter` and:
 
 - Set Capsule Component Navigation `Area Class Override` = `NavArea_Obstacle`
 
-TBH it seems like the setting of "don't let AIs try to path THROUGH a Pawn" should really be done in
-the `ALyraCharacter` C++ class...
-
-
-Personally I configured my `AXCLCharacter` to use this as the default.
+Essentially this is telling the navigation system that AI need to path AROUND
+a `B_Character_Default` character rather than through it.
