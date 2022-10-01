@@ -15,8 +15,18 @@ I'm documenting this based on Lyra 5.1 which as of the time of writing still
 has not yet been released.  If you're still on 5.0, the concepts here will all
 be similar.
 
-- [Key Concept: Pawn Extension System](#PawnExtensionSystem) implementation of `ModularGameplay` Plugin
+Note that I do not use `B_Hero_ShooterMannequin` in my game.  That would require me to declare
+`ShooterCore` as a GFP dependency, which I do not wish to do.  Instead, I have my own base
+character class that was constructed using `B_Hero_ShooterMannequin` as an example.
+Thus, even though I'm not using this, it is still very important to understand what Epic is
+doing with this class so I can pick and choose the pieces that are relevant to my game
+for my character.
+
+Quick Links:
+
 - [Primary Blueprint Overview: `B_Hero_ShooterMannequin`](#ShooterMannequinOverview)
+- [Key Concept: Pawn Extension System](#PawnExtensionSystem)
+  - An implementation of the `ModularGameplay` Plugin
 - Deep Dive into specific Blueprints:
   - [`B_Hero_ShooterMannequin`](#BP__B_Hero_ShooterMannequin)
   - [`B_Hero_Default`](#BP__B_Hero_Default)
@@ -25,13 +35,67 @@ be similar.
 
 --------------------------------------------------------------------------------
 
+<a id="ShooterMannequinOverview"></a>
+## Primary Blueprint Overview: `B_Hero_ShooterMannequin`
+
+This is the primary BP we are interested in.  However, note that A LOT of functionality is implemented
+in the base classes, both the base BPs and the base C++.  You need to understand ALL the base classes
+and interfaces if you are to fully understand `B_Hero_ShooterMannequin`.
+
+##### `B_Hero_ShooterMannequin` BP Inheritance
+
+- BP Base `B_Hero_Default`
+  - BP Base `Character_Default`
+    - C++ Base `ALyraCharacter`
+
+##### `ALyraCharacter` C++ Inheritance
+
+- C++ Interface `IAbilitySystemInterface`
+- C++ Interface `IGameplayCueInterface`
+- C++ Interface `IGameplayTagAssetInterface`
+- C++ Interface `ILyraTeamAgentInterface`
+  - C++ Interface `IGenericTeamAgentInterface`
+- C++ Base `AModularCharacter`
+  - C++ Base `ACharacter`
+    - C++ Base `APawn`
+      - C++ Interface `INavAgentInterface`
+      - C++ Base `AActor`
+        - C++ Base `UObject`
+
+
+### Controller-Injected C++ Component: `B_PickRandomCharacter`
+
+In addition to the base classes, Lyra also injects a `B_PickRandomCharacter`
+component into every `AController` at runtime.
+For example see the `B_ShooterGame_Elimination` Experience Definition.
+
+Thus, even though you won't see this explicitly attached to the controller or pawn in code,
+at runtime this component WILL exist on the default Pawn controller.
+
+This component is based on the C++ `ULyraControllerComponent_CharacterParts`.
+
+This Controller Component acts in conjunction with the Pawn version of this
+component (`ULyraPawnComponent_CharacterParts`).  If you are dealing with characters
+comprised of different parts, like Lyra, you will want to read the underlying C++
+for both the controller AND pawn versions of this component.  They're two parts of
+the same system.
+
+On Controller `BeginPlay`, a random body mesh is chosen (either Manny or Quinn)
+by the controller component and assigned to the Pawn.
+This is what makes the pawn randomly masculine or feminine
+in physical appearance and animation style.
+
+
+--------------------------------------------------------------------------------
+
 <a id="PawnExtensionSystem"></a>
 ## Key Concept: Pawn Extension System
 
 *NOTE: This is new in Lyra 5.1 and is a significant change from Lyra 5.0.  The 5.0 system
-did contain similar functionality, but it has been completely redesigned and refactored in 5.1.
-If you worked on Character-based C++ code in 5.0 this is likely to be a merge headache, but
-I think it's worth it to get the new improved functionality and related bug fixes.*
+contained similar functionality, but it has been completely redesigned and refactored in 5.1.
+If you worked on Character-based C++ code in 5.0, particularly related to the Pawn Extension Component,
+this is likely to require some merging when you upgrade to 5.1. Armed with the information presented
+here, it should take you a few hours or less.*
 
 Lyra Characters are modularly constructed at runtime.  For this reason
 **there can be no clearly defined initialization procedure**.
@@ -99,65 +163,14 @@ It logs to `LogModularGameplay` with a lot of `Verbose` log messages.  Make sure
 
 --------------------------------------------------------------------------------
 
-<a id="ShooterMannequinOverview"></a>
-## Primary Blueprint Overview: `B_Hero_ShooterMannequin`
-
-This is the primary BP we are interested in.  However, note that A LOT of functionality is implemented
-in the base classes, both the base BPs and the base C++.  You need to understand ALL the base classes
-and interfaces if you are to fully understand `B_Hero_ShooterMannequin` itself.
-
-##### `B_Hero_ShooterMannequin` Inheritance
-
-- BP Base `B_Hero_Default`
-  - BP Base `Character_Default`
-    - C++ Base `ALyraCharacter`
-
-##### `ALyraCharacter` C++ Inheritance
-
-- C++ Interface `IAbilitySystemInterface`
-- C++ Interface `IGameplayCueInterface`
-- C++ Interface `IGameplayTagAssetInterface`
-- C++ Interface `ILyraTeamAgentInterface`
-  - C++ Interface `IGenericTeamAgentInterface`
-- C++ Base `AModularCharacter`
-  - C++ Base `ACharacter`
-    - C++ Base `APawn`
-      - C++ Interface `INavAgentInterface`
-      - C++ Base `AActor`
-        - C++ Base `UObject`
-
-
-### Controller-Injected C++ Component: `B_PickRandomCharacter`
-
-In addition to the base classes, Lyra also injects a `B_PickRandomCharacter`
-component into every `AController` at runtime.
-For example see the `B_ShooterGame_Elimination` Experience Definition.
-
-Thus, even though you won't see this explicitly attached to the controller or pawn in code,
-at runtime this component WILL exist on the default Pawn controller.
-
-This component is based on the C++ `ULyraControllerComponent_CharacterParts`.
-
-This Controller Component acts in conjunction with the Pawn version of this
-component (`ULyraPawnComponent_CharacterParts`).  If you are dealing with characters
-comprised of different parts, like Lyra, you will want to read the underlying C++
-for both the controller AND pawn versions of this component.  They're two parts of
-the same system.
-
-On Controller `BeginPlay`, a random body mesh is chosen (either Manny or Quinn)
-by the controller component and assigned to the Pawn.
-This is what makes the pawn randomly masculine or feminine
-in physical appearance and animation style.
-
-
---------------------------------------------------------------------------------
-
 <a id="BP__B_Hero_ShooterMannequin"></a>
 # Blueprint: `B_Hero_ShooterMannequin`
 
 ## `B_Hero_ShooterMannequin` Components
 
 ### » AimAssistTarget (`UAimAssistTargetComponent` via `ShooterCore` GFP)
+
+- This component helps other pawns shoot at this one more accurately
 
 ### » PawnCosmeticsComponent (`ULyraPawnComponent_CharacterParts`)
 
@@ -232,6 +245,7 @@ Not sure what this is or what this does.  Seems to be part of the emote system. 
 - **Bug:** Intermittently binds player inputs twice
   - Does not seem to adversely affect Lyra, but you should fix this in your implementation
   - Intermittent ensure failures at `ULyraHeroComponent`::`InitializePlayerInput` near `ensure(!bReadyToBindInputs)`
+    - There was a similar bug in 5.0
 
 ##### Lyra Hero Component 🡒 `OnActorInitStateChanged`
 
