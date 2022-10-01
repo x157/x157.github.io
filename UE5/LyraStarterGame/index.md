@@ -39,6 +39,9 @@ Ready to create your own LyraStarterGame project?
 
 # Lyra Gameplay Systems
 
+- [Shooter Mannequin Character](./ShooterMannequin)
+  - `B_Hero_ShooterMannequin` is the base Character class in Lyra, you will definitely want to understand it well
+  - Demonstrates key concept: Asynchronous, inter-dependent `ModularGameplay` Initialization of Pawn components
 - [Interaction System](./Interactions/)
   - Epic's prototype interaction system
   - Not ready for you to use yourself, but a great resource to teach you to build your own Interaction System
