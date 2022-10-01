@@ -15,6 +15,15 @@ I'm documenting this based on Lyra 5.1 which as of the time of writing still
 has not yet been released.  If you're still on 5.0, the concepts here will all
 be similar.
 
+- [Key Concept: Pawn Extension System](#PawnExtensionSystem) implementation of `ModularGameplay` Plugin
+- [Primary Blueprint Overview: `B_Hero_ShooterMannequin`](#ShooterMannequinOverview)
+- Deep Dive into specific Blueprints:
+  - [`B_Hero_ShooterMannequin`](#BP__B_Hero_ShooterMannequin)
+  - [`B_Hero_Default`](#BP__B_Hero_Default)
+  - [`B_Character_Default`](#BP__B_Character_Default)
+
+
+--------------------------------------------------------------------------------
 
 <a id="PawnExtensionSystem"></a>
 ## Key Concept: Pawn Extension System
@@ -88,7 +97,10 @@ It logs to `LogModularGameplay` with a lot of `Verbose` log messages.  Make sure
 `Verbose` viewing for that log if you are trying to understand the flow of code via logs.
 
 
-## Primary BP: `B_Hero_ShooterMannequin`
+--------------------------------------------------------------------------------
+
+<a id="ShooterMannequinOverview"></a>
+## Primary Blueprint Overview: `B_Hero_ShooterMannequin`
 
 This is the primary BP we are interested in.  However, note that A LOT of functionality is implemented
 in the base classes, both the base BPs and the base C++.  You need to understand ALL the base classes
@@ -100,14 +112,7 @@ and interfaces if you are to fully understand `B_Hero_ShooterMannequin` itself.
   - BP Base `Character_Default`
     - C++ Base `ALyraCharacter`
 
-Thus, to fully understand the `B_Hero_ShooterMannequin`, you need to study it, both of the BPs
-that it inherits from AND the underlying C++ class `ALyraCharacter` with its corresponding
-bases and interfaces.
-
-
-## Base C++ Class: `ALyraCharacter`
-
-##### `ALyraCharacter` Inheritance
+##### `ALyraCharacter` C++ Inheritance
 
 - C++ Interface `IAbilitySystemInterface`
 - C++ Interface `IGameplayCueInterface`
@@ -122,13 +127,13 @@ bases and interfaces.
         - C++ Base `UObject`
 
 
-## Controller-Injected C++ Component: `B_PickRandomCharacter`
+### Controller-Injected C++ Component: `B_PickRandomCharacter`
 
 In addition to the base classes, Lyra also injects a `B_PickRandomCharacter`
 component into every `AController` at runtime.
 For example see the `B_ShooterGame_Elimination` Experience Definition.
 
-Thus, even though you won't see this explicitly attached to the controller in code,
+Thus, even though you won't see this explicitly attached to the controller or pawn in code,
 at runtime this component WILL exist on the default Pawn controller.
 
 This component is based on the C++ `ULyraControllerComponent_CharacterParts`.
@@ -145,28 +150,88 @@ This is what makes the pawn randomly masculine or feminine
 in physical appearance and animation style.
 
 
-# BP Class: `B_Hero_ShooterMannequin`
+--------------------------------------------------------------------------------
 
-# TODO
+<a id="BP__B_Hero_ShooterMannequin"></a>
+# Blueprint: `B_Hero_ShooterMannequin`
+
+## `B_Hero_ShooterMannequin` Components
+
+### » AimAssistTarget (`UAimAssistTargetComponent` via `ShooterCore` GFP)
+
+### » PawnCosmeticsComponent (`ULyraPawnComponent_CharacterParts`)
+
+- Broadcasts `On Character Parts Changed` Events
+- BP `B_MannequinPawnCosmetics` defines 2 Body Meshes:
+
+| Mesh Name | Animation Style | Body Style |
+|-----------|-----------------|------------|
+| Manny     | `Masculine`     | `Medium`   |
+| Quinn     | `Feminine`      | `Medium`   |
+
+The actual Gameplay Tags defined are `Cosmetic.AnimationStyle.*` and `Cosmetic.BodyStyle.*`
+
+Anywhere that you want to know if you have a masculine or feminine character, you can simply
+check the Pawn's Tags to, for example, animate a feminine character differently than a masculine one.
 
 
-# BP Class: `B_Hero_Default`
+## `B_Hero_ShooterMannequin` Event Graph
+
+### `BeginPlay`
+- (Async) Listen for Team Events:
+  - Update cosmetics each time a different team is assigned
+- Hide Actor in game
+- (Async) Wait for `ULyraPawnExtensionComponent` State Change to `InitState.GameplayReady`, then:
+  - Unhide Actor on next tick
+
+### `Possessed`
+- (Async) Wait for Experience Ready
+  - (Async) Wait for Inventory Ready
+    - Add Initial Inventory
+
+### `ULyraPawnComponent_CharacterParts`.`OnCharacterPartsChanged`
+- If pawn is on a Team:
+  - Update team colors, assets, etc
+
+### `ULyraHealthComponent`.`OnHealthChanged`
+- On Server only:
+  - Report Damage events to `AISense_Damage`
+
+### Enhanced Input Action Triggers:
+- Quick Slot 1
+- Quick Slot 2
+- Quick Slot 3
+- Quick Slot +
+- Quick Slot -
+
+### `OnDeathFinished`
+- Clear Inventory
+
+### `OnReset`
+- Clear Inventory
+
+### `Set Emote Audio Component` from BI Emote Sound Interface
+Not sure what this is or what this does.  Seems to be part of the emote system.  Requires investigation.
+
+
+--------------------------------------------------------------------------------
+
+<a id="BP__B_Hero_Default"></a>
+# Blueprint: `B_Hero_Default`
 
 ## `B_Hero_Default` Components
 
 ### » LyraHero (`ULyraHeroComponent`)
 - Implements Player Input & Camera handling
 - Implements `IGameFrameworkInitStateInterface`
-- **Bug:** (Intermittent) Incorrectly binds player inputs twice
+- `OnRegister`
+  - Register self with `ModularGameplay` plugin's `UGameFrameworkComponentManager`
+    - Lyra Hero Component implements feature name `Hero`
+- `BeginPlay`
+  - Bind `Actor Init State Changed` to `ULyraHeroComponent`🡒`OnActorInitStateChanged`
+- **Bug:** Intermittently binds player inputs twice
   - Does not seem to adversely affect Lyra, but you should fix this in your implementation
   - Intermittent ensure failures at `ULyraHeroComponent`::`InitializePlayerInput` near `ensure(!bReadyToBindInputs)`
-
-##### `OnRegister`
-- Register self with `ModularGameplay` plugin's `UGameFrameworkComponentManager`
-  - Lyra Hero Component implements feature name `Hero`
-
-##### `BeginPlay`
-- Bind `Actor Init State Changed` to `ULyraHeroComponent`🡒`OnActorInitStateChanged`
 
 ##### Lyra Hero Component 🡒 `OnActorInitStateChanged`
 
@@ -178,8 +243,7 @@ in physical appearance and animation style.
 - Tries to advance the init state from its current point to `InitState_GameplayReady`
 - **NOTE:** Code is duplicated here from `ULyraPawnExtensionComponent`,
   including the definition of the Init State Chain, which is suboptimal.
-  Expect changes to this implementation.
-
+  Expect changes.
 
 ### » AIPerceptionStimuliSource (`UAIPerceptionStimuliSourceComponent`)
 - Auto-register these senses:
@@ -205,13 +269,15 @@ in physical appearance and animation style.
 - Uses an external `B_FootStep` Actor to implement the `AninMotionEffect` event
 
 
-## `B_Hero_Default` Variables
+## `B_Hero_Default` Interesting Variables
 
 - `Death Montages` = array of Anim Montages to play on character death
-- `FootStep` = Footstep Effect Actor
 
 
-# BP Class: `Character_Default`
+--------------------------------------------------------------------------------
+
+<a id="BP__B_Character_Default"></a>
+# Blueprint: `B_Character_Default`
 
 This is a very simple BP.  It inherits from `ALyraCharacter` and:
 
