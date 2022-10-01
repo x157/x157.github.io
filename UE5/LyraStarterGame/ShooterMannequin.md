@@ -131,8 +131,8 @@ from `ALyraCharacter`🡒`PossessedBy`.  If you want a deep understanding of wha
 this component is doing, make sure you read through `ALyraCharacter` as well.
 
 ##### `OnRegister`
-- Register self with `ModularGameplay` Plugin's `UGameFrameworkComponentManager`
-  as the implementer of feature name `PawnExtension`
+- Register self with `ModularGameplay` plugin's `UGameFrameworkComponentManager`
+  - Pawn Extension Component implements feature name `PawnExtension`
 
 ##### `BeginPlay`
 - Bind `Actor Init State Changed` event to `ULyraPawnExtensionComponent`🡒`OnActorInitStateChanged`
@@ -276,6 +276,7 @@ Not sure what this is or what this does.  Seems to be part of the emote system. 
 - Play random death animation montage
 - Unregister from AI Sense
   - **Bug:** Only unregisters from `AISense_Sight`, should also unregister from `AISense_Hearing`
+    - Impact of this bug is zero if you destroy the pawn after it dies, as all senses are unregistered on destroy
 - Delay `0.1`-`0.6` seconds » Ragdoll » Death
 
 
