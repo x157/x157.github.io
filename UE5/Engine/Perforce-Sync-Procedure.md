@@ -33,9 +33,14 @@ To follow along in the `Powershell` code, these are the branches and what they m
 - P4V Get Latest for workspace
   - to `D:\Dev\EpicP4_XistGG\UE5\Release-5.1`
 
+
 # Build Engine
 
-- Run `GenerateProjectFiles.bat`
+- *(Optional)* Copy `Developer` Plugins into Engine
+  - e.g. `RiderLink`, etc
+
+
+- Run `GenerateProjectFiles.bat` in `D:\Dev\EpicP4_XistGG\UE5\Release-5.1`
 - Visual Studio `UE5.sln`
   - Build `UE5` Project
     - Target = `DebugGame Editor`
@@ -45,7 +50,7 @@ To follow along in the `Powershell` code, these are the branches and what they m
 - Stash any/all changes
 - Hard Git Reset
 
-### Powershell code
+# Execute Powershell
 
 *DO NOT COPY/PASTE STUFF INTO YOUR CONSOLE WITHOUT UNDERSTANDING WHAT IT DOES. SECURITY IS A THING.*
 
@@ -107,6 +112,15 @@ git commit -m "Merge branch lyra-xist-51 into xai-51-dev"
 git push origin xai-51-dev
 ```
 
+# Build Game
+
+- Clean Unreal Project & Generate Project Files
+  - Run `CleanUnrealProject.bat`
+- Rider `LyraXist.uproject`
+  - Build `LyraXist` Project
+    - Target = `DebugGame Editor`
+
+
 # Success!
 
 You've just:
@@ -119,3 +133,6 @@ You've just:
       - Into Xist's Game (XAI) branch
 
 Now you get to go see all the new stuff, and all the newly broken stuff!  C'est la Dev!  `:-)`
+
+
+
