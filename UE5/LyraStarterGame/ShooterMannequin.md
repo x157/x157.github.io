@@ -166,7 +166,7 @@ It logs to `LogModularGameplay` with a lot of `Verbose` log messages.  Make sure
 <a id="BP__B_Hero_ShooterMannequin"></a>
 # Blueprint: `B_Hero_ShooterMannequin`
 
-## `B_Hero_ShooterMannequin` Components
+## Components:
 
 ### » AimAssistTarget (`UAimAssistTargetComponent` via `ShooterCore` GFP)
 
@@ -188,7 +188,7 @@ Anywhere that you want to know if you have a masculine or feminine character, yo
 check the Pawn's Tags to, for example, animate a feminine character differently than a masculine one.
 
 
-## `B_Hero_ShooterMannequin` Event Graph
+## Event Graph:
 
 ### `BeginPlay`
 - (Async) Listen for Team Events:
@@ -232,7 +232,7 @@ Not sure what this is or what this does.  Seems to be part of the emote system. 
 <a id="BP__B_Hero_Default"></a>
 # Blueprint: `B_Hero_Default`
 
-## `B_Hero_Default` Components
+## Components:
 
 ### » LyraHero (`ULyraHeroComponent`)
 - Implements Player Input & Camera handling
@@ -270,7 +270,7 @@ Not sure what this is or what this does.  Seems to be part of the emote system. 
     - `AnimEffect.Footstep.Walk`: Concrete, Glass, Default
     - `AnimEffect.Footstep.Land`:  Concrete, Glass, Default
 
-## `B_Hero_Default` Event Graph
+## Event Graph:
 
 ### `ULyraHealthComponent`.`OnDeathStarted`
 - Play random death animation montage
@@ -284,7 +284,7 @@ Not sure what this is or what this does.  Seems to be part of the emote system. 
 - Uses an external `B_FootStep` Actor to implement the `AninMotionEffect` event
 
 
-## `B_Hero_Default` Interesting Variables
+## Interesting Variables:
 
 - `Death Montages` = array of Anim Montages to play on character death
 
