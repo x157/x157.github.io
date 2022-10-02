@@ -97,12 +97,12 @@ git merge --no-commit lyra-epic-51-dev-$YYYYMMDD
 ###
 
 git commit -m "Merge branch lyra-epic-51-dev-$YYYYMMDD into lyra-xist-51"
+git push origin lyra-xist-51
 
 # checkout my game dev branch
 # merge my (now updated) custom lyra into my game dev branch
 git checkout xai-51-dev
 git merge --no-commit lyra-xist-51
-git push origin lyra-xist-51
 
 ###
 ###  Manually resolve any merge conflicts
