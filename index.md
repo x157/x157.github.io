@@ -26,6 +26,25 @@ This led me to study these related, relevant [UE5](./UE5/) topics:
 - [Epic Games: Version Control Fundamentals](./UE5/Annotations/Inside-Unreal/EpicGames-Version-Control-Fundamentals) *(Perforce is practically required to work on Binary Game assets in teams)*
 
 
+# Tutorials & Videos
+
+I'm mainly interested in written documentation because IMO it's far easier to find
+what you're looking for, rather than watching a 30 minute video for that 10 seconds
+that you actually need.
+
+Even still, I find that videos are good supplements to written documentation,
+so I try to create *(hopefully useful, hopefully short)* videos
+on my [YouTube Channel: XistGG](https://youtube.com/c/XistGG).
+I'm afraid they aren't very entertaining, but then again they are intended as
+supplementary material to this written documentation, so it is what it is.
+
+If you have ideas for tutorials you'd like me to research and document, feel free to
+create a [New Issue](https://github.com/x157/x157.github.io/labels/tutorial%20request)
+and tag it as a `tutorial request`.  I don't promise to cover it, but particularly if
+it's something other people have questions about, and it's relevant to my own dev efforts,
+I'll definitely consider it.
+
+
 # Video References
 
 If you're looking to learn more about UE5, particularly related to
