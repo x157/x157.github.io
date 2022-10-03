@@ -10,6 +10,8 @@ breadcrumb_name: UE5
 At the moment I'm mostly focusing on understanding and extending the UE5
 [Lyra Starter Game](./LyraStarterGame/).
 
+I'm also documenting some ideas RE [Development in UE5](./Dev/).
+
 To understand Lyra, you also need an understanding of these UE5 plugins:
 
 - [Common UI](./CommonUI/) + CommonGame
