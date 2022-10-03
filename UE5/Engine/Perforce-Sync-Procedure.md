@@ -30,7 +30,7 @@ To follow along in the `Powershell` code, these are the branches and what they m
 
 # Sync from Epic P4
 
-- P4V Get Latest for workspace
+- P4V "Get Latest Revision" for workspace
   - to `D:\Dev\EpicP4_XistGG\UE5\Release-5.1`
 
 
@@ -38,14 +38,12 @@ To follow along in the `Powershell` code, these are the branches and what they m
 
 - *(Optional)* Copy `Developer` Plugins into Engine
   - e.g. `RiderLink`, etc
-
-
 - Run `GenerateProjectFiles.bat` in `D:\Dev\EpicP4_XistGG\UE5\Release-5.1`
 - Visual Studio `UE5.sln`
   - Build `UE5` Project
     - Target = `DebugGame Editor`
 
-# Open LyraXist Git repo
+# Open LyraXist Git repo (Xist Game)
 
 - Stash any/all changes
 - Hard Git Reset
@@ -65,8 +63,12 @@ $YYYYMMDD = "20221001"  # Set timestamp for snapshot
 # this branch is an exact mirror of Perforce snapshots whenever I take a snapshot
 git checkout lyra-epic-51-dev
 
+# remove ALL FILES NOT TRACKED by this branch
+git clean -xfd
+
 # Remove EVERYTHING except Git and other things that ARE NOT stored in Epic's P4
-Get-ChildItem -exclude .git, .gitattributes, .gitignore, Saved, LyraXist.uproject | Remove-Item -Force
+$RemoveItems = Get-ChildItem -exclude .git, .gitattributes, .gitignore, Saved, LyraXist.uproject
+$RemoveItems | Remove-Item -Force -Recurse
 
 # Copy Epic P4 Lyra into my Git repo
 $P4Items = Get-ChildItem "D:\Dev\EpicP4_XistGG\UE5\Release-5.1\Samples\Games\Lyra\" -exclude Binaries, Intermediate
@@ -75,6 +77,16 @@ foreach ($Item in $P4Items) {
     Write-Host "Copying $($Item.Name)..."
     Copy-Item $Item.FullName -Destination . -Recurse
 }
+
+# See if anything changed in Lyra
+git status
+
+###
+###  If there are no changes to Lyra, you're done! Go back to xai-51-dev
+###  and continue working on the game.
+###
+###  If there are changes, then continue the procedure to merge them in:
+###
 
 # Commit current Perforce snapshot to lyra-epic-51-dev
 git add --all
@@ -116,6 +128,7 @@ git push origin xai-51-dev
 
 - Clean Unreal Project & Generate Project Files
   - Run `CleanUnrealProject.bat`
+    - *This is a Xist Build Tool that I should maybe document and/or maybe release publicly...*
 - Rider `LyraXist.uproject`
   - Build `LyraXist` Project
     - Target = `DebugGame Editor`
@@ -125,14 +138,13 @@ git push origin xai-51-dev
 
 You've just:
 
-- Pulled latest `5.1-Release` Stream from Epic's Perforce
+- Pulled latest `5.1-Release` Stream from Epic P4
 - Recompiled Engine using this source
-- Merged latest Lyra 5.1 source from Epic's Perforce into Xist's Git
+- Merged the latest Lyra 5.1 source from Epic P4 into LyraXist Git
   - Into the "track Epic P4 *exactly*" branch
-    - Into the "Xist's changes to official Lyra" branch
-      - Into Xist's Game (XAI) branch
+    - Into the "Xist's hacks on official Lyra" branch
+      - Into Xist Game branch
+- Recompiled Xist Game with the latest Lyra 5.1 on the latest Engine 5.1
 
 Now you get to go see all the new stuff, and all the newly broken stuff!  C'est la Dev!  `:-)`
-
-
 
