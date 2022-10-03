@@ -234,6 +234,7 @@ Not sure what this is or what this does.  Seems to be part of the emote system. 
 
 ## Components:
 
+<a id="LyraHeroComponent"></a>
 ### » LyraHero (`ULyraHeroComponent`)
 - Implements Player Input & Camera handling
 - Implements `IGameFrameworkInitStateInterface`
