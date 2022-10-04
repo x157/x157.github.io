@@ -18,20 +18,23 @@ Following are some ideas I hope will help new UE5 C++ devs have an easier time.
 
 Build **both the Engine AND the Game** using the `DebugGame Editor` build target.
 
-If your Game is built with `DebugGame Editor`, then IDE Debugging will work
-UNTIL your Game code causes an Engine crash *(which **will** sometimes happen)*.
+If your Game is built with `DebugGame Editor`, then IDE Debugging will work well
+**until** your Game code causes an Engine crash *(which **will** sometimes happen)*.
 
 At that point, your debugger is in Engine code, and either:
 
-- Your Engine was compiled using `DebugGame Editor`, in which case:
-  - You can still debug to see what you broke
-    - Fixing these bugs are usually fairly easy once you know what you did wrong
-- [OR] Your Engine was NOT compiled using `DebugGame Editor`, in which case:
+- Your Engine **was** compiled using `DebugGame Editor`, in which case:
+  - You can easily debug to see what you broke
+    - Fixing this kind of bug is usually fairly easy when you can see what you did wrong
+- [OR] Your Engine **was NOT** compiled using `DebugGame Editor`, in which case:
   - You will have no idea what the Engine is doing or what you did to crash it
   - The IDE debugger will jump around seemingly at random
     - It will be impossible to follow the code execution
     - It will be impossible to inspect the value of variables
-    - You cannot debug code that does not have debugging symbols compiled into it
+
+**You cannot easily debug executables without debugging symbols.**
+
+`DebugGame Editor` is what adds the Debug symbols to make debugging much easier.
 
 *NOTE: This is useful (REQUIRED!) for C++ devs, but not for BP devs, artists, etc.
 That is why Epic typically doesn't recommend this setting themselves.
