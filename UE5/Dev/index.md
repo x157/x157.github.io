@@ -45,10 +45,14 @@ Personally I prefer to use
 rather than Visual Studio as an IDE.  Rider has built-in UE5 integration
 that really is a **must-have** for any serious UE5 C++ developer.
 
-If you prefer to use Visual Studio, you should strongly consider purchasing the
+If you prefer to use Visual Studio, you should seriously consider purchasing the
 [ReSharper](https://www.jetbrains.com/lp/resharper-cpp-unreal-engine/)
-plugin for Visual Studio to get a similar UE5 integration.
+plugin for Visual Studio to get UE5 integration similar to Rider.
 
 These tools aren't free, but they aren't prohibitively expensive either.
-Given that `Time == $`, IMO it's worthwhile to
-spend a little $ now to save yourself a LOT of time later.
+Given that `time == $`, IMO it's worthwhile to
+spend some $ now to save yourself a lot of time later.
+Personally I tend to lean toward `time >= $`,
+assuming one has the luxury of discretionary spending.
+
+Check for student discounts if applicable, I believe they are sometimes (always?) offered.
