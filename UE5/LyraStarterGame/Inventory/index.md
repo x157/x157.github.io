@@ -281,3 +281,7 @@ How to experience it:
 - Game-compatible fix: [Garashka: Fixing Lyra's Inventory System](https://garashka.github.io/LyraDocs/lyra/fixing-inventory-system)
   for an in-depth look at the underlying Experience issues and related fixes
 
+**Update:** This has been fixed in Lyra 5.1
+
+In Lyra 5.1+, open the map in the `ShooterExplorer` GFP to experience Lyra's prototype inventory system.
+
