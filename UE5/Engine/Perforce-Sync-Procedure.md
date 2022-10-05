@@ -21,12 +21,12 @@ updates.  Following is my procedure for syncing code from Epic into my own Git r
 
 To follow along in the `Powershell` code, these are the branches and what they mean:
 
-| Branch                      | Type       | Description                                                     |
-|-----------------------------|------------|-----------------------------------------------------------------|
-| `lyra-epic-51-dev`          | Mirror     | Mirror of Epic's Perforce: `UE5/Release-5.1/Samples/Games/Lyra` |
-| `lyra-epic-51-dev-YYYYMMDD` | Snapshot   | Snapshot of `lyra-epic-51-dev` on any given sync day            |
-| `lyra-xist-51`              | Lyra Hacks | The hacks Xist is **forced** to make to Lyra C++ (exports, etc) |
-| `xai-51-dev`                | Game       | My GFPs (Game `XAI` building on GFP lib `XCL`)                  |
+| Branch                  | Type       | Description                                                     |
+|-------------------------|------------|-----------------------------------------------------------------|
+| `lyra-51-epic`          | Mirror     | Mirror of Epic's Perforce: `UE5/Release-5.1/Samples/Games/Lyra` |
+| `lyra-51-epic.YYYYMMDD` | Snapshot   | Snapshot of `lyra-51-epic` on any given sync day                |
+| `lyra-51-xist`          | Lyra Hacks | The hacks Xist is **forced** to make to Lyra C++ (exports, etc) |
+| `xai-dev`               | Game       | My GFPs (Game `XAI` building on my GFP lib `XCL`)               |
 
 # Sync from Epic P4
 
@@ -55,19 +55,19 @@ To follow along in the `Powershell` code, these are the branches and what they m
 If your computer melts after you copy/paste this, you'll know you've messed up.
 
 ```powershell
-cd "D:\Dev\LyraXist-51"  # wherever your game source is
+cd "D:\Dev\Lyra-51"  # wherever your game source is
 
 $YYYYMMDD = "20221001"  # Set timestamp for snapshot
 
 # select my official epic Lyra 5.1 Dev branch
 # this branch is an exact mirror of Perforce snapshots whenever I take a snapshot
-git checkout lyra-epic-51-dev
+git checkout lyra-51-epic
 
 # remove ALL FILES NOT TRACKED by this branch
 git clean -xfd
 
 # Remove EVERYTHING except Git and other things that ARE NOT stored in Epic's P4
-$RemoveItems = Get-ChildItem -exclude .git, .gitattributes, .gitignore, Saved, LyraXist.uproject
+$RemoveItems = Get-ChildItem -exclude .git, .gitattributes, .gitignore, Saved, LyraXist.uproject, .idea
 $RemoveItems | Remove-Item -Force -Recurse
 
 # Copy Epic P4 Lyra into my Git repo
@@ -81,6 +81,8 @@ foreach ($Item in $P4Items) {
 # See if anything changed in Lyra
 git status
 
+################################################################################
+################################################################################
 ###
 ###  If there are no changes to Lyra, you're done! Go back to xai-51-dev
 ###  and continue working on the game.
@@ -90,38 +92,39 @@ git status
 
 # Commit current Perforce snapshot to lyra-epic-51-dev
 git add --all
-git commit -m "Import Lyra 5.1 Stream $YYYYMMDD"
+git commit -m "Import Lyra Release-5.1 Stream $YYYYMMDD"
 
-# make snapshot branch/tag, push to server
-git branch      lyra-epic-51-dev-$YYYYMMDD
-git push origin lyra-epic-51-dev-$YYYYMMDD
+# make snapshot tag, push to server
+git tag -a lyra-51-epic.$YYYYMMDD -m "Lyra Release-5.1 snapshot $YYYYMMDD"
+git push origin lyra-51-epic.$YYYYMMDD
 
 # push lyra-epic-51-dev to server
-git push origin lyra-epic-51-dev
+git push origin lyra-51-epic
 
 # checkout my modified version of Lyra branch
 # merge epic's official changes into my lyra-xist-51 branch
-git checkout lyra-xist-51
-git merge --no-commit lyra-epic-51-dev-$YYYYMMDD
+git checkout lyra-51-xist
+git merge --no-commit lyra-51-epic
 
 ###
 ###  Manually resolve any merge conflicts
 ###
 
-git commit -m "Merge branch lyra-epic-51-dev-$YYYYMMDD into lyra-xist-51"
-git push origin lyra-xist-51
+git commit -m "Merge lyra-51-epic.$YYYYMMDD into lyra-51-xist"
+git push origin lyra-51-xist
 
 # checkout my game dev branch
 # merge my (now updated) custom lyra into my game dev branch
-git checkout xai-51-dev
-git merge --no-commit lyra-xist-51
+git checkout xai-dev
+git merge --no-commit lyra-51-xist
+
 
 ###
 ###  Manually resolve any merge conflicts
 ###
 
-git commit -m "Merge branch lyra-xist-51 into xai-51-dev"
-git push origin xai-51-dev
+git commit -m "Merge branch lyra-51-xist into xai-dev"
+git push origin xai-dev
 ```
 
 # Build Game
