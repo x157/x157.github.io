@@ -26,9 +26,10 @@ which I address below.
 - [Constructive Criticism](#ConstructiveCriticism) - reasons you may not be able to use this system as-is
 - [Duplicate to Extend](#DuplicateToExtend) - how to duplicate this code to implement it yourself *(takes ~ 2 hours, saves many more)*
 
-Note that this code supports multiplayer games.  If you aren't super familiar with UE network replication,
-definitely read through these classes.  They demonstrate a method to serialize array diffs over the
-network in UE methodology that I am quite sure will be useful in the future.
+Note that this code supports multiplayer games.  If you aren't an expert at UE network replication,
+I recommend reading this code.  It implements `FFastArraySerializer` to serialize array diffs over the
+network.  This methodology is specific to UE so you can apply it for any/all cases where you are syncing
+arrays with remote players.
 
 
 ## Inventory Concepts
@@ -44,6 +45,20 @@ network in UE methodology that I am quite sure will be useful in the future.
   - Keeps track of the Item Instances in a Pawn's Inventory
 - [`IPickupable` Interface](#IPickupable)
   - Defines what actually goes into Inventory when an item is picked up
+
+#### Lyra 5.1 Update
+
+The networking code changes in Lyra 5.1.  Rather than replicating the inventory list array,
+each entry in the array is treated as a sub-object of the Inventory Manager Component.
+Generally it's the same idea, just a different implementation.  This is a minor efficiency gain.
+
+When I upgraded from Lyra 5.0 to Lyra 5.1 I also needed to change this code to match the new
+sub-object implementation.  It's possible some change in UE 5.1 necessitated this change,
+otherwise maybe I just had a bad 5.1 dev build with broken backwards-compatibility.
+
+If you find that your duplicated inventory isn't replicating correctly after a 5.1 upgrade, this
+is likely your issue.  Update these few networking functions in your code to match the
+sub-object style Lyra 5.1 is using and it will replicate correctly once again.
 
 
 <a id="ItemDefinition"></a>
