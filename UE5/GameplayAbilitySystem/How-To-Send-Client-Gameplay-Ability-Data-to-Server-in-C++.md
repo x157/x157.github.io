@@ -74,33 +74,33 @@ of a Gameplay Ability:
 
 # XCL Solution: ClientToServer Abstraction
 
-My solution to this problem is to extend from my base `XCL_GameplayAbility` with a focus on making it very
+My solution to this problem is to extend from my base `XCLGameplayAbility` with a focus on making it very
 easy to create `ClientToServer` abilities with minimal duplication of code.
 
 With the setup described here, every new Gameplay Ability I create in the future
 that needs to send data from the client to the server will derive from the
-`XCL_GameplayAbility_ClientToServer` class and will only have to implement 2 methods to be fully functional:
+`XCLGameplayAbility_ClientToServer` class and will only have to implement 2 methods to be fully functional:
 
 - `ActivateLocalPlayerAbility` = Generate `TargetData` and call `NotifyTargetDataReady`
 - `ActivateAbilityWithTargetData` = Run the ability with known `TargetData`
 
 
-## `XCL_GameplayAbility_ClientToServer` Implementation
+## `XCLGameplayAbility_ClientToServer` Implementation
 
-Derives from base `XCL_GameplayAbility`.
+Derives from base `XCLGameplayAbility`.
 
 New methods:
 
 - [ActivateAbilityWithTargetData](#ExampleClientToServerAbility__ActivateAbilityWithTargetData) (link goes to `UExampleClientToServerAbility` implementation)
   - Abstract - you must implement this
-- [NotifyTargetDataReady](#XCL_GameplayAbility_ClientToServer__NotifyTargetDataReady)
+- [NotifyTargetDataReady](#XCLGameplayAbility_ClientToServer__NotifyTargetDataReady)
   - You must call this from `ActivateLocalPlayerAbility` once `TargetData` is known
 
-`XCL_GameplayAbility` overrides:
+`XCLGameplayAbility` overrides:
 
-- [ActivateServerAbility](#XCL_GameplayAbility_ClientToServer__ActivateServerAbility) : subscribe to `AbilitySystemComponent` events
+- [ActivateServerAbility](#XCLGameplayAbility_ClientToServer__ActivateServerAbility) : subscribe to `AbilitySystemComponent` events
   - Invoke `NotifyTargetDataReady` on each `ASC.TargetDataSet` event
-- [EndAbilityCleanup](#XCL_GameplayAbility_ClientToServer__EndAbilityCleanup) : clean up event listener
+- [EndAbilityCleanup](#XCLGameplayAbility_ClientToServer__EndAbilityCleanup) : clean up event listener
 
 
 # `UExampleClientToServerAbility`
@@ -109,13 +109,13 @@ This example class shows how to implement a `ClientToServer` ability.
 Only two methods must be defined to accomplish this:
 
 
-##### `ActivateLocalPlayerAbility` (override `XCL_GameplayAbility`)
+##### `ActivateLocalPlayerAbility` (override `XCLGameplayAbility`)
 - Client only
   - Gather the `TargetData` info
   - Invoke `NotifyTargetDataReady`
 
 
-##### `ActivateAbilityWithTargetData` (override `XCL_GameplayAbility_ClientToServer`)
+##### `ActivateAbilityWithTargetData` (override `XCLGameplayAbility_ClientToServer`)
 - Client + Server
   - Execute the ability with the `TargetData`
 
@@ -126,22 +126,22 @@ Only two methods must be defined to accomplish this:
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Ability/XCL_GameplayAbility_ClientToServer.h"
+#include "Ability/XCLGameplayAbility_ClientToServer.h"
 #include "ExampleClientToServerAbility.generated.h"
 
 UCLASS()
-class XISTCORELYRA_API UExampleClientToServerAbility : public UXCL_GameplayAbility_ClientToServer
+class XISTCORELYRA_API UExampleClientToServerAbility : public UXCLGameplayAbility_ClientToServer
 {
 	GENERATED_BODY()
 
 protected:
-	//~UXCL_GameplayAbility interface
+	//~UXCLGameplayAbility interface
 	virtual void ActivateLocalPlayerAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData) override;
-	//~End of UXCL_GameplayAbility interface
+	//~End of UXCLGameplayAbility interface
 
-	//~UXCL_GameplayAbility_ClientToServer interface
+	//~UXCLGameplayAbility_ClientToServer interface
 	virtual void ActivateAbilityWithTargetData(const FGameplayAbilityTargetDataHandle& TargetDataHandle, FGameplayTag ApplicationTag) override;
-	//~End of UXCL_GameplayAbility_ClientToServer interface
+	//~End of UXCLGameplayAbility_ClientToServer interface
 
 };
 ```
@@ -237,16 +237,16 @@ void UExampleClientToServerAbility::ActivateAbilityWithTargetData(const FGamepla
 
 
 <a id="XCL_GameplayAbility_ClientToServer"></a>
-# `UXCL_GameplayAbility_ClientToServer`
+# `UXCLGameplayAbility_ClientToServer`
 
 The code below is something you will absolutely want to incorporate into any GameplayAbility class
 that needs to send data from the client to the server.
 
 You can choose to put this in your base ability class, but I didn't.
 Instead, my base ability is general purpose and can be used for any type of data flow.
-(I covered the base `XCL_GameplayAbility` in the conceptual overview linked at the top of this tutorial.)
+(I covered the base `XCLGameplayAbility` in the conceptual overview linked at the top of this tutorial.)
 
-My choice was to derive from the base `XCL_GameplayAbility` using a `ClientToServer` variant,
+My choice was to derive from the base `XCLGameplayAbility` using a `ClientToServer` variant,
 such that all abilities that require this functionality can get it,
 but the base class is open for wildly different and conflicting flows.
 
@@ -266,7 +266,7 @@ actually succeed on the server.
 
 
 ```c++
-void UXCL_GameplayAbility_ClientToServer::NotifyTargetDataReady(const FGameplayAbilityTargetDataHandle& InData, FGameplayTag ApplicationTag)
+void UXCLGameplayAbility_ClientToServer::NotifyTargetDataReady(const FGameplayAbilityTargetDataHandle& InData, FGameplayTag ApplicationTag)
 {
 	UAbilitySystemComponent* ASC = CurrentActorInfo->AbilitySystemComponent.Get();
 	check(ASC);
@@ -309,14 +309,14 @@ void UXCL_GameplayAbility_ClientToServer::NotifyTargetDataReady(const FGameplayA
 
 ## `ActivateServerAbility` Implementation
 
-`XCL_GameplayAbility_ClientToServer` overrides the default server ability execution.
+`XCLGameplayAbility_ClientToServer` overrides the default server ability execution.
 It does nothing other than listen for
 `AbilitySystemComponent`'s `AbilityTargetDataSet` event.
 
 Each time the client invokes the RPC with `TargetData`, the server executes `NotifyTargetDataReady`(`TargetData`)
 
 ```c++
-void UXCL_GameplayAbility_ClientToServer::ActivateServerAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData)
+void UXCLGameplayAbility_ClientToServer::ActivateServerAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData)
 {
 	UAbilitySystemComponent* ASC = ActorInfo->AbilitySystemComponent.Get();
 	check(ASC);
@@ -333,11 +333,11 @@ As we hooked into `AbilitySystemComponent`'s delegate on `ActivateServerAbility`
 we must ensure to remove the hook when the ability ends.
 
 You can put this in your `EndAbility`, but I'm using my custom `EndAbilityCleanup` hook
-from `XCL_GameplayAbility` that makes derived
+from `XCLGameplayAbility` that makes derived
 class code much simpler and with far less copy/paste.
 
 ```c++
-void UXCL_GameplayAbility_ClientToServer::EndAbilityCleanup(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, bool bReplicateEndAbility, bool bWasCancelled)
+void UXCLGameplayAbility_ClientToServer::EndAbilityCleanup(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, bool bReplicateEndAbility, bool bWasCancelled)
 {
 	UAbilitySystemComponent* ASC = CurrentActorInfo->AbilitySystemComponent.Get();
 	check(ASC);

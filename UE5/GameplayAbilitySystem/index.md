@@ -77,43 +77,43 @@ at if that's of interest to you.
 
 
 <a id="XCL_GameplayAbility"></a>
-# `XCL_GameplayAbility`: Base Ability Class
+# `XCLGameplayAbility`: Base Ability Class
 
-I have created my own Gameplay Ability `XCL_GameplayAbility` that derives from
+I have created my own Gameplay Ability `XCLGameplayAbility` that derives from
 `ULyraGameplayAbility` and adds some quality of life improvements.
 
 In addition to providing more suitable `ActivateAbility` base class behavior, it also significantly reduces the
 boilerplate and duplicate code required to implement an event.
 
-`XCL_GameplayAbility` allows for two implementations for the same ability - one for local
+`XCLGameplayAbility` allows for two implementations for the same ability - one for local
 players and one for the server.
 
 `ActivateAbility` implementation:
 
 ```
-if owner is local player:
-    ActivateLocalPlayerAbility()  // local player variant
-else if owner is server:
-    ActivateServerAbility()       // server variant
+if server for remote client:
+    ActivateServerAbility()       // server variant, always with authority
+else:
+    ActivateLocalPlayerAbility()  // local player variant, sometimes with authority, sometimes without
 ```
 
 It automatically invokes either the local player variant or the server variant depending on the context.
 
 
 <a id="xcl-gameplayability-network-modes"></a>
-### `XCL_GameplayAbility` Network Mode Variants
+### `XCLGameplayAbility` Network Mode Variants
 
-| Network Mode     | Variant      | Note                          | Method Invoked               |
-|------------------|--------------|-------------------------------|------------------------------|
-| Standalone       | local player | owner client is also server   | `ActivateLocalPlayerAbility` |
-| Client           | local player |                               | `ActivateLocalPlayerAbility` |
-| Listen Server    | local player | owner client is local player  | `ActivateLocalPlayerAbility` |
-| Listen Server    | server       | owner client is remote player | `ActivateServerAbility`      |
-| Dedicated Server | server       |                               | `ActivateServerAbility`      |
+| Network Mode     | Variant      | Authority? | Note                     | Method Invoked               |
+|------------------|--------------|------------|--------------------------|------------------------------|
+| Standalone       | local player | Yes        | client is local player   | `ActivateLocalPlayerAbility` |
+| Client           | local player | NO         | remote client            | `ActivateLocalPlayerAbility` |
+| Listen Server    | local player | Yes        | client is local player   | `ActivateLocalPlayerAbility` |
+| Listen Server    | server       | Yes        | server for remote client | `ActivateServerAbility`      |
+| Dedicated Server | server       | Yes        | server for remote client | `ActivateServerAbility`      |
 
 ### Default implementation
 
-By default in `XCL_GameplayAbility` no native action is taken at all.  Blueprint events are called, if they exist, but
+By default in `XCLGameplayAbility` no native action is taken at all.  Blueprint events are called, if they exist, but
 otherwise nothing happens.
 
 Thus it's very easy to implement blueprint support for either the local player or server ability variants, you have a
@@ -201,7 +201,7 @@ no impact on the network at all.
 
 ### Net Execution Policy: `ServerInitiated`
 
-I haven't yet used this...  Will update later if/when I have a need for it.
+This ability is initiated by the server and runs on both the client and the server.
 
 
 ### Net Execution Policy: `ServerOnly`
