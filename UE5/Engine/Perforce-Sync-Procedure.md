@@ -90,7 +90,7 @@ git status
 ###  If there are changes, then continue the procedure to merge them in:
 ###
 
-# Commit current Perforce snapshot to lyra-epic-51-dev
+# Commit current P4 snapshot to lyra-51-epic
 git add --all
 git commit -m "Import Lyra Release-5.1 Stream $YYYYMMDD"
 
@@ -102,10 +102,12 @@ git push origin lyra-51-epic.$YYYYMMDD
 git push origin lyra-51-epic
 
 # checkout my modified version of Lyra branch
-# merge epic's official changes into my lyra-xist-51 branch
+# merge epic's official changes into my lyra-51-xist branch
 git checkout lyra-51-xist
 git merge --no-commit lyra-51-epic
 
+################################################################################
+################################################################################
 ###
 ###  Manually resolve any merge conflicts
 ###
@@ -119,6 +121,8 @@ git checkout xai-dev
 git merge --no-commit lyra-51-xist
 
 
+################################################################################
+################################################################################
 ###
 ###  Manually resolve any merge conflicts
 ###
