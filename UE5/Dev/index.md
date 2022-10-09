@@ -13,9 +13,11 @@ some things are just plain new and/or different.
 
 Following are some ideas I hope will help new UE5 C++ devs have an easier time.
 
-- [UE5 C++ Debugging Tips](./DebuggingTips)
-    - [Build Target: `DebugGame Editor`](./DebuggingTips#BuildTarget_DebugGame_Editor)
-    - [C++ Debug Coding Style](./DebuggingTips#CppCodingStyleDebugging)
+[UE5 C++ Debugging Tips](./DebuggingTips):
+
+  - [Build Target: `DebugGame Editor`](./DebuggingTips#BuildTarget_DebugGame_Editor)
+  - [C++ Debug Coding Style](./DebuggingTips#CppCodingStyleDebugging)
+  - [Xist Log Format](./DebuggingTips#XistLogFormat) -- Logs are helpful and save time
 
 ## IDE: Rider, or VS+ReSharper
 
