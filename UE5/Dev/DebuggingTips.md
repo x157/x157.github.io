@@ -9,6 +9,7 @@ breadcrumb_name: "Debugging Tips"
 
 - [Build Target: `DebugGame Editor`](#BuildTarget_DebugGame_Editor)
 - [C++ Coding Style for Easy Debugging](#CppCodingStyleDebugging)
+- [Xist Log Format](#XistLogFormat)
 
 
 <a id="BuildTarget_DebugGame_Editor"></a>
