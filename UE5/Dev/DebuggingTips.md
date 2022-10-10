@@ -47,36 +47,65 @@ Most UE5 users are not C++ devs, but we are, and this is how we debug our C++.*
 ### Bad: Difficult to Debug
 ```c++
 // Bad: DIFFICULT TO DEBUG
+UMyComp* FindMyComp(const AActor* Actor)
+{
+    return Actor ? Cast<UMyComp>(Actor->GetComponentByType(GetMyCompBaseType())) : nullptr;
+}
 ```
 
 In the example Bad code above, yes it's true this is a nice short 1-liner that inexperienced developers
 might think looks pretty.
 
-If you look closely, there are several things that might fail in that 1 line of code, and it's
-really annoying to try to debug what it is.
+Imagine now that someone else wrote this code, and you are trying to debug it.
+`FindMyComp` is returning `nullptr` which you do not expect to happen.
 
-- a
-- b
-- c
+Why is it returning `nullptr`?
 
-There is really no way to know with this code without wasting a lot of time debugging.
+- `Actor` may start as `nullptr` (this is the only thing you can easily see)
+- `GetMyCompBaseType()` may return `nullptr`, but we cannot see if it does
+- `Actor` may not have any components of type `GetMyCompBaseType()`, but we cannot see if it does
+- `UMyComp` may not be compatible with `GetMyCompBaseType()`, such that the `Cast` fails, but we cannot tell
+
+There is really no way to know with this code without wasting a lot of time debugging, and ultimately
+refactoring the code to something like this:
 
 ### Good: Easy to Debug
 
 ```c++
 // Good: EASY TO DEBUG
+UMyComp* FindMyComp(const AActor* Actor)
+{
+    UMyComp* MyComp {nullptr};
+    if (Actor)
+    {
+        UClass* BaseType = GetMyCompBaseType();
+        UActorComponent* Comp = Actor->GetComponentByType(BaseType);
+        MyComp = Cast<UMyComp>(Comp);
+    }
+    return MyComp;
+}
 ```
 
 Now consider the alternative.  The above Good code is functionally exactly the same as the 
-Bad code.  However, it is now **extremely easy** to figure out which part
-of this is responsible for your bug.
+Bad code.  Though it is more lines of code, it is no less efficient than the Bad code above.
 
-You can breakpoint the final line `TODO HERE` and then **inspect all the values**
+However, it is now **extremely easy** to figure out which part of this is responsible for your bug.
+This is developer-friendly code.  It may take a few extra seconds to type it out the first time
+but it will save you far more seconds in the future - you won't have to refactor it when you
+debug it later, you won't have to explain it to any future junior devs who join your team, and when other
+related code is inevitably refactored and reworked, the effect it has on your code will be far more
+obvious and apparent, and easier to merge in.
+
+You can breakpoint the final line `return MyComp` and then **inspect all the values**
 that went into making that final calculation simply by looking at the IDE debugger.
 
-- a
-- b
-- c
+- `BaseType` is the value returned by `GetMyCompBaseType()`, you can check it for `nullptr`
+- `Comp` is the result of the Actor's `GetComponentByType` search for the `BaseType`
+- `MyComp` is the result of casting `Comp`
+
+Which one of those variables contains the incorrect value?  You have found your bug.
+It took virtually no time at all to find, and now you're spending your time fixing
+bugs rather than searching for them.
 
 #### TODO RIDER DEBUGGER SCREENSHOT
 
@@ -95,7 +124,9 @@ it to anybody.
 <a id="XistLogFormat"></a>
 ## Xist Log Format
 
-Writing quality logs is VITAL to being a truly great developer.  It helps when you are developing,
+TLDR USE GOOD LOGGING MACROS
+
+Writing quality logs is VITAL to being a healthy developer.  It helps when you are developing,
 when you are testing and debugging, and *especially* when your game is hugely popular and you're running
 countless instances on servers all over the world.
 
@@ -113,10 +144,10 @@ time  Log:     LogXCL: [PIE:Server] UXCLInteractTask_MoveTo::Activate:75        
 
 You can immediately tell exactly which module, function and line number created every log message.
 
-When looking at the UE log in Rider, you can even click for example on
+**When looking at the UE log in Rider, you can even click for example on
 `UXCLGameplayAbilityBase`::`ActrivateAbility`:`34` to open
 the `XCLGameplayAbilityBase.h` header file at the `ActivateAbility` declaration.
-It is literally point and click.
+It is literally point and click.**
 
 If you want to dig even deeper, you can then click on the declaration to go into the
 function definition itself, and then just look at line `34` which wrote the log message.
@@ -133,29 +164,58 @@ Here is an explanation of the columns in the log:
 | 6      | [`B_XAI_Bot_Humanoid_C_0`]->[`GA_XAI_Pickup_C_0`] | [`Owner Object Name`]->[`Log Object Name`]    |
 | 7+     | ...                                               | Log Message                                   |
 
-To achieve this, I created some C++ log macros:
-
-```c++
-#include "Logging/LogMacros.h"
-
-#define XCL_LOG(fmt, ...)          XCL_MODULE_LEVEL_FORMAT_LOG(LogXCL, Log,     fmt, ##__VA_ARGS__)
-#define XCL_LOG_VERBOSE(fmt, ...)  XCL_MODULE_LEVEL_FORMAT_LOG(LogXCL, Verbose, fmt, ##__VA_ARGS__)
-#define XCL_LOG_WARNING(fmt, ...)  XCL_MODULE_LEVEL_FORMAT_LOG(LogXCL, Warning, fmt, ##__VA_ARGS__)
-#define XCL_LOG_ERROR(fmt, ...)    XCL_MODULE_LEVEL_FORMAT_LOG(LogXCL, Error,   fmt, ##__VA_ARGS__)
-
-// ... etc ...
-```
-
-Under the hood this just uses the `UE_LOG` macro that you probably already know and love.
-
-I have different macros for each of the different categories of object in Unreal Engine,
+To achieve this, I have created macros for each of the different categories of object in Unreal Engine,
 like `Actor`, `Object`, `GameplayAbility`, `AbilityTask`, etc.
 
 Inside any `GameplayAbility` for example, I just log like this;
 
 ```c++
-XCL_GALOG(TEXT("Committing ability"));  // GALOG = GameplayAbility Log
+XIST_GALOG(TEXT("Committing ability"));  // XIST_GALOG: Xist GA Log (this == GameplayAbility)
 ```
 
 This will create a log message like the `Committing ability` log message that you see in the
-example above.
+example above, where the name of the Task and the name of its owning Ability are both included
+in the log message with the `__FUNCTION__` and `__LINE__` information.
+
+
+### An example C++ Macro
+
+Under the hood this just uses the `UE_LOG` macro that you probably already know and love.
+
+For example, you could use something like this for any `UObject` or `UObject`-derived class:
+
+```c++
+/**
+ * XIST_ULOG
+ *
+ *   You can use this macro in any code where `this` evaluates to a valid UObject.
+ *   The log will print with the __FUNCTION__ and __LINE__ where you write the macro,
+ *   and will report `this` identity as [OwnerName]->[ThisName] in the log message.
+ *   The message that you pass in (fmt, ...) is appended to the rest of the log info.
+ *
+ *   This gets sent to the `LogXist` log with verbosity level `Log`.
+ *   You should make related macros like `XIST_ULOG_WARNING`, `XIST_ULOG_ERROR`,
+ *   etc as needed.
+ */
+#define XIST_ULOG(fmt, ...) \
+    UE_LOG(LogXist, Log, \
+        TEXT("[%s] %s:%i [%s]->[%s] %s"), \
+        XistGetClientServerContextString(this), \
+        *FString(__FUNCTION__), __LINE__, \
+        *GetNameSafe(GetOwner()), *GetNameSafe(this), \
+        *FString::Printf(fmt, ##__VA_ARGS__) \
+    )
+```
+
+Gameplay Abilities and Ability Tasks are special, so they require their own macros,
+and you may find along the way other related macros that can be helpful.
+
+The really nice thing about making these macros early in your project is that you
+can very easily change the format of every single log in your game just by changing
+one macro.  If you discover you want more or less info in your logs, you can edit
+the macro.
+
+You can also define levels of logging that do not get shipped.  For example if you
+want to optimize a game you need to reduce the amount of logging, and so perhaps
+you totally compile out all `XIST_LOG_VERBOSE` macros and just have them not exist
+at all in the shipped game.  It is very easy to do that with a setup like this.
