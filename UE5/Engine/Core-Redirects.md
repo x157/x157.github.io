@@ -26,6 +26,7 @@ Because of this, you must take these additional steps during development any tim
 
 1. Create `[CoreRedirects]` INI
 2. Run `-fixupredirects` command
+   - Manually save assets in Editor if needed
 3. Remove `[CoreRedirects]` INI
 4. Commit Redirected Binaries
 
@@ -56,7 +57,27 @@ With the redirect in the appropriate INI, run this command in your terminal:
 UnrealEditor.exe MyProject.uproject -run=ResavePackages -fixupredirects -autocheckout -projectonly -unattended
 ```
 
-The above command will redirect all the binary assets that refer to `OldName` to instead refer to `NewName`.
+The above command **should** redirect all the binary assets that refer to `OldName` to instead refer to `NewName`.
+
+**Sometimes this step does not seem to work.**
+
+After this command runs,
+if no binaries were modified (check source control to see what changed) then:
+
+### 2A) *(if required)* Manually Open the Editor and Save Assets
+
+When `-fixupredirects` fails to modify any files, you need to save
+them yourself.
+
+- With the `[CoreRedirects]` in the INI, open the Editor
+- Open all files that refer to the name you are redirecting
+- Compile+Save all of them
+  - Note: It may not always be necessary to Compile, but Saving is always required
+  - **You must explicitly save the assets you know are affected**
+    - Telling the editor "save all", won't work.  It won't save the necessary assets.
+
+Not sure why `-fixupredirects` sometimes doesn't work.  It's annoying.
+Binary source files are garbage, if I haven't mentioned it.  `:)`
 
 
 ## 3) Remove `[CoreRedirects]` INI
@@ -103,21 +124,19 @@ You can also add options or add a value change map:
 
 # Renaming a Plugin
 
-There may be a bit more to it than this, I haven't tested this yet, but these are the notes I collected
-regarding how to rename an entire Plugin.
-
-The public documentation on this is scarce.  If you can offer insight,
-[open an issue](https://github.com/x157/x157.github.io/issues)
-on GitHub and I'll update as needed.
+To completely rename a plugin, you can try all 6 supported `CoreRedirects`:
 
 ```ini
 [CoreRedirects]
++ClassRedirects=(OldName="/OldModuleName.",NewName="/NewModuleName.",MatchSubstring=true)
++EnumRedirects=(OldName="/OldModuleName.",NewName="/NewModuleName.",MatchSubstring=true)
++FunctionRedirects=(OldName="/OldModuleName.",NewName="/NewModuleName.",MatchSubstring=true)
 +PackageRedirects=(OldName="/OldModuleName/",NewName="/NewModuleName/",MatchSubstring=true)
-+ClassRedirects=(OldName="/Script/OldModuleName.",NewName="/Script/NewModuleName.",MatchSubstring=true)
-+StructRedirects=(OldName="/Script/OldModuleName.",NewName="/Script/NewModuleName.",MatchSubstring=true)
-+PropertyRedirects=(OldName="/Script/OldModuleName.",NewName="/Script/NewModuleName.",MatchSubstring=true)
++PropertyRedirects=(OldName="/OldModuleName.",NewName="/NewModuleName.",MatchSubstring=true)
++StructRedirects=(OldName="/OldModuleName.",NewName="/NewModuleName.",MatchSubstring=true)
 ```
 
+Note, I have not actually tried that yet.  It looks like it may work.  Good luck.  `:)`
 
 <a id="Note_GameFeaturesRedirectsBroken"></a>
 <a id="GameFeaturePluginWorkaround"></a>
@@ -126,7 +145,7 @@ on GitHub and I'll update as needed.
 ###### NOTE: C++ Core Redirects are bugged for Game Feature Plugins as of 5.0.3
 
 I submitted a bug report to Epic, hopefully they fix it soon.  Assuming they've fixed it,
-the above is how it is *supposed to work* once it gets fixed.
+the above is how it is *supposed to work*.
 
 If it's still not working as of your version of Unreal Engine, Epic has provided the following
 workaround, which is what they use in their internal Game Feature Plugins:
@@ -158,7 +177,7 @@ for confirming the bug and providing the workaround.
 
 For more information see the official docs:
 
-- [Official UE5 Core Redirects Documentation](https://docs.unrealengine.com/5.0/en-US/core-redirects/)
+- [Official UE5 Core Redirects Documentation as of UE 4.27](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/Assets/CoreRedirects/)
 - [Fixup Redirector From Editor](https://docs.unrealengine.com/5.0/en-US/redirectors/)
 - [UE Forum Post: How to Rename a Plugin?](https://forums.unrealengine.com/t/how-can-i-rename-a-plugin-and-not-break-all-blueprints/343240)
 - [Engine Bug UE-163425](https://issues.unrealengine.com/issue/UE-163425)
