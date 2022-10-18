@@ -66,8 +66,8 @@ git checkout lyra-51-epic
 # remove ALL FILES NOT TRACKED by this branch
 git clean -xfd
 
-# Remove EVERYTHING except Git and other things that ARE NOT stored in Epic's P4
-$RemoveItems = Get-ChildItem -exclude .git, .gitattributes, .gitignore, Saved, LyraXist.uproject, .idea
+# Remove EVERYTHING except Git itself
+$RemoveItems = Get-ChildItem -exclude .git, .gitattributes, .gitignore
 $RemoveItems | Remove-Item -Force -Recurse
 
 # Copy Epic P4 Lyra into my Git repo
@@ -77,6 +77,10 @@ foreach ($Item in $P4Items) {
     Write-Host "Copying $($Item.Name)..."
     Copy-Item $Item.FullName -Destination . -Recurse
 }
+
+# Clear read-only bit on copied Config files
+$Configs = Get-ChildItem .\Config\ -ReadOnly -Recurse
+$Configs | Set-ItemProperty -name IsReadOnly -value $false
 
 # See if anything changed in Lyra
 git status
