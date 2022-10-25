@@ -201,7 +201,7 @@ For example, you could use something like this for any `UObject` or `UObject`-de
 #define XIST_ULOG(fmt, ...) \
     UE_LOG(LogXist, Log, \
         TEXT("[%s] %s:%i [%s]->[%s] %s"), \
-        XistGetClientServerContextString(this), \
+        *XistGetClientServerContextString(this), \
         *FString(__FUNCTION__), __LINE__, \
         *GetNameSafe(GetOwner()), *GetNameSafe(this), \
         *FString::Printf(fmt, ##__VA_ARGS__) \
