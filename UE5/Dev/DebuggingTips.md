@@ -50,7 +50,7 @@ Most UE5 users are not C++ devs, but we are, and this is how we debug our C++.*
 // Bad: DIFFICULT TO DEBUG
 UMyComp* FindMyComp(const AActor* Actor)
 {
-    return Actor ? Cast<UMyComp>(Actor->GetComponentByType(GetMyCompBaseType())) : nullptr;
+    return Actor ? Cast<UMyComp>(Actor->GetComponentByType(GetTargetComponentType())) : nullptr;
 }
 ```
 
@@ -63,9 +63,9 @@ Imagine now that someone else wrote this code, and you are trying to debug it.
 Why is it returning `nullptr`?
 
 - `Actor` may start as `nullptr` (this is the only thing you can easily see)
-- `GetMyCompBaseType()` may return `nullptr`, but we cannot see if it does
-- `Actor` may not have any components of type `GetMyCompBaseType()`, but we cannot see if it does
-- `UMyComp` may not be compatible with `GetMyCompBaseType()`, such that the `Cast` fails, but we cannot tell
+- `GetTargetComponentType()` may return `nullptr`, but we cannot see if it does
+- `Actor` may not have any components of type `GetTargetComponentType()`, but we cannot see if it does
+- `UMyComp` may not be compatible with `GetTargetComponentType()`, such that the `Cast` fails, but we cannot tell
 
 There is really no way to know with this code without wasting a lot of time debugging, and ultimately
 refactoring the code to something like this:
@@ -77,9 +77,9 @@ refactoring the code to something like this:
 UMyComp* FindMyComp(const AActor* Actor)
 {
     UMyComp* MyComp {nullptr};
-    if (Actor)
+    if (IsValid(Actor))
     {
-        UClass* BaseType = GetMyCompBaseType();
+        UClass* BaseType = GetTargetComponentType();
         UActorComponent* Comp = Actor->GetComponentByType(BaseType);
         MyComp = Cast<UMyComp>(Comp);
     }
@@ -100,7 +100,7 @@ obvious and apparent, and easier to merge in.
 You can breakpoint the final line `return MyComp` and then **inspect all the values**
 that went into making that final calculation simply by looking at the IDE debugger.
 
-- `BaseType` is the value returned by `GetMyCompBaseType()`, you can check it for `nullptr`
+- `BaseType` is the value returned by `GetTargetComponentType()`, you can check it for `nullptr`
 - `Comp` is the result of the Actor's `GetComponentByType` search for the `BaseType`
 - `MyComp` is the result of casting `Comp`
 
