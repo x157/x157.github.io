@@ -26,19 +26,20 @@ To follow along in the `Powershell` code, these are the branches and what they m
 | `lyra-51-epic`          | Mirror     | Mirror of Epic's Perforce: `UE5/Release-5.1/Samples/Games/Lyra` |
 | `lyra-51-epic.YYYYMMDD` | Snapshot   | Snapshot of `lyra-51-epic` on any given sync day                |
 | `lyra-51-xist`          | Lyra Hacks | The hacks Xist is **forced** to make to Lyra C++ (exports, etc) |
-| `xai-dev`               | Game       | My GFPs (Game `XAI` building on my GFP lib `XCL`)               |
+| `xai-dev`               | Game       | My GFPs (Game `XAI` building on my plugin `XCL`)                |
+
 
 # Sync from Epic P4
 
 - P4V "Get Latest Revision" for workspace
-  - to `D:\Dev\EpicP4_XistGG\UE5\Release-5.1`
+  - to `D:/U_XistGG/UE5/Release-5.1`
 
 
 # Build Engine
 
 - *(Optional)* Copy `Developer` Plugins into Engine
   - e.g. `RiderLink`, etc
-- Run `GenerateProjectFiles.bat` in `D:\Dev\EpicP4_XistGG\UE5\Release-5.1`
+- Run `GenerateProjectFiles.bat` in `D:/U_XistGG/UE5/Release-5.1`
 - Visual Studio `UE5.sln`
   - Build `UE5` Project
     - Target = `DebugGame Editor`
@@ -55,7 +56,10 @@ To follow along in the `Powershell` code, these are the branches and what they m
 If your computer melts after you copy/paste this, you'll know you've messed up.
 
 ```powershell
-cd "D:\Dev\Lyra-51"  # wherever your game source is
+cd "D:/Dev/Lyra-51"  # wherever your game source is
+
+$P4SourceDir = "D:/U_XistGG/UE5/Release-5.1"
+$LyraSourceDir = "$P4SourceDir/Samples/Games/Lyra"
 
 $YYYYMMDD = "20221001"  # Set timestamp for snapshot
 
@@ -71,7 +75,7 @@ $RemoveItems = Get-ChildItem -exclude .git, .gitattributes, .gitignore
 $RemoveItems | Remove-Item -Force -Recurse
 
 # Copy Epic P4 Lyra into my Git repo
-$P4Items = Get-ChildItem "D:\Dev\EpicP4_XistGG\UE5\Release-5.1\Samples\Games\Lyra\" -exclude Binaries, Intermediate
+$P4Items = Get-ChildItem $LyraSourceDir -exclude Binaries, Intermediate
 
 foreach ($Item in $P4Items) {
     Write-Host "Copying $($Item.Name)..."
