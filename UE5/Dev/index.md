@@ -19,21 +19,29 @@ Following are some ideas I hope will help new UE5 C++ devs have an easier time.
   - [C++ Debug Coding Style](./DebuggingTips#CppCodingStyleDebugging)
   - [Xist Log Format](./DebuggingTips#XistLogFormat) -- Logs are helpful and save time
 
-## IDE: Rider, or VS+ReSharper
+Developer Tools:
 
-Personally I prefer to use
-[Rider](https://www.jetbrains.com/rider/)
-rather than Visual Studio as an IDE.  Rider has built-in UE5 integration
-that really is a **must-have** for any serious UE5 C++ developer.
+- [IDE Options](./IDE) - choosing the right IDE can save you time and money
+- [Source Control](./Source-Control)
 
-If you prefer to use Visual Studio, you should seriously consider purchasing the
-[ReSharper](https://www.jetbrains.com/lp/resharper-cpp-unreal-engine/)
-plugin for Visual Studio to get UE5 integration similar to Rider.
 
-These tools aren't free, but they aren't prohibitively expensive either.
-Given that `time == $`, IMO it's worthwhile to
-spend some $ now to save yourself a lot of time later.
-Personally I tend to lean toward `time >= $`,
-assuming one has the luxury of discretionary spending.
+## Learning C++ in Unreal Engine
 
-Check for student discounts if applicable, I believe they are sometimes (always?) offered.
+Pep Talk: [Unreal Community Wiki: Learn Unreal C++](https://unrealcommunity.wiki/unreal-cpp-d702003t)
+
+
+### Official Tutorials from Epic
+
+- [Introduction to C++ Programming in UE4](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/IntroductionToCPP/)
+- [C++ Programming Tutorials](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/CPPTutorials/)
+- [Unreal Architecture](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/)
+  - [Actors](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/Actors/)
+  - [Delegates](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/Delegates/)
+  - [Objects](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/Objects/)
+      - [Object Handling (memory management, casting)](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/Objects/Optimizations/)
+  - [Strings](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/StringHandling/)
+  - [Smart Pointer Library](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/SmartPointerLibrary/)
+- [Actor Communication](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ActorCommunication/)
+- [Gameplay Architecture](https://docs.unrealengine.com/5.0/en-US/programming-with-cpp-in-unreal-engine/)
+  - [Unreal Engine Modules](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/Modules/)
+
