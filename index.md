@@ -2,8 +2,26 @@
 is_site_index: true
 ---
 
+# New Devs Start Here
 
-Welcome to X157 Dev Notes.
+Want to be a better UE5 C++ Dev?
+My thoughts on
+[Development in UE5](/UE5/Dev/).
+
+# UE5 Lyra Starter Game
+
+My primary focus at the moment: [Developing a Game with UE5 LyraStarterGame](./UE5/LyraStarterGame/)
+
+This led me to study these related, relevant [UE5](./UE5/) topics:
+
+- [Common UI](/UE5/CommonUI/) + CommonGame
+- Enhanced Input System [(Epic Tutorial)](https://dev.epicgames.com/community/learning/tutorials/eD13/unreal-engine-enhanced-input-in-ue5)
+- [Gameplay Ability System](/UE5/GameplayAbilitySystem/)
+- [GameFeature Plugins](/UE5/GameFeatures/)
+- [`ModularGameplay` Plugin](/UE5/ModularGameplay/)
+
+
+# About Me
 
 For the past few months I've been working my way through UE5's Lyra Starter Game,
 learning both Unreal Engine and Lyra simultaneously.
@@ -13,17 +31,6 @@ I'm hosting some notes here that I hope will be useful.
 
 I'm an expert C++ developer who has mentored developers and team leaders,
 but I had ZERO experience with game dev or UE5 going into this.
-
-
-# UE5 Lyra Starter Game
-
-My primary focus at the moment: [Developing a Game with UE5 LyraStarterGame](./UE5/LyraStarterGame/)
-
-This led me to study these related, relevant [UE5](./UE5/) topics:
-
-- [Common UI](./UE5/CommonUI/) Plugin
-- [Gameplay Ability System](./UE5/GameplayAbilitySystem/)
-- [Epic Games: Version Control Fundamentals](./UE5/Annotations/Inside-Unreal/EpicGames-Version-Control-Fundamentals) *(Perforce is practically required to work on Binary Game assets in teams)*
 
 
 # Tutorials & Videos

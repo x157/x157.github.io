@@ -14,11 +14,11 @@ I'm also documenting some ideas RE [Development in UE5](./Dev/).
 
 To understand Lyra, you also need an understanding of these UE5 plugins:
 
-- [Common UI](./CommonUI/) + CommonGame
-- Enhanced Input System *(todo)*
-- [Gameplay Ability System](./GameplayAbilitySystem/)
-- [GameFeature Plugins](./GameFeatures/)
-- [`ModularGameplay` Plugin](./ModularGameplay/)
+- [Common UI](/UE5/CommonUI/) + CommonGame
+- Enhanced Input System [(Epic Tutorial)](https://dev.epicgames.com/community/learning/tutorials/eD13/unreal-engine-enhanced-input-in-ue5)
+- [Gameplay Ability System](/UE5/GameplayAbilitySystem/)
+- [GameFeature Plugins](/UE5/GameFeatures/)
+- [`ModularGameplay` Plugin](/UE5/ModularGameplay/)
 
 
 # Unreal Engine Annotations

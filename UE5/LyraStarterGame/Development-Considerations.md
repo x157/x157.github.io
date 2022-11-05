@@ -30,7 +30,7 @@ The mere thought of having to do that once for a small code base is
 enough to make me need to puke.  Having to do it multiple times for a
 large code base?  I'd rather change professions.  Honestly I'd probably
 rather delete my entire project and pretend it never existed.
-It's just not something I'm ever going to do.  Ever.
+It's just not something I'm ever going to do.
 
 
 ## Extend Lyra C++ Code
@@ -74,10 +74,12 @@ I digress.  Binary assets suck.  Don't try to reuse or extend them, just
 duplicate them and use your own.
 
 
-## XCL GameFeature Plugin
+## XCL Plugin + XaiLife GFP
 
-I am developing a GameFeature plugin called `XistCoreLyra` (`XCL`) and that
-is where I put all of my Lyra overrides and customizations.
+I am developing a Lyra game via 2 plugins:
+
+- `XCL` Plugin
+- `XaiLife` GameFeature Plugin (GFP)
 
 When you see references to `XCL` anywhere in my documentation, I'm referring
 to this plugin and the Lyra-derived code within it.
@@ -85,3 +87,9 @@ to this plugin and the Lyra-derived code within it.
 In the long term my intent is that any/all Lyra projects I develop will
 also include my `XCL` plugin to fix and extend Lyra to be as reusable
 as I require.
+
+When I first started this project, `XCL` was originally a GFP.  However, I modified
+it such that `XCL` is now considered foundational code that will always exist,
+and so it doesn't need to be a GFP.
+
+The `XaiLife` Plugin is still a GFP as it contains optional content.
