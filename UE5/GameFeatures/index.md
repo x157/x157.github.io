@@ -25,7 +25,22 @@ is required to get this to work.
 into your existing code if you prefer to avoid a rebase onto `ModularGameplay` itself.)
 
 
-## There is a default "Runtime" suffix that you can remove
+## LyraStarterGame Example
+
+In LyraStarterGame, `ALyraPlayerState`, `ALyraPlayerController`, `ALyraCharacter`
+and more are all based on the `ModularGameplay` plugin.
+
+Take a look to see how it was done.
+
+At runtime, the game knows all of the `GameFeature` plugins that are available, but
+**it does not load or activate these plugins unless/until the game explicitly chooses to do so**.
+
+In Lyra when you **Load an Experience** it will automatically load any `GameFeature` plugins
+that experience depends on and then will launch the game into that map with that experience
+and all of its runtime-loaded code/assets enabled.
+
+
+### There is a default "Runtime" suffix that you can remove
 
 By default when you create a `GameFeature` plugin in the UE5 editor, it will force
 some parts of your `XistGame` project to use the name `XistGameRuntime` instead.
@@ -42,17 +57,3 @@ Follow this procedure:
 Now what I have is: `XistGame` (always `XistGame` and `XISTGAME_API`)
 
 
-
-## LyraStarterGame Example
-
-In LyraStarterGame, `ALyraPlayerState`, `ALyraPlayerController`, `ALyraCharacter`
-and more are all based on the `ModularGameplay` plugin.
-
-Take a look to see how it was done.
-
-At runtime, the game knows all of the `GameFeature` plugins that are available, but
-**it does not load or activate these plugins unless/until the game explicitly chooses to do so**.
-
-In Lyra when you **Load an Experience** it will automatically load any `GameFeature` plugins
-that experience depends on and then will launch the game into that map with that experience
-and all of its runtime-loaded code/assets enabled.
