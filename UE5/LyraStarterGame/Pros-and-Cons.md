@@ -67,3 +67,30 @@ Both using and not using Lyra are valid choices.  You must decide which is best 
     - Lyra forces you to use `CommonUI` as the player input system
   - Requires either implementing the `ModularGameplay` pattern in all of your base classes, or rebasing onto `ModularGameplayActors`
   - Thread-safe Animations are not compatible with UE4 animations.  You'll need to update every animation blueprint to be thread-safe, which honestly you should be doing anyway, because **Multi-threaded** Animations.
+
+- For any game:
+  - Lyra is complex and will take time to learn
+    - The core of Lyra is intended to allow for things like
+      - more than 1 style of game play (a Lyra "Experience")
+      - 1st class support for gamepads, touchscreen and MKB inputs
+      - expansion packs and seasonal content packs
+      - optional items players can buy from your game store
+      - high performance, multi-threaded animations
+    - Supporting all of these things is far more difficult and complex than **not** supporting these things
+      - Is Lyra "too" complex, or "overly" complicated?
+        - If you do not want the above features in your game, then yes. Lyra is probably overkill for you in that case.
+        - If you want the features listed above, then you'd have to build all this stuff anyway.
+
+# To Lyra, or not to Lyra?
+
+At the end of the day, the question you need to pose to yourself is this:
+
+- Would I rather spend time trying to plug all these systems together myself, and try to get it all working on my own?
+  - Keep in mind many of these systems are new and not well documented. *A shocker, I know.*
+
+[OR]
+
+- Would I rather spend time learning how Epic actually DID plug all these systems together and get it all working?
+
+Either way it is a time investment and a learning experience.  There is no wrong choice.
+It's up to you.
