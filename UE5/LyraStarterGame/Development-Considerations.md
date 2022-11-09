@@ -48,8 +48,13 @@ aspects of Lyra's implementation, and in those cases I simply copy/paste
 their code into my own code base and modify it as necessary. (The lack of
 a generic AIController is an example).
 
-Code duplication sucks, but it's better than trying to merge out their
-updates (if/when they make them) to code I didn't want in the first place.
+In other cases (Interaction, Inventory, Equipment, Weapons) the Lyra code
+is a great jump-off point to build your own systems.  Even if it is not a good
+set of base classes in these cases, it **is** a good, functional multiplayer prototype
+that you can build out yourself.
+
+Code duplication sucks, but it's better than trying to merge out
+updates (if/when Epic makes them) to code I don't want in the first place.
 
 
 ## Duplicate Lyra Binary Assets
@@ -89,7 +94,7 @@ also include my `XCL` plugin to fix and extend Lyra to be as reusable
 as I require.
 
 When I first started this project, `XCL` was originally a GFP.  However, I modified
-it such that `XCL` is now considered foundational code that will always exist,
-and so it doesn't need to be a GFP.
+it such that `XCL` is now considered foundational C++ code that will always exist
+in my Lyra, and so it doesn't need to be a GFP.
 
-The `XaiLife` Plugin is still a GFP as it contains optional content.
+The `XaiLife` Plugin is a GFP and it contains all of my project's content so far.
