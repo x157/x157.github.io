@@ -7,7 +7,7 @@ breadcrumb_name: "Health and Damage"
 
 # UE5 Lyra Health and Damage
 
-At its core, Lyra's Health and Damage system is based on GAS.
+At its core, Lyra's Health and Damage system is based on the Gameplay Ability System (GAS).
 
 Even if you choose not to use Lyra, if you use GAS, giving your actors health and dealing
 damage or healing to them is going to be very, very similar to how it is done in Lyra.
@@ -19,10 +19,10 @@ and MUST have a `LyraHealthSet` GAS attribute set.
 While the `LyraCombatSet` is technically optional and defaults to zero values, if the actor
 does not explicitly have a `LyraCombatSet`, Lyra will complain loudly via warning log messages.
 Thus, a `LyraCombatSet` is practically required as well, if for no reason other than to
-squelch the warning messages. (The Combat Set defines base damage or healing values when this
-actor is trying to damage or heal something, including itself).
+squelch the warning messages. (If you duplicate/refactor the Lyra Damage/Heal Calculations,
+you can remove the requirement for a combat set if you prefer).
 
-Therefore, to give an actor/pawn/character health, so you can damage or heal it, your actor must have:
+Therefore by default in Lyra, to give an actor/pawn/character health, so you can damage or heal it, your actor must have:
 
 - Lyra ASC (`ULyraAbilitySystemComponent`)
   - Allows the actor to participate in GAS
@@ -99,7 +99,7 @@ At zero health, the Health Set will fire off its `OnOutOfHealth` event.
 **It is your responsibility to listen for this event and kill off your actor.**
 
 Because we added the optional but useful `ULyraHealthComponent` to our actor,
-it hooks into the `OnOutOfHealth` event and translates it into two related,
+it hooks into the `OnOutOfHealth` event and translates it into a series of related,
 derivative events:
 
 - A `GameplayEvent.Death` Gameplay Event is sent to the now-pending-death Actor's ASC
@@ -111,14 +111,12 @@ those events could be improved.  You may be interested to do some of that, or ad
 own logic there instead.
 
 In Lyra, player and AI characters are injected with the `GA_Hero_Death` ability on spawn.
-This ability triggers on `GameplayEvent.Death` events related to its owning actor.
-Note that, contrary to the comments therein, this ability DOES NOT actually kill the actor.
-Instead, it seems to do mostly cosmetic things.
+This ability triggers on `GameplayEvent.Death` events related to its owning actor, and
+calls `HealthComponent`🡒`StartDeath`, which initiates the procedure of killing the actor.
 
-To actually make your actor/pawn/character die, you need to kill it yourself.
-Listen for the Health Component's `OnDeathStarted` event, and kill your actor/pawn/character
-when that event fires.  (If you don't want to use the Health Component, listen for the
-`HealthSet`.`OnOutOfHealth` event).
+Listen for the Health Component's `OnDeathStarted` event, and start to kill your actor/pawn/character
+when that event fires.  By the time `OnDeathFinished` fires, the actor should be dead, as it is
+being forcefully removed from the world probably on the next tick.
 
 Lyra listens for this component's event in its `B_Hero_Default` (one of the Lyra Character
 base BPs) event graph.
