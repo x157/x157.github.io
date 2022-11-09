@@ -78,7 +78,7 @@ Both using and not using Lyra are valid choices.  You must decide which is best 
       - high performance, multi-threaded animations
     - Supporting all of these things is far more difficult and complex than **not** supporting these things
       - Is Lyra "too" complex, or "overly" complicated?
-        - If you do not want the above features in your game, then yes. Lyra is probably overkill for you in that case.
+        - If you **do not** want the above features in your game, then yes. Lyra is probably overkill for you in that case.
         - If you want the features listed above, then you'd have to build all this stuff anyway.
 
 # To Lyra, or not to Lyra?
