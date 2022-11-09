@@ -77,6 +77,15 @@ answers questions like:
   - How to I heal, damage and kill an actor/pawn?
 
 
+# Lyra Character
+
+- [Shooter Mannequin Character](./ShooterMannequin)
+  - `B_Hero_ShooterMannequin` is the base Character class in Lyra, you will definitely want to understand it well
+  - Demonstrates key concept: Asynchronous, inter-dependent `ModularGameplay` Initialization of Pawn components
+- Lyra provides a great `Character` base, but *does not provide* a useful `Pawn`.
+  - This seems to be typical in UE5; Characters are first class, Pawns are completely up to you.
+
+
 # Lyra Prototype Systems
 
 - [Interaction System](./Interactions/)
@@ -97,15 +106,6 @@ Bug fixes:
 Works in progress:
 
 - [How to: Customize the Lyra FrontEnd](./How-To-Customize-Lyra-FrontEnd) *(incomplete; coming eventually)*
-
-
-# Lyra Character Info
-
-- [Shooter Mannequin Character](./ShooterMannequin)
-  - `B_Hero_ShooterMannequin` is the base Character class in Lyra, you will definitely want to understand it well
-  - Demonstrates key concept: Asynchronous, inter-dependent `ModularGameplay` Initialization of Pawn components
-- Lyra provides a great `Character` base, but *does not provide* a useful `Pawn`.
-  - This seems to be typical in UE5; Characters are first class objects, Pawns are completely up to you to implement.
 
 
 # Module Dissections
