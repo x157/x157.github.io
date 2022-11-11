@@ -7,6 +7,9 @@ breadcrumb_name: "Health and Damage"
 
 # UE5 Lyra Health and Damage
 
+For a video overview of this information see [Lyra Health and Damage System](https://youtu.be/HwQ7BrLVfJI)
+on my YT: [XistGG](https://www.youtube.com/c/XistGG).
+
 At its core, Lyra's Health and Damage system is based on the Gameplay Ability System (GAS).
 
 Even if you choose not to use Lyra, if you use GAS, giving your actors health and dealing
