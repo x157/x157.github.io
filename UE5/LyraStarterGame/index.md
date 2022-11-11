@@ -68,7 +68,7 @@ Common UI "owns" player input
     - [How to: Send Client Gameplay Ability Data to Server in C++](/UE5/GameplayAbilitySystem/How-To-Send-Client-Gameplay-Ability-Data-to-Server-in-C++)
     - [UE5 Enhanced Input Gameplay Abilities -- Pressed Trigger vs Down Trigger](https://youtu.be/P-dyHJhoqxA)
 
-# Lyra Gameplay Systems
+## Lyra Gameplay Systems
 
 [Health and Damage System](./Health-and-Damage/) (implemented via GAS Attributes + Effects)
 answers questions like:
@@ -77,7 +77,21 @@ answers questions like:
   - How to I heal, damage and kill an actor/pawn?
 
 
-# Lyra Character
+## Lyra Prototype Systems
+
+- [Interaction System](./Interactions/)
+    - Epic's prototype interaction system
+    - Not ready for you to use yourself, but a great resource to teach you to build your own Interaction System
+- [Inventory System](./Inventory/)
+    - The base system of items that can be stored in a Pawn's inventory
+- [Equipment System](./Equipment/)
+    - Inventory extension: Inventory Items that are pieces of equipment usable by Pawns
+- [Weapon System](./Weapons/)
+    - Equipment extension: Equipment Items that are weapons usable by Pawns
+
+
+
+## Lyra Character
 
 - [Shooter Mannequin Character](./ShooterMannequin)
   - `B_Hero_ShooterMannequin` is the base Character class in Lyra, you will definitely want to understand it well
@@ -86,18 +100,15 @@ answers questions like:
   - This seems to be typical in UE5; Characters are first class, Pawns are completely up to you.
 
 
-# Lyra Prototype Systems
+# Misc Lyra Stuff
 
-- [Interaction System](./Interactions/)
-  - Epic's prototype interaction system
-  - Not ready for you to use yourself, but a great resource to teach you to build your own Interaction System
-- [Inventory System](./Inventory/)
-  - The base system of items that can be stored in a Pawn's inventory
-- [Equipment System](./Equipment/)
-  - Inventory extension: Inventory Items that are pieces of equipment usable by Pawns
-- [Weapon System](./Weapons/)
-  - Equipment extension: Equipment Items that are weapons usable by Pawns
+In an effort to understand the material Epic has provided us to start with, I am dissecting the GameFeature plugins they shipped to understand what they do, how they're similar and how they differ from one another.
 
+| Module                        | Description                       |
+|-------------------------------|-----------------------------------|
+| [ShooterCore](./ShooterCore/) | Base framework for a shooter game |
+| [ShooterMaps](./ShooterMaps/) | Implementation of ShooterCore     |
+| TopDownArena                  | *(will probably skip this)*       |
 
 Bug fixes:
 
@@ -106,17 +117,6 @@ Bug fixes:
 Works in progress:
 
 - [How to: Customize the Lyra FrontEnd](./How-To-Customize-Lyra-FrontEnd) *(incomplete; coming eventually)*
-
-
-# Module Dissections
-
-In an effort to understand the material Epic has provided us to start with, I am dissecting the GameFeature plugins they shipped to understand what they do, how they're similar and how they differ from one another.
-
-| Module                        | Description                       |
-|-------------------------------|-----------------------------------|
-| [ShooterCore](./ShooterCore/) | Base framework for a shooter game |
-| [ShooterMaps](./ShooterMaps/) | Implementation of ShooterCore     |
-| TopDownArena                  | *(coming eventually)*             |
 
 
 # References
