@@ -17,6 +17,7 @@ To understand Lyra, you also need an understanding of these UE5 plugins:
 - [Common UI](/UE5/CommonUI/) + CommonGame
 - Enhanced Input System [(Epic Tutorial)](https://dev.epicgames.com/community/learning/tutorials/eD13/unreal-engine-enhanced-input-in-ue5)
 - [Gameplay Ability System](/UE5/GameplayAbilitySystem/)
+  - Gameplay Attributes and Gameplay Effects ([Epic Documentation](https://docs.unrealengine.com/5.0/en-US/gameplay-attributes-and-gameplay-effects-for-the-gameplay-ability-system-in-unreal-engine/))
 - [GameFeature Plugins](/UE5/GameFeatures/)
 - [`ModularGameplay` Plugin](/UE5/ModularGameplay/)
 
