@@ -220,11 +220,13 @@ down to `1` HP, it fully regenerates in 5 seconds.
 
 You have a HUGE amount of control over how these calculations are done and what the resulting
 values are.  To exercise this control, you must learn GAS, in particular:
-Gameplay Attributes and Gameplay Effects.
 
 Gameplay Attributes are what defines the actor's health (or shields, or mana, or whatever),
 and Gameplay Effects are how you modify those values during game play.
 
-In reality, Attributes can contain **way more info** than just the health.
+- [Attributes and Attribute Sets](https://docs.unrealengine.com/5.0/en-US/gameplay-attributes-and-attribute-sets-for-the-gameplay-ability-system-in-unreal-engine/) (Epic Documentation)
+- [Attributes and Gameplay Effects](https://docs.unrealengine.com/5.0/en-US/gameplay-attributes-and-gameplay-effects-for-the-gameplay-ability-system-in-unreal-engine/) (Epic Documentation)
+
+Attributes can contain **way more info** than just the health.
 
 Making something "be alive" is only the beginning.  `:-)`
