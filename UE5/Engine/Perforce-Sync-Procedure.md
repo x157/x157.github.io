@@ -76,6 +76,12 @@ $YYYYMMDD = "20221031"  # Set timestamp for snapshot
 # this branch is an exact mirror of Perforce snapshots whenever I take a snapshot
 git checkout lyra-51-epic
 
+################################################################################
+###
+###  BEFORE YOU DO THIS, BACK UP ANY FILES YOU DO NOT WANT TO LOSE
+###
+################################################################################
+
 # remove ALL FILES NOT TRACKED by this branch
 git clean -xfd
 
