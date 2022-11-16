@@ -18,6 +18,20 @@ You can follow the same procedure, but you will get your source from:
 - Lyra source from a new blank `LyraStarterGame` project you create for your Engine
 
 
+## Overview
+
+- Get the latest Engine source from Epic
+- Recompile Engine
+- Merge the latest Lyra source from Epic into XistGame
+  - Into the "track Epic Source **exactly**" branch
+    - Into the "Xist's hacks on official Lyra" branch
+      - Into XistGame branch
+- Recompile XistGame with the latest Lyra 5.1 on the latest Engine 5.1
+
+Now you get to go see all the new stuff, and all the newly broken stuff!  C'est la Dev!  `:-)`
+
+
+
 ## Repository Setup
 
 For a detailed description of these branches, see
@@ -31,9 +45,14 @@ To follow along in the `Powershell` code, these are the branches and what they m
 | `lyra-51-xist`          | Lyra Hacks | The hacks Xist is **forced** to make to Lyra C++ (exports, etc) |
 | `xai-dev`               | Game       | My GFPs (Game `XAI` building on my plugin `XCL`)                |
 
+### Note Regarding `lyra-51-epic`
 
-Note: `UE5/Release-5.1/Samples/Games/Lyra` is the same thing as a brand new
-empty `LyraStarterGame` project created in the Launcher.
+The directory `UE5/Release-5.1/Samples/Games/Lyra` in Epic's Perforce is the
+source directory for the `LyraStarterGame` project in the Epic Games Launcher.
+
+If you do not have access to Perforce (e.g. if you get your Engine from GitHub),
+then use the `LyraStarterGame` distributed by the Launcher.  It will update from
+time to time with a new version.
 
 
 # Get Engine Source
@@ -157,24 +176,10 @@ git push origin xai-dev
 # Build Game
 
 - Clean Unreal Project & Generate Project Files
-  - Run `CleanUnrealProject.bat`
+  - Run `UnrealProjectClean.ps1`
     - *This is a Xist Build Tool that I should maybe document and/or maybe release publicly...*
-- Rider `LyraXist.uproject`
-  - Build `LyraXist` Project
+- Rider `Lyra.uproject`
+  - Build `Lyra` Project
     - Target = `DebugGame Editor`
 
-
-# Success!
-
-You've just:
-
-- Pulled latest `5.1-Release` Stream from Epic P4
-- Recompiled Engine using this source
-- Merged the latest Lyra 5.1 source from Epic P4 into LyraXist Git
-  - Into the "track Epic P4 *exactly*" branch
-    - Into the "Xist's hacks on official Lyra" branch
-      - Into Xist Game branch
-- Recompiled Xist Game with the latest Lyra 5.1 on the latest Engine 5.1
-
-Now you get to go see all the new stuff, and all the newly broken stuff!  C'est la Dev!  `:-)`
-
+  
