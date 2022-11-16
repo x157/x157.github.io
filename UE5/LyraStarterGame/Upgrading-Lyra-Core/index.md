@@ -115,7 +115,7 @@ When you do need to change Lyra itself, that is what the `lyra-51-xist` branch i
 <a id='CommitLyraCPPtoLyra51Xist'></a>
 ## Commit Lyra C++ Changes to `lyra-51-xist`
 
-Ordinarily you're working in your `xist-game` dev branch, or some branch based on that.
+Ordinarily you will be working in your `xist-game` dev branch, or some branch based on that.
 
 When you find that you need to change **Lyra C++ itself**, such as a `LYRAGAME_API`,
 go ahead and make the change, but **DO NOT COMMIT** the change to your dev branch.
@@ -127,5 +127,4 @@ Then, merge `lyra-51-xist`
 into your feature branch `xist-game`
 so that your feature branch also gets the updated Lyra code.
 
-
-### 
+Finally, go back to the `xist-game` branch and continue developing.
