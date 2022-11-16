@@ -18,7 +18,9 @@ etc.
 
 - Update your Engine
 - Update `LyraStarterGame`
-- Merge new Lyra into Existing Project
+- Update `lyra-51-epic` to be a new blank `LyraStarterGame` project based on the new engine
+  - Merge `lyra-51-epic` into `lyra-51-xist`
+    - Merge `lyra-51-xist` into `xist-game`
 
 I fully documented the exact commands I'm running in my
 [Perforce Sync Procedure](/UE5/Engine/Perforce-Sync-Procedure),
