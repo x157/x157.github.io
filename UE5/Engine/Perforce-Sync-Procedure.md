@@ -5,41 +5,50 @@ breadcrumb_path: "UE5/Engine"
 breadcrumb_name: "Perforce Sync Procedure"
 ---
 
-# Maintaining a UE 5.1-Release Perforce Stream Subscription
+# Perforce Sync Procedure
 
-If you pay for a custom UE license (not the free one; the custom one requires signing a mDNA),
-one of the nice benefits you receive is access to Epic's internal Perforce server.
+This is how I keep my Lyra source updated with Epic's changes.  When they update the Engine
+and Lyra, it's very easy for me to use their updates via this procedure.
 
-I am using this for example to see the changes on the `5.1-Release` branch months before it is
-actually available for release.
+Note: I get my Engine & Lyra source from Perforce, via UDN.
 
-Because `5.1-Release` is currently under active development, every day there are many changes
-to the Perforce stream.
+You can follow the same procedure, but you will get your source from:
 
-I don't want to have to merge stuff *too* often, but at the same time it is nice to get regular
-updates.  Following is my procedure for syncing code from Epic into my own Git repo.
+- Engine source from GitHub
+- Lyra source from a new blank `LyraStarterGame` project you create for your Engine
+
+
+## Repository Setup
+
+For a detailed description of these branches, see
+[Upgrading Lyra Core](/UE5/LyraStarterGame/Upgrading-Lyra-Core/#RepositorySetup).
 
 To follow along in the `Powershell` code, these are the branches and what they mean:
 
 | Branch                  | Type       | Description                                                     |
 |-------------------------|------------|-----------------------------------------------------------------|
 | `lyra-51-epic`          | Mirror     | Mirror of Epic's Perforce: `UE5/Release-5.1/Samples/Games/Lyra` |
-| `lyra-51-epic.YYYYMMDD` | Snapshot   | Snapshot of `lyra-51-epic` on any given sync day                |
 | `lyra-51-xist`          | Lyra Hacks | The hacks Xist is **forced** to make to Lyra C++ (exports, etc) |
 | `xai-dev`               | Game       | My GFPs (Game `XAI` building on my plugin `XCL`)                |
 
 
-# Sync from Epic P4
+Note: `UE5/Release-5.1/Samples/Games/Lyra` is the same thing as a brand new
+empty `LyraStarterGame` project created in the Launcher.
+
+
+# Get Engine Source
 
 - P4V "Get Latest Revision" for workspace
-  - to `D:/U_XistGG/UE5/Release-5.1`
+  - to `F:/U_XistGG/UE5/Release-5.1`
+
+(Or GitHub pull)
 
 
 # Build Engine
 
 - *(Optional)* Copy `Developer` Plugins into Engine
   - e.g. `RiderLink`, etc
-- Run `GenerateProjectFiles.bat` in `D:/U_XistGG/UE5/Release-5.1`
+- Run `GenerateProjectFiles.bat` in `F:/U_XistGG/UE5/Release-5.1`
 - Visual Studio `UE5.sln`
   - Build `UE5` Project
     - Target = `DebugGame Editor`
@@ -56,12 +65,12 @@ To follow along in the `Powershell` code, these are the branches and what they m
 If your computer melts after you copy/paste this, you'll know you've messed up.
 
 ```powershell
-cd "D:/Dev/Lyra-51"  # wherever your game source is
+cd "F:/Dev/Lyra-51"  # wherever your game source is
 
-$P4SourceDir = "D:/U_XistGG/UE5/Release-5.1"
+$P4SourceDir = "F:/U_XistGG/UE5/Release-5.1"
 $LyraSourceDir = "$P4SourceDir/Samples/Games/Lyra"
 
-$YYYYMMDD = "20221001"  # Set timestamp for snapshot
+$YYYYMMDD = "20221031"  # Set timestamp for snapshot
 
 # select my official epic Lyra 5.1 Dev branch
 # this branch is an exact mirror of Perforce snapshots whenever I take a snapshot
@@ -106,7 +115,7 @@ git commit -m "Import Lyra Release-5.1 Stream $YYYYMMDD"
 git tag -a lyra-51-epic.$YYYYMMDD -m "Lyra Release-5.1 snapshot $YYYYMMDD"
 git push origin lyra-51-epic.$YYYYMMDD
 
-# push lyra-epic-51-dev to server
+# push lyra-51-epic to server
 git push origin lyra-51-epic
 
 # checkout my modified version of Lyra branch
