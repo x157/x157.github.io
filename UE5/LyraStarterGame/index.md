@@ -51,6 +51,13 @@ The entire namespace of the base game should be considered to be reserved by Lyr
 
 At the very least you need to create one GFP for your Content.
 
+## Upgrading Lyra Core
+
+Epic will sometimes upgrade the Engine and/or Lyra Core.
+
+[Upgrading Lyra Core](./Upgrading-Lyra-Core/)
+discusses how I try to make this process as easy on myself as possible.
+
 
 ## Player Input
 
