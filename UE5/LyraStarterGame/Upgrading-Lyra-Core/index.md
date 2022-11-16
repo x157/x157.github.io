@@ -13,7 +13,16 @@ sometimes because the Engine itself is updated and
 changes are needed to this code to keep it functional,
 etc.
 
+- [Procedure: How to Update Lyra Core](#Procedure)
+- [Repository Setup](#RepositorySetup)
+  - [What goes into `lyra-51-epic`](#AboutLyra51Epic)
+  - [What goes into `lyra-51-xist`](#AboutLyra51Xist)
+  - [What goes into `xist-game`](#AboutXistGame)
+- [Making Changes to Lyra C++](#MakingChangesToLyraCPP)
+  - [Commit Lyra C++ Changes to `lyra-51-xist`](#CommitLyraCPPtoLyra51Xist)
 
+
+<a id='Procedure'></a>
 ## Procedure: How to Update Lyra Core
 
 - Update your Engine
@@ -40,6 +49,7 @@ project repository:
 You can of course name these however you like.  This is my convention as of UE 5.1.
 
 
+<a id='AboutLyra51Epic'></a>
 ## What goes into `lyra-51-epic`
 
 This branch always represents the latest version of a BLANK `LyraStarterGame` project, with
@@ -61,6 +71,7 @@ then creating a new empty `LyraStarterGame` project on top of your project direc
 all files that should be removed are removed in addition to adding/updating any existing files.
 
 
+<a id='AboutLyra51Xist'></a>
 ## What goes into `lyra-51-xist`
 
 This branch contains the base Lyra from Epic `lyra-51-epic` and adds all of the things that
@@ -79,6 +90,7 @@ that you make here.
 Less changes here is easier to maintain.  Too many changes here can turn into a nightmare.
 
 
+<a id='AboutXistGame'></a>
 ## What goes into `xist-game`
 
 This is your game. 99.9999% of the time, this is the base branch you are working on.
@@ -91,3 +103,29 @@ The dev, feature and virtually all other branches should be based on this.
 This is the version of Lyra that you're currently using, with all of your hacks and
 configuration changes applied, and your game plugins and GFPs.
 
+
+<a id='MakingChangesToLyraCPP'></a>
+# Making Changes to Lyra C++
+
+Sometimes it is **absolutely necessary** to make changes to Lyra C++ code.
+
+When you do need to change Lyra itself, that is what the `lyra-51-xist` branch is for.
+
+
+<a id='CommitLyraCPPtoLyra51Xist'></a>
+## Commit Lyra C++ Changes to `lyra-51-xist`
+
+Ordinarily you're working in your `xist-game` dev branch, or some branch based on that.
+
+When you find that you need to change **Lyra C++ itself**, such as a `LYRAGAME_API`,
+go ahead and make the change, but **DO NOT COMMIT** the change to your dev branch.
+
+When you are happy with your *(hopefully very minimal)* edits,
+**commit them to the `lyra-51-xist` branch**.
+
+Then, merge `lyra-51-xist`
+into your feature branch `xist-game`
+so that your feature branch also gets the updated Lyra code.
+
+
+### 
