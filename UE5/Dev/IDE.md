@@ -48,7 +48,7 @@ If you use this, it replaces VS as the IDE.  Under the hood it uses VS build too
 You will also need to have VS installed in order to use Rider.
 
 - [Install JetBrains Toolbox](https://www.jetbrains.com/toolbox-app/)
-- **Install Rider 2022.1.2** *(via Toolbox)*
+- **Install Rider 2022.3 EAP** *(via Toolbox)*
     - Options:
         - [YES] Create native images of Rider assemblies with Ngen.exe
         - [YES] Install JetBrains ETW Host Service
@@ -58,6 +58,5 @@ You will also need to have VS installed in order to use Rider.
         - Featured plugins:
             - Install `Heap Allocations Viewer`
     - Version notes:
-        - 2022.2.3 is bugged for UE Dev, seizes often
-        - 2022.3 EAPx may also be bugged, UHT integration was broken for me (EAP4)
-
+        - If 2022.3 EAP crashes, use **2022.1.2** which is known to be stable
+        - 2022.2.3 crashes, do not use it
