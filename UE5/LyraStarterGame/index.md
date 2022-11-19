@@ -11,18 +11,18 @@ breadcrumb_name: "LyraStarterGame"
 Don't start from scratch!  Start from Lyra.
 
 Epic suggests that you **start your new game based on Lyra**.
+They say the intent is for us to think of Lyra like engine code.
+That is, use it as a base and build our new games on top of it.
 
-Michael Noland, an architect of Lyra, says the intent is for us to think of Lyra like engine code.
-That is, use it as a base, try to **not modify it** as much as possible, and build our new games on top of it.
-
-The cost to us is simply to learn how they've put things together, and how to extend the framework
-Epic has given us.
+The cost to us is simply to learn how they configured the game
+and how to extend the framework they have built.
 
 [Pros and Cons](./Pros-and-Cons) discusses why you may or may not want to use Lyra yourself.
 There are legitimate reasons both to use and to not use Lyra depending on your circumstances.
 
-There are multiple viable ways to base your game on Lyra.  Several viable options,
-including my preferred option, are documented here:
+There are multiple viable ways to base your game on Lyra.
+Some options are discussed here:
+
 [Extending Lyra: Development Considerations](./Development-Considerations)
 
 
