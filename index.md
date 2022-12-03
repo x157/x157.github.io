@@ -2,12 +2,6 @@
 is_site_index: true
 ---
 
-# New Devs Start Here
-
-Want to be a better UE5 C++ Dev?
-My thoughts on
-[Development in UE5](/UE5/Dev/).
-
 # UE5 Lyra Starter Game
 
 My primary focus at the moment: [Developing a Game with UE5 LyraStarterGame](./UE5/LyraStarterGame/)
@@ -19,6 +13,10 @@ This led me to study these related, relevant [UE5](./UE5/) topics:
 - [Gameplay Ability System](/UE5/GameplayAbilitySystem/)
 - [GameFeature Plugins](/UE5/GameFeatures/)
 - [`ModularGameplay` Plugin](/UE5/ModularGameplay/)
+
+Want to be a better UE5 C++ Dev?
+My thoughts on
+[Development in UE5](/UE5/Dev/).
 
 
 # About Me
