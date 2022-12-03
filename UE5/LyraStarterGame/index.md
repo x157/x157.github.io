@@ -81,24 +81,29 @@ Common UI "owns" player input
 
 ## Lyra Gameplay Systems
 
-[Health and Damage System](./Health-and-Damage/) (implemented via GAS Attributes + Effects)
-answers questions like:
+[Lyra Experience](./Experience/)
+  - Custom Game Mode that implements runtime async loading of Game Feature Plugins (GFPs)
+    - Runtime component injection activates GFP features
 
-  - How do I give an actor/pawn health?
-  - How to I heal, damage and kill an actor/pawn?
+
+[Health and Damage System](./Health-and-Damage/)
+  - Implemented via Gameplay Ability System Attributes & Effects
 
 
 ## Lyra Prototype Systems
 
-- [Interaction System](./Interactions/)
-    - Epic's prototype interaction system
-    - Not ready for you to use yourself, but a great resource to teach you to build your own Interaction System
-- [Inventory System](./Inventory/)
-    - The base system of items that can be stored in a Pawn's inventory
-- [Equipment System](./Equipment/)
-    - Inventory extension: Inventory Items that are pieces of equipment usable by Pawns
-- [Weapon System](./Weapons/)
-    - Equipment extension: Equipment Items that are weapons usable by Pawns
+[Interaction System](./Interactions/)
+  - Epic's prototype interaction system
+  - Not ready for you to use yourself, but a great resource to teach you to build your own Interaction System
+
+[Inventory System](./Inventory/)
+  - The base system of items that can be stored in a Pawn's inventory
+
+[Equipment System](./Equipment/)
+  - Inventory extension: Inventory Items that are pieces of equipment usable by Pawns
+
+[Weapon System](./Weapons/)
+  - Equipment extension: Equipment Items that are weapons usable by Pawns
 
 
 
