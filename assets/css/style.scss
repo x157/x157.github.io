@@ -39,7 +39,7 @@
 }
 
 .highlight .gi {
-  color: #90a959
+  color: #99dd99
 }
 
 .highlight .gd {
@@ -60,7 +60,7 @@
 }
 
 .highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
-  color: #90a959
+  color: #99dd99
 }
 
 .highlight .sr {
@@ -231,7 +231,6 @@ pre {
   padding: 10px;
   font-size: 16px;
   tab-size: 4;
-  color: #00cc00;
   border-radius: 2px;
   word-wrap: normal;
   overflow: auto;
@@ -258,13 +257,18 @@ h6 code, h6 code.highlighter-rouge {
 }
 
 code.highlighter-rouge {
-  color: #bbffbb;
+  color: #99dd99;
   background: rgba(60, 60, 60, 0.8);
 }
 
 code {
-  padding: 0.15em;
-  margin: 0.1em;
+  padding: .1em;
+  margin: 0;
+}
+
+a code {
+  padding: 0;
+  margin: 0;
 }
 
 table {
@@ -328,13 +332,24 @@ hr {
   background: url("../images/blacktocat.png") 0 0 no-repeat
 }
 
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #cccc00;
+}
+
 a {
-  color: #ffc0ff;
-  text-shadow: 0 0 5px rgba(154, 20, 204, 0.5)
+  color: #ddaadd;
+  text-decoration: underline;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
 }
 
 a code, a code.highlighter-rouge {
-  color: #ffc0ff;
+  color: #ddaadd;
+  font-size: 1.1em;
 }
 
 .cf:before, .cf:after {
