@@ -7,9 +7,8 @@ breadcrumb_name: "Game Phase Subsystem"
 
 # Lyra Game Phase Subsystem
 
-*Copy/Paste from C++ comments:*
-
-Subsystem for managing Lyra's game phases using gameplay tags in a nested manner, which allows parent and child
+The Lyra Game Phase Subsystem manages
+Lyra's game phases using Gameplay Tags in a nested manner, which allows parent and child
 phases to be active at the same time, but not sibling phases.
 
 Example: `Game.Playing` and `Game.Playing.WarmUp` can coexist,
@@ -19,6 +18,8 @@ When a new phase is started, any active phases that are not ancestors will be en
 
 Example: if `Game.Playing` and `Game.Playing.CaptureTheFlag` are active when `Game.Playing.PostGame` is started,
 `Game.Playing` will remain active, while `Game.Playing.CaptureTheFlag` will end.
+
+*Above description courtesy of excellent C++ comments.*
 
 
 ### Debugging Tips
