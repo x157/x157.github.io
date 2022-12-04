@@ -85,6 +85,8 @@ Common UI "owns" player input
   - Custom Game Mode that implements runtime async loading of Game Feature Plugins (GFPs)
     - Runtime component injection activates GFP features
 
+[Lyra Game Phase Subsystem](./GamePhaseSubsystem/)
+  - Once the Lyra Experience has loaded, this Subsystem allows the game to transition between different Game Phases
 
 [Health and Damage System](./Health-and-Damage/)
   - Implemented via Gameplay Ability System Attributes & Effects
