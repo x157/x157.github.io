@@ -45,6 +45,7 @@ each time you have an epiphany.
 
 ## Official Tutorials from Epic
 
+- [BeginPlay - Introduction to some interesting Unreal Engine features](https://dev.epicgames.com/community/learning/paths/0w/unreal-engine-beginplay)
 - [Introduction to C++ Programming in UE4](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/IntroductionToCPP/)
 - [C++ Programming Tutorials](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/CPPTutorials/)
 - [Unreal Architecture](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/)
