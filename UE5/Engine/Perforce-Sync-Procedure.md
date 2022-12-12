@@ -84,12 +84,12 @@ time to time with a new version.
 If your computer melts after you copy/paste this, you'll know you've messed up.
 
 ```powershell
-cd "F:/Dev/Lyra-51"  # wherever your game source is
+cd "D:/Dev/Lyra-51"  # game project dir
 
-$P4SourceDir = "F:/U_XistGG/UE5/Release-5.1"
-$LyraSourceDir = "$P4SourceDir/Samples/Games/Lyra"
+$EngineSourceDir = "D:/U_XistGG/UE5/Release-5.1" # engine source dir
+$LyraSourceDir = "$EngineSourceDir/Samples/Games/Lyra"
 
-$YYYYMMDD = "20221031"  # Set timestamp for snapshot
+$YYYYMMDD = Get-Date -Format "yyyyMMdd"  # Set timestamp for snapshot
 
 # select my official epic Lyra 5.1 Dev branch
 # this branch is an exact mirror of Perforce snapshots whenever I take a snapshot
@@ -100,9 +100,6 @@ git checkout lyra-51-epic
 ###  BEFORE YOU DO THIS, BACK UP ANY FILES YOU DO NOT WANT TO LOSE
 ###
 ################################################################################
-
-# remove ALL FILES NOT TRACKED by this branch
-git clean -xfd
 
 # Remove EVERYTHING except Git itself
 $RemoveItems = Get-ChildItem -exclude .git, .gitattributes, .gitignore
@@ -117,7 +114,7 @@ foreach ($Item in $P4Items) {
 }
 
 # Clear read-only bit on copied Config files
-$Configs = Get-ChildItem .\Config\ -ReadOnly -Recurse
+$Configs = Get-ChildItem ./Config -ReadOnly -Recurse
 $Configs | Set-ItemProperty -name IsReadOnly -value $false
 
 # See if anything changed in Lyra
