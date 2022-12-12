@@ -63,8 +63,9 @@ discusses how I try to make this process as easy on myself as possible.
 
 Common UI "owns" player input
 
-  - [High Level Overview of Common UI in General](/UE5/CommonUI/)
+  - [Lyra Input Overview](./Input/)
   - [How Common UI is Setup in Lyra](./CommonUI/)
+  - [High Level Overview of Common UI in General](/UE5/CommonUI/)
 
 
 ## Gameplay Ability System (GAS)
@@ -80,6 +81,9 @@ Common UI "owns" player input
     - [Target Dummy Actor Full C++ Example](https://github.com/x157/Lyra-ActorWithAbilities) (Github)
 
 ## Lyra Gameplay Systems
+
+[Lyra Plugins](./Plugins/) - About the Plugins Epic distributes via the Lyra project
+  - Examples: `CommonGame`, `CommonUser`, `GameplayMessageRouter`, `ModularGameplayActors`, ...
 
 [Lyra Experience](./Experience/)
   - Custom Game Mode that implements runtime async loading of Game Feature Plugins (GFPs)
