@@ -5,10 +5,19 @@ breadcrumb_path: "UE5"
 breadcrumb_name: "Modular Gameplay"
 ---
 
-# UE5 `ModularGameplay` Plugin
+# UE5 `Modular Gameplay` Plugin
 
-The `ModularGameplay` Plugin is what allows `Lyra` (and your project!) to inject components into actors
-at runtime.  This gives the game support for `GameFeature` Plugins.
+A `Modular Gameplay` Plugin is a plugin whose base classes implement the `Modular Gameplay` pattern,
+which allows [Lyra](/UE5/LyraStarterGame/) (and your project!)
+to inject components into actors at runtime.
+This pattern gives the game support for `GameFeature` Plugins.
+
+The `ModularGameplayActors` Plugin is a specific implementation of `Modular Gameplay`
+distributed in Lyra.
+
+You can either (like [LyraStarterGame](/UE5/LyraStarterGame/))
+actually base your classes on the `ModularGameplayActors` classes,
+or you can implement the same patterns in your own existing base classes.
 
 
 <a id="GameFrameworkComponentManager"></a>
@@ -44,7 +53,7 @@ or has finally failed initialization.
 
 ## Implementation in Lyra 5.1: Pawn Extension
 
-To implement the `ModularGameplay` Plugin, take a look at Lyra as an example.
+To implement the `Modular Gameplay` Plugin, take a look at Lyra as an example.
 Lyra implements this module by:
 
 - Defines the `ULyraPawnExtensionComponent` that drives `IGameFrameworkInitStateInterface`
