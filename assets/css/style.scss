@@ -352,6 +352,10 @@ a code, a code.highlighter-rouge {
   font-size: 1.1em;
 }
 
+a code:hover, a code.highlighter-rouge:hover {
+  color: #cccc00;
+}
+
 .cf:before, .cf:after {
   content: "";
   display: table
