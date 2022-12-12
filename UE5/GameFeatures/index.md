@@ -13,24 +13,24 @@ A `GameFeature` Plugin is more like a *Mod* than like a traditional plugin.
 Where a regular `Plugin` cannot access base game code,
 a `GameFeature` plugin **CAN**.
 
-Implementing the `ModulerGameplay` pattern in your game allows you to ship a basic game
+Implementing the [`Modular Gameplay`](/UE5/ModularGameplay/)
+pattern in your game allows you to ship a basic game
 that can choose **IF** and **WHEN**
 to load custom `GameFeature` components at runtime.
 
 Basing your `APlayerState`, `APlayerController`, `ACharacter`
-and other classes on their respective `ModularGameplay` implementations
+and other classes on their respective `Modular Gameplay` implementations
 is required to get this to work.
 
-(You can implement the `ModularGameplay` patterns yourself
-into your existing code if you prefer to avoid a rebase onto `ModularGameplay` itself.)
+(You can implement the [`Modular Gameplay`](/UE5/ModularGameplay/) patterns yourself
+into your existing code if you prefer to avoid a rebase onto
+the default `ModularGameplayActors` implementation.)
 
 
 ## LyraStarterGame Example
 
 In LyraStarterGame, `ALyraPlayerState`, `ALyraPlayerController`, `ALyraCharacter`
-and more are all based on the `ModularGameplay` plugin.
-
-Take a look to see how it was done.
+and more are all based on the `ModularGameplayActors` plugin.
 
 At runtime, the game knows all of the `GameFeature` plugins that are available, but
 **it does not load or activate these plugins unless/until the game explicitly chooses to do so**.
@@ -42,7 +42,7 @@ and all of its runtime-loaded code/assets enabled.
 
 ### There is a default "Runtime" suffix that you can remove
 
-By default when you create a `GameFeature` plugin in the UE5 editor, it will force
+By default, when you create a `GameFeature` plugin in the UE5 editor, it will force
 some parts of your `XistGame` project to use the name `XistGameRuntime` instead.
 
 I asked for: `XistGame`
@@ -55,5 +55,3 @@ Follow this procedure:
 [How to: Remove "Runtime" Suffix from GameFeature Plugin Code Names](./How-To-Remove-GameFeature-Runtime-Code-Suffix)
 
 Now what I have is: `XistGame` (always `XistGame` and `XISTGAME_API`)
-
-

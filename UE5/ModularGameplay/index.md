@@ -5,14 +5,16 @@ breadcrumb_path: "UE5"
 breadcrumb_name: "Modular Gameplay"
 ---
 
-# UE5 `Modular Gameplay` Plugin
+# `Modular Gameplay` Plugin Overview
 
 A `Modular Gameplay` Plugin is a plugin whose base classes implement the `Modular Gameplay` pattern,
 which allows [Lyra](/UE5/LyraStarterGame/) (and your project!)
 to inject components into actors at runtime.
-This pattern gives the game support for `GameFeature` Plugins.
 
-The `ModularGameplayActors` Plugin is a specific implementation of `Modular Gameplay`
+This pattern gives the game support for
+[`GameFeature` Plugins](/UE5/GameFeatures/).
+
+The `ModularGameplayActors` Plugin is a specific implementation of `Modular Gameplay`,
 distributed in Lyra.
 
 You can either (like [LyraStarterGame](/UE5/LyraStarterGame/))
