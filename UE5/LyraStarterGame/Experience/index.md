@@ -79,14 +79,18 @@ This is a Const Data Asset.  It literally defines a given experience.
 <a id='LyraGameMode'></a>
 ## Lyra Game Mode
 
-- Restart all players on `OnExperienceLoaded`
+- `ALyraGameMode` is set up to use a `ALyraGameState`
 - Lots of player start related logic
+  - Delays initial player spawn until `OnExperienceLoaded`
 
 
 <a id='LyraGameState'></a>
 ## Lyra Game State
 
-Includes components:
+The Lyra Game State is key to the functionality of Lyra Experiences.
+
+The Lyra Game State itself is relatively simple, but it does initialize
+and activate two very important components that enable Experiences:
 
 - Ability System Component
 - Lyra Experience Manager Component
@@ -95,7 +99,8 @@ Includes components:
 <a id='LyraExperienceManagerComponent'></a>
 ### Lyra Experience Manager Component
 
-- Manages loading of experiences
+The `ULyraExperienceManagerComponent`
+does the heavy lifting related to loading and activating experiences.
 
 <a id='ExperienceLoadingProcedure'></a>
 #### Experience Loading Procedure
@@ -127,3 +132,4 @@ Includes components:
 
 - Generally you'll need to make a BP version of this to configure the menu widgets
   - Inject this component into the Game State in your Experience Definition to activate the Lyra FrontEnd experience
+- This can be used as an example component that loads an experience even if you do not want to use Lyra's FrontEnd
