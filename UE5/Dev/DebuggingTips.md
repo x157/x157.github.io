@@ -146,12 +146,9 @@ time  Log:     LogXCL: [PIE:Server] UXCLInteractTask_MoveTo::Activate:75        
 You can immediately tell exactly which module, function and line number created every log message.
 
 **When looking at the UE log in Rider, you can even click for example on
-`UXCLGameplayAbilityBase`::`ActrivateAbility`:`34` to open
-the `XCLGameplayAbilityBase.h` header file at the `ActivateAbility` declaration.
+`UXCLGameplayAbilityBase` in the log to open
+the `XCLGameplayAbilityBase.h` header file.
 It is literally point and click.**
-
-If you want to dig even deeper, you can then click on the declaration to go into the
-function definition itself, and then just look at line `34` which wrote the log message.
 
 Here is an explanation of the columns in the log:
 
@@ -171,13 +168,20 @@ like `Actor`, `Object`, `GameplayAbility`, `AbilityTask`, etc.
 Inside any `GameplayAbility` for example, I just log like this;
 
 ```c++
-XIST_GALOG(TEXT("Committing ability"));  // XIST_GALOG: Xist GA Log (this == GameplayAbility)
+XIST_GALOG(TEXT("Committing ability"));
 ```
 
-This will create a log message like the `Committing ability` log message that you see in the
-example above, where the name of the Task and the name of its owning Ability are both included
-in the log message with the `__FUNCTION__` and `__LINE__` information.
+The resulting log message from the above code looks like:
 
+```
+time Log: LogXCL: [Context] Class::Function:Line [OwnerName]->[ThisName] Committing ability
+```
+
+Example raw log:
+
+```
+2022-10-11 14:23:57.235 Log: LogXCL: [PIE:Server] UXCLGameplayAbilityBase::CommitAbility:136 [B_XAI_Bot_Humanoid_C_0]->[GA_XAI_Pickup_C_0] Committing ability
+```
 
 ### An example C++ Macro
 
@@ -218,5 +222,7 @@ the macro.
 
 You can also define levels of logging that do not get shipped.  For example if you
 want to optimize a game you need to reduce the amount of logging, and so perhaps
-you totally compile out all `XIST_LOG_VERBOSE` macros and just have them not exist
+you totally compile out all
+`XIST_LOG_VERBOSE` and `XIST_LOG_VERY_VERBOSE`
+macros and just have them not exist
 at all in the shipped game.  It is very easy to do that with a setup like this.
