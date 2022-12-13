@@ -14,7 +14,9 @@ Another way is to export one or more of these modules to your existing project.
 
 ## `Async Mixin`
 
-TODO
+C++ utility class for managing asynchronous operations like loading.
+
+For more info, see the comments in the C++ header `AsyncMixin.h`.
 
 ## `Common Game`
 
@@ -36,7 +38,9 @@ I haven't looked into this plugin much, but from what I can remember you can als
 
 ## `Common User`
 
-TODO
+Allows connectivity to OSS v1 and OSS v2.  Useful for multiplayer games.
+
+Provides `Common User Subsystem`, `Common Session Subsystem` and a `Common User Initialize` async action.
 
 ## `Gameplay Message Router`
 
@@ -65,15 +69,18 @@ meaning designers won't be able to expand upon it without engineering help.
 
 ## `Game Subtitles`
 
-TODO
+Provides `Subtitle Display Subsystem`
 
 ## `Lyra Example Content`
 
-TODO
+Content-only plugin with some Lyra assets.
 
 ## `Lyra Ext Tool`
 
-TODO
+Adds `EUW_MaterialTool`, an editor widget seemingly useful in the Lyra Material editor.
+
+Also adds a BP function `Change Mesh Materials`, which
+explicitly invokes `PostEditChange` when meshes change.
 
 ## `Modular Gameplay Actors`
 
