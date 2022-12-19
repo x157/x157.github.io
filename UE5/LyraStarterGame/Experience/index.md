@@ -29,7 +29,8 @@ to load and execute.
 
 ## Implementation Overview
 
-- [Lyra Experience Definition](#LyraExperienceDefinition)
+- [Primary Data Assets Comprising an Experience](#PrimaryDataAssets)
+  - [Lyra Experience Definition](#LyraExperienceDefinition)
   - [Lyra Experience Action Set](#LyraExperienceActionSet)
   - [Lyra Pawn Data](#LyraPawnData)
   - [Lyra Input Config](#LyraInputConfig)
@@ -39,7 +40,7 @@ to load and execute.
   - [Lyra Game Mode](#LyraGameMode)
   - [Lyra Game State](#LyraGameState)
     - [Lyra Experience Manager Component](#LyraExperienceManagerComponent)
-      - [Experience Loading Procedure](#ExperienceLoadingProcedure)
+      - [Experience Loading Procedure: `StartExperienceLoad`](#ExperienceLoadingProcedure)
   - [Lyra Experience Manager](#LyraExperienceManager) *(only relevant to PIE)*
 - [Lyra Frontend State Component](#LyraFrontendStateComponent)
 
@@ -49,7 +50,8 @@ to load and execute.
 - Enable `LogLyraExperience` logging
 
 
-# Primary Data Assets Configure an Experience
+<a id='PrimaryDataAssets'></a>
+# Primary Data Assets Comprising an Experience
 
 <a id='LyraExperienceDefinition'></a>
 ## Lyra Experience Definition
@@ -133,9 +135,11 @@ Configured as the World Settings class in `Config/DefaultEngine.ini`:
 Lyra Game Mode is the required base Game Mode providing Lyra Experience support.
 
 - Uses a [Lyra Game State](#LyraGameState)
-- Adds support for loading an Experience on PIE start
-- Lots of player start related logic
-  - Delay initial player spawn until `OnExperienceLoaded`
+- In `Init Game`:
+  - On Server, call `ServerSetCurrentExperience` via `OnMatchAssignmentGiven`
+- Adds support for loading an Experience on PIE start by simulating a match assignment
+- Delay initial player spawn until `OnExperienceLoaded`
+  - Lots of other player start related logic
 
 
 <a id='LyraGameState'></a>
@@ -158,8 +162,15 @@ does the heavy lifting related to loading and activating experiences.
 
 
 <a id='ExperienceLoadingProcedure'></a>
-#### Experience Loading Procedure
+#### Experience Loading Procedure: `StartExperienceLoad`
+
+On the server and on all clients, `StartExperienceLoad` must be called
+*(explicitly on the server and via replication on the clients)*,
+which begins this process:
+
 - Set state = `Loading`
+
+##### State: Loading
 - Async Load assets via `ULyraAssetManager`
     - Primary Experience Asset ID
     - Experience Action Sets
@@ -169,9 +180,13 @@ does the heavy lifting related to loading and activating experiences.
     - Async Load and Activate each required GFP
 - After all GFPs finish loading:
     - Set state = `ExecutingActions`
-    - Execute all `UGameFeatureActions` defined by the experience and its action sets
-    - Set state = `Loaded`
-    - Broadcast `OnExperienceLoaded`
+
+##### State: Executing Actions
+- Execute all `UGameFeatureActions` defined by the experience and its action sets
+- Set state = `Loaded`
+
+##### State: Loaded
+- Broadcast `OnExperienceLoaded`
 
 
 <a id='LyraExperienceManager'></a>
