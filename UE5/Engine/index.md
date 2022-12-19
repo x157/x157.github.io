@@ -125,7 +125,7 @@ Dev
 
 In this way, your `XistGame` project will share the same parent directory as the UE5 `Engine` directory.
 
-Though it is not strictly required to put your project into this hierarchy, it does make it easier
+Though it is **not** strictly required to put your project into this hierarchy, it does make it easier
 to automate work flows, for example.  You can very easily (as I have) automate build tools to
 auto-select the engine from the relative project location `../Engine/` which reduces configuration
 management overhead.
@@ -174,27 +174,3 @@ removes all of the `Setup.bat` downloaded files, so you end up with a truly-clea
 Then when you run `Setup.bat` it will download the appropriate version of those files for the
 branch you have selected, rather than a perhaps-completely-incompatible set of files for the
 old branch.
-
-
-## Windows: Install .NET v4.5 for VS 2022
-
-<tip>UE5 requires .NET v4.5 and will NOT work with v4.8</tip>
-
-<problem>
-YOU DO NOT WANT TO USE .NET v4.8.
-</problem>
-
-If you are using Visual Studio 2022, you will likely need to manually download
-and install .NET v4.5 framework, which is required by UE5 as of 5.0.3, but is
-no longer supported by Microsoft.
-
-[How to install .NET v4.5 on Windows](https://thomaslevesque.com/2021/11/12/building-a-project-that-target-net-45-in-visual-studio-2022/)
-
-You'll want to make sure .NET v4.5 is installed BEFORE you try to build the engine.
-You will know that you need this if Visual Studio 2022 gives you a warning that .NET v4.5
-is missing.  It will ask if you want to upgrade the project to use v4.8.
-
-If you try to compile with v4.8, it will compile mostly OK, and
-then your engine/game will crash a lot in places it has no business crashing.
-
-**UE5 requires .NET v4.5.** Install it via the methodology described at the above link.
