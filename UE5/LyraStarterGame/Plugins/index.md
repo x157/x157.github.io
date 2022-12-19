@@ -116,5 +116,6 @@ widget depending on the Experience.
 
 # Thanks!
 
-Special thanks to `Cade [EA Maxis]` on `benui`'s Discord
+Special thanks to `Cade [EA Maxis]` on
+[benui's Discord](https://discord.benui.ca/)
 who provided some excellent descriptions of many of these modules.
