@@ -158,7 +158,8 @@ and activate two very important components that enable Experiences:
 ### Lyra Experience Manager Component
 
 The `ULyraExperienceManagerComponent`
-does the heavy lifting related to loading and activating experiences.
+does the heavy lifting related to loading and unloading,
+activating and deactivating Experiences.
 
 
 <a id='ExperienceLoadingProcedure'></a>
