@@ -7,81 +7,135 @@ breadcrumb_name: "Experience"
 
 # Lyra Experience
 
-A Lyra Experience is a custom Game Mode that allows Game Feature Plugins (GFPs) to be loaded
-and activated at runtime.
+A Lyra Experience is a custom, configurable Game Mode/State.  Each level in a Lyra project
+can specify the `Default Lyra Experience` to load for that level via custom
+[World Settings](#LyraWorldSettings).
 
-Using the Experience system, your game can define drastically different Game Modes (Experiences)
-for your players, and at runtime only those GFPs that are needed at any given time
-will be loaded into memory.
+[Loading a Lyra Experience](#ExperienceLoadingProcedure)
+is asynchronous.  Content is expected to be placed into
+Game Feature Plugins
+([GFPs](/UE5/GameFeatures/))
+which are dynamically loaded only when actually needed.
+Your project is expected to use the `OnExperienceLoaded` event to initiate gameplay,
+it fires when the async loading completes.
 
-This also allows you to release content as optional or seasonal content packs, etc.
-
-In general, an Experience is a list of all of the GFPs that need to be loaded, the components
-that need to be injected into game objects and other related configurations.
+The [Experience Definition](#LyraExperienceDefinition)
+configures the default
+[Lyra Pawn Data](#LyraPawnData)
+and a list of [Experience Action Sets](#LyraExperienceActionSet)
+to load and execute.
+*(Runtime component injection, HUD widget extension, etc.)*
 
 
 ## Implementation Overview
 
 - [Lyra Experience Definition](#LyraExperienceDefinition)
-- [Lyra World Settings](#LyraWorldSettings)
-- [Lyra Game Mode](#LyraGameMode)
-- [Lyra Game State](#LyraGameState)
-  - [Lyra Experience Manager Component](#LyraExperienceManagerComponent)
-    - [Experience Loading Procedure](#ExperienceLoadingProcedure)
-- [Lyra Experience Manager](#LyraExperienceManager) *(only relevant to PIE)*
+  - [Lyra Experience Action Set](#LyraExperienceActionSet)
+  - [Lyra Pawn Data](#LyraPawnData)
+  - [Lyra Input Config](#LyraInputConfig)
+  - [Game Feature Action](#GameFeatureAction)
+- [Setting up Unreal Engine for Lyra Experience](#EngineSetup)
+  - [Lyra World Settings](#LyraWorldSettings)
+  - [Lyra Game Mode](#LyraGameMode)
+  - [Lyra Game State](#LyraGameState)
+    - [Lyra Experience Manager Component](#LyraExperienceManagerComponent)
+      - [Experience Loading Procedure](#ExperienceLoadingProcedure)
+  - [Lyra Experience Manager](#LyraExperienceManager) *(only relevant to PIE)*
 - [Lyra Frontend State Component](#LyraFrontendStateComponent)
 
 
-# How does it work?
-
-You must create a
-[Lyra Experience Definition](#LyraExperienceDefinition)
-Data Asset, for example named `EXP_XistGame`.
-
-To activate your Experience for a given level, in that level's World Settings, set:
-
-- Default Gameplay Experience = `EXP_XistGame` *(your Experience Definition Data Asset)*
-
-Lyra defines the default Game Mode to be `ULyraGameMode`, which is the required base
-Game Mode that supports Lyra Experiences.
-You'll need to ensure your project uses a default Game Mode based on this,
-or set an explicit override in the World Settings.
-
-
-### Debugging Tips
+### Debugging Tip
 
 - Enable `LogLyraExperience` logging
 
 
-# Aspects of the Lyra Experience System
-
+# Primary Data Assets Configure an Experience
 
 <a id='LyraExperienceDefinition'></a>
 ## Lyra Experience Definition
 
-This is a Const Data Asset.  It literally defines a given experience.
+« Primary Data Asset »
 
-- List of Game Features to Enable
-- Default Pawn Data
-- List of Game Feature Actions
-- List of Lyra Experience Action Sets
+This is a Const Data Asset.  It literally defines a given Experience.
+
+- Default [Lyra Pawn Data](#LyraPawnData)
+- List of Instanced [Game Feature Actions](#GameFeatureAction)
+- List of [Lyra Experience Action Sets](#LyraExperienceActionSet)
+- List of Game Feature Plugin ([GFP](/UE5/GameFeatures/)) dependencies
+
+
+<a id='LyraExperienceActionSet'></a>
+## Lyra Experience Action Set
+
+« Primary Data Asset »
+
+- Array of [Game Feature Actions](#GameFeatureAction)
+- Array of Game Feature Plugin ([GFP](/UE5/GameFeatures/)) dependencies used by this Action Set
+
+
+<a id='LyraPawnData'></a>
+## Lyra Pawn Data
+
+« Primary Data Asset »
+
+- Pawn (Subclass)
+- Lyra Ability Sets (Array)
+- Lyra Ability Tag Relationship Mapping
+- [Lyra Input Config](#LyraInputConfig)
+- Lyra Camera Mode (Subclass)
+
+
+<a id='LyraInputConfig'></a>
+## Lyra Input Config
+
+« Const Data Asset »
+
+- Native Lyra Input Actions (Array)
+- Ability Lyra Input Actions (Array)
+
+
+<a id='GameFeatureAction'></a>
+## Game Feature Action
+
+An Action to be taken when a Game Feature is activated.
+Part of the experimental `GameFeatures` plugin.
+
+An Instanced Game Feature Action handles
+[Game Features](/UE5/GameFeatures/)
+asset loading and unloading.  Events include:
+
+- Registering
+- Unregistering
+- Loading
+- Activating
+- Deactivating
+
+
+<a id='EngineSetup'></a>
+# Setting up Unreal Engine for Lyra Experience
+
 
 
 <a id='LyraWorldSettings'></a>
-## LyraWorldSettings
+## Lyra World Settings
 
 - Adds `Default Gameplay Experience` setting to `ULevel` assets
+- In PIE, load the default experience during `InitGame`
 - This is what allows you to specify the Lyra Experience for a level to use
-  - Configured as the World Settings class in `Config/DefaultEngine.ini`:
-    - `WorldSettingsClassName`=`/Script/LyraGame.LyraWorldSettings`
+
+Configured as the World Settings class in `Config/DefaultEngine.ini`:
+- `WorldSettingsClassName`=`/Script/LyraGame.LyraWorldSettings`
 
 
 <a id='LyraGameMode'></a>
 ## Lyra Game Mode
 
-- `ALyraGameMode` is set up to use a `ALyraGameState`
+Lyra Game Mode is the required base Game Mode providing Lyra Experience support.
+
+- Uses a [Lyra Game State](#LyraGameState)
+- Adds support for loading an Experience on PIE start
 - Lots of player start related logic
-  - Delays initial player spawn until `OnExperienceLoaded`
+  - Delay initial player spawn until `OnExperienceLoaded`
 
 
 <a id='LyraGameState'></a>
@@ -101,6 +155,7 @@ and activate two very important components that enable Experiences:
 
 The `ULyraExperienceManagerComponent`
 does the heavy lifting related to loading and activating experiences.
+
 
 <a id='ExperienceLoadingProcedure'></a>
 #### Experience Loading Procedure
