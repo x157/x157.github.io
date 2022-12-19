@@ -228,8 +228,8 @@ blockquote {
 pre {
   background: rgba(40, 40, 40, 0.8);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  padding: 10px;
-  font-size: 16px;
+  padding: 0.3em;
+  font-size: 1.05em;
   tab-size: 4;
   border-radius: 2px;
   word-wrap: normal;
@@ -264,6 +264,7 @@ code.highlighter-rouge {
 code {
   padding: .1em;
   margin: 0;
+  font-size: 1.05em;
 }
 
 a code {
@@ -349,7 +350,6 @@ a {
 
 a code, a code.highlighter-rouge {
   color: #ddaadd;
-  font-size: 1.1em;
 }
 
 a code:hover, a code.highlighter-rouge:hover {
