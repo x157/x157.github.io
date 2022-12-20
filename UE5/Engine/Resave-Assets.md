@@ -72,7 +72,7 @@ $UProject = "D:/Dev/Lyra-51/Lyra.uproject"
 
 # Execute Unreal Editor Resave Packages Commandlet with arguments
 $StartDate = $(date)
-& $UnrealEd $UProject -run=ResavePackages -IgnoreChangelist ; $StartDate ; date
+& $UnrealEd $UProject -run=ResavePackages -OnlySaveDirtyPackages -IgnoreChangelist ; $StartDate ; date
 ```
 
 ### Note about `-IgnoreChangelist`
@@ -92,6 +92,21 @@ Get-ChildItem -Recurse | %{ if($_.IsReadOnly) {$_.IsReadOnly = $false} }
 
 If I didn't do this, I'd get lots of errors about files not being saved that
 needed to be saved.  You probably don't want to do this if you use P4 or Plastic.
+
+
+## Limit which Packages are Re-saved
+
+There are a few ways you can limit which packages get re-saved:
+
+- `-PACKAGE=PackageName`
+  - Can list multiple packages with multiple arguments
+- `-PACKAGEFOLDER=/Package/`
+  - Only re-save packages in `/Package/` folder, e.g. for Lyra try `/Game/` or `/MyGFP/`
+  - Can list multiple folders with multiple arguments
+- `-MAP=Map1+Map2+Map3`
+  - Only re-save packages used by this `+` delimited list of Maps
+- `-FILE=Filename`
+  - Reads a newline-delimited list of Package Files from a text file
 
 
 # Thank you!
