@@ -135,6 +135,11 @@ where you put your files.
 
 Ultimately, you can put your project anywhere you want.
 
+For more information about possible locations to store your project files and the implications
+of each, see Epic's Official
+[Managing Game Code in Unreal](https://docs.unrealengine.com/5.1/en-US/managing-game-code-in-unreal-engine/)
+documentation.
+
 
 <a id="BuildingCustomEngine"></a>
 # Building a Custom UE5 Engine
