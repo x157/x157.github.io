@@ -114,8 +114,8 @@ For example, you can load in different Widget classes depending on the type of
 The score might go into the same location on the HUD, but be a different
 widget depending on the Experience.
 
-# Thanks!
+# Thank you!
 
-Special thanks to `Cade [EA Maxis]` on
+Special thanks to [Cade](https://twitter.com/CadeEvs) on
 [benui's Discord](https://discord.benui.ca/)
 who provided some excellent descriptions of many of these modules.
