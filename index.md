@@ -18,10 +18,13 @@ Want to be a better UE5 C++ Dev?
 My thoughts on
 [Development in UE5](/UE5/Dev/).
 
+I've also started keeping some notes regarding
+[Software Development as a Windows user](/Windows/).
+
 
 # About Me
 
-For the past few months I've been working my way through UE5's Lyra Starter Game,
+For the past year or so I've been working my way through UE5's Lyra Starter Game,
 learning both Unreal Engine and Lyra simultaneously.
 
 In an attempt to save fellow simulants some discovery time,

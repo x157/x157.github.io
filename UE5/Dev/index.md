@@ -30,6 +30,9 @@ each time you have an epiphany.
 - [IDE Options](./IDE) - choosing the right IDE will save you time (`time == $`)
 - [Source Control](./Source-Control) - Git or Perforce?
 
+If you are a Windows user, see my notes and tips regarding
+[Development on Windows](/Windows/).
+
 
 ### On being a UE5 C++ Dev
 
