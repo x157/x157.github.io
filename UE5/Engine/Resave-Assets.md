@@ -71,7 +71,7 @@ $UnrealEd = "D:/UE-5.1/Engine/Binaries/Win64/UnrealEditor-Win64-Debug-Cmd.exe"
 $UProject = "D:/Dev/Lyra-51/Lyra.uproject"
 
 # Execute Unreal Editor Resave Packages Commandlet with arguments
-$StartDate = $(date)
+$StartDate = date
 & $UnrealEd $UProject -run=ResavePackages -NoShaderCompile -OnlySaveDirtyPackages -IgnoreChangelist ; $StartDate ; date
 ```
 
