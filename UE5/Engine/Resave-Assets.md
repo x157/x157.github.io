@@ -71,8 +71,20 @@ $UnrealEd = "D:/UE-5.1/Engine/Binaries/Win64/UnrealEditor-Win64-Debug-Cmd.exe"
 $UProject = "D:/Dev/Lyra-51/Lyra.uproject"
 
 # Execute Unreal Editor Resave Packages Commandlet with arguments
-$StartDate = date
-& $UnrealEd $UProject -run=ResavePackages -NoShaderCompile -OnlySaveDirtyPackages -IgnoreChangelist ; $StartDate ; date
+& $UnrealEd $UProject -run=ResavePackages -NoShaderCompile -IgnoreChangelist
+```
+
+In reality, you probably want to constrain it to a sub-set of the project, and not include
+the entire project (which also includes the entire Engine by default,
+and will add many hours of runtime).
+
+Example:
+
+```powershell
+& $UnrealEd $UProject -run=ResavePackages -NoShaderCompile -IgnoreChangelist -PackageFolder=/Game/
+& $UnrealEd $UProject -run=ResavePackages -NoShaderCompile -IgnoreChangelist -PackageFolder=/ShooterCore/
+& $UnrealEd $UProject -run=ResavePackages -NoShaderCompile -IgnoreChangelist -PackageFolder=/XistGame/
+# ... etc ...
 ```
 
 ### Note about `-IgnoreChangelist`
@@ -87,12 +99,17 @@ Before running ResavePackages, I forcefully removed the read-only status of all 
 in my project dir:
 
 ```powershell
+# Print a recursive list of all read only files under the current directory
+Get-ChildItem -Recurse | %{ if($_.IsReadOnly) {Write-Host $_.FullName} }
+
 # cd to your project dir before you run this!
+# Remove the read only flag from all read only files under the current directory
 Get-ChildItem -Recurse | %{ if($_.IsReadOnly) {$_.IsReadOnly = $false} }
 ```
 
 If I didn't do this, I'd get lots of errors about files not being saved that
 needed to be saved.  You probably don't want to do this if you use P4 or Plastic.
+Instead, you'd want to use the `-AutoCheckOut` and possibly the `-AutoCheckIn` switches.
 
 
 ## Limit which Packages are Re-saved
@@ -104,27 +121,52 @@ There are a few ways you can limit which packages get re-saved:
 - `-PackageFolder=/Package/`
   - Only re-save packages in `/Package/` folder hierarchy, e.g. for Lyra try:
     - `-PackageFolder=/Game/`
+    - `-PackageFolder=/Game/Characters/Heroes/Mannequin/Animations/`
     - `-PackageFolder=/ShooterCore/`
+    - etc
   - Can list multiple folders with multiple arguments
 - `-Map=Map1+Map2+Map3`
   - Only re-save packages used by this `+` delimited list of Maps
 - `-File=Filename`
   - Reads a newline-delimited list of Package Files from the text file `Filename`
+- `-FilterByCollection=CollectionName`
+  - Only saves packages in the named collection
 
 
 ## Other Switches
 
 Other useful switches that you may wish to study:
 
-- `-BuildLighting` (requires `-AllowCommandletRendering`)
-- `-VerifyContent` gives insight into when files aren't being written because they're read-only
 - `-NoShaderCompile` will disable shader compiling, maybe that's what you want, maybe it isn't
+  - It seems like this switch significantly speeds up the process...
+- `-OnlySaveDirtyPackages` will not actually save the file unless it really changed
+  - If you don't use this, *every* asset will be rewritten, even those with no changes at all
+  - Unfortunately, using this may mean that some files are *not* rewritten that **should be** rewritten.
+    - For example, apparently Animations in UE 5.1 use a DDC key that involves the UE version
+      **that the animation was saved with**,
+      and NOT the UE version that is actually running at the time. (Bug? Seems like it.)
+    - Thus, you must rewrite all animations every time you update the engine, or the DDC will never be used for them. (Must be a bug)
+- `-Verify` gives insight into when files aren't being written because they're read-only
+
+### Build Switches
+
+- `-BuildLighting` (requires `-AllowCommandletRendering`)
+- `-BuildNavigationData`
+- `-BuildHLOD`
+
+## Switches only for use with P4 or Plastic
+
+These switches are meaningless if you use Git.
+
+- `-AutoCheckOut` automatically check out files before saving
+- `-AutoCheckIn` automatically check in files after saving
+- `-BatchSourceControl` presumably helps not clobber your P4/Plastic server
 
 
 # Thank you!
 
-Special thanks to [Nick Darnell](https://www.nickdarnell.com/) @ Epic Games
-and `Ryan.DowlingSoka [BioWare]`
+Special thanks to [Nick Darnell](https://www.nickdarnell.com/)
+and [Ryan DowlingSoka](https://ryandowlingsoka.com/)
 from [benui's Discord](https://discord.benui.ca/)
 who helped me figure out why the Editor was loading my project so slowly
 and how to fix it.
