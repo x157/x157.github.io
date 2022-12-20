@@ -72,7 +72,7 @@ $UProject = "D:/Dev/Lyra-51/Lyra.uproject"
 
 # Execute Unreal Editor Resave Packages Commandlet with arguments
 $StartDate = $(date)
-& $UnrealEd $UProject -run=ResavePackages -OnlySaveDirtyPackages -IgnoreChangelist ; $StartDate ; date
+& $UnrealEd $UProject -run=ResavePackages -NoShaderCompile -OnlySaveDirtyPackages -IgnoreChangelist ; $StartDate ; date
 ```
 
 ### Note about `-IgnoreChangelist`
@@ -87,6 +87,7 @@ Before running ResavePackages, I forcefully removed the read-only status of all 
 in my project dir:
 
 ```powershell
+# cd to your project dir before you run this!
 Get-ChildItem -Recurse | %{ if($_.IsReadOnly) {$_.IsReadOnly = $false} }
 ```
 
@@ -98,15 +99,26 @@ needed to be saved.  You probably don't want to do this if you use P4 or Plastic
 
 There are a few ways you can limit which packages get re-saved:
 
-- `-PACKAGE=PackageName`
+- `-Package=PackageName`
   - Can list multiple packages with multiple arguments
-- `-PACKAGEFOLDER=/Package/`
-  - Only re-save packages in `/Package/` folder, e.g. for Lyra try `/Game/` or `/MyGFP/`
+- `-PackageFolder=/Package/`
+  - Only re-save packages in `/Package/` folder hierarchy, e.g. for Lyra try:
+    - `-PackageFolder=/Game/`
+    - `-PackageFolder=/ShooterCore/`
   - Can list multiple folders with multiple arguments
-- `-MAP=Map1+Map2+Map3`
+- `-Map=Map1+Map2+Map3`
   - Only re-save packages used by this `+` delimited list of Maps
-- `-FILE=Filename`
-  - Reads a newline-delimited list of Package Files from a text file
+- `-File=Filename`
+  - Reads a newline-delimited list of Package Files from the text file `Filename`
+
+
+## Other Switches
+
+Other useful switches that you may wish to study:
+
+- `-BuildLighting` (requires `-AllowCommandletRendering`)
+- `-VerifyContent` gives insight into when files aren't being written because they're read-only
+- `-NoShaderCompile` will disable shader compiling, maybe that's what you want, maybe it isn't
 
 
 # Thank you!
