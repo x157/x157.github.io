@@ -33,9 +33,7 @@ Ready to create your own LyraStarterGame project?
 
 - [Epic official tutorial: How to create a new Game Feature Plugin and Experience in Lyra](https://dev.epicgames.com/community/learning/tutorials/rdW2/unreal-engine-how-to-create-a-new-game-feature-plugin-and-experience-in-lyra)
 
-I made this How-To before an official one was available, I leave it here for posterity:
-
-- [Set Up a New LyraStarterGame Project](./Getting-Started-Setting-Up-a-New-LyraStarterGame-Project)
+I made this How-To before an official one was available, I leave it here for posterity: [Set Up a New LyraStarterGame Project](./Getting-Started-Setting-Up-a-New-LyraStarterGame-Project)
 
 
 # Lyra Concepts
@@ -57,6 +55,11 @@ Epic will sometimes upgrade the Engine and/or Lyra Core.
 
 [Upgrading Lyra Core](./Upgrading-Lyra-Core/)
 discusses how I try to make this process as easy on myself as possible.
+
+[Re-save Assets on Engine Update](/UE5/Engine/Resave-Assets)
+discusses the need to explicitly re-save many binary project assets any time you
+update the Engine version.  This is a UE requirement that significantly affects
+Editor startup time.
 
 
 ## Player Input
