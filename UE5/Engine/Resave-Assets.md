@@ -70,20 +70,17 @@ $UnrealEd = "D:/UE-5.1/Engine/Binaries/Win64/UnrealEditor-Win64-Debug-Cmd.exe"
 # Path to your .uproject file
 $UProject = "D:/Dev/Lyra-51/Lyra.uproject"
 
-# Execute Unreal Editor Resave Packages Commandlet with arguments
-& $UnrealEd $UProject -run=ResavePackages -NoShaderCompile -IgnoreChangelist
+# Execute Unreal Editor ResavePackages Commandlet
+& $UnrealEd $UProject -run=ResavePackages -NoShaderCompile -IgnoreChangelist -ProjectOnly
 ```
 
-In reality, you probably want to constrain it to a sub-set of the project, and not include
-the entire project (which also includes the entire Engine by default,
-and will add many hours of runtime).
-
-Example:
+You can also run it only for specific game-mounted folder paths, like:
 
 ```powershell
 & $UnrealEd $UProject -run=ResavePackages -NoShaderCompile -IgnoreChangelist -PackageFolder=/Game/
 & $UnrealEd $UProject -run=ResavePackages -NoShaderCompile -IgnoreChangelist -PackageFolder=/ShooterCore/
-& $UnrealEd $UProject -run=ResavePackages -NoShaderCompile -IgnoreChangelist -PackageFolder=/XistGame/
+& $UnrealEd $UProject -run=ResavePackages -NoShaderCompile -IgnoreChangelist -PackageFolder=/XistGame/Subdir1/
+& $UnrealEd $UProject -run=ResavePackages -NoShaderCompile -IgnoreChangelist -PackageFolder=/XistGame/Subdir2/
 # ... etc ...
 ```
 
@@ -116,13 +113,19 @@ Instead, you'd want to use the `-AutoCheckOut` and possibly the `-AutoCheckIn` s
 
 There are a few ways you can limit which packages get re-saved:
 
+- `-ProjectOnly`
+  - Exclude Engine packages
+- `-SkipDeveloperFolders`
+  - Exclude Developer Packages
+- `-OnlyDeveloperFolders`
+  - Only Include Developer Packages
 - `-Package=PackageName`
   - Can list multiple packages with multiple arguments
 - `-PackageFolder=/Package/`
   - Only re-save packages in `/Package/` folder hierarchy, e.g. for Lyra try:
-    - `-PackageFolder=/Game/`
-    - `-PackageFolder=/Game/Characters/Heroes/Mannequin/Animations/`
-    - `-PackageFolder=/ShooterCore/`
+    - `-PackageFolder=/Game/` (Lyra dir `/Content/`)
+    - `-PackageFolder=/Game/Characters/Heroes/Mannequin/Animations/` (a specific Content folder)
+    - `-PackageFolder=/ShooterCore/` (Lyra dir `/Plugins/GameFeatures/ShooterCore/Content/`)
     - etc
   - Can list multiple folders with multiple arguments
 - `-Map=Map1+Map2+Map3`
