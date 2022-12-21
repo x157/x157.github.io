@@ -40,19 +40,26 @@ The solution is to explicitly re-save any assets that depend on the Engine
 version.
 
 There is a commandlet that will automate this process for you:
-[`UResavePackagesCommandlet`](https://docs.unrealengine.com/5.1/en-US/API/Editor/UnrealEd/Commandlets/UResavePackagesCommandlet/)
+[Resave Packages Commandlet](https://docs.unrealengine.com/5.1/en-US/API/Editor/UnrealEd/Commandlets/UResavePackagesCommandlet/)
+
+*(If you are using World Partition, consider also the
+[World Partition Resave Actors Commandlet](https://docs.unrealengine.com/5.0/en-US/world-partition-in-unreal-engine/#worldpartitionresaveactorsbuilder).
+This doc discusses only the Resave Packges Commandlet.)*
 
 For a project like
 [Lyra](/UE5/LyraStarterGame/),
-this commandlet takes a **very long time** to run.
+the `ResavePackages` commandlet takes a **very long time** to run.
 It can potentially rewrite thousands of files.
-It literally takes all day to run on a 16-core CPU with M.2 SSDs.
+If you run it on the entire Engine plus your Project,
+it literally takes all day to run on a 16-core CPU with 64 GB DDR5 and M.2 SSDs.
 
-It seems primarily to be CPU-bound, but it never actually goes above 50% CPU usage
-and often uses very little CPU, so who knows.  Maybe on a 64-core CPU it would only
-take a few hours rather than all day.
+After experimenting with some switches to limit what it was doing, I was able to cut
+this runtime down to only a few hours.
 
-Thankfully, you should only have to run it once
+`-NoShaderCompile` and `-ProjectOnly` worked great for my use case.
+`-GCFREQ=1000` has also been reported to significantly decrease runtime.
+
+Thankfully, you should only have to run Resave Packages once
 each time you change the Engine version your project uses.
 
 
@@ -74,15 +81,19 @@ $UProject = "D:/Dev/Lyra-51/Lyra.uproject"
 & $UnrealEd $UProject -run=ResavePackages -NoShaderCompile -IgnoreChangelist -ProjectOnly
 ```
 
-You can also run it only for specific game-mounted folder paths, like:
+You can also run it only for specific game-mounted folder paths, like this:
 
 ```powershell
-& $UnrealEd $UProject -run=ResavePackages -NoShaderCompile -IgnoreChangelist -PackageFolder=/Game/
-& $UnrealEd $UProject -run=ResavePackages -NoShaderCompile -IgnoreChangelist -PackageFolder=/ShooterCore/
-& $UnrealEd $UProject -run=ResavePackages -NoShaderCompile -IgnoreChangelist -PackageFolder=/XistGame/Subdir1/
-& $UnrealEd $UProject -run=ResavePackages -NoShaderCompile -IgnoreChangelist -PackageFolder=/XistGame/Subdir2/
-# ... etc ...
+& $UnrealEd $UProject -run=ResavePackages -NoShaderCompile -IgnoreChangelist `
+    -PackageFolder=/Game/ `
+    -PackageFolder=/ShooterCore/ `
+    -PackageFolder=/XistGame/Subdir1/ `
+    -PackageFolder=/XistGame/Subdir2/
 ```
+
+*Line continuation in Powershell is done via backtick `` ` ``
+because Windows folders are delimited by `\`?
+Looks funky...*
 
 ### Note about `-IgnoreChangelist`
 
@@ -142,6 +153,9 @@ Other useful switches that you may wish to study:
 
 - `-NoShaderCompile` will disable shader compiling, maybe that's what you want, maybe it isn't
   - It seems like this switch significantly speeds up the process...
+- `-GCFREQ=1000` has been reported to significantly improve performance
+  - In the example setting of 1000 it causes Garbage Collection to occur every 1000 packages
+  - You can experiment with increasing/decreasing this number to see the effect on your hardware
 - `-OnlySaveDirtyPackages` will not actually save the file unless it really changed
   - If you don't use this, *every* asset will be rewritten, even those with no changes at all
   - Unfortunately, using this may mean that some files are *not* rewritten that **should be** rewritten.
@@ -166,6 +180,16 @@ These switches are meaningless if you use Git.
 - `-BatchSourceControl` presumably helps not clobber your P4/Plastic server
 
 
+# See Also
+
+If you have a UDN subscription, there is an ongoing *(Dec 2022)* discussion about the performance
+of `ResavePackages` as well as when you may want to use
+World Partition Resave Actors Builder Commandlet instead
+(e.g. when you have 10000s of `__ExternalActors__` assets).
+
+[UDN Thread: Resave Packages Commandlet Performance with One File Per Actor](https://udn.unrealengine.com/s/question/0D54z00007upQWQCA2/resave-packages-commandlet-performance-with-one-file-per-actor)
+
+
 # Thank you!
 
 Special thanks to [Nick Darnell](https://www.nickdarnell.com/)
@@ -173,3 +197,6 @@ and [Ryan DowlingSoka](https://ryandowlingsoka.com/)
 from [benui's Discord](https://discord.benui.ca/)
 who helped me figure out why the Editor was loading my project so slowly
 and how to fix it.
+
+Also thanks to `VesCodes` and `Anders Ljundberg` for providing additional useful info
+that has been added to this doc.
