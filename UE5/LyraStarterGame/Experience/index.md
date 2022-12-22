@@ -34,6 +34,9 @@ In Lyra, the game shouldn't actually start playing until the
 [On Experience Loaded](#OnExperienceLoaded)
 event fires, sometime **well after** `BeginPlay`.
 
+You can test delayed Experience loading (e.g. to simulate slow computers/networks)
+by setting some [console variables](#CVars).
+
 
 ## Primary Data Assets Defining an Experience
 
@@ -52,6 +55,7 @@ event fires, sometime **well after** `BeginPlay`.
 - [Lyra World Settings](#LyraWorldSettings)
 - [Lyra Asset Manager](#LyraAssetManager)
 - [Lyra Experience Manager](#LyraExperienceManager) Subsystem *(only relevant to PIE)*
+- [Console Variables](#CVars)
 
 ## How to Initiate Gameplay in a Lyra Experience
 
@@ -69,6 +73,8 @@ Execute these console commands to enable Verbose logging for these modules:
 
 Execute `ModularGameplay.DumpGameFrameworkComponentManagers` in the console to dump
 debugging info to help understand which components are being injected into which actors.
+
+See [Console Variables](#CVars), they are helpful for debugging.
 
 
 <a id='PrimaryDataAssets'></a>
@@ -186,16 +192,18 @@ which begins this process:
 
 - Set state = `Loading`
 
-
 ##### State: Loading
 - Async Load assets via [Lyra Asset Manager](#LyraAssetManager)
     - Primary Experience Asset ID
     - Experience Action Sets
     - Client/Server Game Features Subsystem
 - On async load complete:
-    - Scan for GFPs
-    - Async Load and Activate each required GFP
-- After all GFPs finish loading:
+  - Set state = `LoadingGameFeatures`
+
+##### State: Loading Game Features
+- Async Load and Activate any/all required GFPs
+- After all GFPs finish async loading:
+    - Optionally delay loading for debugging purposes based on CVar settings
     - Set state = `ExecutingActions`
 
 ##### State: Executing Actions
@@ -244,6 +252,16 @@ AssetManagerClassName=/Script/LyraGame.LyraAssetManager
 - This is required for PIE but otherwise doesn't do anything for the game
 
 
+<a id='CVars'></a>
+## Console Variables
+
+For testing purposes, you can add a delay to the Lyra Experience Loading process
+to simulate slow computers and/or networks.
+
+- `lyra.chaos.ExperienceDelayLoad.MinSecs` (minimum delay)
+- `lyra.chaos.ExperienceDelayLoad.RandomSecs` (maximum time added to `MinSecs`)
+
+
 # Lyra Gameplay Initiation
 
 This section discusses the intended way to initiate actual gameplay in a Lyra Experience.
@@ -266,9 +284,24 @@ Lyra also provides `AsyncAction_OnExperienceLoaded` which is an asynchronous BP 
 you can easily wait for `OnExperienceLoaded` in BPs.  Lyra does this when it initializes its
 Shooter Mannequin character, for example.
 
-Note that the `OnExperienceLoaded` event is fired in three different levels of priority
-(High, Normal and Low)
+### Three Levels of Priority
+
+The `OnExperienceLoaded` event is fired with three different levels of priority
 to allow you to have some handlers that are dependent on other higher priority handlers.
+
+- High (`OnExperienceLoaded_HighPriority`)
+- Normal (`OnExperienceLoaded`)
+- Low (`OnExperienceLoaded_LowPriority`)
+
+The system is minimal.
+For complex interdependencies you will need to devise your own solution,
+and understand that the callbacks are executed in random order.
+
+
+###### TODO Example Code (C++ & BP) Hooking into `OnExperienceLoaded`
+
+
+## Examples of `OnExperienceLoaded` in C++ and BP
 
 There are many examples of how to use `OnExperienceLoaded` in Lyra.
 `CTRL`+`SHIFT`+`F` in Rider to see many interesting C++ snippets.
@@ -276,21 +309,21 @@ Some examples of particular interest are discussed below.
 
 ### High Priority Examples
 - Lyra Team Creation Component :: Begin Play
-  - Wait for On Experience Loaded, then create teams
+  - `OnExperienceLoaded` THEN Create Teams
 - [Lyra Frontend State Component](#LyraFrontendStateComponent) :: Begin Play
-  - Wait for On Experience Loaded, then start a multistep async process to show the Frontend Game Menu as soon as possible
+  - `OnExperienceLoaded` THEN Start a multistep async process to show the Frontend Game Menu as soon as possible
 
 ### Normal Priority Examples
 - Lyra Player State :: Post Initialize Components
-  - Wait for On Experience Loaded, then Set Player Pawn Data
+  - `OnExperienceLoaded` THEN Set Player Pawn Data
     - This grants Ability Sets to the Player State based on the Default Pawn Data config
 - [Lyra Game Mode](#LyraGameMode) :: Init Game State
-  - Wait for On Experience Loaded, then Restart all players who don't yet have Pawns
+  - `OnExperienceLoaded` THEN Restart all players who don't yet have Pawns
     - This effectively assigns each player/bot the Default Pawn Data
 
 ### Low Priority Examples
 - Lyra Bot Creation Component :: Begin Play
-  - Wait for On Experience Loaded, then create bots
+  - `OnExperienceLoaded` THEN Create Bots
     - Depends on the (high priority) Lyra Team Creation Component having created the teams
     - Depends on the (normal priority) Lyra Player State having set the [Lyra Pawn Data](#LyraPawnData)
 
@@ -306,23 +339,28 @@ from a [Lyra Experience Definition](#LyraExperienceDefinition).
 For example, the map Lyra uses by default to start the game is `L_LyraFrontEnd`,
 which uses `B_LyraFrontEnd_Experience` as the `Default Gameplay Experience`.
 
-In `B_LyraFrontEnd_Experience` it injects `B_LyraFrontendStateComponent` into the
-`LyraGameState` via an `AddComponents`
-[Game Feature Action](#GameFeatureAction).
-The `B_LyraFrontendStateComponent` is a simple BP configuration of
-[Lyra Frontend State Component](#LyraFrontendStateComponent),
-defining the menu widgets used by the project.
+An `AddComponents`
+[Game Feature Action](#GameFeatureAction)
+in `B_LyraFrontEnd_Experience`
+injects `B_LyraFrontendStateComponent`
+into the `LyraGameState`,
+which causes the Lyra FrontEnd Experience to load on Game start.
 
 
 <a id='LyraFrontendStateComponent'></a>
 ## Lyra Frontend State Component
+
+The `B_LyraFrontendStateComponent` is a simple BP configuration of
+Lyra Frontend State Component,
+defining the menu widgets used by the project.
 
 This component is expected to be injected into a
 [Lyra Game State](#LyraGameState).
 It registers a high priority `OnExperienceLoaded` callback that initiates the
 asynchronous process of showing the frontend menu system to the user.
 
-This interfaces with the `CommonLoadingScreen` plugin that is distributed with Lyra.
+This interfaces with the `CommonLoadingScreen` plugin that is 
+[distributed with Lyra](/UE5/LyraStarterGame/Plugins/).
 That allows the loading screen to be visible for however long it takes to load the
 Lyra Experience.
 
