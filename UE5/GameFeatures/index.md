@@ -27,6 +27,14 @@ into your existing code if you prefer to avoid a rebase onto
 the default `ModularGameplayActors` implementation.)
 
 
+## Debugging Tip
+
+Enable `LogGameFeatures` Verbose logging to gain visibility into when Game Feature Actions
+are being run and what they are doing to your game objects.
+
+Console Command: `Log LogGameFeatures Verbose`
+
+
 ## LyraStarterGame Example
 
 In LyraStarterGame, `ALyraPlayerState`, `ALyraPlayerController`, `ALyraCharacter`

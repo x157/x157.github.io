@@ -60,9 +60,15 @@ event fires, sometime **well after** `BeginPlay`.
   - Example: [Lyra Frontend State Component](#LyraFrontendStateComponent)
 
 
-### Debugging Tip
+### Debugging Tips
 
-- Enable `LogLyraExperience` logging
+Execute these console commands to enable Verbose logging for these modules:
+
+- `Log LogLyraExperience Verbose`
+- `Log LogGameFeatures Verbose`
+
+Execute `ModularGameplay.DumpGameFrameworkComponentManagers` in the console to dump
+debugging info to help understand which components are being injected into which actors.
 
 
 <a id='PrimaryDataAssets'></a>

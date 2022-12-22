@@ -43,6 +43,14 @@ For example take a look at this code from `LyraStarterGame`:
 - ... etc ...
 
 
+### Debugging Tip
+
+Execute `Log LogModularGameplay Verbose` in the console to see verbose logging for this module.
+
+Execute `ModularGameplay.DumpGameFrameworkComponentManagers` in the console to dump
+debugging info to help understand which components are being injected into which actors.
+
+
 <a id="GameFrameworkInitStateInterface"></a>
 ## Game Framework Init State Interface
 
