@@ -83,20 +83,18 @@ Common UI "owns" player input
     - [How to: Send Client Gameplay Ability Data to Server in C++](/UE5/GameplayAbilitySystem/How-To-Send-Client-Gameplay-Ability-Data-to-Server-in-C++)
     - [Target Dummy Actor Full C++ Example](https://github.com/x157/Lyra-ActorWithAbilities) (Github)
 
+## Lyra Game Mode
+
+- [Lyra Experience](./Experience/)
+- [Lyra Game Initialization](./InitGame/)
+- [Lyra Game Phase Subsystem](./GamePhaseSubsystem/)
+
 ## Lyra Gameplay Systems
 
-[Lyra Plugins](./Plugins/) - About the Plugins Epic distributes via the Lyra project
-  - Examples: `CommonGame`, `CommonUser`, `GameplayMessageRouter`, `ModularGameplayActors`, ...
-
-[Lyra Experience](./Experience/)
-  - Custom Game Mode that implements runtime async loading of Game Feature Plugins (GFPs)
-    - Runtime component injection activates GFP features
-
-[Lyra Game Phase Subsystem](./GamePhaseSubsystem/)
-  - Once the Lyra Experience has loaded, this Subsystem allows the game to transition between different Game Phases
-
-[Health and Damage System](./Health-and-Damage/)
+- [Health and Damage System](./Health-and-Damage/)
   - Implemented via Gameplay Ability System Attributes & Effects
+- [Lyra Plugins](./Plugins/)
+  - Overview of the Plugins Epic distributes via the Lyra project
 
 
 ## Lyra Prototype Systems
