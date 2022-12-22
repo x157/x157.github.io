@@ -67,4 +67,4 @@ bundle exec jekyll serve
 ```
 - Open browser to [http://localhost:4000](http://localhost:4000)
 - *Notice: You may need to restart Jekyll each time you save a file in order to see the change.*
-  - If so, try the `--livereload` option in `jekyll serve`
+  - If so, try `jekyll serve --livereload`
