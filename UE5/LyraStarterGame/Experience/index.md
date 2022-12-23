@@ -59,7 +59,10 @@ by setting some [console variables](#CVars).
 
 ## How to Initiate Gameplay in a Lyra Experience
 
-- Event: [`OnExperienceLoaded`](#OnExperienceLoaded)
+- [Event: `OnExperienceLoaded`](#OnExperienceLoaded)
+  - [Usage Examples](#OnExperienceLoadedExamples)
+    - [Example BP Hook Code](#ExampleHookBP)
+    - [Example C++ Hook Code](#ExampleHookCPP)
 - [Loading a Default Experience](#LoadingADefaultExperience)
   - Example: [Lyra Frontend State Component](#LyraFrontendStateComponent)
 
@@ -301,22 +304,20 @@ For complex interdependencies you will need to devise your own solution,
 and understand that the callbacks are executed in random order.
 
 
-###### TODO Example Code (C++ & BP) Hooking into `OnExperienceLoaded`
-
-
-## Examples of `OnExperienceLoaded` in C++ and BP
+<a id='OnExperienceLoadedExamples'></a>
+### Examples of `OnExperienceLoaded` in C++ and BP
 
 There are many examples of how to use `OnExperienceLoaded` in Lyra.
 `CTRL`+`SHIFT`+`F` in Rider to see many interesting C++ snippets.
 Some examples of particular interest are discussed below.
 
-### High Priority Examples
+#### High Priority Examples
 - Lyra Team Creation Component :: Begin Play
   - `OnExperienceLoaded` THEN Create Teams
 - [Lyra Frontend State Component](#LyraFrontendStateComponent) :: Begin Play
   - `OnExperienceLoaded` THEN Start a multistep async process to show the Frontend Game Menu as soon as possible
 
-### Normal Priority Examples
+#### Normal Priority Examples
 - Lyra Player State :: Post Initialize Components
   - `OnExperienceLoaded` THEN Set Player Pawn Data
     - This grants Ability Sets to the Player State based on the Default Pawn Data config
@@ -324,12 +325,46 @@ Some examples of particular interest are discussed below.
   - `OnExperienceLoaded` THEN Restart all players who don't yet have Pawns
     - This effectively assigns each player/bot the Default Pawn Data
 
-### Low Priority Examples
+#### Low Priority Examples
 - Lyra Bot Creation Component :: Begin Play
   - `OnExperienceLoaded` THEN Create Bots
     - Depends on the (high priority) Lyra Team Creation Component having created the teams
     - Depends on the (normal priority) Lyra Player State having set the [Lyra Pawn Data](#LyraPawnData)
 
+
+<a id='ExampleHookBP'></a>
+#### Example BP Hooking into `OnExperienceLoaded`
+
+![Example BP Hook](./screenshots/ExampleHookBP.png)
+
+
+<a id='ExampleHookCPP'></a>
+#### Example C++ Hooking into `OnExperienceLoaded`
+
+In this C++ example, you'd set `BeginPlay` as follows:
+
+```c++
+void AMyExampleActor::BeginPlay()
+{
+    AGameStateBase* GameState = GetWorld()->GetGameState();
+    check(GameState);
+
+    ULyraExperienceManagerComponent* ExperienceComponent = GameState->FindComponentByClass<ULyraExperienceManagerComponent>();
+    check(ExperienceComponent);
+
+    ExperienceComponent->CallOrRegister_OnExperienceLoaded(FOnLyraExperienceLoaded::FDelegate::CreateUObject(this, &ThisClass::OnExperienceLoaded));
+}
+```
+
+And you'd also create an `OnExperienceLoaded` handler in `AMyExampleActor`
+to receive the event:
+
+```c++
+void AMyExampleActor::OnExperienceLoaded(const ULyraExperienceDefinition* Experience)
+{
+    DoStuff();
+}
+```
 
 <a id='LoadingADefaultExperience'></a>
 # Loading a Default Experience
