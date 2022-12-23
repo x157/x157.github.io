@@ -8,23 +8,35 @@ breadcrumb_name: "Game Initialization"
 # Game Initialization
 
 The GameMode initializes when a World is loaded.
+The [World Settings](/UE5/LyraStarterGame/Experience/#LyraWorldSettings)
+defines the [GameMode](/UE5/LyraStarterGame/Experience/#LyraGameMode) to use
+and (in [Lyra](/UE5/LyraStarterGame/))
+which [Lyra Experience](/UE5/LyraStarterGame/Experience/)
+to load by default.
+
 There are different ways a World can come to be loaded,
 including clicking the "Play In Editor" (PIE) button.
 
-The World Settings defines the GameMode to use,
-and for [Lyra](/UE5/LyraStarterGame/),
-which [Lyra Experience](/UE5/LyraStarterGame/Experience/) to load.
+As discussed in more detail in
+[Lyra Experience](/UE5/LyraStarterGame/Experience/),
+unlike other Games, in Lyra you must ensure to
+**delay all game play** until
+`OnExperienceLoaded`, perhaps long after `BeginPlay`.
 
 
 ## World Load
 
-World🡒InitializeActorsForPlay
+### World🡒InitializeActorsForPlay
 
-`LogWorld: Bringing World ... up for play`
+`LogWorld: Bringing World /XistGame/Maps/L_WorldName.L_WorldName up for play`
+
+#### InitGame
 
 - GameMode🡒InitGame
 
-Other World Actors in the world also get initialized *(random order?)*
+#### Initialize Components of ALL World Actors
+
+Initialization of World Actors is in **RANDOM ORDER**.
 
 - GameMode🡒PreInitializeComponents
   - GameState🡒PreInitializeComponents
@@ -32,7 +44,9 @@ Other World Actors in the world also get initialized *(random order?)*
   - GameMode🡒InitGameState
 - GameMode🡒PostInitializeComponents
 
-`LogWorld: Bringing up level for play took: ...`
+`LogWorld: Bringing up level for play took: 0.013386`
+
+#### Initialize Player Controller / State
 
 - GameMode🡒Login
   - GameMode🡒SpawnPlayerController
@@ -51,31 +65,36 @@ Other World Actors in the world also get initialized *(random order?)*
     - `CommonGame` adds root HUD layout
 - GameMode🡒OnPostLogin
 
-## World BeginPlay
+
+### World BeginPlay
 
 - All World Subsystems OnWorldBeginPlay
 - GameMode🡒StartPlay
   - GameState🡒HandleBeginPlay
     - PlayerController🡒PushInputComponent
-    - All World Actors BeginPlay *(random order?)*
+    - All World Actors BeginPlay (**RANDOM ORDER**)
       - GameMode🡒BeginPlay
       - GameState🡒BeginPlay
       - PlayerController🡒BeginPlay
       - PlayerState🡒BeginPlay
       - ... etc ...
 
-## Lyra Experience Load
 
-In PIE, 1 tick after GameMode🡒InitGame, Load World's Lyra Experience
+### Lyra Experience Load
 
-In Game, Frontend State Component (or your similar Game State Component) loads Lyra Experience
+In PIE, the World's Default Lyra Experience gets loaded on the tick after GameMode🡒InitGame.
+
+In Game, the appropriate Lyra Experience is loaded by
+the Frontend State Component (or your similar Game State Component).
+
+
+#### Experience Load Procedure
+
+- Load Experience Asset and its References
+- Load all GameFeature Plugin (GFP) dependencies
+- Activate GFPs (execute GameFeature Actions)
+- Broadcast [`OnExperienceLoaded`](/UE5/LyraStarterGame/Experience/#OnExperienceLoaded)
 
 For full details, see
 [Experience Loading Procedure](/UE5/LyraStarterGame/Experience/#ExperienceLoadingProcedure)
 
-TLDR version:
-
-- Load Experience Asset & its References
-- Load all GameFeature Plugin dependencies
-- Activate GFPs (execute GameFeature Actions)
-- Broadcast [`OnExperienceLoaded`](/UE5/LyraStarterGame/Experience/#OnExperienceLoaded)
