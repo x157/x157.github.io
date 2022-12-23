@@ -11,9 +11,7 @@ Lyra defines a "Shooter Mannequin" (`B_Hero_ShooterMannequin`) to be the base
 character for the Lyra project.  This serves as both the player-controlled character
 and the AI-controlled character.
 
-I'm documenting this based on Lyra 5.1 which as of the time of writing still
-has not yet been released.  If you're still on 5.0, the concepts here will all
-be similar.
+This documentation is current as of Lyra 5.1.
 
 Note that I do not use `B_Hero_ShooterMannequin` in my game.  That would require me to declare
 `ShooterCore` as a GFP dependency, which I do not wish to do.  Instead, I have my own base
@@ -91,14 +89,8 @@ in physical appearance and animation style.
 <a id="PawnExtensionSystem"></a>
 ## Key Concept: Pawn Extension System
 
-*NOTE: This is new in Lyra 5.1 and is a significant change from Lyra 5.0.  The 5.0 system
-contained similar functionality, but it has been completely redesigned and refactored in 5.1.
-If you worked on Character-based C++ code in 5.0, particularly related to the Pawn Extension Component,
-this is likely to require some merging when you upgrade to 5.1. Armed with the information presented
-here, it should take you a few hours or less.*
-
 Lyra Characters are modularly constructed at runtime.  For this reason
-**there can be no clearly defined initialization procedure**.
+**there is no clearly defined initialization order**.
 The character may have many optional components that depend on each other in different ways
 that change over time.
 
