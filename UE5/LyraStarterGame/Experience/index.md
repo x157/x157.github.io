@@ -346,20 +346,23 @@ In this C++ example, you'd set `BeginPlay` as follows:
 ```c++
 void AMyExampleActor::BeginPlay()
 {
+    Super::BeginPlay();
+
+    // Boilerplate OnExperienceLoaded hook:
+    // TODO consider moving this to a static helper class so you can paste 1 line instead of 5
     AGameStateBase* GameState = GetWorld()->GetGameState();
     check(GameState);
-
     ULyraExperienceManagerComponent* ExperienceComponent = GameState->FindComponentByClass<ULyraExperienceManagerComponent>();
     check(ExperienceComponent);
-
     ExperienceComponent->CallOrRegister_OnExperienceLoaded(FOnLyraExperienceLoaded::FDelegate::CreateUObject(this, &ThisClass::OnExperienceLoaded));
 }
 ```
 
-And you'd also create an `OnExperienceLoaded` handler in `AMyExampleActor`
+You must also create an `OnExperienceLoaded` handler in `AMyExampleActor`
 to receive the event:
 
 ```c++
+// Called by Lyra Experience Manager
 void AMyExampleActor::OnExperienceLoaded(const ULyraExperienceDefinition* Experience)
 {
     DoStuff();
