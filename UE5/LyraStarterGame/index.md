@@ -71,47 +71,27 @@ Common UI "owns" player input
   - [High Level Overview of Common UI in General](/UE5/CommonUI/)
 
 
-## Gameplay Ability System (GAS)
-
-  - [How to: Create a New Gameplay Ability](./Tutorials/How-To-Create-a-New-Gameplay-Ability)
-  - GAS Learning Resources:
-    - [UE5 Gameplay Ability System Conceptual Overview](/UE5/GameplayAbilitySystem/)
-    - Gameplay Attributes:
-      - [Attributes and Attribute Sets](https://docs.unrealengine.com/5.0/en-US/gameplay-attributes-and-attribute-sets-for-the-gameplay-ability-system-in-unreal-engine/) (Epic Documentation)
-      - [Attributes and Gameplay Effects](https://docs.unrealengine.com/5.0/en-US/gameplay-attributes-and-gameplay-effects-for-the-gameplay-ability-system-in-unreal-engine/) (Epic Documentation)
-  - C++ Examples:
-    - [How to: Send Client Gameplay Ability Data to Server in C++](/UE5/GameplayAbilitySystem/How-To-Send-Client-Gameplay-Ability-Data-to-Server-in-C++)
-    - [Target Dummy Actor Full C++ Example](https://github.com/x157/Lyra-ActorWithAbilities) (Github)
-
 ## Lyra Game Mode
 
 - [Lyra Experience](./Experience/)
 - [Lyra Game Initialization](./InitGame/)
 - [Lyra Game Phase Subsystem](./GamePhaseSubsystem/)
-
-## Lyra Gameplay Systems
-
-- [Health and Damage System](./Health-and-Damage/)
-  - Implemented via Gameplay Ability System Attributes & Effects
 - [Lyra Plugins](./Plugins/)
   - Overview of the Plugins Epic distributes via the Lyra project
 
 
-## Lyra Prototype Systems
+## Lyra Gameplay Systems
 
-[Interaction System](./Interactions/)
-  - Epic's prototype interaction system
-  - Not ready for you to use yourself, but a great resource to teach you to build your own Interaction System
-
-[Inventory System](./Inventory/)
-  - The base system of items that can be stored in a Pawn's inventory
-
-[Equipment System](./Equipment/)
-  - Inventory extension: Inventory Items that are pieces of equipment usable by Pawns
-
-[Weapon System](./Weapons/)
-  - Equipment extension: Equipment Items that are weapons usable by Pawns
-
+- [Equipment System](./Equipment/) *(prototype)*
+  - Inventory extension: Inventory Items that are pieces of Equipment usable by Pawns
+- [Health and Damage System](./Health-and-Damage/)
+  - Based on Gameplay Ability System Attributes & Effects
+- [Interaction System](./Interactions/) *(prototype)*
+  - Allows the player to interact with Actors in the World
+- [Inventory System](./Inventory/) *(prototype)*
+  - Allows pawns to keep items in inventory
+- [Weapon System](./Weapons/) *(prototype)*
+  - Equipment extension: Equipment Items that are Weapons usable by Pawns
 
 
 ## Lyra Character
@@ -121,6 +101,19 @@ Common UI "owns" player input
   - Demonstrates key concept: Asynchronous, inter-dependent `ModularGameplay` Initialization of Pawn components
 - Lyra provides a great `Character` base, but *does not provide* a useful `Pawn`.
   - This seems to be typical in UE5; Characters are first class, Pawns are completely up to you.
+
+
+## Gameplay Ability System (GAS)
+
+- [How to: Create a New Gameplay Ability](./Tutorials/How-To-Create-a-New-Gameplay-Ability)
+- GAS Learning Resources:
+    - [UE5 Gameplay Ability System Conceptual Overview](/UE5/GameplayAbilitySystem/)
+    - Gameplay Attributes:
+        - [Attributes and Attribute Sets](https://docs.unrealengine.com/5.0/en-US/gameplay-attributes-and-attribute-sets-for-the-gameplay-ability-system-in-unreal-engine/) (Epic Documentation)
+        - [Attributes and Gameplay Effects](https://docs.unrealengine.com/5.0/en-US/gameplay-attributes-and-gameplay-effects-for-the-gameplay-ability-system-in-unreal-engine/) (Epic Documentation)
+- C++ Examples:
+    - [How to: Send Client Gameplay Ability Data to Server in C++](/UE5/GameplayAbilitySystem/How-To-Send-Client-Gameplay-Ability-Data-to-Server-in-C++)
+    - [Target Dummy Actor Full C++ Example](https://github.com/x157/Lyra-ActorWithAbilities) (Github)
 
 
 # Misc Lyra Stuff
