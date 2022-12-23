@@ -24,19 +24,40 @@ unlike other Games, in Lyra you must ensure to
 `OnExperienceLoaded`, perhaps long after `BeginPlay`.
 
 
-## World Load
+# World Load Procedure
 
-### World🡒InitializeActorsForPlay
+World Loading follows this procedure:
 
-`LogWorld: Bringing World /XistGame/Maps/L_WorldName.L_WorldName up for play`
+- [Initialize Components of all World Actors](#InitializeActorsForPlay)
+  - [Init Game Mode](#InitGame)
+  - [Initialize Components](#InitializeComponents) *(random Actor order)*
+  - [Player Login](#PlayerLogin)
+    - Create Player Controller & Player State
+- [World Begin Play](#BeginPlay)
+  - Begin Play on all World Actors *(random Actor order)*
+- [Load Lyra Experience](#LoadLyraExperience)
+  - [`OnExperienceLoaded`](/UE5/LyraStarterGame/Experience/#OnExperienceLoaded)
+    signals that game play can begin
 
-#### InitGame
+
+<a id='InitializeActorsForPlay'></a>
+## Initialize Components of all World Actors
+
+This is implemented by World🡒InitializeActorsForPlay
+
+
+<a id='InitGame'></a>
+### Init Game Mode
 
 - GameMode🡒InitGame
 
-#### Initialize Components of ALL World Actors
+
+<a id='InitializeComponents'></a>
+### Initialize Components
 
 Initialization of World Actors is in **RANDOM ORDER**.
+
+When the GameMode is initialized, it does:
 
 - GameMode🡒PreInitializeComponents
   - GameState🡒PreInitializeComponents
@@ -44,9 +65,9 @@ Initialization of World Actors is in **RANDOM ORDER**.
   - GameMode🡒InitGameState
 - GameMode🡒PostInitializeComponents
 
-`LogWorld: Bringing up level for play took: 0.013386`
 
-#### Initialize Player Controller / State
+<a id='PlayerLogin'></a>
+### Player Login
 
 - GameMode🡒Login
   - GameMode🡒SpawnPlayerController
@@ -66,9 +87,10 @@ Initialization of World Actors is in **RANDOM ORDER**.
 - GameMode🡒OnPostLogin
 
 
-### World BeginPlay
+<a id='BeginPlay'></a>
+## World BeginPlay
 
-- All World Subsystems OnWorldBeginPlay
+- All World Subsystems `OnWorldBeginPlay`
 - GameMode🡒StartPlay
   - GameState🡒HandleBeginPlay
     - PlayerController🡒PushInputComponent
@@ -80,7 +102,8 @@ Initialization of World Actors is in **RANDOM ORDER**.
       - ... etc ...
 
 
-### Lyra Experience Load
+<a id='LoadLyraExperience'></a>
+## Load Lyra Experience
 
 In PIE, the World's Default Lyra Experience gets loaded on the tick after GameMode🡒InitGame.
 
@@ -88,7 +111,7 @@ In Game, the appropriate Lyra Experience is loaded by
 the Frontend State Component (or your similar Game State Component).
 
 
-#### Experience Load Procedure
+### Experience Load Procedure
 
 - Load Experience Asset and its References
 - Load all GameFeature Plugin (GFP) dependencies
