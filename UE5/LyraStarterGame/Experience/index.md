@@ -162,6 +162,9 @@ Lyra Game Mode is the required base Game Mode providing Lyra Experience support.
 - Delay initial player spawn until `OnExperienceLoaded`
   - Lots of other player start related logic
 
+[Initialization of the Game Mode](/UE5/LyraStarterGame/InitGame/)
+is discussed separately.
+
 
 <a id='LyraGameState'></a>
 ## Lyra Game State
