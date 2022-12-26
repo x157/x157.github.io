@@ -61,3 +61,9 @@ If you are a Windows user, see my notes and tips regarding
 - [Actor Communication](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ActorCommunication/)
 - [Gameplay Architecture](https://docs.unrealengine.com/5.0/en-US/programming-with-cpp-in-unreal-engine/)
   - [Unreal Engine Modules](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/Modules/)
+
+
+## Other Useful Tutorials
+
+- [Good description of UObjects & UClasses](https://1danielcoelho.github.io/unreal-engine-basics-base-classes/)
+  (UE4 but still relevant)
