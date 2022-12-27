@@ -49,8 +49,8 @@ If you are a Windows user, see my notes and tips regarding
 ## Official Tutorials from Epic
 
 - [BeginPlay - Introduction to some interesting Unreal Engine features](https://dev.epicgames.com/community/learning/paths/0w/unreal-engine-beginplay)
-- [Introduction to C++ Programming in UE4](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/IntroductionToCPP/)
 - [C++ Programming Tutorials](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/CPPTutorials/)
+  - [Introduction to C++ Programming in UE4](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/IntroductionToCPP/)
 - [Unreal Architecture](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/)
   - [Actors](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/Actors/)
   - [Delegates](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/Delegates/)
@@ -58,6 +58,7 @@ If you are a Windows user, see my notes and tips regarding
       - [Object Handling (memory management, casting)](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/Objects/Optimizations/)
   - [Strings](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/StringHandling/)
   - [Smart Pointer Library](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/SmartPointerLibrary/)
+    - [All about Soft and Weak Pointers](https://dev.epicgames.com/community/learning/tutorials/kx/all-about-soft-and-weak-pointers)
 - [Actor Communication](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ActorCommunication/)
 - [Gameplay Architecture](https://docs.unrealengine.com/5.0/en-US/programming-with-cpp-in-unreal-engine/)
   - [Unreal Engine Modules](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/Modules/)
