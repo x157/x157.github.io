@@ -1,6 +1,6 @@
 ---
 title: "LyraStarterGame Overview"
-description: "Learn how to make a new game based on UE5's Lyra Starter Game (LyraStarterGame)"
+description: "Learn how to make a new game based on UE5 LyraStarterGame (Lyra)"
 breadcrumb_path: "UE5"
 breadcrumb_name: "LyraStarterGame"
 ---

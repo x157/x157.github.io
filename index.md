@@ -2,7 +2,7 @@
 is_site_index: true
 ---
 
-# UE5 Lyra Starter Game
+# Lyra Starter Game
 
 My primary focus at the moment: [Developing a Game with UE5 LyraStarterGame](./UE5/LyraStarterGame/)
 
