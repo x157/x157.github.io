@@ -74,8 +74,11 @@ Common UI "owns" player input
 ## Lyra Game Mode
 
 - [Lyra Experience](./Experience/)
+  - How & Why Lyra loads itself and your GFPs the way it does
 - [Lyra Game Initialization](./InitGame/)
+  - Debug Tracing to illustrate how a Lyra World starts up and initializes itself
 - [Lyra Game Phase Subsystem](./GamePhaseSubsystem/)
+  - Once a game is playing, how to manage different phases of game play
 - [Lyra Plugins](./Plugins/)
   - Overview of the Plugins Epic distributes via the Lyra project
 
@@ -105,15 +108,21 @@ Common UI "owns" player input
 
 ## Gameplay Ability System (GAS)
 
+#### Lyra-Specific GAS Resources
+
 - [How to: Create a New Gameplay Ability](./Tutorials/How-To-Create-a-New-Gameplay-Ability)
-- GAS Learning Resources:
-    - [UE5 Gameplay Ability System Conceptual Overview](/UE5/GameplayAbilitySystem/)
-    - Gameplay Attributes:
-        - [Attributes and Attribute Sets](https://docs.unrealengine.com/5.0/en-US/gameplay-attributes-and-attribute-sets-for-the-gameplay-ability-system-in-unreal-engine/) (Epic Documentation)
-        - [Attributes and Gameplay Effects](https://docs.unrealengine.com/5.0/en-US/gameplay-attributes-and-gameplay-effects-for-the-gameplay-ability-system-in-unreal-engine/) (Epic Documentation)
+- Lyra Ability Tag Relationship Maps
+  - [Tutorial courtesy of ScaleSculptor](https://www.artstation.com/blogs/scalesculptor/ZgqV/ability-tag-relationship-maps-in-lyra)
 - C++ Examples:
-    - [How to: Send Client Gameplay Ability Data to Server in C++](/UE5/GameplayAbilitySystem/How-To-Send-Client-Gameplay-Ability-Data-to-Server-in-C++)
-    - [Target Dummy Actor Full C++ Example](https://github.com/x157/Lyra-ActorWithAbilities) (Github)
+  - [How to: Send Client Gameplay Ability Data to Server in C++](/UE5/GameplayAbilitySystem/How-To-Send-Client-Gameplay-Ability-Data-to-Server-in-C++)
+  - [Target Dummy Actor Full C++ Example](https://github.com/x157/Lyra-ActorWithAbilities) (Github)
+
+#### General GAS Resources
+
+- [UE5 Gameplay Ability System Conceptual Overview](/UE5/GameplayAbilitySystem/)
+- Gameplay Attributes:
+    - [Attributes and Attribute Sets](https://docs.unrealengine.com/5.0/en-US/gameplay-attributes-and-attribute-sets-for-the-gameplay-ability-system-in-unreal-engine/) (Epic Documentation)
+    - [Attributes and Gameplay Effects](https://docs.unrealengine.com/5.0/en-US/gameplay-attributes-and-gameplay-effects-for-the-gameplay-ability-system-in-unreal-engine/) (Epic Documentation)
 
 
 # Misc Lyra Stuff
