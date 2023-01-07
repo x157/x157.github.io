@@ -86,7 +86,7 @@ set of base classes in these cases, it **is** a good, functional multiplayer pro
 that you can build out yourself.
 
 For example, I documented the
-[Process of Duplicating some Lyra Prototype Code](http://localhost:4000/UE5/LyraStarterGame/Inventory/#DuplicateToExtend)
+[Process of Duplicating some Lyra Prototype Code](/UE5/LyraStarterGame/Inventory/#DuplicateToExtend)
 in some detail.
 
 Again, it's important to stress that in general extending code is preferable
