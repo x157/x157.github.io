@@ -24,9 +24,11 @@ To understand Lyra, you also need an understanding of these UE5 plugins:
 - [`ModularGameplay` Plugin](/UE5/ModularGameplay/)
 
 
-# Unreal Engine Annotations
+# Perforce SCM
 
-- [Perforce Version Control Fundamentals](./Annotations/Inside-Unreal/EpicGames-Version-Control-Fundamentals) *(technically optional; essentially required)*
+[Perforce Version Control Fundamentals](./Annotations/Inside-Unreal/EpicGames-Version-Control-Fundamentals) (video annotation)
+
+  - [Perforce Workflow: Setting up a Workspace](https://youtu.be/JxXydvG4mlI?t=1898) (official Epic video)
 
 
 # Engine Tips & Tricks
