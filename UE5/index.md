@@ -24,14 +24,7 @@ To understand Lyra, you also need an understanding of these UE5 plugins:
 - [`ModularGameplay` Plugin](/UE5/ModularGameplay/)
 
 
-# Perforce SCM
-
-[Perforce Version Control Fundamentals](./Annotations/Inside-Unreal/EpicGames-Version-Control-Fundamentals) (video annotation)
-
-  - [Perforce Workflow: Setting up a Workspace](https://youtu.be/JxXydvG4mlI?t=1898) (official Epic video)
-
-
-# Engine Tips & Tricks
+# Engine Tips
 
 - [Core Redirects: How to Redirect Blueprints to new/refactored C++](./Engine/Core-Redirects)
 - [How to Build (and Use) a Custom Engine](./Engine/)
@@ -39,6 +32,13 @@ To understand Lyra, you also need an understanding of these UE5 plugins:
 - [How to Remove "Runtime" name suffix from GameFeature Plugin Code Names](./GameFeatures/How-To-Remove-GameFeature-Runtime-Code-Suffix)
 
 
-# Windows Tips & Tricks
+# Windows Tips
 
 - [Windows Registry Keys: `HKEY_CLASSES_ROOT\Unreal.ProjectFile`](./Windows-Registry-Keys)
+
+
+# Perforce SCM
+
+- [Perforce Overview](/Perforce/)
+- [Perforce to Git Sync Procedure](/UE5/Engine/Perforce-Sync-Procedure)
+
