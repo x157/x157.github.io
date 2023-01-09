@@ -7,16 +7,45 @@ breadcrumb_name: "typemap"
 
 # Perforce Typemap
 
+The typemap tells the server how to store and manage availability for files of various types.
+
+You **must** configure it **before** you try to import any data into Perforce.
+
+
+## Updating P4 Typemap
+
+To update the Typemap, save the [example file](#Example)
+as `InputFile.txt`.
+
+Then, in Powershell:
+
+```powershell
+# Write InputFile.txt contents into p4 Input
+cat InputFile.txt | p4 typemap -i
+```
+
+<a id='Example'></a>
+# Example P4 Typemap
+
 This is an example `p4 typemap` for a UE 5.1 [Lyra](/UE5/LyraStarterGame/) project.
 
-This will configure the P4 server such that **every depot** on the server will use this typemap.
+This example will configure the P4 server such that **every depot**
+on the server will use this typemap.
 Maybe that's what you want, maybe it isn't.
 
 If you only want this to affect a single depot on your server,
 replace all `//...` (the first 3 dots only)
 with `//YourDepot/...`, where `YourDepot` is whatever your depot is named.
 
+For example:
+
+```text
+    binary+w //YourDepot/....exe
+```
+
 See also: [Official Perforce typemap Docs](https://www.perforce.com/blog/vcs/perforce-p4-typemap)
+
+## Lyra 5.1 Project P4 Typemap
 
 ```text
 # Perforce File Type Mapping Specifications.
