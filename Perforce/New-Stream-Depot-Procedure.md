@@ -28,76 +28,89 @@ This procedure will have you submitting files to P4, they will be stored incorre
 not correctly configured your typemap.
 
 
+# Procedure Overview
+
+- Set up P4 Server [Typemap](./Typemap)
+- Create Stream Depot: `Lyra`
+- Create Stream: `//Lyra/Main`
+  - Setup Contents of Initial Import (new `LyraStarterGame` project)
+  - Add `.p4ignore` ([Example `.p4ignore`](/Perforce/p4ignore))
+  - Add all non-ignored Content to P4
+- Create Stream: `//Lyra/Dev` (based on `//Lyra/Main`)
+  - Copy contents of `//Lyra/Main`
+
+
 # Create Depot: `Lyra`
 
 ```powershell
 p4 depot -t stream Lyra
 ```
 
-
+---
 # Create Stream: `//Lyra/Main`
 
-```powershell
-###
-### Set up Powershell variables & environment
-###
+##### Set up Powershell variables & environment
 
+```powershell
 # change P4USER if your P4 username != your Windows username
 $env:P4USER = $env:UserName
 $env:P4CLIENT = "Lyra_Main_${env:P4USER}"  # P4 workspace name
 
-# cd to the local dir where you want these files to be stored
-# (create an empty directory if needed)
+# Location where you want to store your local Workspace content
 $WorkspaceDir = "D:/Dev/$env:P4CLIENT"
+```
 
-# Create $WorkspaceDir if it does not exist, and cd to it
+##### CD to `$WorkspaceDir` (create empty dir if needed)
+
+```powershell
 if (!(Test-Path $WorkspaceDir)) {mkdir $WorkspaceDir}
+
 cd $WorkspaceDir
+```
 
-###
-### Create Main Stream + Workspace
-###
+##### Create Main Stream & Workspace
 
+```powershell
 # Create Main Stream
 p4 stream -t mainline //Lyra/Main
 
 # create workspace ($env:P4CLIENT) for Main stream
-p4 client -S //Lyra/Main
+p4 workspace -s -S //Lyra/Main
+```
 
-###
-### Copy your existing project files (if any) into the workspace
-###
-
-# Example: Copy D:/Other/Source recursively
-cp -Recurse D:/Other/Source/* $WorkspaceDir
-# At the very least you want a .p4ignore file
+##### Copy your existing project files (if any) into the workspace
+```powershell
+# Example: Recursive Copy D:/Dev/LyraStarterGame into Workspace Root
+cp -Recurse D:/Dev/LyraStarterGame/* $WorkspaceDir
 
 # UNSET read-only flags on all files we copied
 # (P4 will mark them read only if needed when we add the files to P4, based on your typemap)
 Get-ChildItem -Recurse | %{ if($_.IsReadOnly) {$_.IsReadOnly = $false} }
+```
 
-###
-### Now is your last chance to make changes to these files before we commit.
-### Run a sample build, try it out in Editor, do whatever you need to do.
-###
+##### Add initial `.p4ignore` so we don't import anything we don't want to import
 
-# FIRST: Add .p4ignore to the stream so we don't add stuff we don't care about
+See [Example `.p4ignore` file](/Perforce/p4ignore).
+You MUST provide a reasonable `.p4ignore`.
+
+```powershell
 p4 add .p4ignore
 p4 submit -d "Initialize stream with .p4ignore"
+```
 
-# SECOND: Recursively add all non-ignored files
+##### Recursively add all non-ignored files
+```powershell
 p4 add ...
 p4 submit -d "Initial Import"
 ```
 
 
+---
 # Create Stream: `//Lyra/Dev`
 
-```powershell
-###
-### Set up Powershell variables & environment
-###
+##### Set up PowerShell variables & environment
 
+```powershell
 # change P4USER if your P4 username != your Windows username
 $env:P4USER = $env:UserName
 $env:P4CLIENT = "Lyra_Dev_${env:P4USER}"  # P4 workspace name
@@ -105,27 +118,32 @@ $env:P4CLIENT = "Lyra_Dev_${env:P4USER}"  # P4 workspace name
 # cd to the local dir where you want these files to be stored
 # (create an empty directory if needed)
 $WorkspaceDir = "D:/Dev/$env:P4CLIENT"
+```
 
-# Create $WorkspaceDir if it does not exist, then cd into it
+##### CD to `$WorkspaceDir` (create empty dir if needed)
+```powershell
 if (!(Test-Path $WorkspaceDir)) {mkdir $WorkspaceDir}
+
 cd $WorkspaceDir
+```
 
-###
-### Create Dev Stream + Workspace
-###
-
+##### Create Dev Stream + Workspace
+```powershell
 # Create Dev Stream (based on Main)
 p4 stream -t development -P //Lyra/Main //Lyra/Dev
 
 # create workspace ($env:P4CLIENT) for Dev stream
-p4 client -S //Lyra/Dev
+p4 workspace -s -S //Lyra/Dev
+```
 
-# initially populate the Dev branch based on the Main branch
+##### Populate the Dev branch based on the Main branch
+```powershell
 p4 populate -d "From Main" -S //Lyra/Dev -r
 p4 sync
 ```
 
 
+---
 # Future Merging
 
 `p4 populate` only works to initially populate the `Dev` branch.
