@@ -7,12 +7,9 @@ breadcrumb_name: UE5
 
 # Unreal Engine 5
 
-At the moment I'm mostly focusing on understanding and extending the UE5
-[Lyra Starter Game](./LyraStarterGame/).
-
-I'm also documenting some ideas RE [Development in UE5](./Dev/).
-
 To understand Lyra, you also need an understanding of these UE5 plugins:
+
+## Important Plugins related to Lyra
 
 - [Common UI](/UE5/CommonUI/) + CommonGame
 - Enhanced Input System
@@ -24,21 +21,27 @@ To understand Lyra, you also need an understanding of these UE5 plugins:
 - [`ModularGameplay` Plugin](/UE5/ModularGameplay/)
 
 
-# Perforce SCM
+# Engine Tips
 
-[Perforce Version Control Fundamentals](./Annotations/Inside-Unreal/EpicGames-Version-Control-Fundamentals) (video annotation)
-
-  - [Perforce Workflow: Setting up a Workspace](https://youtu.be/JxXydvG4mlI?t=1898) (official Epic video)
-
-
-# Engine Tips & Tricks
-
+- [Development in UE5](./Dev/)
 - [Core Redirects: How to Redirect Blueprints to new/refactored C++](./Engine/Core-Redirects)
 - [How to Build (and Use) a Custom Engine](./Engine/)
 - [Re-save Project Assets when you Update the Engine](./Engine/Resave-Assets)
-- [How to Remove "Runtime" name suffix from GameFeature Plugin Code Names](./GameFeatures/How-To-Remove-GameFeature-Runtime-Code-Suffix)
 
 
-# Windows Tips & Tricks
+# Windows Tips
 
 - [Windows Registry Keys: `HKEY_CLASSES_ROOT\Unreal.ProjectFile`](./Windows-Registry-Keys)
+
+
+# Perforce SCM
+
+- [Perforce Overview](/Perforce/)
+- [UDN Perforce to Xist Git - Sync Procedure](/UE5/Engine/Perforce-Sync-Procedure)
+
+
+# Epic Developer Discussions
+
+- [Common UI Annotations](./UE5/CommonUI/#Annotations)
+- [LyraStarterGame Annotations](./UE5/LyraStarterGame/Epic-Games-Developer-Discussion-References)
+- [Other Unreal Engine Annotations](./UE5/Annotations/)

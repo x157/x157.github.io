@@ -13,6 +13,7 @@ This led me to study these related, relevant [UE5](./UE5/) topics:
 - [Gameplay Ability System](/UE5/GameplayAbilitySystem/)
 - [GameFeature Plugins](/UE5/GameFeatures/)
 - [`ModularGameplay` Plugin](/UE5/ModularGameplay/)
+- [Perforce SCM](/Perforce/)
 
 Want to be a better UE5 C++ Dev?
 My thoughts on
@@ -48,19 +49,6 @@ supplementary material to this written documentation, so it is what it is.
 
 If you have ideas for tutorials you'd like me to research and document, feel free to
 create a [New Issue](https://github.com/x157/x157.github.io/labels/tutorial%20request)
-and tag it as a `tutorial request`.  I don't promise to cover it, but particularly if
-it's something other people have questions about, and it's relevant to my own dev efforts,
-I'll definitely consider it.
-
-
-# Video References
-
-If you're looking to learn more about UE5, particularly related to
-[LyraStarterGame](./UE5/LyraStarterGame/)
-and related engine concepts, check out my video annotations:
-
-#### Epic Developer Discussions
-
-- [Common UI Annotations](./UE5/CommonUI/#Annotations)
-- [LyraStarterGame Annotations](./UE5/LyraStarterGame/Epic-Games-Developer-Discussion-References)
-- [Other Unreal Engine Annotations](./UE5/Annotations/)
+and tag it as a `tutorial request`.  I don't promise to cover it, but
+I'll definitely consider doing so if
+it's a common question and is relevant to my dev efforts.
