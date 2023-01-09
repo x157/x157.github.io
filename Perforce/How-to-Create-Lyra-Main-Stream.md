@@ -1,43 +1,30 @@
 ---
-title: "Perforce (P4) New Stream Depot Procedure"
-description: "Procedure for creating and initializing a new Stream Depot in Perforce"
+title: "Perforce: How to Create the //Lyra/Main Stream"
+description: "Procedure for creating a //Lyra/Main P4 Stream based on a LyraStarterGame project"
 breadcrumb_path: "Perforce"
-breadcrumb_name: "New Stream Depot Procedure"
+breadcrumb_name: "Lyra Main Stream"
 ---
 
-# New Stream Depot Procedure
+# How to Create the `//Lyra/Main` Stream
 
-There is a ton of info in the
-[Official Docs](https://www.perforce.com/manuals/p4guide/Content/P4Guide/tutorial.create-depot.html)
-covering related topics, including
-[basic initial setup tasks](https://www.perforce.com/manuals/p4guide/Content/P4Guide/basic-tasks.initial.html).
-
-Here I've combined many of those articles into a procedure
-to create a new `Lyra` Stream Depot with a single `Main` stream.
-
-Once you have the `Main` stream created and initialized with a `LyraStarterGame` project,
-you can then create other streams based on this  as needed.
-(See [How to use Perforce Streams 101](https://www.perforce.com/blog/vcs/how-use-perforce-streams-101)
-for more info).
+The `//Lyra/Main` stream is a brand new, empty `LyraStarterGame` project.
 
 
 ## Procedure Overview
 
-- Set up P4 Server [Typemap](./Typemap) **before** you import anything
-- Create Stream Depot: `Lyra`
+- Make sure you already [set up the `//Lyra` Depot](./How-to-Create-Lyra-Depot)
 - Create Stream: `//Lyra/Main`
   - Copy New `LyraStarterGame` Project Contents
   - Add `.p4ignore` (see [Example `.p4ignore`](/Perforce/p4ignore))
   - Add all non-ignored Content to P4
 
+### Summary of Result
+
+- P4 Stream `//Lyra/Main` contains a blank [`LyraStarterGame`](/UE5/LyraStarterGame/) project
+- P4 Workspace `Lyra_Main_$(P4USER)` is mapped to `//Lyra/Main`
+  - Stored locally in `D:/Dev/Lyra_Main_$(P4USER)`
+
 Now you can create any number of projects you want based on `//Lyra/Main`
-
-
-# Create Depot: `Lyra`
-
-```powershell
-p4 depot -t stream Lyra
-```
 
 
 # Create Stream: `//Lyra/Main`
@@ -45,9 +32,12 @@ p4 depot -t stream Lyra
 ##### Set up Powershell variables & environment
 
 ```powershell
-# change P4USER if your P4 username != your Windows username
-$env:P4USER = $env:UserName
-$env:P4CLIENT = "Lyra_Main_${env:P4USER}"  # P4 workspace name
+# Set environment variable: P4 Username
+$env:P4USER = $env:UserName;  # Change if your P4USER != your PowerShell UserName
+
+# Set environment variable: P4 Workspace Name (P4CLIENT)
+#   Each P4USER gets their own workspace
+$env:P4CLIENT = "Lyra_Main_${env:P4USER}"
 
 # Location where you want to store your local Workspace content
 $WorkspaceDir = "D:/Dev/$env:P4CLIENT"
@@ -88,7 +78,7 @@ You MUST provide a reasonable `.p4ignore`.
 
 ```powershell
 p4 add .p4ignore
-p4 submit -d "Initialize stream with .p4ignore"
+p4 submit -d "Initial .p4ignore"
 ```
 
 ##### Recursively add all non-ignored files
@@ -105,5 +95,7 @@ You now have a fully initialized `//Lyra/Main` stream.
 You can either decide to start hacking on this stream directly,
 or you can create child streams based on this for your own purposes.
 
-For more info RE pros & cons either way, see
-[Extending Lyra: Development Considerations](/UE5/LyraStarterGame/Development-Considerations)
+- [Extending Lyra: Development Considerations](/UE5/LyraStarterGame/Development-Considerations)
+  - Help to decide whether to hack Lyra directly or via plugins
+- [How to: Create the `//Lyra/Xist` Stream](./How-to-Create-Lyra-Xist-Stream)
+  - Customize `//Lyra/Main` into my own reusable `//Lyra/Xist`

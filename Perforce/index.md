@@ -15,18 +15,29 @@ I require the binary locking/sharing capabilities of Perforce.
 
 ## How I set up my Perforce Server
 
-- [Set up Perforce Typemap](./Typemap)
-- [Configure `.p4ignore`](./p4ignore)
-- [New Stream Depot Procedure](./New-Stream-Depot-Procedure)
-  - First time setup procedure for a new Stream Depot
+Initial Setup
+1. [Set up Perforce Typemap](./Typemap)
+2. [Create `.p4ignore`](./p4ignore)
+
+Import Lyra from Epic, Create custom Xist version of Lyra
+1. [Create `//Lyra` Depot](./How-to-Create-Lyra-Depot)
+2. [Create `//Lyra/Main` Stream](./How-to-Create-Lyra-Main-Stream) (import from Epic)
+3. [Create `//Lyra/Xist` Stream](./How-to-Create-Lyra-Xist-Stream) (apply `LYRAGAME_API` updates, `virtual` overrides, etc)
+
+Each time I want to make a new Game:
+
+- [Create a new `//Lyra/XistGame` Stream](./How-to-Create-Lyra-Xist-Game-Stream) based on `//Lyra/Xist`
 
 
 # Recommended Reading
 
 - [How to use Perforce Streams 101](https://www.perforce.com/blog/vcs/how-use-perforce-streams-101)
+- [Perforce Tutorial](https://www.perforce.com/manuals/p4guide/Content/P4Guide/chapter.tutorial.html)
+- [Basic Initial Setup Tasks](https://www.perforce.com/manuals/p4guide/Content/P4Guide/basic-tasks.initial.html)
 - [P4 Typemap: How to Set Up Perforce Typemap](https://www.perforce.com/blog/vcs/perforce-p4-typemap)
   - IMPORTANT: get the typemap correct **before** you add your project to Perforce
     - Epic's typemap docs are not great, make sure to read and understand this doc from Perforce
+
 
 ## Specifically Related to Unreal Engine
 
