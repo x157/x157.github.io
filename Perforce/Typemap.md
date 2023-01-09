@@ -66,6 +66,7 @@ TypeMap:
     binary+w //....exe
     binary+w //....dll
     binary+w //....lib
+    binary+w //....pdb
     binary+w //....app
     binary+w //....dylib
     binary+w //....stub
