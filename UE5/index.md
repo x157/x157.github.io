@@ -7,12 +7,9 @@ breadcrumb_name: UE5
 
 # Unreal Engine 5
 
-At the moment I'm mostly focusing on understanding and extending the UE5
-[Lyra Starter Game](./LyraStarterGame/).
-
-I'm also documenting some ideas RE [Development in UE5](./Dev/).
-
 To understand Lyra, you also need an understanding of these UE5 plugins:
+
+## Important Plugins related to Lyra
 
 - [Common UI](/UE5/CommonUI/) + CommonGame
 - Enhanced Input System
@@ -26,10 +23,10 @@ To understand Lyra, you also need an understanding of these UE5 plugins:
 
 # Engine Tips
 
+- [Development in UE5](./Dev/)
 - [Core Redirects: How to Redirect Blueprints to new/refactored C++](./Engine/Core-Redirects)
 - [How to Build (and Use) a Custom Engine](./Engine/)
 - [Re-save Project Assets when you Update the Engine](./Engine/Resave-Assets)
-- [How to Remove "Runtime" name suffix from GameFeature Plugin Code Names](./GameFeatures/How-To-Remove-GameFeature-Runtime-Code-Suffix)
 
 
 # Windows Tips
@@ -40,5 +37,11 @@ To understand Lyra, you also need an understanding of these UE5 plugins:
 # Perforce SCM
 
 - [Perforce Overview](/Perforce/)
-- [Perforce to Git Sync Procedure](/UE5/Engine/Perforce-Sync-Procedure)
+- [UDN Perforce to Xist Git - Sync Procedure](/UE5/Engine/Perforce-Sync-Procedure)
 
+
+# Epic Developer Discussions
+
+- [Common UI Annotations](./UE5/CommonUI/#Annotations)
+- [LyraStarterGame Annotations](./UE5/LyraStarterGame/Epic-Games-Developer-Discussion-References)
+- [Other Unreal Engine Annotations](./UE5/Annotations/)

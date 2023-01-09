@@ -4,16 +4,19 @@ description: "Notes regarding working with Perforce (P4) from a C++ dev perspect
 breadcrumb_name: Perforce
 ---
 
-# Perforce
+# Perforce SCM
 
-To support non-technical members of the Xist.GG team, I moved to Perforce (P4) for SCM.
+When I was working solo on the game, Git was fine.
+It would have continued to work for a small technical team.
 
-Traditionally I have worked with pure source code, and Git has been
-my go-to solution for some time.  That worked great for me early on in my UE5 development,
-but now that I need to bring some non-technical artists into the mix,
-I require the binary sharing and file locking capabilities provided by Perforce.
+To best support non-technical members of the Xist.GG team,
+I require the binary locking/sharing capabilities of Perforce.
 
 - [Example Lyra Project Perforce Typemap](./Typemap)
+- [Example `.p4ignore`](./p4ignore)
+
+Detailed Setup of New Depot using Streams:
+
 - [New Stream Depot Procedure](./New-Stream-Depot-Procedure)
   - First time setup procedure for a new Stream Depot
 
