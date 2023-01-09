@@ -2,7 +2,7 @@
 title: "Perforce Typemap"
 description: "Sample Perforce (P4) typemap for a UE 5.1 UProject depot"
 breadcrumb_path: "Perforce"
-breadcrumb_name: "typemap"
+breadcrumb_name: "Typemap"
 ---
 
 # Perforce Typemap
@@ -34,8 +34,8 @@ on the server will use this typemap.
 Maybe that's what you want, maybe it isn't.
 
 If you only want this to affect a single depot on your server,
-replace all `//...` (the first 3 dots only)
-with `//YourDepot/...`, where `YourDepot` is whatever your depot is named.
+replace all `//` with `//YourDepot/`,
+where `YourDepot` is whatever your depot is named.
 
 For example:
 
