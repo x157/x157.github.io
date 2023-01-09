@@ -75,7 +75,7 @@ cd $WorkspaceDir
 p4 stream -t mainline //Lyra/Main
 
 # create workspace ($env:P4CLIENT) for Main stream
-p4 workspace -s -S //Lyra/Main
+p4 workspace -S //Lyra/Main
 ```
 
 ##### Copy your existing project files (if any) into the workspace
@@ -133,7 +133,7 @@ cd $WorkspaceDir
 p4 stream -t development -P //Lyra/Main //Lyra/Dev
 
 # create workspace ($env:P4CLIENT) for Dev stream
-p4 workspace -s -S //Lyra/Dev
+p4 workspace -S //Lyra/Dev
 ```
 
 ##### Populate the Dev branch based on the Main branch
