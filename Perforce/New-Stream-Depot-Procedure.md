@@ -13,31 +13,24 @@ covering related topics, including
 [basic initial setup tasks](https://www.perforce.com/manuals/p4guide/Content/P4Guide/basic-tasks.initial.html).
 
 Here I've combined many of those articles into a procedure
-to create a new `Lyra` Stream Depot with 2 streams: `Main` and `Dev`.  We then populate `Main`
-with some initial content, and create a `Dev` stream based on `Main`.
+to create a new `Lyra` Stream Depot with a single `Main` stream.
 
-The intent is that thereafter you work on the `Dev` Stream primarily, and only merge back into `Main`
-when you have something stable to share with non-technicals.
-
-
-## Before you Proceed
-
-Make sure your P4 server is set up, including its [typemap](./Typemap).
-
-This procedure will have you submitting files to P4, they will be stored incorrectly if you have
-not correctly configured your typemap.
+Once you have the `Main` stream created and initialized with a `LyraStarterGame` project,
+you can then create other streams based on this  as needed.
+(See [How to use Perforce Streams 101](https://www.perforce.com/blog/vcs/how-use-perforce-streams-101)
+for more info).
 
 
-# Procedure Overview
+## Procedure Overview
 
-- Set up P4 Server [Typemap](./Typemap)
+- Set up P4 Server [Typemap](./Typemap) **before** you import anything
 - Create Stream Depot: `Lyra`
 - Create Stream: `//Lyra/Main`
-  - Setup Contents of Initial Import (new `LyraStarterGame` project)
-  - Add `.p4ignore` ([Example `.p4ignore`](/Perforce/p4ignore))
+  - Copy New `LyraStarterGame` Project Contents
+  - Add `.p4ignore` (see [Example `.p4ignore`](/Perforce/p4ignore))
   - Add all non-ignored Content to P4
-- Create Stream: `//Lyra/Dev` (based on `//Lyra/Main`)
-  - Copy contents of `//Lyra/Main`
+
+Now you can create any number of projects you want based on `//Lyra/Main`
 
 
 # Create Depot: `Lyra`
@@ -46,7 +39,7 @@ not correctly configured your typemap.
 p4 depot -t stream Lyra
 ```
 
----
+
 # Create Stream: `//Lyra/Main`
 
 ##### Set up Powershell variables & environment
@@ -105,51 +98,12 @@ p4 submit -d "Initial Import"
 ```
 
 
----
-# Create Stream: `//Lyra/Dev`
+# Congratulations! You have Imported Lyra
 
-##### Set up PowerShell variables & environment
+You now have a fully initialized `//Lyra/Main` stream.
 
-```powershell
-# change P4USER if your P4 username != your Windows username
-$env:P4USER = $env:UserName
-$env:P4CLIENT = "Lyra_Dev_${env:P4USER}"  # P4 workspace name
+You can either decide to start hacking on this stream directly,
+or you can create child streams based on this for your own purposes.
 
-# cd to the local dir where you want these files to be stored
-# (create an empty directory if needed)
-$WorkspaceDir = "D:/Dev/$env:P4CLIENT"
-```
-
-##### CD to `$WorkspaceDir` (create empty dir if needed)
-```powershell
-if (!(Test-Path $WorkspaceDir)) {mkdir $WorkspaceDir}
-
-cd $WorkspaceDir
-```
-
-##### Create Dev Stream + Workspace
-```powershell
-# Create Dev Stream (based on Main)
-p4 stream -t development -P //Lyra/Main //Lyra/Dev
-
-# create workspace ($env:P4CLIENT) for Dev stream
-p4 workspace -S //Lyra/Dev
-```
-
-##### Populate the Dev branch based on the Main branch
-```powershell
-p4 populate -d "From Main" -S //Lyra/Dev -r
-p4 sync
-```
-
-
----
-# Future Merging
-
-`p4 populate` only works to initially populate the `Dev` branch.
-
-In the future when you want to pull `Main` files into `Dev`, you need to use `p4 integ` instead:
-
-```powershell
-p4 integ //Lyra/Main/... //Lyra/Dev/...
-```
+For more info RE pros & cons either way, see
+[Extending Lyra: Development Considerations](/UE5/LyraStarterGame/Development-Considerations)
