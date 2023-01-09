@@ -13,10 +13,10 @@ covering related topics, including
 [basic initial setup tasks](https://www.perforce.com/manuals/p4guide/Content/P4Guide/basic-tasks.initial.html).
 
 Here I've combined many of those articles into a procedure
-to create a new `Lyra` Stream Depot with 2 streams: `Main` and `Xist`.  We then populate `Main`
-with some initial content, and create a `Xist` stream based on `Main`.
+to create a new `Lyra` Stream Depot with 2 streams: `Main` and `Dev`.  We then populate `Main`
+with some initial content, and create a `Dev` stream based on `Main`.
 
-The intent is that thereafter you work on the `Xist` Stream primarily, and only merge back into `Main`
+The intent is that thereafter you work on the `Dev` Stream primarily, and only merge back into `Main`
 when you have something stable to share with non-technicals.
 
 
@@ -73,7 +73,7 @@ cp -Recurse D:/Other/Source/* $WorkspaceDir
 # At the very least you want a .p4ignore file
 
 # UNSET read-only flags on all files we copied
-# (P4 will mark them read only as needed when we add the files to P4)
+# (P4 will mark them read only if needed when we add the files to P4, based on your typemap)
 Get-ChildItem -Recurse | %{ if($_.IsReadOnly) {$_.IsReadOnly = $false} }
 
 ###
@@ -91,7 +91,7 @@ p4 submit -d "Initial Import"
 ```
 
 
-# Create Stream: `//Lyra/Xist`
+# Create Stream: `//Lyra/Dev`
 
 ```powershell
 ###
@@ -100,7 +100,7 @@ p4 submit -d "Initial Import"
 
 # change P4USER if your P4 username != your Windows username
 $env:P4USER = $env:UserName
-$env:P4CLIENT = "Lyra_Xist_${env:P4USER}"  # P4 workspace name
+$env:P4CLIENT = "Lyra_Dev_${env:P4USER}"  # P4 workspace name
 
 # cd to the local dir where you want these files to be stored
 # (create an empty directory if needed)
@@ -111,27 +111,27 @@ if (!(Test-Path $WorkspaceDir)) {mkdir $WorkspaceDir}
 cd $WorkspaceDir
 
 ###
-### Create Xist Stream + Workspace
+### Create Dev Stream + Workspace
 ###
 
-# Create Xist Stream (based on Main)
-p4 stream -t development -P //Lyra/Main //Lyra/Xist
+# Create Dev Stream (based on Main)
+p4 stream -t development -P //Lyra/Main //Lyra/Dev
 
-# create workspace ($env:P4CLIENT) for Xist stream
-p4 client -S //Lyra/Xist
+# create workspace ($env:P4CLIENT) for Dev stream
+p4 client -S //Lyra/Dev
 
-# initially populate the Xist branch based on the Main branch
-p4 populate -d "From Main" -S //Lyra/Xist -r
+# initially populate the Dev branch based on the Main branch
+p4 populate -d "From Main" -S //Lyra/Dev -r
 p4 sync
 ```
 
 
 # Future Merging
 
-`p4 populate` only works to initially populate the `Xist` branch.
+`p4 populate` only works to initially populate the `Dev` branch.
 
-In the future when you want to pull `Main` files into `Xist`, you need to use `p4 integ` instead:
+In the future when you want to pull `Main` files into `Dev`, you need to use `p4 integ` instead:
 
 ```powershell
-p4 integ //Lyra/Main/... //Lyra/Xist/...
+p4 integ //Lyra/Main/... //Lyra/Dev/...
 ```
