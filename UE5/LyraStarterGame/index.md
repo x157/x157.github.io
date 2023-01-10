@@ -137,6 +137,7 @@ In an effort to understand the material Epic has provided us to start with, I am
 
 Bug fixes:
 
+- [How to: Resave Lyra 5.1 Assets for faster Editor Load Times](./How-To-Resave-Assets-v5.1)
 - [How to: Fix Lyra's Unarmed Animation Bugs](./Tutorials/How-To-Fix-Lyra-Unarmed-Animation-Bugs)
 
 Works in progress:

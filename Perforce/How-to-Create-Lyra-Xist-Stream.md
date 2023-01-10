@@ -35,6 +35,8 @@ You must have successfully
 - P4 Workspace `Lyra_Xist_$(P4USER)` is mapped to `//Lyra/Xist`
   - Stored locally in `D:/Dev/Lyra_Xist`
 
+[After Setup: Resave Lyra 5.1 Packages](/UE5/LyraStarterGame/How-To-Resave-Assets-v5.1) to speed up Editor load times.
+
 [After Setup: Derive new `//Lyra/XistGame` stream from `//Lyra/Xist`](./How-to-Create-Lyra-Xist-Game-Stream)
 
 
