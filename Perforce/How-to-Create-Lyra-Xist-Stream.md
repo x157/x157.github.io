@@ -45,7 +45,9 @@ You must have successfully
 ##### Set up Powershell variables & environment
 
 ```powershell
-$WorkspaceName = "Lyra_Xist"  # Set to your preference
+$StreamName = "Xist"  # Set to your preference
+
+$WorkspaceName = "Lyra_$StreamName"
 
 # change P4USER if your P4 username != your Windows username
 $env:P4USER = $env:UserName
@@ -58,6 +60,7 @@ $WorkspaceDir = "D:/Dev/$WorkspaceName"
 ##### CD to `$WorkspaceDir` (create empty dir if needed)
 
 ```powershell
+# make $WorkspaceDir if needed
 if (!(Test-Path $WorkspaceDir)) {mkdir $WorkspaceDir}
 
 cd $WorkspaceDir
@@ -67,17 +70,17 @@ cd $WorkspaceDir
 
 ```powershell
 # Create Main Stream
-p4 stream -t development -P //Lyra/Main //Lyra/Xist
+p4 stream -t development -P //Lyra/Main //Lyra/$StreamName
 
 # create workspace ($env:P4CLIENT) for Main stream
-p4 workspace -S //Lyra/Xist
+p4 workspace -S //Lyra/$StreamName
 ```
 
 ##### Populate new stream with `//Lyra/Main` files
 
 ```powershell
-# Populate from parent //Lyra/Main files
-p4 populate -S //Lyra/Xist -r
+# Populate from parent stream
+p4 populate -S //Lyra/$StreamName -r
 
 # Sync newly populated files into local workspace
 p4 sync
