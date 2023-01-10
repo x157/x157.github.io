@@ -42,9 +42,7 @@ For example if you named your depot `MyDepot`:
 ```
 
 If you prefer this to affect **every depot** on the server,
-replace all `//Lyra/` with `//`.
-
-For example:
+replace all `//Lyra/` with `//` like this:
 
 ```text
     binary+w //....exe

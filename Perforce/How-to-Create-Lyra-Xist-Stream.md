@@ -18,17 +18,24 @@ and other hacks applied to it.
 I'll base all my future Lyra projects on my own custom `//Lyra/Xist`
 version of Lyra.
 
-Make sure you have already
-[imported `//Lyra/Main`](./How-to-Create-Lyra-Main-Stream)
-before you proceed.
-
 
 ## Procedure Overview
+
+You must have successfully
+[imported `//Lyra/Main`](./How-to-Create-Lyra-Main-Stream).
 
 - Create Stream: `//Lyra/Xist`
   - Child of `//Lyra/Main`
 - Create Workspace
-  - Initialize Workspace
+- Sync with Parent Stream
+
+### Summary of Result
+
+- P4 Stream `//Lyra/Xist` contains a modified [`//Lyra/Main`](./How-to-Create-Lyra-Main-Stream) stream
+- P4 Workspace `Lyra_Xist_$(P4USER)` is mapped to `//Lyra/Xist`
+  - Stored locally in `D:/Dev/Lyra_Xist`
+
+[After Setup: Derive new `//Lyra/XistGame` stream from `//Lyra/Xist`](./How-to-Create-Lyra-Xist-Game-Stream)
 
 
 # Create Stream: `//Lyra/Xist`

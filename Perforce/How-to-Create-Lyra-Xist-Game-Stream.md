@@ -10,17 +10,24 @@ breadcrumb_name: "Lyra Xist Game Stream"
 Time to create a new Lyra game!  We'll call it `XistGame`.
 Call yours whatever you want.
 
-This is being based on `//Lyra/Xist`,
-you must have completed its [set up](./How-to-Create-Lyra-Xist-Stream)
-before you can base any streams on it.
-
 
 ## Procedure Overview
+
+You must have successfully
+[created `//Lyra/Xist`](./How-to-Create-Lyra-Xist-Stream).
 
 - Create Stream: `//Lyra/XistGame`
   - Child of `//Lyra/Xist`
 - Create Workspace
-  - Initialize Workspace
+- Sync with Parent Stream
+
+### Summary of Result
+
+- P4 Stream `//Lyra/XistGame` contains a fresh New Game project
+- P4 Workspace `XistGame_$(P4USER)` is mapped to `//Lyra/XistGame`
+  - Stored locally in `D:/Dev/XistGame`
+
+**Go work on your game!**
 
 
 # Create Stream: `//Lyra/XistGame`

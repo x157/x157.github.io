@@ -12,7 +12,8 @@ The `//Lyra/Main` stream is a brand new, empty `LyraStarterGame` project.
 
 ## Procedure Overview
 
-- Make sure you already [set up the `//Lyra` Depot](./How-to-Create-Lyra-Depot)
+You must have successfully [set up the `//Lyra` Depot](./How-to-Create-Lyra-Depot).
+
 - Create Stream: `//Lyra/Main`
   - Copy New `LyraStarterGame` Project Contents
   - Add `.p4ignore` (see [Example `.p4ignore`](/Perforce/p4ignore))
@@ -22,9 +23,9 @@ The `//Lyra/Main` stream is a brand new, empty `LyraStarterGame` project.
 
 - P4 Stream `//Lyra/Main` contains a blank [`LyraStarterGame`](/UE5/LyraStarterGame/) project
 - P4 Workspace `Lyra_Main_$(P4USER)` is mapped to `//Lyra/Main`
-  - Stored locally in `D:/Dev/Lyra_Main_$(P4USER)`
+  - Stored locally in `D:/Dev/Lyra_Main`
 
-Now you can create any number of projects you want based on `//Lyra/Main`
+[After Setup: Derive new `//Lyra/Xist` stream from `//Lyra/Main`](./How-to-Create-Lyra-Xist-Stream)
 
 
 # Create Stream: `//Lyra/Main`
@@ -65,7 +66,7 @@ p4 workspace -S //Lyra/Main
 
 ##### Copy your existing project files (if any) into the workspace
 ```powershell
-# Example: Recursive Copy D:/Dev/LyraStarterGame into Workspace Root
+# Example: Recursive Copy D:/Dev/LyraStarterGame into Workspace dir
 cp -Recurse D:/Dev/LyraStarterGame/* $WorkspaceDir
 
 # UNSET read-only flags on all files we copied
