@@ -36,12 +36,14 @@ before you proceed.
 ##### Set up Powershell variables & environment
 
 ```powershell
+$WorkspaceName = "Lyra_Xist"  # Set to your preference
+
 # change P4USER if your P4 username != your Windows username
 $env:P4USER = $env:UserName
-$env:P4CLIENT = "Lyra_Xist_${env:P4USER}"  # P4 workspace name
+$env:P4CLIENT = "${WorkspaceName}_${env:P4USER}"  # P4 server uses _$P4USER suffix
 
 # Location where you want to store your local Workspace content
-$WorkspaceDir = "D:/Dev/$env:P4CLIENT"
+$WorkspaceDir = "D:/Dev/$WorkspaceName"
 ```
 
 ##### CD to `$WorkspaceDir` (create empty dir if needed)

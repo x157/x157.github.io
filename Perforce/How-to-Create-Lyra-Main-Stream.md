@@ -32,15 +32,17 @@ Now you can create any number of projects you want based on `//Lyra/Main`
 ##### Set up Powershell variables & environment
 
 ```powershell
+$WorkspaceName = "Lyra_Main"  # Set to your preference
+
 # Set environment variable: P4 Username
 $env:P4USER = $env:UserName;  # Change if your P4USER != your PowerShell UserName
 
 # Set environment variable: P4 Workspace Name (P4CLIENT)
-#   Each P4USER gets their own workspace
-$env:P4CLIENT = "Lyra_Main_${env:P4USER}"
+#   Each P4USER gets their own workspace on the server
+$env:P4CLIENT = "${WorkspaceName}_${env:P4USER}"  # P4 server uses _$P4USER suffix
 
 # Location where you want to store your local Workspace content
-$WorkspaceDir = "D:/Dev/$env:P4CLIENT"
+$WorkspaceDir = "D:/Dev/$WorkspaceName"
 ```
 
 ##### CD to `$WorkspaceDir` (create empty dir if needed)
@@ -92,10 +94,12 @@ p4 submit -d "Initial Import"
 
 You now have a fully initialized `//Lyra/Main` stream.
 
-You can either decide to start hacking on this stream directly,
-or you can create child streams based on this for your own purposes.
-
-- [Extending Lyra: Development Considerations](/UE5/LyraStarterGame/Development-Considerations)
-  - Help to decide whether to hack Lyra directly or via plugins
 - [How to: Create the `//Lyra/Xist` Stream](./How-to-Create-Lyra-Xist-Stream)
   - Customize `//Lyra/Main` into my own reusable `//Lyra/Xist`
+
+You may or may not want to start hacking away at Lyra.
+Sometimes that is a good idea.
+Other times it is not.
+
+To determine what makes sense for you, see
+[Extending Lyra: Development Considerations](/UE5/LyraStarterGame/Development-Considerations)
