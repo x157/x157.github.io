@@ -49,6 +49,7 @@ $WorkspaceDir = "D:/Dev/$WorkspaceName"
 ##### CD to `$WorkspaceDir` (create empty dir if needed)
 
 ```powershell
+# make $WorkspaceDir if needed
 if (!(Test-Path $WorkspaceDir)) {mkdir $WorkspaceDir}
 
 cd $WorkspaceDir
