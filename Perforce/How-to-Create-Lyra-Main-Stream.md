@@ -64,13 +64,22 @@ p4 stream -t mainline //Lyra/Main
 p4 workspace -S //Lyra/Main
 ```
 
-##### Copy your existing project files (if any) into the workspace
+## Copy `LyraStarterGame` Project Contents
+
 ```powershell
 # Example: Recursive Copy D:/Dev/LyraStarterGame into Workspace dir
 cp -Recurse D:/Dev/LyraStarterGame/* $WorkspaceDir
+```
 
+From where you copy your Lyra project source is up to you.
+Copy it from wherever it is into the `$WorkspaceDir`.
+
+##### Unset read-only attribute for all newly copied files
+
+```powershell
 # UNSET read-only flags on all files we copied
 # (P4 will mark them read only if needed when we add the files to P4, based on your typemap)
+
 Get-ChildItem -Recurse | %{ if($_.IsReadOnly) {$_.IsReadOnly = $false} }
 ```
 
