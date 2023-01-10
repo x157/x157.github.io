@@ -35,7 +35,10 @@ You must have successfully
 ##### Set up Powershell variables & environment
 
 ```powershell
-$WorkspaceName = "XistGame"  # Set to your preference
+$GameName = "XistGame"  # Set to your preference
+
+$StreamName = $GameName  # make Stream: //Lyra/$StreamName
+$WorkspaceName = $GameName  # make Workspace: D:/Dev/$WorkspaceName
 
 # change P4USER if your P4 username != your Windows username
 $env:P4USER = $env:UserName
@@ -48,6 +51,7 @@ $WorkspaceDir = "D:/Dev/$WorkspaceName"
 ##### CD to `$WorkspaceDir` (create empty dir if needed)
 
 ```powershell
+# make $WorkspaceDir if needed
 if (!(Test-Path $WorkspaceDir)) {mkdir $WorkspaceDir}
 
 cd $WorkspaceDir
@@ -57,17 +61,17 @@ cd $WorkspaceDir
 
 ```powershell
 # Create Main Stream
-p4 stream -t development -P //Lyra/Xist //Lyra/XistGame
+p4 stream -t development -P //Lyra/Xist //Lyra/$StreamName
 
 # create workspace ($env:P4CLIENT) for Main stream
-p4 workspace -S //Lyra/XistGame
+p4 workspace -S //Lyra/$StreamName
 ```
 
 ##### Populate new stream with `//Lyra/Xist` files
 
 ```powershell
-# Populate from parent //Lyra/Xist files
-p4 populate -S //Lyra/XistGame -r
+# Populate from parent stream
+p4 populate -S //Lyra/$StreamName -r
 
 # Sync newly populated files into local workspace
 p4 sync
