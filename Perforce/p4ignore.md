@@ -63,6 +63,9 @@ Saved/
 *.uatbuildrecord
 *.tmp
 
+# Ignore Live Coding patch files
+Binaries/**/*.patch_*.*
+
 # Ignore built binaries and temporary build files
 **/obj/*
 *.csprojAssemblyReference.cache
