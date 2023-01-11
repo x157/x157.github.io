@@ -71,11 +71,14 @@ TypeMap:
     binary+w //Lyra/....exe
     binary+w //Lyra/....dll
     binary+w //Lyra/....lib
-    binary+w //Lyra/....pdb
     binary+w //Lyra/....app
     binary+w //Lyra/....dylib
     binary+w //Lyra/....stub
     binary+w //Lyra/....ipa
+    ######################################################################
+    # Generated Binaries writable by everyone (keep only latest revision)
+    ######################################################################
+    binary+Sw //Lyra/....pdb
     ######################################################################
     # Binary assets that must be checked out to be modified
     ######################################################################
@@ -84,8 +87,14 @@ TypeMap:
     binary+lF //Lyra/....gif
     binary+lF //Lyra/....jpg
     binary+lF //Lyra/....jpeg
+    binary+lF //Lyra/....mp3
+    binary+lF //Lyra/....mp4
+    binary+lF //Lyra/....ogg
     binary+lF //Lyra/....png
     binary+l //Lyra/....svg
+    binary+l //Lyra/....tga
+    binary+l //Lyra/....tif
+    binary+l //Lyra/....tiff
     binary+l //Lyra/....tps
     binary+l //Lyra/....ttf
     binary+l //Lyra/....uasset
@@ -93,6 +102,8 @@ TypeMap:
     binary+l //Lyra/....udk
     binary+l //Lyra/....umap
     binary+l //Lyra/....upk
+    binary+l //Lyra/....wmv
+    binary+l //Lyra/....wav
     ######################################################################
     # Text files
     ######################################################################
@@ -118,6 +129,13 @@ TypeMap:
     text //Lyra/....uproject
     text //Lyra/....xml
     text //Lyra/....yml
+    ######################################################################
+    # Text files always writable by anyone
+    ######################################################################
+    text+w //Lyra/....DotSettings
+    text+w //Lyra/....modules
+    text+w //Lyra/....target
+    text+w //Lyra/....version
     ######################################################################
     # Localization files
     ######################################################################
