@@ -58,7 +58,7 @@ time to time with a new version.
 # Get Engine Source
 
 - P4V "Get Latest Revision" for workspace
-  - to `F:/U_XistGG/UE5/Release-5.1`
+  - to `D:/UE5/Release-5.1`
 
 (Or GitHub pull)
 
@@ -67,7 +67,7 @@ time to time with a new version.
 
 - *(Optional)* Copy `Developer` Plugins into Engine
   - e.g. `RiderLink`, etc
-- Run `GenerateProjectFiles.bat` in `F:/U_XistGG/UE5/Release-5.1`
+- Run `GenerateProjectFiles.bat` in `D:/UE5/Release-5.1`
 - Visual Studio `UE5.sln`
   - Build `UE5` Project
     - Target = `DebugGame Editor`
@@ -86,7 +86,9 @@ If your computer melts after you copy/paste this, you'll know you've messed up.
 ```powershell
 cd "D:/Dev/Lyra-51"  # game project dir
 
-$EngineSourceDir = "D:/U_XistGG/UE5/Release-5.1" # engine source dir
+# Change this to point to your blank LyraStarterGame project
+# I'm copying directly from Epic's Perforce repo for the Release-5.1 Stream
+$EngineSourceDir = "D:/UE5/Release-5.1" # engine source dir
 $LyraSourceDir = "$EngineSourceDir/Samples/Games/Lyra"
 
 $YYYYMMDD = Get-Date -Format "yyyyMMdd"  # Set timestamp for snapshot
