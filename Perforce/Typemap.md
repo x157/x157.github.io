@@ -119,6 +119,7 @@ TypeMap:
     text //Lyra/....gitignore
     text //Lyra/....h
     text //Lyra/....ini
+    text //Lyra/....json
     text //Lyra/....m
     text //Lyra/....md
     text //Lyra/....mm
