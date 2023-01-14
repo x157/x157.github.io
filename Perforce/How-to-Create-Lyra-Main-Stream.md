@@ -96,7 +96,7 @@ p4 submit -d "Initial .p4ignore"
 
 ##### Recursively add all non-ignored files
 ```powershell
-p4 add ...
+p4 add -f ...
 p4 submit -d "Initial Import"
 ```
 
