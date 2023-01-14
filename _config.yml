@@ -1,5 +1,6 @@
 title: "X157 Dev Notes"
 description: One simulant attempts to share insight with others.
+url: "https://x157.github.io"
 theme: jekyll-theme-hacker
 markdown: kramdown
 timezone: "America/Los_Angeles"
@@ -16,3 +17,5 @@ exclude:
   - Gemfile.lock
   - README.md
   - .idea
+plugins:
+  - jekyll-sitemap
