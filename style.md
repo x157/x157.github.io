@@ -1,4 +1,5 @@
 ---
+sitemap: false
 title: Style Visualization
 description: See the various html elements all on one page
 back_link_title: Style Visualization
