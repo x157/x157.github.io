@@ -16,15 +16,15 @@ Call yours whatever you want.
 You must have successfully
 [created `//Lyra/Xist`](./How-to-Create-Lyra-Xist-Stream).
 
-- Create Stream: `//Lyra/XistGame`
-  - Child of `//Lyra/Xist`
+- Create Stream: `//Lyra/XistGame` with Parent: `//Lyra/Xist`
 - Create Workspace
-- Sync with Parent Stream
+- Populate Workspace with Parent Data
+- Sync Stream
 
 ### Summary of Result
 
-- P4 Stream `//Lyra/XistGame` contains a fresh New Game project
-- P4 Workspace `XistGame_$(P4USER)` is mapped to `//Lyra/XistGame`
+- P4 Stream `//Lyra/XistGame` will contain a fresh New Game project
+- P4 Workspace `XistGame_$(P4USER)` will be mapped to `//Lyra/XistGame`
   - Stored locally in `D:/Dev/XistGame`
 
 **Go work on your game!**
@@ -32,7 +32,7 @@ You must have successfully
 
 # Create Stream: `//Lyra/XistGame`
 
-##### Set up Powershell variables & environment
+## Set up Powershell variables & environment
 
 ```powershell
 $GameName = "XistGame"  # Set to your preference
@@ -48,31 +48,36 @@ $env:P4CLIENT = "${WorkspaceName}_${env:P4USER}"  # P4 server uses _$P4USER suff
 $WorkspaceDir = "D:/Dev/$WorkspaceName"
 ```
 
-##### CD to `$WorkspaceDir` (create empty dir if needed)
+## Create Stream: `//Lyra/$StreamName`
 
 ```powershell
-# make $WorkspaceDir if needed
-if (!(Test-Path $WorkspaceDir)) {mkdir $WorkspaceDir}
-
-cd $WorkspaceDir
+# Create $StreamName Stream with Parent //Lyra/Xist
+p4 stream -t development -P //Lyra/Xist //Lyra/$StreamName
 ```
 
-##### Create Main Stream & Workspace
+# Create Workspace: `XistGame_$(P4USER)`
+
+Must be in `$WorkspaceDir` current directory when running `p4 workspace`.
 
 ```powershell
-# Create Main Stream
-p4 stream -t development -P //Lyra/Xist //Lyra/$StreamName
+# make dir $WorkspaceDir if needed
+if (!(Test-Path $WorkspaceDir)) {mkdir $WorkspaceDir}
 
 # create workspace ($env:P4CLIENT) for Main stream
+cd $WorkspaceDir  # set current directory = $WorkspaceDir for `p4 workspace`
 p4 workspace -S //Lyra/$StreamName
 ```
 
-##### Populate new stream with `//Lyra/Xist` files
+## Populate new stream with Parent files
 
 ```powershell
 # Populate from parent stream
 p4 populate -S //Lyra/$StreamName -r
+```
 
+## Sync Stream
+
+```powershell
 # Sync newly populated files into local workspace
 p4 sync
 ```
