@@ -7,6 +7,9 @@ breadcrumb_name: "Input"
 
 # Lyra Input Overview
 
+[Official Epic Lyra Input Docs](https://docs.unrealengine.com/5.1/en-US/lyra-input-settings-in-unreal-engine/)
+
+
 ##### Input Mode is managed by `CommonUI`
 
 - In the Experience Definition, configure a HUD Layout to set the default Input Mode
