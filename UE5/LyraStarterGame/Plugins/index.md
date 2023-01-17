@@ -38,7 +38,13 @@ I haven't looked into this plugin much, but from what I can remember you can als
 
 ## `Common User`
 
-Allows connectivity to OSS v1 and OSS v2.  Useful for multiplayer games.
+The Common User plugin provides a common interface between C++,
+Blueprint Scripting, and the 
+[Online Subsystem](https://docs.unrealengine.com/5.1/en-US/online-subsystem-in-unreal-engine/)
+(OSS) or other online backends.
+It is a standalone plugin that can be used in any project.
+
+[Official Epic Docs: Common User Plugin](https://docs.unrealengine.com/5.1/en-US/common-user-plugin-in-unreal-engine-for-lyra-sample-game/)
 
 Provides `Common User Subsystem`, `Common Session Subsystem` and a `Common User Initialize` async action.
 
