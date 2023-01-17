@@ -14,20 +14,20 @@ You **must** configure it **before** you try to import any data into Perforce.
 
 ## Updating P4 Typemap
 
-To update the Typemap, save the [example file](#Example)
+To update the Typemap, save the [example file](https://github.com/XistGG/Perforce-Setup/blob/main/typemap.txt)
 as `typemap.txt`.
 
 Then, in Powershell:
 
 ```powershell
-# Write typemap.txt contents into p4 Input
+# Write typemap.txt contents into p4 typemap Input
 cat typemap.txt | p4 typemap -i
 ```
 
 <a id='Example'></a>
 # Example P4 Typemap
 
-This is an example `p4 typemap` for a UE 5.1 [Lyra](/UE5/LyraStarterGame/) project.
+This is an example `p4 typemap` for a UE 5.1 [Lyra](/UE5/LyraStarterGame/) project with a custom UE 5.1 Engine.
 
 [https://github.com/XistGG/Perforce-Setup/blob/main/typemap.txt](https://github.com/XistGG/Perforce-Setup/blob/main/typemap.txt)
 
