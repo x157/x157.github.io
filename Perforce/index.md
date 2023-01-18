@@ -36,7 +36,6 @@ Each time I want to make a new Game:
 - [Basic Initial Setup Tasks](https://www.perforce.com/manuals/p4guide/Content/P4Guide/basic-tasks.initial.html)
 - [P4 Typemap: How to Set Up Perforce Typemap](https://www.perforce.com/blog/vcs/perforce-p4-typemap)
   - IMPORTANT: get the typemap correct **before** you add your project to Perforce
-    - Epic's typemap docs are not great, make sure to read and understand this doc from Perforce
 - [Setting Up Perforce with Docker for Unreal Engine 4](https://www.froyok.fr/blog/2018-09-setting-up-perforce-with-docker-for-unreal-engine-4/) (conceptually similar to **UE5**)
 
 
