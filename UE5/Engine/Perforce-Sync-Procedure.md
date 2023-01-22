@@ -70,7 +70,7 @@ time to time with a new version.
 - Run `GenerateProjectFiles.bat` in `D:/UE5/Release-5.1`
 - Visual Studio `UE5.sln`
   - Build `UE5` Project
-    - Target = `DebugGame Editor`
+    - Target = `Debug Editor`
 
 # Open LyraXist Git repo (Xist Game)
 
@@ -179,6 +179,6 @@ git push origin xai-dev
     - *This is a Xist Build Tool that I should maybe document and/or maybe release publicly...*
 - Rider `Lyra.uproject`
   - Build `Lyra` Project
-    - Target = `DebugGame Editor`
+    - Target = `Debug Editor`
 
   
