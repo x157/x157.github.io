@@ -15,6 +15,8 @@ I require the binary locking/sharing capabilities of Perforce.
 
 ## How I set up my Perforce Server
 
+### Lyra Project Depot & Streams
+
 Initial Setup
 1. [Set up Perforce Typemap](./Typemap)
 2. [Create `.p4ignore`](./p4ignore)
@@ -27,6 +29,12 @@ Import Lyra from Epic, Create custom Xist version of Lyra
 Each time I want to make a new Game:
 
 - [Create a new `//Lyra/XistGame` Stream](./How-to-Create-Lyra-Xist-Game-Stream) based on `//Lyra/Xist`
+
+
+### UE5 Custom Engine Depot & Streams
+
+If you want/need to run a custom engine, read:
+[How to: Create a Custom UE5 Engine Source Depot & Streams](./How-to-Create-Engine-Source-Depot)
 
 
 # Recommended Reading
