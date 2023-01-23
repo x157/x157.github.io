@@ -94,7 +94,7 @@ If you have UDN access, you could instead use your UDN P4 workspace folder.
 cp -Recurse D:/GitHub/UnrealEngine/* $EpicWorkspaceDir
 ```
 
-From where you copy your Lyra project source is up to you.
+From where you copy your UE5 Engine source is up to you.
 Copy it from wherever it is into the `$EpicWorkspaceDir`.
 
 You may or may not want to try clearing the read-only attributes
