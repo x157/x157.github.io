@@ -10,7 +10,7 @@ breadcrumb_name: "Create a New Engine Source Depot"
 - Create Depot `//UE5`
 - Create Mainline Stream `//UE5/Release-5.1`
   - Import Epic Custom Engine Source from either GitHub or UDN P4
-- Create Task Stream `//UE5/Release-5.1-Xist` with parent `//UE5/Release-5.1`
+- Create Task Stream `//UE5/Xist` with parent `//UE5/Release-5.1`
   - Apply Xist hacks/edits to this custom 5.1 engine
 
 
