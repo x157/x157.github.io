@@ -1,40 +1,53 @@
 ---
 title: "Perforce"
-description: "Notes regarding working with Perforce (P4) from a C++ dev perspective."
+description: "How to set up a Perforce (P4) server for an Epic Games Unreal Engine project, including example Stream setup and working PowerShell examples for a UE5 custom engine and a UE5 Lyra game."
 breadcrumb_name: Perforce
 ---
 
 # Perforce SCM
 
-When I was working solo on the game, Git was fine.
-It would have continued to work for a small technical team.
-
 To best support non-technical members of the Xist.GG team,
 I require the binary locking/sharing capabilities of Perforce.
 
 
-## How I set up my Perforce Server
+## How To: Set up a UE5 Perforce Server
 
-### Lyra Project Depot & Streams
+Before you create any depots on your P4 server, set up the `typemap` and `.p4ignore`.
 
-Initial Setup
 1. [Set up Perforce Typemap](./Typemap)
 2. [Create `.p4ignore`](./p4ignore)
 
-Import Lyra from Epic, Create custom Xist version of Lyra
+Once you have these, create any depots you need.
+For example you could create depots like:
+
+- [Lyra Project Source Depot](#LyraProjectSourceDepot)
+- [Custom UE5 Engine Source Depot](#CustomUE5EngineSourceDepot)
+
+
+<a id='LyraProjectSourceDepot'></a>
+## How To: Set up a Lyra Project Source Depot
+
 1. [Create `//Lyra` Depot](./How-to-Create-Lyra-Depot)
-2. [Create `//Lyra/Main` Stream](./How-to-Create-Lyra-Main-Stream) (import from Epic)
+2. [Create `//Lyra/Main` Stream](./How-to-Create-Lyra-Main-Stream) (import from Epic `#NoChanges`)
 3. [Create `//Lyra/Xist` Stream](./How-to-Create-Lyra-Xist-Stream) (apply `LYRAGAME_API` updates, `virtual` overrides, etc)
 
-Each time I want to make a new Game:
 
-- [Create a new `//Lyra/XistGame` Stream](./How-to-Create-Lyra-Xist-Game-Stream) based on `//Lyra/Xist`
+## How To: Create a new `//Lyra/Xist`-based Game Project
+
+1. [Create a new `//Lyra/XistGame` Stream](./How-to-Create-Lyra-Xist-Game-Stream) based on `//Lyra/Xist`
+   - Repeat as needed with each new stream/project name
 
 
-### UE5 Custom Engine Depot & Streams
+<a id='CustomUE5EngineSourceDepot'></a>
+## How To: Set up a Custom UE5 Engine Source Depot
 
-If you want/need to run a custom engine, read:
-[How to: Create a Custom UE5 Engine Source Depot & Streams](./How-to-Create-Engine-Source-Depot)
+- Create Depot `//UE5`
+- Create Mainline Stream `//UE5/Release-5.1`
+  - Import Epic Custom Engine Source from either GitHub or UDN P4
+- Create Task Stream `//UE5/Xist` with parent `//UE5/Release-5.1`
+  - Apply Xist hacks/edits to this custom 5.1 engine
+
+For more details see: [How to: Create a Custom UE5 Engine Source Depot & Streams](./How-to-Create-Engine-Source-Depot)
 
 
 # Recommended Reading
