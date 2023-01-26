@@ -41,10 +41,10 @@ For example you could create depots like:
 <a id='CustomUE5EngineSourceDepot'></a>
 ## How To: Set up a Custom UE5 Engine Source Depot
 
-- Create Depot `//UE5`
-- Create Mainline Stream `//UE5/Release-5.1`
+1. Create Depot `//UE5`
+2. Create Mainline Stream `//UE5/Release-5.1`
   - Import Epic Custom Engine Source from either GitHub or UDN P4
-- Create Task Stream `//UE5/Xist` with parent `//UE5/Release-5.1`
+3. Create Task Stream `//UE5/Xist` with parent `//UE5/Release-5.1`
   - Apply Xist hacks/edits to this custom 5.1 engine
 
 For more details see: [How to: Create a Custom UE5 Engine Source Depot & Streams](./How-to-Create-Engine-Source-Depot)
