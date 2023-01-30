@@ -131,6 +131,17 @@ p4 add -f ...
 p4 submit -d "Initial Import"
 ```
 
+### This might crash
+
+If you, like me, need to import 800K+ files, you may find that P4 isn't up to the task.
+
+I was able to import 800k files by splitting the `p4 add -f -n ...` output (800k lines of output)
+into buckets of 10k lines each, and adding only 10k files at a time.
+
+If that affects you, check out [P4 Parallel Processing](https://www.perforce.com/manuals/cmdref/Content/CmdRef/p4_sync.html#Parallel)
+or [P4ImportBulk.ps1](https://github.com/XistGG/UnrealXistTools/blob/main/P4ImportBulk.ps1)
+from [UnrealXistTools](https://github.com/XistGG/UnrealXistTools).
+
 
 ## Create Task Stream: `$TaskStream`
 
