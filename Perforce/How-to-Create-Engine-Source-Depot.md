@@ -158,10 +158,11 @@ p4 stream -t task -P $UE5ReleaseStream $TaskStream
 if (!(Test-Path $TaskWorkspaceDir)) {mkdir $TaskWorkspaceDir}
 cd $TaskWorkspaceDir  # set current directory = $TaskWorkspaceDir for `p4 workspace`
 
-# create server client for $TaskStream (unique to user)
+# Set P4CLIENT env var for p4 workspace
 $env:P4CLIENT = "${TaskWorkspaceName}_$P4USER"  # set ENV P4CLIENT override
+
+# create server client for $TaskStream (unique to user)
 p4 workspace -S $TaskStream
-$env:P4CLIENT = $null  # unset ENV P4CLIENT override
 ```
 
 ### Populate new stream with Parent files
@@ -174,6 +175,9 @@ p4 populate -S $TaskStream -r
 ### Sync Stream
 
 ```powershell
+# Set P4CLIENT env var for p4 sync
+$env:P4CLIENT = "${TaskWorkspaceName}_$P4USER"  # set ENV P4CLIENT override
+
 # Sync newly populated files into local workspace
 p4 sync
 ```
