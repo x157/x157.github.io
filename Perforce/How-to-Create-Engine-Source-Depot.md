@@ -21,25 +21,24 @@ The following variables must be set for these PowerShell commands to work.
 You can set them to the values you prefer.
 
 ```powershell
-$DepotName = 'UE5'  # Set to your preference, e.g. `//UE5/...`
-$UE5Version = '5.1'  # The version of UE5 you're importing
+$DepotName = "UE5"  # Set to your preference, e.g. "//UE5/..."
 $TaskName = "Xist"  # The code name of your Custom Engine
 
 # Computed based on above: Stream Names:
-$UE5ReleaseStream = "//$DepotName/Release-$UE5Version"  # e.g. //UE5/Release-5.1
-$TaskStream = "//$DepotName/$TaskName"                  # e.g. //UE5/Xist
+$UE5ReleaseStream = "//$DepotName/Release"  # e.g. //UE5/Release
+$TaskStream = "//$DepotName/$TaskName"      # e.g. //UE5/Xist
 
 # Computed based on above: Workspace Names:
-$EpicWorkspaceName = "${DepotName}_Release_${UE5Version}"  # e.g. UE5_Release_5.1
-$TaskWorkspaceName = "${DepotName}_${TaskName}"            # e.g. UE5_Xist
+$EpicWorkspaceName = "${DepotName}_Release"      # e.g. UE5_Release
+$TaskWorkspaceName = "${DepotName}_${TaskName}"  # e.g. UE5_Xist
 
 # Computed based on above: Local Workspace Directories:
-$EpicWorkspaceDir = "D:/$EpicWorkspaceName"  # e.g. D:/UE5_Release_5.1
+$EpicWorkspaceDir = "D:/$EpicWorkspaceName"  # e.g. D:/UE5_Release
 $TaskWorkspaceDir = "D:/$TaskWorkspaceName"  # e.g. D:/UE5_Xist
 
 # Read your p4 username, either as set in ENV, or read from $(p4 info)
 $P4USER = $env:P4USER ? $env:P4USER `
-    : $(p4 info | where {$_ -imatch '^User\s+name:'} | %{ $_ -ireplace '^User\s+name:\s*','' })
+    : (p4 info | where {$_ -imatch '^User\s+name:'} | %{$_ -ireplace '^User\s+name:\s*',''})
 ```
 
 ## Create Depot: `$DepotName`
@@ -63,7 +62,7 @@ Make sure you set up the typemap before you import any content into the depot.
 ## Create Stream: `$UE5ReleaseStream`
 
 ```powershell
-# Create stream $UE5ReleaseStream (aka //$DepotName/Release-$UE5Version)
+# Create stream $UE5ReleaseStream (aka //$DepotName/Release)
 p4 stream -t mainline $UE5ReleaseStream
 ```
 
@@ -77,7 +76,7 @@ p4 stream -t mainline $UE5ReleaseStream
 if (!(Test-Path $EpicWorkspaceDir)) {mkdir $EpicWorkspaceDir}
 cd $EpicWorkspaceDir  # set current directory = $EpicWorkspaceDir for `p4 workspace`
 
-# create server client ($env:P4CLIENT) for $UE5ReleaseStream
+# create server workspace for $UE5ReleaseStream (unique to user)
 $env:P4CLIENT = "${EpicWorkspaceName}_$P4USER"  # set ENV P4CLIENT override
 p4 workspace -S $UE5ReleaseStream
 $env:P4CLIENT = $null  # unset ENV P4CLIENT override
@@ -148,7 +147,7 @@ p4 stream -t task -P $UE5ReleaseStream $TaskStream
 if (!(Test-Path $TaskWorkspaceDir)) {mkdir $TaskWorkspaceDir}
 cd $TaskWorkspaceDir  # set current directory = $TaskWorkspaceDir for `p4 workspace`
 
-# create server client ($env:P4CLIENT) for $TaskStream
+# create server client for $TaskStream (unique to user)
 $env:P4CLIENT = "${TaskWorkspaceName}_$P4USER"  # set ENV P4CLIENT override
 p4 workspace -S $TaskStream
 $env:P4CLIENT = $null  # unset ENV P4CLIENT override
