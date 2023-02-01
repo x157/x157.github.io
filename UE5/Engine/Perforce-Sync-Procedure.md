@@ -175,8 +175,13 @@ git push origin xai-dev
 # Build Game
 
 - Clean Unreal Project & Generate Project Files
-  - Run `UnrealProjectClean.ps1`
-    - *This is a Xist Build Tool that I should maybe document and/or maybe release publicly...*
+  - Run `UProjectClean.ps1` from [UnrealXistTools](https://github.com/XistGG/UnrealXistTools)
+    - Remove all `Binaries` directories
+    - Remove all `Intermediate` directories
+    - Remove `*.sln`
+    - Remove `.idea` (optional)
+    - Remove `DerivedDataCache` (optional)
+    - Exec `GenerateProjectFiles` for the project
 - Rider `Lyra.uproject`
   - Build `Lyra` Project
     - Target = `Debug Editor`
