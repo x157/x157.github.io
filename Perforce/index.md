@@ -42,12 +42,18 @@ For example you could create depots like:
 ## How To: Set up a Custom UE5 Engine Source Depot
 
 1. Create Depot `//UE5`
-2. Create Mainline Stream `//UE5/Release-5.1`
+2. Create Mainline Stream `//UE5/Release`
   - Import Epic Custom Engine Source from either GitHub or UDN P4
-3. Create Task Stream `//UE5/Xist` with parent `//UE5/Release-5.1`
+3. Create Task Stream `//UE5/Xist` with parent `//UE5/Release`
   - Apply Xist hacks/edits to this custom 5.1 engine
 
 For more details see: [How to: Create a Custom UE5 Engine Source Depot & Streams](./How-to-Create-Engine-Source-Depot)
+
+
+# Setting up a Perforce Server as a Docker container
+
+- [XistGG Perforce Docker Setup](https://github.com/XistGG/docker-perforce-server-for-unreal-engine)
+  - Inspired by: [Setting Up Perforce with Docker for Unreal Engine 4](https://www.froyok.fr/blog/2018-09-setting-up-perforce-with-docker-for-unreal-engine-4/) (conceptually identical to **UE5**)
 
 
 # Recommended Reading
@@ -57,7 +63,6 @@ For more details see: [How to: Create a Custom UE5 Engine Source Depot & Streams
 - [Basic Initial Setup Tasks](https://www.perforce.com/manuals/p4guide/Content/P4Guide/basic-tasks.initial.html)
 - [P4 Typemap: How to Set Up Perforce Typemap](https://www.perforce.com/blog/vcs/perforce-p4-typemap)
   - IMPORTANT: get the typemap correct **before** you add your project to Perforce
-- [Setting Up Perforce with Docker for Unreal Engine 4](https://www.froyok.fr/blog/2018-09-setting-up-perforce-with-docker-for-unreal-engine-4/) (conceptually similar to **UE5**)
 
 
 ## Specifically Related to Unreal Engine

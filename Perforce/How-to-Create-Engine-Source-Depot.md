@@ -8,9 +8,9 @@ breadcrumb_name: "Create a New Engine Source Depot"
 # How to Create a New Engine Source Depot
 
 1. Create Depot `//UE5`
-2. Create Mainline Stream `//UE5/Release-5.1`
+2. Create Mainline Stream `//UE5/Release`
   - Import Epic Custom Engine Source from either GitHub or UDN P4
-3. Create Task Stream `//UE5/Xist` with parent `//UE5/Release-5.1`
+3. Create Task Stream `//UE5/Xist` with parent `//UE5/Release`
   - Apply Xist hacks/edits to this custom 5.1 engine
 
 
@@ -134,13 +134,16 @@ p4 submit -d "Initial Import"
 ### This might crash
 
 If you, like me, need to import 800K+ files, you may find that P4 isn't up to the task.
+It will crash and trying to figure out where/how it crashed and how to fix it is a real pain.
 
-I was able to import 800k files by splitting the `p4 add -f -n ...` output (800k lines of output)
-into buckets of 10k lines each, and adding only 10k files at a time.
+I was able to import 800K+ files by splitting the `p4 add -f -n ...` output (800K+ lines of output)
+into batches of 50K files at a time.
 
-If that affects you, check out [P4 Parallel Processing](https://www.perforce.com/manuals/cmdref/Content/CmdRef/p4_sync.html#Parallel)
-or [P4ImportBulk.ps1](https://github.com/XistGG/UnrealXistTools/blob/main/P4ImportBulk.ps1)
-from [UnrealXistTools](https://github.com/XistGG/UnrealXistTools).
+If that affects you, check out my helpful
+[UnrealXistTools](https://github.com/XistGG/UnrealXistTools)
+utility
+[P4ImportBulk.ps1](https://github.com/XistGG/UnrealXistTools/blob/main/P4ImportBulk.ps1)
+which will handle the batching for you.
 
 
 ## Create Task Stream: `$TaskStream`
