@@ -27,8 +27,11 @@ for integrating it into your project repo is roughly the same.
 
 ## Overview
 
-- Copy the latest Lyra source from GitHub into `lyra-main`
-  - Copy the latest Lyra Content from Epic Games Launcher into `lyra-main`
+- Get the latest Source from GitHub
+- Get the latest `LyraStarterGame` project from Epic Games Launcher
+- Integrate `lyra-main`
+  - Copy the latest Lyra Source from GitHub
+  - Copy the latest Lyra Content from Epic Games Launcher
 - Merge the new `lyra-main` into `lyra-xist`
   - Merge the new `lyra-xist` into `xist-game`
 - Build `xist-game` with the latest Lyra 5.1+ on the latest Engine 5.1+
@@ -53,7 +56,7 @@ Note: You should set these the same values you used when you created
 your Git repo [following these instructions](/UE5/LyraStarterGame/Tutorials/How-to-Create-a-Lyra-Repo).
 
 ```powershell
-$ProjectDir = "D:/Dev/XistGame"  # your game project dir
+$WorkspaceDir = "D:/Dev/XistGame"  # your game project dir
 
 # In this example, you've checked out the '5.1' branch on Github into
 # the directory "E:/Github/UnrealEngine"
@@ -67,27 +70,46 @@ $LyraContentDir = "D:/Dev/LyraStarterGame"
 $LyraMainBranch = "lyra-main"
 $LyraCustomBranch = "lyra-xist"
 $GameBranch = "xist-game"
-
-$YYYYMMDD = Get-Date -Format "yyyyMMdd"  # Set timestamp for snapshot
 ```
 
-## Synchronize `lyra-main` with Epic Source Control
+## Get the latest Source from GitHub
 
 ```powershell
-cd $ProjectDir
+cd $UE5Root
+
+# You must already be on the branch you want to use.
+# In the setup example we checked out the "5.1" branch.
+git pull origin
+```
+
+
+## Get the laatest `LyraStarterGame` project from Epic Games Launcher
+
+- Start Epic Games Launcher, in the Library Vault:
+  - Update the **Lyra Starter Game** sample project if needed
+
+
+## Synchronize `lyra-main` with Epic Upstream Source
+
+```powershell
+################################################################################
+###
+###  BEFORE YOU DO THIS, BACK UP ANY FILES YOU DO NOT WANT TO LOSE
+###
+###  MAKE SURE YOUR GIT REPO DOES NOT HAVE ANY PENDING CHANGES.
+###
+###  COMMIT AND/OR STASH EVERYTHING NOW.
+###
+################################################################################
+
+cd $WorkspaceDir
 
 # select the "main" version of Lyra, e.g. the one Epic updates
 # this branch is an exact mirror of Epic's Repository whenever I take a snapshot
 git checkout $LyraMainBranch
 
-################################################################################
-###
-###  BEFORE YOU DO THIS, BACK UP ANY FILES YOU DO NOT WANT TO LOSE
-###
-################################################################################
-
 # Remove EVERYTHING except Git itself
-$RemoveItems = Get-ChildItem $ProjectDir -exclude .git, .gitattributes, .gitignore, .gitmodules
+$RemoveItems = Get-ChildItem $WorkspaceDir -exclude .git, .gitattributes, .gitignore, .gitmodules
 $RemoveItems | Remove-Item -Force -Recurse
 
 # Copy Epic Lyra Source into my Git repo
@@ -95,7 +117,7 @@ $EpicSourceItems = Get-ChildItem $LyraSourceDir -exclude Binaries, Intermediate
 
 foreach ($Item in $EpicSourceItems) {
     Write-Host "Copying $($Item.Name)..."
-    Copy-Item $Item.FullName -Destination $ProjectDir -Recurse
+    Copy-Item $Item.FullName -Destination $WorkspaceDir -Recurse
 }
 
 # Get a list of all 'Content' folders in the sample dir
@@ -115,13 +137,13 @@ foreach ($ContentFolder in $LyraContentFolders)
     $SourceContentFolder = Get-Item $SourceContentFolder
 
     # Copy the entire Content dir into my source folder
-    Write-Host "COPY: $($ContentFolder.FullName) => $($SourceContentFolder.FullName)"
+    Write-Host "COPY: $RelativeContentFolder => $($SourceContentFolder.FullName)"
     cp -Recurse $ContentFolder/* $SourceContentFolder
 }
 
 # Clear read-only bit on all copied files
 # (if you copy from Perforce, it sets tons of stuff read-only, it's annoying)
-Get-ChildItem $ProjectDir -ReadOnly -Recurse | Set-ItemProperty -name IsReadOnly -value $false
+Get-ChildItem $WorkspaceDir -ReadOnly -Recurse | Set-ItemProperty -name IsReadOnly -value $false
 
 # See if anything changed in Lyra
 git status  # This will take a while...
@@ -129,11 +151,15 @@ git status  # This will take a while...
 ################################################################################
 ################################################################################
 ###
-###  If there are no changes to Lyra, you're done! Go back to xist-game
-###  and continue working on the game.
+###  If there are no changes to Lyra, you're done! Go back to
+###  the xist-game branch and continue working on the game.
+###  DON'T FORGET TO SWITCH BACK TO THE `xist-game` BRANCH!
+###  DON'T EVER WORK IN THE `lyra-main` BRANCH!
 ###
 ###  If there are changes, then continue the procedure to merge them in:
 ###
+
+$YYYYMMDD = Get-Date -Format "yyyyMMdd"  # Set timestamp for snapshot
 
 # Commit current Epic Source snapshot to $LyraMainBranch
 git add --all
