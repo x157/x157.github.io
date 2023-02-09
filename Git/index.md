@@ -22,11 +22,17 @@ If your team uses Git, here is how I recommend to do it.
 
 ## How To: Set up a Lyra Project Source Repo
 
-1. [Create `lyra-main` Branch](./How-to-Create-Lyra-Main-Branch) (import from Epic `#NoChanges`)
-2. [Create `lyra-xist` Branch](./How-to-Create-Lyra-Xist-Branch) based on `lyra-main` (apply `LYRAGAME_API` updates, `virtual` overrides, etc)
-3. [Create `lyra-xistgame` Branch](./How-to-Create-Lyra-Xist-Game-Branch) based on `lyra-xist`
-   - This is your game branch, do your work here.
-   - Repeat as needed fpr each new game.
+1. Create `lyra-main` Branch (import from Epic `#NoChanges`)
+  - This is an exact mirror of Epic's Source Control.
+  - Never make any changes directly to this branch.
+2. Create `lyra-xist` Branch based on `lyra-main` (apply `LYRAGAME_API` updates, `virtual` overrides, etc)
+  - This is your custom Lyra. Base your new games on this branch.
+3. Create `xist-game` Branch based on `lyra-xist`
+  - This is your game branch. Build your game here.
 
-Click the links for working PowerShell code to take you through each step.
 
+### Procedure: How to Create a Lyra Git Repo
+
+See [this detailed PowerShell procedure](./How-to-Create-a-Lyra-Repo)
+for the exact commands necessary to create and initialize a new
+Lyra Project Git repository.

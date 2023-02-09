@@ -21,8 +21,8 @@ and Lyra binary content from the Epic Games Launcher.
 
 - Copy the latest Lyra source from Epic into `lyra-main`
   - Merge the new `lyra-main` into `lyra-xist`
-    - Merge the new `lyra-xist` into `lyra-xistgame`
-- Recompile XistGame with the latest Lyra 5.1+ on the latest Engine 5.1+
+    - Merge the new `lyra-xist` into `xist-game`
+- Recompile `xist-game` with the latest Lyra 5.1+ on the latest Engine 5.1+
 
 Now you get to go see all the new stuff, and all the newly broken stuff!  C'est la Dev!  `:-)`
 
@@ -81,7 +81,7 @@ git status
 ################################################################################
 ################################################################################
 ###
-###  If there are no changes to Lyra, you're done! Go back to lyra-xistgame
+###  If there are no changes to Lyra, you're done! Go back to xist-game
 ###  and continue working on the game.
 ###
 ###  If there are changes, then continue the procedure to merge them in:
@@ -114,7 +114,7 @@ git push origin lyra-xist
 
 # checkout my game dev branch
 # merge my (now updated) custom lyra into my game dev branch
-git checkout lyra-xistgame
+git checkout xist-game
 git merge --no-commit lyra-xist
 
 ################################################################################
@@ -123,8 +123,8 @@ git merge --no-commit lyra-xist
 ###  Manually resolve any merge conflicts
 ###
 
-git commit -m "Merge branch lyra-xist into lyra-xistgame"
-git push origin lyra-xistgame
+git commit -m "Merge branch lyra-xist into xist-game"
+git push origin xist-game
 ```
 
 # Build Game
