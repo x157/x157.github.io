@@ -11,19 +11,27 @@ If you've set up your Git repo in [the same way as me](/Git/) then you can use
 this procedure to merge upstream code and asset updates from Epic
 into your local project Git repository.
 
-Note: I get my Engine & Lyra source from Perforce, via UDN.
+## How Epic Distributes Source
 
-If you do not pay for UDN access, then you will instead get Engine & Lyra source from GitHub,
-and Lyra binary content from the Epic Games Launcher.
+There are 2 ways to get source from Epic.
+
+1. GitHub + Epic Games Launcher
+2. UDN Perforce
+
+UDN is a paid service that is generally only available to larger companies.
+You don't necessarily need it - GitHub is free and updated regularly.
+
+Regardless of where you get your upstream Epic Source, the procedures
+for integrating it into your project repo is roughly the same.
 
 
 ## Overview
 
-- Copy the latest Lyra source from Epic into `lyra-main`
-  - Copy the latest Lyra Content from Epic into `lyra-main`
+- Copy the latest Lyra source from GitHub into `lyra-main`
+  - Copy the latest Lyra Content from Epic Games Launcher into `lyra-main`
 - Merge the new `lyra-main` into `lyra-xist`
   - Merge the new `lyra-xist` into `xist-game`
-- Recompile `xist-game` with the latest Lyra 5.1+ on the latest Engine 5.1+
+- Build `xist-game` with the latest Lyra 5.1+ on the latest Engine 5.1+
 
 Now you get to go see all the new stuff, and all the newly broken stuff!  C'est la Dev!  `:-)`
 
@@ -42,7 +50,7 @@ If your computer melts after you copy/paste this, you'll know you've messed up.
 ## Set up PowerShell variables
 
 Note: You should set these the same values you used when you created
-your Git repo [following these instructions](/Git/How-to-Create-a-Lyra-Repo).
+your Git repo [following these instructions](/UE5/LyraStarterGame/Tutorials/How-to-Create-a-Lyra-Repo).
 
 ```powershell
 $ProjectDir = "D:/Dev/XistGame"  # your game project dir

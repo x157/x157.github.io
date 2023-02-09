@@ -6,7 +6,8 @@ breadcrumb_name: Git
 
 # Git SCM
 
-As a C++ developer, Git is indisputably the superior source control system.
+From the perspective of a C++ developer,
+Git is indisputably the superior source control system.
 
 It works great for small, technical teams, where everyone can compile their own
 Project and/or Engine.
@@ -22,17 +23,27 @@ If your team uses Git for your project, here is how I recommend to do it.
 
 ## How To: Set up a Lyra Project Source Repo
 
-1. Create `lyra-main` Branch (import from Epic `#NoChanges`)
-  - This is an exact mirror of Epic's Source Control.
-  - Never make any changes directly to this branch.
-2. Create `lyra-xist` Branch based on `lyra-main` (apply `LYRAGAME_API` updates, `virtual` overrides, etc)
-  - This is your custom Lyra. Base your new games on this branch.
-3. Create `xist-game` Branch based on `lyra-xist`
-  - This is your game branch. Build your game here.
-
-
-### Procedure: How to Create a Lyra Git Repo
-
-See [this detailed PowerShell procedure](./How-to-Create-a-Lyra-Repo)
+See [this detailed PowerShell procedure](/UE5/LyraStarterGame/Tutorials/How-to-Create-a-Lyra-Repo)
 for the exact commands necessary to create and initialize a new
 Lyra Project Git repository.
+
+Overview:
+
+1. Create `lyra-main` branch (import from Epic `#NoChanges`)
+  - This is an exact mirror of Epic's Source Control.
+  - Never make any changes directly to this branch.
+2. Create `lyra-xist` branch based on `lyra-main` (apply `LYRAGAME_API` updates, `virtual` overrides, etc)
+  - This is your custom Lyra. Base your new games on this branch.
+3. Create `xist-game` branch based on `lyra-xist`
+  - This is your game branch. Build your game here.
+  - To get updates from the parent `lyra-xist`, merge `lyra-xist` into `xist-game`
+  - When you make Game commits that you want to propagate up to `lyra-xist` to share with other games,
+    cherry-pick specific atomic commits
+
+
+
+## How To: Merge Epic Updates into a Lyra Project Source Repo
+
+See [this detailed PowerShell procedure](/UE5/LyraStarterGame/Tutorials/Procedure-Merge-Epic-Source-into-Git)
+for the exact commands necessary to merge new updates from Epic
+into an existing Lyra Project Git repository.
