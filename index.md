@@ -9,7 +9,7 @@ My primary focus at the moment: [Developing a Game with UE5 LyraStarterGame](./U
 This led me to study these related, relevant [UE5](./UE5/) topics:
 
 - [Common UI](/UE5/CommonUI/) + CommonGame
-- Enhanced Input System [(Epic Tutorial)](https://dev.epicgames.com/community/learning/tutorials/eD13/unreal-engine-enhanced-input-in-ue5)
+- [Enhanced Input Subsystem](/UE5/EnhancedInput/)
 - [Gameplay Ability System](/UE5/GameplayAbilitySystem/)
 - [GameFeature Plugins](/UE5/GameFeatures/)
 - [`ModularGameplay` Plugin](/UE5/ModularGameplay/)
