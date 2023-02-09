@@ -9,79 +9,38 @@ breadcrumb_name: "Engine"
 
 Quick Links:
 
-- [How to Generate Project Files](#HowToGenerateProjectFiles)
+- [Where to get Engine and/or Lyra Source](#WhereToGetSource)
 - [Custom Engine Directory Structure](#CustomEngineDirectoryStructure)
+- [How to Generate Project Files](#HowToGenerateProjectFiles)
 - [Building a Custom UE Engine](#BuildingCustomEngine)
   - [Procedure for Changing Engine Branches](#Procedure_ChangeEngineBranches)
-- [Xist's Perforce Sync Procedure](./Perforce-Sync-Procedure)
+    - When changing engine branches you MUST also reset all the downloaded Engine data
 
 
-<a id="HowToGenerateProjectFiles"></a>
-## How to Generate Project Files
+<a id="WhereToGetSource"></a>
+## Where to Get Source
 
-No matter your platform or version, you'll need to Generate Project Files for your project
-in order to be able to build it.
+The latest official release of Unreal Engine is always the `release` branch of the official
+[Epic Games](https://github.com/EpicGames)
+GitHub repo:
+[Unreal Engine](https://github.com/EpicGames/UnrealEngine).
 
-In these examples, I'm using PowerShell 7.  If you use another shell, you can still figure out
-what I'm doing here.
+See the docs on [Accessing Unreal Engine source code on Github](https://www.unrealengine.com/en-US/ue-on-github)
+for more info.  The repository is **private**, so you will need to get access from Epic
+by following the procedure outined in that link.
 
+Once you have access, here is where to get the source:
 
-## Custom Engine Command: `-switchversionsilent`
+| Version Description     | UE5                                                               | Lyra                                                                                 |
+|-------------------------|-------------------------------------------------------------------|--------------------------------------------------------------------------------------|
+| Current Release         | [release](https://github.com/EpicGames/UnrealEngine/tree/release) | [release](https://github.com/EpicGames/UnrealEngine/tree/release/Samples/Games/Lyra) |
+| Release Staging for 5.1 | [5.1](https://github.com/EpicGames/UnrealEngine/tree/5.1)         | [5.1](https://github.com/EpicGames/UnrealEngine/tree/5.1/Samples/Games/Lyra)         |
+| Release Staging for 5.2 | [5.2](https://github.com/EpicGames/UnrealEngine/tree/5.2)         | [5.2](https://github.com/EpicGames/UnrealEngine/tree/5.2/Samples/Games/Lyra)         |
 
-If you're running a Custom Engine, you should generate your project files using
-the `-switchversionsilent` command.
-
-```powershell
-####  Assign $EngineRoot as $UProjectFile's custom engine (if it isn't already),
-####  and Generate Visual Studio project files...
-
-& $UnrealVersionSelector -switchversionsilent $UProjectFile $EngineRoot
-```
-
-You don't need to explicitly execute the `-projectfiles` as well;
-`-switchversionsilent` will implicitly also execute `-projectfiles`.
-
-See [How to Compute these PowerShell Variables](#How_to_Compute_these_PowerShell_Variables)
-below for specifics.  In particular, `$EngineRoot` must be the `Engine` PARENT directory,
-or the `Root` directory in which the `Engine` directory exists.
-
-## Launcher Engine Command: `-projectfiles`
-
-When using an Epic Games Launcher Engine, use the `-projectfiles` command instead.
-
-In this case, the Engine will continue to be managed by the Epic Games Launcher tools.
-Thus the command is simpler, you only need to tell it the name of your `$UProjectFile`.
-
-```powershell
-####  Use the Epic Games Launcher to: Generate Visual Studio project files...
-& $UnrealVersionSelector -projectfiles $UProjectFile
-```
-
-<a id="How_to_Compute_these_PowerShell_Variables"></a>
-## How to Compute these PowerShell Variables
-
-These variables are used both for Custom Engines and for Launcher Engines.
-
-In both cases we need to know the path to `UnrealVersionSelector` on your system.
-
-- You need to compute these variables for your system:
-
-```powershell
-# Path to your .uproject (can be relative)
-$UProjectFile = "D:/Dev/UE5/XistGame/XistGame.uproject"
-
-#-- For Launcher Engines, you need to find this, it will be like: "C:\Program Files\Epic Games\Launcher"
-#-- For Custom Engines, wherever you cloned the UnrealEngine repo
-#-- Value as required by UnrealVersionSelector: parent of "D:/Dev/UE5/Engine" is the "root"
-$EngineRoot = "D:/Dev/UE5"  ##  e.g. "D:/Dev/UE5"
-
-##  e.g. D:/Dev/UE5/Engine/Binaries/Win64/UnrealVersionSelector.exe
-$UnrealVersionSelector = $EngineRoot + "/Engine/Binaries/Win64/UnrealVersionSelector.exe"
-```
-
-In the example calculation of `$EngineRoot` above, I've cloned the UnrealEngine source into `D:/Dev/UE5`.
-
-See the discussion below for more info on the expected directory structure for custom engines.
+Note: When the current release is `5.2`, the `5.2` branch may still be **ahead** of the `release` branch.
+The `release` branch is for official releases.  The `5.2` branch is for release staging, which means
+things get merged into that over time, and when Epic decides it's stable enough for a release,
+it gets merged into `release`.  Choose whichever branch is most appropriate for your use case.
 
 
 <a id="CustomEngineDirectoryStructure"></a>
@@ -139,6 +98,75 @@ For more information about possible locations to store your project files and th
 of each, see Epic's Official
 [Managing Game Code in Unreal](https://docs.unrealengine.com/5.1/en-US/managing-game-code-in-unreal-engine/)
 documentation.
+
+
+<a id="HowToGenerateProjectFiles"></a>
+## How to Generate Project Files
+
+No matter your platform or version, you'll need to Generate Project Files for your project
+in order to be able to build it.
+
+In these examples, I'm using PowerShell 7.  If you use another shell, you can still figure out
+what I'm doing here.
+
+
+## Launcher Engine Command: `-projectfiles`
+
+When using an Epic Games Launcher Engine, use the `-projectfiles` command instead.
+
+In this case, the Engine will continue to be managed by the Epic Games Launcher tools.
+Thus the command is simpler, you only need to tell it the name of your `$UProjectFile`.
+
+```powershell
+####  Use the Epic Games Launcher to: Generate Visual Studio project files...
+& $UnrealVersionSelector -projectfiles $UProjectFile
+```
+
+## Custom Engine Command: `-switchversionsilent`
+
+If you're running a Custom Engine, you should generate your project files using
+the `-switchversionsilent` command.
+
+```powershell
+####  Assign $EngineRoot as $UProjectFile's custom engine (if it isn't already),
+####  and Generate Visual Studio project files...
+
+& $UnrealVersionSelector -switchversionsilent $UProjectFile $EngineRoot
+```
+
+You don't need to explicitly execute the `-projectfiles` as well;
+`-switchversionsilent` will implicitly also execute `-projectfiles`.
+
+See [How to Compute these PowerShell Variables](#How_to_Compute_these_PowerShell_Variables)
+below for specifics.  In particular, `$EngineRoot` must be the `Engine` PARENT directory,
+or the `Root` directory in which the `Engine` directory exists.
+
+
+<a id="How_to_Compute_these_PowerShell_Variables"></a>
+## How to Compute these PowerShell Variables
+
+These variables are used both for Custom Engines and for Launcher Engines.
+
+In both cases we need to know the path to `UnrealVersionSelector` on your system.
+
+- You need to compute these variables for your system:
+
+```powershell
+# Path to your .uproject (can be relative)
+$UProjectFile = "D:/Dev/UE5/XistGame/XistGame.uproject"
+
+#-- For Launcher Engines, you need to find this, it will be like: "C:\Program Files\Epic Games\Launcher"
+#-- For Custom Engines, wherever you cloned the UnrealEngine repo
+#-- Value as required by UnrealVersionSelector: parent of "D:/Dev/UE5/Engine" is the "root"
+$EngineRoot = "D:/Dev/UE5"  ##  e.g. "D:/Dev/UE5"
+
+##  e.g. D:/Dev/UE5/Engine/Binaries/Win64/UnrealVersionSelector.exe
+$UnrealVersionSelector = $EngineRoot + "/Engine/Binaries/Win64/UnrealVersionSelector.exe"
+```
+
+In the example calculation of `$EngineRoot` above, I've cloned the UnrealEngine source into `D:/Dev/UE5`.
+
+See the discussion below for more info on the expected directory structure for custom engines.
 
 
 <a id="BuildingCustomEngine"></a>
