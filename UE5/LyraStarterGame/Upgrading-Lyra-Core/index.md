@@ -32,7 +32,8 @@ etc.
     - Merge `lyra-51-xist` into `xist-game`
 
 I fully documented the exact commands I'm running in my
-[Perforce Sync Procedure](/UE5/Engine/Perforce-Sync-Procedure),
+[Procedure: Merge Epic Source into Git](/UE5/LyraStarterGame/Tutorials/Procedure-Merge-Epic-Source-into-Git)
+(and the related [Perforce](/UE5/LyraStarterGame/Tutorials/Procedure-Merge-Epic-Source-into-Perforce) version),
 if you are interested.
 
 
@@ -65,7 +66,8 @@ The only time you ever want to update this branch is when Epic releases a new ve
 Lyra Core (e.g. with a new Engine version).
 
 To update this branch, you run
-[a procedure like this](/UE5/Engine/Perforce-Sync-Procedure),
+[Procedure: Merge Epic Source into Git](/UE5/LyraStarterGame/Tutorials/Procedure-Merge-Epic-Source-into-Git)
+(or the related [Perforce](/UE5/LyraStarterGame/Tutorials/Procedure-Merge-Epic-Source-into-Perforce) version),
 which essentially involves deleting everything in your project directory (*except for Git!*) and
 then creating a new empty `LyraStarterGame` project on top of your project directory.  This way
 all files that should be removed are removed in addition to adding/updating any existing files.

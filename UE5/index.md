@@ -19,11 +19,11 @@ To understand Lyra, you also need an understanding of these UE5 plugins:
 - [`ModularGameplay` Plugin](/UE5/ModularGameplay/)
 
 
-# Engine Tips
+# Using Unreal Engine
 
+- [Engine Overview](./Engine/)
 - [Development in UE5](./Dev/)
 - [Core Redirects: How to Redirect Blueprints to new/refactored C++](./Engine/Core-Redirects)
-- [How to Build (and Use) a Custom Engine](./Engine/)
 - [Re-save Project Assets when you Update the Engine](./Engine/Resave-Assets)
 
 
@@ -35,8 +35,9 @@ To understand Lyra, you also need an understanding of these UE5 plugins:
 # Source Control
 
 - [Git Overview](/Git/)
+  - [Procedure: Merge Epic Source into Git](/UE5/LyraStarterGame/Tutorials/Procedure-Merge-Epic-Source-into-Git)
 - [Perforce Overview](/Perforce/)
-- [UDN Perforce to Xist Git - Sync Procedure](/UE5/Engine/Perforce-Sync-Procedure)
+  - [Procedure: Merge Epic Source into Perforce](/UE5/LyraStarterGame/Tutorials/Procedure-Merge-Epic-Source-into-Perforce)
 
 
 # Epic Developer Discussions

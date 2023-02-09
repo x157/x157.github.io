@@ -13,7 +13,9 @@ Quick Links:
 - [Custom Engine Directory Structure](#CustomEngineDirectoryStructure)
 - [Building a Custom UE Engine](#BuildingCustomEngine)
   - [Procedure for Changing Engine Branches](#Procedure_ChangeEngineBranches)
-- [Xist's Perforce Sync Procedure](./Perforce-Sync-Procedure)
+- PowerShell Procedure to Merge Epic Source into your Project Source
+  - [for Git users](/UE5/LyraStarterGame/Tutorials/Procedure-Merge-Epic-Source-into-Git)
+  - [for Perforce users](/UE5/LyraStarterGame/Tutorials/Procedure-Merge-Epic-Source-into-Perforce)
 
 
 <a id="HowToGenerateProjectFiles"></a>
