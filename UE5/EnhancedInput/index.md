@@ -1,6 +1,6 @@
 ---
 title: "Enhanced Input | UE5"
-description: "FIXME"
+description: "Overview of the UE5 Enhanced Input Subsystem and its Input Mapping Contexts"
 breadcrumb_path: "UE5"
 breadcrumb_name: "Enhanced Input"
 ---
