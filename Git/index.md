@@ -17,7 +17,7 @@ and/or simultaneous modifications are being made to Blueprints, for example,
 Git ceases to be as good an option
 for the larger team, and thus [Perforce](/Perforce/) is used internally at Epic.
 
-If your team uses Git, here is how I recommend to do it.
+If your team uses Git for your project, here is how I recommend to do it.
 
 
 ## How To: Set up a Lyra Project Source Repo

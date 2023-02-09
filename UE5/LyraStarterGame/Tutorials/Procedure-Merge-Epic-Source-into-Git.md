@@ -13,15 +13,16 @@ into your local project Git repository.
 
 Note: I get my Engine & Lyra source from Perforce, via UDN.
 
-If you do not pay for UDN access, then you will instead get Engine & Lyra source from Github,
+If you do not pay for UDN access, then you will instead get Engine & Lyra source from GitHub,
 and Lyra binary content from the Epic Games Launcher.
 
 
 ## Overview
 
 - Copy the latest Lyra source from Epic into `lyra-main`
-  - Merge the new `lyra-main` into `lyra-xist`
-    - Merge the new `lyra-xist` into `xist-game`
+  - Copy the latest Lyra Content from Epic into `lyra-main`
+- Merge the new `lyra-main` into `lyra-xist`
+  - Merge the new `lyra-xist` into `xist-game`
 - Recompile `xist-game` with the latest Lyra 5.1+ on the latest Engine 5.1+
 
 Now you get to go see all the new stuff, and all the newly broken stuff!  C'est la Dev!  `:-)`
@@ -38,20 +39,38 @@ Now you get to go see all the new stuff, and all the newly broken stuff!  C'est 
 
 If your computer melts after you copy/paste this, you'll know you've messed up.
 
+## Set up PowerShell variables
+
+Note: You should set these the same values you used when you created
+your Git repo [following these instructions](/Git/How-to-Create-a-Lyra-Repo).
+
 ```powershell
-$ProjectDir = "D:/Dev/MyGame"  # your game project dir
-cd $ProjectDir
+$ProjectDir = "D:/Dev/XistGame"  # your game project dir
 
 # In this example, you've checked out the '5.1' branch on Github into
-# the directory "D:/UE5/Release-5.1"
-$EngineSourceDir = "D:/UE5/Release-5.1" # engine source dir
-$LyraSourceDir = "$EngineSourceDir/Samples/Games/Lyra"
+# the directory "E:/Github/UnrealEngine"
+$UE5Root = "E:/Github/UnrealEngine" # engine source dir
+$LyraSourceDir = "$UE5Root/Samples/Games/Lyra"
+
+# Whatever directory you saved the new sample "LyraStarterGame" project
+# in the Epic Games Launcher
+$LyraContentDir = "D:/Dev/LyraStarterGame"
+
+$LyraMainBranch = "lyra-main"
+$LyraCustomBranch = "lyra-xist"
+$GameBranch = "xist-game"
 
 $YYYYMMDD = Get-Date -Format "yyyyMMdd"  # Set timestamp for snapshot
+```
+
+## Synchronize `lyra-main` with Epic Source Control
+
+```powershell
+cd $ProjectDir
 
 # select the "main" version of Lyra, e.g. the one Epic updates
 # this branch is an exact mirror of Epic's Repository whenever I take a snapshot
-git checkout lyra-main
+git checkout $LyraMainBranch
 
 ################################################################################
 ###
@@ -63,7 +82,7 @@ git checkout lyra-main
 $RemoveItems = Get-ChildItem $ProjectDir -exclude .git, .gitattributes, .gitignore, .gitmodules
 $RemoveItems | Remove-Item -Force -Recurse
 
-# Copy Epic P4 Lyra into my Git repo
+# Copy Epic Lyra Source into my Git repo
 $EpicSourceItems = Get-ChildItem $LyraSourceDir -exclude Binaries, Intermediate
 
 foreach ($Item in $EpicSourceItems) {
@@ -71,12 +90,33 @@ foreach ($Item in $EpicSourceItems) {
     Copy-Item $Item.FullName -Destination $ProjectDir -Recurse
 }
 
+# Get a list of all 'Content' folders in the sample dir
+$LyraContentFolders = Get-ChildItem $LyraContentDir -Recurse -Directory `
+    | Where-Object {$_.Name -ieq 'Content'}
+
+$DirPrefix = $(Get-Item $LyraContentDir).FullName
+
+foreach ($ContentFolder in $LyraContentFolders)
+{
+    # Remove the leading $ContentFolder from the name
+    $RelativeContentFolder = $ContentFolder.FullName.substring($DirPrefix.length+1)
+
+    # Add leading $WorkspaceDir folder to the name
+    $SourceContentFolder = "$WorkspaceDir/$RelativeContentFolder"
+    if (!(Test-Path $SourceContentFolder)) {mkdir $SourceContentFolder}
+    $SourceContentFolder = Get-Item $SourceContentFolder
+
+    # Copy the entire Content dir into my source folder
+    Write-Host "COPY: $($ContentFolder.FullName) => $($SourceContentFolder.FullName)"
+    cp -Recurse $ContentFolder/* $SourceContentFolder
+}
+
 # Clear read-only bit on all copied files
 # (if you copy from Perforce, it sets tons of stuff read-only, it's annoying)
 Get-ChildItem $ProjectDir -ReadOnly -Recurse | Set-ItemProperty -name IsReadOnly -value $false
 
 # See if anything changed in Lyra
-git status
+git status  # This will take a while...
 
 ################################################################################
 ################################################################################
@@ -87,21 +127,21 @@ git status
 ###  If there are changes, then continue the procedure to merge them in:
 ###
 
-# Commit current Epic Source snapshot to lyra-main
+# Commit current Epic Source snapshot to $LyraMainBranch
 git add --all
 git commit -m "Import Lyra Main $YYYYMMDD"
 
 # make snapshot tag, push to server
-git tag -a lyra-main.$YYYYMMDD -m "Lyra Main snapshot $YYYYMMDD"
-git push origin lyra-main.$YYYYMMDD
+git tag -a ${LyraMainBranch}.$YYYYMMDD -m "Lyra Main snapshot $YYYYMMDD"
+git push origin ${LyraMainBranch}.$YYYYMMDD
 
-# push lyra-main to server
-git push origin lyra-main
+# push $LyraMainBranch to server
+git push origin $LyraMainBranch
 
 # checkout my modified version of Lyra branch
-# merge epic's official changes into my lyra-main branch
-git checkout lyra-main
-git merge --no-commit lyra-main
+# merge epic's official changes into my $LyraMainBranch branch
+git checkout $LyraMainBranch
+git merge --no-commit $LyraMainBranch
 
 ################################################################################
 ################################################################################
@@ -109,7 +149,7 @@ git merge --no-commit lyra-main
 ###  Manually resolve any merge conflicts
 ###
 
-git commit -m "Merge lyra-main.$YYYYMMDD into lyra-xist"
+git commit -m "Merge ${LyraMainBranch}.$YYYYMMDD into lyra-xist"
 git push origin lyra-xist
 
 # checkout my game dev branch
