@@ -32,8 +32,15 @@ Related material:
 
 # Source Code Management Tutorials
 
-- [Procedure: Merge Epic Source into Git](./Procedure-Merge-Epic-Source-into-Git.md)
-- [Procedure: Merge Epic Source into Perforce](./Procedure-Merge-Epic-Source-into-Perforce.md)
+Git:
+
+- [How to: Create a Lyra Git Repo](./How-to-Create-a-Lyra-Repo)
+- [Procedure: Merge Epic Source into Git](./Procedure-Merge-Epic-Source-into-Git)
+
+Perforce:
+
+- [Perforce Server Setup for Lyra](/Perforce/)
+- [Procedure: Merge Epic Source into Perforce](./Procedure-Merge-Epic-Source-into-Perforce)
 
 
 # Interesting but not Particularly Useful
