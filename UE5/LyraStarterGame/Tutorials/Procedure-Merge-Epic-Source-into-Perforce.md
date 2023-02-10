@@ -36,11 +36,6 @@ for integrating it into your project repo is roughly the same.
 Now you get to go see all the new stuff, and all the newly broken stuff!  C'est la Dev!  `:-)`
 
 
-# Open Your Game Project Perforce Depot
-
-- Clean the Workspace
-
-
 # Execute Powershell
 
 *DO NOT COPY/PASTE STUFF INTO YOUR CONSOLE WITHOUT UNDERSTANDING WHAT IT DOES. SECURITY IS A THING.*
@@ -73,7 +68,7 @@ $env:P4CLIENT = $UDN_WORKSPACE
 cd $LyraMainWorkspaceDir
 
 # Sync the latest from UDN
-p4 sync ...#head
+p4 sync ...`#head  # "#" begins a comment in PS, must escape it
 
 # REMEMBER THE CHANGELIST number we synced; We will include this in the merge log message
 $P4ChangesWords = $(p4 changes -m1 ...`#have).split(" ")  # Like "Change 123 on 2023/01/02 by user@workspace 'Doing some things'"
