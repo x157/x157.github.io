@@ -110,6 +110,8 @@ Excellent `Pocket Worlds` Example and documentation:
 
 ## `UIExtension`
 
+[UI Extension Overview](/UE5/UIExtension/)
+
 Provides a map of `Extension Point` Gameplay Tag to `Activatable Widget`.
 
 In this way you can access any widget you want/need via its `Extension Point`,
