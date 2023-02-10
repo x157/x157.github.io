@@ -84,7 +84,9 @@ git add .gitignore .gitattributes  # YOU MUST PROVIDE THESE FILES
 git commit -m "Initialize Git"
 ```
 
-<todo>Need to add examples for `.gitignore` and `.gitattributes`</todo>
+Note: You must provide these files.
+See [Xist's UE5 Git Init](https://github.com/XistGG/UE5-Git-Init)
+for some examples.
 
 
 # Create `lyra-main` branch
