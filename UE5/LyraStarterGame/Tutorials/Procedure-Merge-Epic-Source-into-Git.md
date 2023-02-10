@@ -36,7 +36,7 @@ for integrating it into your project repo is roughly the same.
   - Merge the new `lyra-xist` into `xist-game`
 - Build `xist-game` with the latest Lyra 5.1+ on the latest Engine 5.1+
 
-Now you get to go see all the new stuff, and all the newly broken stuff!  C'est la Dev!  `:-)`
+Now you get to go see all the new stuff, and all the newly broken stuff!  C'est la Dev!  `:^)`
 
 
 # Open Your Game Project Git Repo
@@ -83,7 +83,7 @@ git pull origin
 ```
 
 
-## Get the laatest `LyraStarterGame` project from Epic Games Launcher
+## Get the latest `LyraStarterGame` project from Epic Games Launcher
 
 - Start Epic Games Launcher, in the Library Vault:
   - Update the **Lyra Starter Game** sample project if needed
