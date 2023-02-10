@@ -38,6 +38,13 @@ For example you could create depots like:
    - Repeat as needed with each new stream/project name
 
 
+## How To: Merge Epic Updates into a Lyra P4 Depot
+
+See [this detailed PowerShell procedure](/UE5/LyraStarterGame/Tutorials/Procedure-Merge-Epic-Source-into-Perforce)
+for the exact commands necessary to merge new updates from Epic into an existing
+Lyra Project P4 depot.
+
+
 <a id='CustomUE5EngineSourceDepot'></a>
 ## How To: Set up a Custom UE5 Engine Source Depot
 
