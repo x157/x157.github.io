@@ -52,9 +52,16 @@ Both using and not using Lyra are valid choices.  You must decide which is best 
     - You're going to be forced to use:
       - the new UE 5.1 standard [Enhanced Input](https://dev.epicgames.com/community/learning/tutorials/eD13/unreal-engine-enhanced-input-in-ue5) *(you should probably use this anyway...)*
       - `CommonUI` is the player input system
-          - `CommonUI` is still kind of buggy/prototypey, is not well documented, and literally has CONTROL over player input.
-          - If you do a shooter game like Lyra, this is no problem.
-            - For a game where you want the player to actually use the mouse, you may need a custom engine to fix some `CommonUI` issues you may encounter.
+          - `CommonUI` is still in the experimental development phase, meaning it is changing A LOT
+            with each release, is not particularly well documented,
+            and literally has CONTROL over player input.
+            - I have attempted to demystify [CommonUI](/UE5/CommonUI/), but it's a beast.
+          - Non-shooter Inputs will require some setup
+            - Lyra supports shooter style input controls out of the box.
+            - For an RTS or MOBA game where you want the player to actually use the mouse,
+              you will need to do some cusomization of `CommonUI` to get it to work.
+              - In Engines 5.1 and before this required a custom Engine.
+              - Engine 5.2+ supports this by default, see [this GitHub issue](https://github.com/x157/x157.github.io/issues/14) for more info.
       - Gameplay Ability System (GAS)
         - GAS is very complex. It is also THE UE STANDARD for how to execute abilities over the network.
         - The only reason I can think of you may **not** want to use GAS, is if you were wanting to explicitly build your own GAS as an experiment or learning opportunity.  I could be wrong.
