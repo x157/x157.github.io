@@ -25,8 +25,8 @@ Both using and not using Lyra are valid choices.  You must decide which is best 
 ## Pros
 
 - Lyra uses UE 5.1 Standards for New Game Development
-  - [Multi-threaded Animations]()
-  - [Enhanced Input](https://dev.epicgames.com/community/learning/tutorials/eD13/unreal-engine-enhanced-input-in-ue5)
+  - Multi-threaded Animations
+  - [Enhanced Input](/UE5/EnhancedInput/)
   - [Gameplay Ability System](/UE5/GameplayAbilitySystem/)
   - Implements [`ModularGameplay`](/UE5/ModularGameplay/) Plugin
     - Adds support for [GameFeature Plugins](/UE5/GameFeatures/) for optional seasonal and/or DLC content, etc
@@ -50,7 +50,7 @@ Both using and not using Lyra are valid choices.  You must decide which is best 
 
 - For a **New** game:
     - You're going to be forced to use:
-      - the new UE 5.1 standard [Enhanced Input](https://dev.epicgames.com/community/learning/tutorials/eD13/unreal-engine-enhanced-input-in-ue5) *(you should probably use this anyway...)*
+      - the new UE 5.1 standard [Enhanced Input](/UE5/EnhancedInput/) *(you should probably use this anyway...)*
       - `CommonUI` is the player input system
           - `CommonUI` is still in the experimental development phase, meaning it is changing A LOT
             with each release, is not particularly well documented,
@@ -68,7 +68,7 @@ Both using and not using Lyra are valid choices.  You must decide which is best 
 
 - For an **Existing** game:
   - Replacing the input system may be a non-starter
-    - Lyra forces use of [Enhanced Input](https://dev.epicgames.com/community/learning/tutorials/eD13/unreal-engine-enhanced-input-in-ue5)
+    - Lyra forces use of [Enhanced Input](/UE5/EnhancedInput/)
     - Lyra forces you to use `CommonUI` as the player input system
   - Requires either implementing the `ModularGameplay` pattern in all of your base classes, or rebasing onto `ModularGameplayActors`
   - Thread-safe Animations are not compatible with UE4 animations.
