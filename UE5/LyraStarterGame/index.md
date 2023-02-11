@@ -6,7 +6,7 @@ breadcrumb_name: "LyraStarterGame"
 ---
 
 
-# Make Your UE5 Game from Lyra
+# Build your Game on Lyra
 
 Don't start from scratch!  Start from Lyra.
 
@@ -25,6 +25,24 @@ Some options are discussed here:
 
 [Extending Lyra: Development Considerations](./Development-Considerations)
 
+
+
+# Unofficial Lyra Dev Network Community Discord
+
+<div style="float:left; margin-right: 1em; margin-bottom: 1em">
+<a href="https://discord.gg/RS99Jcur6q" target="_blank"><img
+  src="https://discord.com/api/guilds/911050282996228217/embed.png?style=banner3"/></a>
+</div>
+
+We have a community Discord for discussing Lyra game development.
+
+Open to C++ devs, BP devs and enthusiasts.
+
+Please be respectful of others.
+
+Dev talk only.  No politics, religion or hate.
+
+<div style="clear:both"></div>
 
 
 # Getting Started
