@@ -2,20 +2,25 @@
 is_site_index: true
 ---
 
-# Lyra Starter Game
 
-My primary focus at the moment: [Developing a Game with UE5 LyraStarterGame](./UE5/LyraStarterGame/)
+# Building on Lyra
 
-This led me to study these related, relevant [UE5](./UE5/) topics:
+I'm developing a game based on the UE5 [Lyra](./UE5/LyraStarterGame/) Core
+
+Lyra integrates a number of UE5 systems,
+some of which are brand new and relatively undocumented.
 
 - [Common UI](/UE5/CommonUI/) + CommonGame
 - [Enhanced Input Subsystem](/UE5/EnhancedInput/)
 - [Gameplay Ability System](/UE5/GameplayAbilitySystem/)
 - [GameFeature Plugins](/UE5/GameFeatures/)
 - [`ModularGameplay` Plugin](/UE5/ModularGameplay/)
-- Source Control
-  - [Git SCM](/Git/)
-  - [Perforce SCM](/Perforce/)
+- [Unreal Engine Overview](/UE5/)
+
+Source Control Management
+
+  - [Git SCM](/Git/) for a Lyra UProject
+  - [Perforce SCM](/Perforce/) for a Lyra UProject
 
 Want to be a better UE5 C++ Dev?
 My thoughts on
