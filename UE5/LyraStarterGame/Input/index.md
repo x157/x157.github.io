@@ -7,6 +7,9 @@ breadcrumb_name: "Input"
 
 # Lyra Input Overview
 
+Lyra combines different UE5 systems and plugins together
+to coordinate a coherent input strategy.
+
 
 <a id='KeyConcepts'></a>
 ## Key Concepts
@@ -15,17 +18,13 @@ breadcrumb_name: "Input"
   via [Common UI Action Router](/UE5/CommonUI/ActionRouter)
 - [Enhanced Input](/UE5/EnhancedInput/) receives all input that is directed to the game,
   filtered by active [Input Mapping Contexts](/UE5/EnhancedInput/InputMappingContext)
-- [Lyra UI Policy](/UE5/LyraStarterGame/Input/UIPolicy) integrates Common UI with Enhanced Input
-- [Lyra HUD Layout](/UE5/LyraStarterGame/Input/HUDLayout) implements `UI.Layer.Game`
-
-
-### Quick Links
-
-- [Input Handling Overview](#InputHandlingOverview)
-- [Input Mapping Contexts](#IMC)
-- [Lyra Hero Component](#LyraHeroComponent)
-- [Lyra Project Settings](#ProjectSettings)
-- [References](#References)
+- [Lyra UI Policy](/UE5/LyraStarterGame/Input/UIPolicy) integrates Common UI with Enhanced Input, defines UI Layers (`UI.Layer.*`)
+- [Lyra HUD Layout](/UE5/LyraStarterGame/Input/HUDLayout) implements `UI.Layer.Game`, this is the Game HUD
+- By default, Game Feature Actions like [`LAS_ShooterGame_StandardHUD`](./LAS_ShooterGame_StandardHUD) define:
+  - which HUD Layout class to use
+  - which Activatable Widget classes to instantiate for each UI Extension Point
+- You can manage the addition/removal of other HUD Layouts and/or widgets during Gameplay
+- You can override Native Player Input handling by [deriving from `ULyraHeroComponent`](#LyraHeroComponent)
 
 
 <a id='InputHandlingOverview'></a>
@@ -74,38 +73,24 @@ IMC swapping logic to dynamically change inputs during Gameplay.
 <a id='LyraHeroComponent'></a>
 ## Player Input is managed by the Lyra Hero Component
 
+- If you want custom input handling, you **must** derive from `ULyraHeroComponent`
+
 The Lyra Hero Component activates the Native & Ability Input Actions for the Player Pawn.
 
 - For a pawn to receive player input, it **must** have a `ULyraHeroComponent` component
-  - If you want custom input handling, you **must** derive from `ULyraHeroComponent`
-    - `ULyraHeroComponent` as a base class is required by Lyra, including but not limited to:
-      - `ULyraGameplayAbility`
-        - To manage ability camera modes
-        - Also exposes the Hero Component to BPs that may use it for other reasons
-      - Game Feature Actions having to do with input management:
-        - `GameFeatureAction_AddInputBinding`
-        - `GameFeatureAction_AddInputConfig`
-        - `GameFeatureAction_AddInputContextMapping`
+  - `ULyraHeroComponent` as a base class is required by Lyra, including but not limited to:
+    - `ULyraGameplayAbility`
+      - To manage ability camera modes
+      - Also exposes the Hero Component to BPs that may use it for other reasons
+    - Game Feature Actions having to do with input management:
+      - `GameFeatureAction_AddInputBinding`
+      - `GameFeatureAction_AddInputConfig`
+      - `GameFeatureAction_AddInputContextMapping`
 - `ULyraHeroComponent` works in conjunction with `ULyraPawnExtensionComponent` to activate the inputs on the pawn
   - Thus, the pawn must also have a `ULyraPawnExtensionComponent` and fully support the `IGameFrameworkInitStateInterface`
   - See `ULyraHeroComponent`::`InitializePlayerInput` for implementation details
     - This gets called during the pawn initialization process while transitioning to `InitState.DataInitialized`
   - This requires the player to be using `ULyraInputComponent` for input, which is configured in the [Project Settings](#ProjectSettings)
-
-
-<a id='ProjectSettings'></a>
-# Lyra Project Settings
-
-`Config/DefaultInput.ini` defines (amongst other things):
-
-```ini
-[/Script/Engine.InputSettings]
-DefaultPlayerInputClass=/Script/EnhancedInput.EnhancedPlayerInput
-DefaultInputComponentClass=/Script/LyraGame.LyraInputComponent
-```
-
-- Enables Enhanced Input
-- Sets `ULyraInputComponent` as the player's input component (it is derived from `UEnhancedInputComponent`)
 
 
 <a id='References'></a>
