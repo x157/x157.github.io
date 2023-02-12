@@ -9,9 +9,13 @@ breadcrumb_name: "UI Extension"
 
 The UI Extension Plugin is one of the [plugins distributed with Lyra](/UE5/LyraStarterGame/Plugins/).
 
+
 ## Core Concept
 
-- Map HUD Slot IDs (GameplayTag) to Activatable Widgets
+- UI Extension Points are abstract widget IDs
+  - can be implemented by different Activatable Widget classes during Gameplay
+  - allows definition of generic HUD Layouts that don't depend on specific widget assets
+
 
 ### Description
 
@@ -27,4 +31,14 @@ For example, you can load in different Widget classes depending on the type of
 Multiple game score widgets might share a HUD Slot ID `HUD.Slot.Score`,
 but be a different widget depending on the Experience.
 
-## TODO SCREENSHOT SOME SHOOTER CORE HUDS WITH UI EXTENSIONS
+
+## Examples
+
+Documented examples:
+
+- [Lyra HUD Layout](/UE5/LyraStarterGame/Input/HUDLayout) in the `ShooterCore` GFP
+
+See also:
+
+- Front End HUD Layout
+- Top Down Arena HUD Layout in the `TopDownArena` GFP

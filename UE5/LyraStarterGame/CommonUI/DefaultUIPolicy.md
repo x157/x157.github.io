@@ -6,7 +6,7 @@ breadcrumb_name: Default UI Policy
 ---
 
 
-# Lyra Default UI Policy
+# Lyra Default UI Policy Details
 
 This is part of [How Common UI is Setup in LyraStarterGame](./).
 Read that as well for more info.

@@ -11,13 +11,12 @@ breadcrumb_name: "Input"
 <a id='KeyConcepts'></a>
 ## Key Concepts
 
-- [Common UI](/UE5/LyraStarterGame/CommonUI/) manages input mode changes during gameplay
+- [Common UI](/UE5/CommonUI/) manages input mode changes during gameplay
   via [Common UI Action Router](/UE5/CommonUI/ActionRouter)
 - [Enhanced Input](/UE5/EnhancedInput/) receives all input that is directed to the game,
   filtered by active [Input Mapping Contexts](/UE5/EnhancedInput/InputMappingContext)
-- [Lyra HUD Layout](/UE5/LyraStarterGame/Input/HUDLayout) integrates Common UI with Enhanced Input
-  - is a [Activatable Widget](/UE5/CommonUI/ActivatableWidget)
-  - [UI Extension](/UE5/UIExtension/) provides UI Extension Point Widgets
+- [Lyra UI Policy](/UE5/LyraStarterGame/Input/UIPolicy) integrates Common UI with Enhanced Input
+- [Lyra HUD Layout](/UE5/LyraStarterGame/Input/HUDLayout) implements `UI.Layer.Game`
 
 
 ### Quick Links
@@ -27,7 +26,6 @@ breadcrumb_name: "Input"
 - [Lyra Hero Component](#LyraHeroComponent)
 - [Lyra Project Settings](#ProjectSettings)
 - [References](#References)
-- [Example HUD Settings](#ExampleHUDSettings)
 
 
 <a id='InputHandlingOverview'></a>
@@ -115,14 +113,4 @@ DefaultInputComponentClass=/Script/LyraGame.LyraInputComponent
 
 - [Official Epic Lyra Input Docs](https://docs.unrealengine.com/5.1/en-US/lyra-input-settings-in-unreal-engine/)
 - [ULyraSettingsLocal](/UE5/LyraStarterGame/ULyraSettingsLocal)
-
-
-# Examples
-
-<a id='ExampleHUDSettings'></a>
-## Example HUD Settings
-
-This is one of the HUD Layouts that I use:
-
-![Example HUD Settings](./screenshots/ExampleHUDSettings.png)
 
