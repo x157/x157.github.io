@@ -42,6 +42,6 @@ To understand Lyra, you also need an understanding of these UE5 plugins:
 
 # Epic Developer Discussions
 
-- [Common UI Annotations](./UE5/CommonUI/#Annotations)
-- [LyraStarterGame Annotations](./UE5/LyraStarterGame/Epic-Games-Developer-Discussion-References)
-- [Other Unreal Engine Annotations](./UE5/Annotations/)
+- [Common UI Annotations](/UE5/CommonUI/#Annotations)
+- [LyraStarterGame Annotations](/UE5/LyraStarterGame/Epic-Games-Developer-Discussion-References)
+- [Other Unreal Engine Annotations](/UE5/Annotations/)
