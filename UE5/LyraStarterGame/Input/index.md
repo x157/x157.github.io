@@ -30,21 +30,21 @@ to coordinate a coherent input strategy.
 <a id='InputHandlingOverview'></a>
 ## Input Handling Overview
 
-Lyra uses [Enhanced Input](/UE5/EnhancedInput/)
-together with [Common UI](/UE5/CommonUI/)
+Lyra uses [Common UI](/UE5/CommonUI/)
+together with [Enhanced Input](/UE5/EnhancedInput/)
 to manage Player Input.
 Be familiar with both.
 
-These UE5 plugins are integrated via
-[Lyra HUD Layout](/UE5/LyraStarterGame/Input/HUDLayout),
+These UE5 plugins are integrated via the
+[Lyra UI Policy](/UE5/LyraStarterGame/Input/UIPolicy),
 which defines a HUD as being comprised of prioritized layers of
 [Activatable Widgets](/UE5/CommonUI/ActivatableWidget).
 
 The `Escape` key (the "back" button) activates the Game Menu widget,
 which suspends Player Game Input while the menu is open, for example.
 
-The Lyra HUD controls if, when and how input makes it to the Game.
-This is all managed by [Common UI](/UE5/CommonUI/).
+[Common UI](/UE5/CommonUI/)
+controls if, when and how input makes it to the Game.
 If/when you want to explicitly change input modes in your Game,
 you must use the [Common UI Action Router](/UE5/CommonUI/ActionRouter) to do so.
 
@@ -53,8 +53,13 @@ they can optionally change the input mode and/or focus themselves for input
 to support MKB, Gamepad, VR controllers, etc.
 The settings are all customizable by input device and platform.
 
-When no Activatable Widget is modifying the input mode, the inputs all go to
-the Game itself via [Enhanced Input](/UE5/EnhancedInput/).
+In particular, they should agree on the value of `Get Desired Input Config`,
+hopefully via a shared implementation.
+
+When no Activatable Widget is modifying the input mode, the input flows to
+the Game itself via [Enhanced Input](/UE5/EnhancedInput/),
+as triggered by any active [Input Mapping Contexts](/UE5/EnhancedInput/InputMappingContext)
+at the given point in Playtime.
 
 
 <a id='IMC'></a>
