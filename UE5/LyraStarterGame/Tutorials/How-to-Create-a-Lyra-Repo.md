@@ -7,13 +7,21 @@ breadcrumb_name: "Create a Lyra Git Repo"
 
 # How to Create a Lyra-based Project in Git
 
+This details the procedure used to implement my [Git](/Git/)
+branching strategy for a Lyra-based project.
+
+How to choose the correct Engine/Lyra version for your project:
+
+- To use Lyra `release`, checkout Engine branch `release`
+- To use Lyra `5.2`, checkout Engine branch `5.2`
+
+**When in doubt, use the `release` branch**, the latest stable Engine+Lyra release.
 
 ## Procedure Overview
 
 - Clone [UnrealEngine](https://github.com/EpicGames/UnrealEngine) from GitHub
-  - Checkout the desired branch, e.g. `5.1`
 - Create a `LyraStarterGame` project from Epic Games Launcher
-- Initialize Project Git Repo
+- Initialize New Git Repo
 - Create `lyra-main` branch
   - Copy Source & Configs from GitHub
   - Copy Content from Epic Games Launcher
@@ -22,7 +30,7 @@ breadcrumb_name: "Create a Lyra Git Repo"
 
 ## Summary of Result
 
-- The `lyra-main` branch will be a brand new, empty `LyraStarterGame` project
+- The `lyra-main` branch will be an exact mirror of Epic's source repository
   - with the latest Source/Configs from GitHub
   - with the latest Content from the Epic Games Launcher
 - The `lyra-xist` branch will be our custom version of Lyra with upgrades.
@@ -36,24 +44,27 @@ to get updates from Epic.
 # Set up PowerShell variables
 
 ```powershell
-$DevCode = "Xist"
-$GameCode = "XistGame"
+# If you forked the engine to make your own custom engine,
+# change this to be the URL to your fork
+$EngineRepositoryUrl = "https://github.com/EpicGames/UnrealEngine"
+
+# Which branch of the Engine and Lyra do we want to import?
+$EngineBranch = "release"
 
 # The directory where you keep your Game Code
-$WorkspaceDir = "D:/Dev/$GameCode"
+$WorkspaceDir = "D:/Dev/XistGame"  # set this
 
-# The directory where you keep your Github UE5 clone
-#   - must be checked out to the Engine/Lyra branch of your choice
-$UE5Root = "E:/GitHub/UnrealEngine"
-$LyraSourceDir = "$UE5Root/Samples/Games/Lyra"
+# The directory where you want to clone UnrealEngine
+$UE5Root = "E:/GitHub/UnrealEngine"  # set this
+$LyraSourceDir = "$UE5Root/Samples/Games/Lyra"  # don't change this line
 
-# Whatever directory you saved the new sample "LyraStarterGame" project
-# in the Epic Games Launcher
-$LyraContentDir = "D:/Dev/LyraStarterGame"
+# This is the directory where we will save a new sample
+# LyraStarterGame project from the Launcher.
+$LyraContentDir = "D:/Dev/LyraStarterGame"  # set this
 
-$LyraMainBranch = "lyra-main"
-$LyraCustomBranch = "lyra-$($DevCode.ToLower())"  # e.g. "lyra-xist"
-$GameBranch = $GameCode.ToLower()  # e.g. "xistgame"
+$LyraMainBranch   = "lyra-main"
+$LyraCustomBranch = "lyra-xist"  # "lyra-yourname"
+$GameBranch       = "xist-game"
 ```
 
 
@@ -65,13 +76,35 @@ Store the sample project in `$LyraContentDir`, for example `D:/Dev/LyraStarterGa
 # Clone UnrealEngine from GitHub
 
 ```powershell
-# This example clones the UE 5.1 + Lyra 5.1 branch
-# Choose the appropriate branch for your project
-#   - if you are not sure, use the 'release' branch
-git clone --branch "5.1" https://github.com/EpicGames/UnrealEngine $UE5Root
+if (Test-Path $UE5Root)
+{
+  # $UERoot already exists; you already cloned the Engine
+  cd $UE5Root
+
+  # Switch branches if engine is not on $EngineBranch
+  $branch = git branch
+  if (!($EngineBranch -ieq $branch))
+  {
+    git fetch origin
+    git checkout $EngineBranch
+  }
+
+  # pull latest from origin
+  git pull origin
+}
+else
+{
+  # $UE5Root does not exist; clone $EngineRepositoryUrl into $UE5Root
+  git clone --branch $EngineBranch $EngineRepositoryUrl $UE5Root
+}
 ```
 
 # Initialize Project Git Repo
+
+Before you do this part, prepare the files you will use for `.gitignore` and `.gitattributes`.
+
+See [Xist's UE5 Git Init](https://github.com/XistGG/UE5-Git-Init)
+for some reasonable defaults.
 
 ```powershell
 # make dir $WorkspaceDir if needed
@@ -84,16 +117,13 @@ git add .gitignore .gitattributes  # YOU MUST PROVIDE THESE FILES
 git commit -m "Initialize Git"
 ```
 
-Note: You must provide these files.
-See [Xist's UE5 Git Init](https://github.com/XistGG/UE5-Git-Init)
-for some examples.
-
 
 # Create `lyra-main` branch
 
 ```powershell
 cd $WorkspaceDir
 
+# Create lyra-main branch
 git branch $LyraMainBranch
 ```
 
@@ -102,9 +132,10 @@ git branch $LyraMainBranch
 ```powershell
 cd $WorkspaceDir
 
+# Checkout lyra-main
 git checkout $LyraMainBranch
 
-# Example: Recursive Copy E:/GitHub/UnrealEngine/Samples/Games/Lyra into Workspace dir
+# Example: Recursive Copy E:/GitHub/UnrealEngine/Samples/Games/Lyra/* into Workspace dir
 cp -Recurse $LyraSourceDir/* $WorkspaceDir
 
 git add --all
@@ -133,6 +164,8 @@ foreach ($ContentFolder in $LyraContentFolders)
     Write-Host "COPY: $($ContentFolder.FullName) => $($SourceContentFolder.FullName)"
     cp -Recurse $ContentFolder/* $SourceContentFolder
 }
+
+cd $WorkspaceDir
 
 git add --all  # This might take a while...
 git commit -m "Initial Import of Lyra Launcher Content"
@@ -165,6 +198,12 @@ git checkout $GameBranch        # Checkout xist-game
 
 - This is the branch where your Game Feature Plugin goes
   - Any/all content and configs that are game-specific go here
+
+
+# Clean up as Desired
+
+You no longer need the `$LyraContentDir` (`D:/Dev/LyraStarterGame`),
+as we copied all the interesting parts from it into our Git repo.
 
 
 # Periodically: Merge Updates from Epic
