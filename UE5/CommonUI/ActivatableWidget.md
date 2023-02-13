@@ -7,6 +7,18 @@ breadcrumb_name: "Activatable Widget"
 
 # Common UI Activatable Widget
 
+`CommonActivatableWidget` should be used as the base class for most of your widgets.
+
+Activatable Widgets are often not deleted, instead they're reused.
+`OnActivated` and `OnDeactivated` can be called often in a single lifetime of the widget.
+
+Common use cases for an Activatable Widget are
+
+- Sleep deactivated, listening for Gameplay Events, activating on specific events
+- Be active and responsive to in game events, perhaps deactivating at some point
+- The [Lyra HUD Layout](/UE5/LyraStarterGame/Input/HUDLayout) is an Activatable Widget
+
+
 ### Is Activated?
 
 ```c++
@@ -63,6 +75,17 @@ virtual void NativeOnDeactivated();
 virtual TOptional<FUIInputConfig> GetDesiredInputConfig() const;
 ```
 
+The return value of `GetDesiredInputConfig` is vital to standardize and
+coordinate in your project.
+
+Having different widgets return different values for this could potentially
+be a difficult situation to debug.
+
+The result of this function is sent to the
+[Common UI Action Router](/UE5/CommonUI/ActionRouter)
+to explicitly set the game input mode when this widget is activated.
+
+
 <a id='GetDesiredFocusTarget'></a>
 ## Get Desired Focus Target
 
@@ -76,6 +99,15 @@ virtual TOptional<FUIInputConfig> GetDesiredInputConfig() const;
  */
 virtual UWidget* NativeGetDesiredFocusTarget() const;
 ```
+
+You likely need to tell Common UI which widget should be focussed when a given widget is activated.
+The most likely return value is `this` or `self`, e.g. focus the widget that was most recently activated.
+
+If you override this in C++, this BP version of this function will not be called
+unless you explicitly call it yourself.
+
+This seems to be particularly important when using non-pointer input devices for menu navigation,
+like Gamepad buttons or Keyboard keys.
 
 <a id='GetDesiredCameraConfig'></a>
 ## Get Desired Camera Config

@@ -19,7 +19,7 @@ to coordinate a coherent input strategy.
 - [Enhanced Input](/UE5/EnhancedInput/) receives all input that is directed to the game,
   filtered by active [Input Mapping Contexts](/UE5/EnhancedInput/InputMappingContext)
 - [Lyra UI Policy](/UE5/LyraStarterGame/Input/UIPolicy) integrates Common UI with Enhanced Input, defines UI Layers (`UI.Layer.*`)
-- [Lyra HUD Layout](/UE5/LyraStarterGame/Input/HUDLayout) implements `UI.Layer.Game`, this is the Game HUD
+- [Lyra HUD Layout](/UE5/LyraStarterGame/Input/HUDLayout) implements `UI.Layer.Game`, the Game HUD
 - By default, Game Feature Actions like [`LAS_ShooterGame_StandardHUD`](./LAS_ShooterGame_StandardHUD) define:
   - which HUD Layout class to use
   - which Activatable Widget classes to instantiate for each UI Extension Point
