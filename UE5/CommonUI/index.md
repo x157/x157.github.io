@@ -8,75 +8,35 @@ breadcrumb_name: "CommonUI"
 
 # Common UI Plugin
 
-Epic's `CommonUI` plugin is what
-[LyraStarterGame](../LyraStarterGame/)
-uses to control the flow of user input.
-
-This plugin allows the automation of a lot of platform-specific behavior in the UI.
+The Common UI plugin allows the automation of a lot of platform-specific behavior in the UI.
 For example, buttons can be automatically shown/hidden depending on the platform
 type, and it is very easy to test different platforms in the Editor.
 
-This documentation is being based heavily on
-[How `LyraStarterGame` implements `CommonUI`](/UE5/LyraStarterGame/CommonUI/).
-See that link for detailed information on how `LyraStarterGame` configures and uses `CommonUI`.
+[Lyra Input Overview](/UE5/LyraStarterGame/Input/) gives a good big picture look
+at a possible way Common UI can be implemented.
+
+## Key Concepts
+
+- [Common UI Action Router](./ActionRouter)
+  - Manages the Input Mode
+- [Activatable Widget](./ActivatableWidget)
+  - Base for most Lyra widgets
 
 
-## Considerations for Usage
+## Example Usage in Lyra
 
-You create a Base UI Widget, for example in your `PlayerController`,
-which is the one and only widget you explicitly `Add to Viewport`.
-
-**DO NOT add other widgets directly to the viewport**.
-
-Only the Base UI Widget should explicitly be added to the viewport.
-All other widgets get pushed onto the appropriate `CommonUI` Layer that you set up in your Base UI Widget.
-
-This setup allows Common UI to manage menu navigation using Gamepad buttons, Keyboard keys, etc.
-
-To support this, your widget must be derived from C++ [`CommonActivatableWidget`](#CommonActivatableWidget).
+- [Lyra UI Policy](/UE5/LyraStarterGame/Input/UIPolicy) defines a prioritized, tagged layers of
+  [Activatable Widgets](./ActivatableWidget)
 
 
 ### Example: Lyra Common UI Layers
 
-In ascending priority order, Lyra defines these Common UI Layers as stacks with associated Gameplay Tags:
+In ascending priority, Lyra defines these Common UI Layers as stacks with associated Gameplay Tags:
 
 - `UI.Layer.Game` - UI relating directly to gameplay
 - `UI.Layer.GameMenu` - For example: Inventory UI
 - `UI.Layer.Menu` - Main Menu layer
 - `UI.Layer.Modal` - Prompt/Confirmation Dialog layer
-
-
-<a id="CommonActivatableWidget"></a>
-## Base Widget Class: `CommonActivatableWidget`
-
-`CommonActivatableWidget` should be used as the base class.
-This gives you access to support for many new common C++ events.
-
-<todo-p>
-Find/Link to good CommonActivatableWidget documentation
-</todo-p>
-
-
-### Event: `CommonActivatableWidget`.`OnActivated`
-
-This event is provided by Common UI, along with its companion `OnDeactivated`.
-
-These are the events where you should do things like change widget focus based on widgets being made
-visible or invisible during game play.
-
-Widgets are not deleted, they're often reused. `OnActivated` and `OnDeactivated` are called often.
-
-
-### Event: `CommonActivatableWidget`.`GetDesiredFocusTarget`
-
-You likely need to tell Common UI which widget should be focussed when a given widget is activated.
-The most likely return value is `self`, e.g. focus the widget that was most recently activated.
-
-If you override this in C++, this BP version of this function will not be called
-unless you explicitly call it yourself.
-
-This seems to be particularly important when using non-pointer input devices for menu navigation,
-like Gamepad buttons or Keyboard keys.
 
 
 ## Input Handling
