@@ -12,21 +12,21 @@ branching strategy for a Lyra-based project.
 
 How to choose the correct Engine/Lyra version for your project:
 
-- To use Lyra `release`, checkout Engine branch `release`
+- To use Lyra `5.1`, checkout Engine branch `5.1`
 - To use Lyra `5.2`, checkout Engine branch `5.2`
+- Lyra is not on the `release` branch as of 5.1.1
 
-**When in doubt, use the `release` branch**, the latest stable Engine+Lyra release.
 
 ## Procedure Overview
 
-- Clone [UnrealEngine](https://github.com/EpicGames/UnrealEngine) from GitHub
-- Create a `LyraStarterGame` project from Epic Games Launcher
-- Initialize New Git Repo
-- Create `lyra-main` branch
+- [Create a `LyraStarterGame` project](#CreateContentProject) from Epic Games Launcher
+- [Clone UnrealEngine](#CloneUnrealEngine) from GitHub
+- [Initialize New Git Repo](#InitGitRepo)
+- [Create `lyra-main` branch](#create-lyra-main)
   - Copy Source & Configs from GitHub
   - Copy Content from Epic Games Launcher
-- Create `lyra-xist` branch based on `lyra-main`
-- Create `xist-game` branch based on `lyra-xist`
+- [Create `lyra-xist` branch](#create-lyra-xist) based on `lyra-main`
+- [Create `xist-game` branch](#create-xist-game) based on `lyra-xist`
 
 ## Summary of Result
 
@@ -49,7 +49,7 @@ to get updates from Epic.
 $EngineRepositoryUrl = "https://github.com/EpicGames/UnrealEngine"
 
 # Which branch of the Engine and Lyra do we want to import?
-$EngineBranch = "release"
+$EngineBranch = "5.1"
 
 # The directory where you keep your Game Code
 $WorkspaceDir = "D:/Dev/XistGame"  # set this
@@ -60,7 +60,7 @@ $LyraSourceDir = "$UE5Root/Samples/Games/Lyra"  # don't change this line
 
 # This is the directory where we will save a new sample
 # LyraStarterGame project from the Launcher.
-$LyraContentDir = "D:/Dev/LyraStarterGame"  # set this
+$LyraContentDir = "D:/Dev/DefaultLyraProject"  # set this
 
 $LyraMainBranch   = "lyra-main"
 $LyraCustomBranch = "lyra-xist"  # "lyra-yourname"
@@ -68,37 +68,70 @@ $GameBranch       = "xist-game"
 ```
 
 
+<a id='CreateContentProject'></a>
 # Create a `LyraStarterGame` project from Launcher
 
-Store the sample project in `$LyraContentDir`, for example `D:/Dev/LyraStarterGame`
+Store the sample project in `$LyraContentDir`, for example `D:/Dev/DefaultLyraProject`
+
+###### NOTE: CREATE A FRESH, BLANK SAMPLE GAME
+
+DO NOT IMPORT A PROJECT DIRECTORY THAT YOU HAVE MADE CHANGES TO.
+
+When in doubt, back up the previous game and make a new one here.
+
+[![Create LyraStarterGame Project in Epic Games Launcher](./screenshots/Launcher-Create-LyraStarterGame-Project.png)](./screenshots/Launcher-Create-LyraStarterGame-Project.png)
+
+I used these settings:
+
+[![Create LyraStarterGame Project in Epic Games Launcher Settings](./screenshots/Launcher-Create-LyraStarterGame-Project-Settings.png)](./screenshots/Launcher-Create-LyraStarterGame-Project-Settings.png)
+
+Note what you use for the `Folder` here **MUST EQUAL** your `$LyraContentDir` value.   Set it accordingly.
+
+You can name your project whatever you want.
 
 
-# Clone UnrealEngine from GitHub
+<a id='CloneUnrealEngine'></a>
+# Update UnrealEngine Source from GitHub
+
+## If you already cloned Unreal Engine
+
+If you've already cloned Unreal Engine from GitHub,
+you don't need to clone it again.
+
+Instead, you want to make sure you're on the correct branch,
+and then pull from Epic.
 
 ```powershell
-if (Test-Path $UE5Root)
-{
-  # $UERoot already exists; you already cloned the Engine
-  cd $UE5Root
+# If you already cloned the Engine, $UERoot already exists
+cd $UE5Root
 
-  # Switch branches if engine is not on $EngineBranch
-  $branch = git branch
-  if (!($EngineBranch -ieq $branch))
-  {
-    git fetch origin
-    git checkout $EngineBranch
-  }
-
-  # pull latest from origin
-  git pull origin
-}
-else
+# Switch branches if $EngineBranch is not the current branch
+$isCorrectBranch = $EngineBranch -ieq (git branch)
+if (!$isCorrectBranch)
 {
-  # $UE5Root does not exist; clone $EngineRepositoryUrl into $UE5Root
-  git clone --branch $EngineBranch $EngineRepositoryUrl $UE5Root
+  git fetch origin
+  git checkout $EngineBranch
 }
+
+# pull latest from origin
+git pull origin
 ```
 
+[Continue to Initialize Project Git Repo](#InitGitRepo), you do not need to clone again.
+
+## If you have not yet Cloned Unreal Engine from GitHub
+
+```powershell
+# cd to the PARENT of the $UE5Root directory.
+# This directory must exist.  Create it if needed.
+cd $UE5Root/..
+
+# $UE5Root does not exist; clone $EngineRepositoryUrl into $UE5Root
+git clone --branch $EngineBranch $EngineRepositoryUrl $UE5Root
+```
+
+
+<a id='InitGitRepo'></a>
 # Initialize Project Git Repo
 
 Before you do this part, prepare the files you will use for `.gitignore` and `.gitattributes`.
@@ -118,6 +151,7 @@ git commit -m "Initialize Git"
 ```
 
 
+<a id='create-lyra-main'></a>
 # Create `lyra-main` branch
 
 ```powershell
@@ -136,7 +170,7 @@ cd $WorkspaceDir
 git checkout $LyraMainBranch
 
 # Example: Recursive Copy E:/GitHub/UnrealEngine/Samples/Games/Lyra/* into Workspace dir
-cp -Recurse $LyraSourceDir/* $WorkspaceDir
+Copy-Item -Force -Recurse $LyraSourceDir/* $WorkspaceDir
 
 git add --all
 git commit -m "Initial Import of Lyra from Epic"
@@ -145,24 +179,37 @@ git commit -m "Initial Import of Lyra from Epic"
 ### Copy Content from Lyra Sample into `lyra-main` branch
 
 ```powershell
+# This function copies a specific Content folder from the Sample project into our Workspace
+function CopyLyraContentFolder()
+{
+  param( [Parameter()] $ContentFolder,
+         [Parameter()] $DirPrefix    )
+  # Remove the leading $ContentFolder from the name
+  $RelativeContentFolder = $ContentFolder.FullName.substring($DirPrefix.length)
+  # Add leading $WorkspaceDir folder to the name
+  $WorkspaceContentFolder = "$WorkspaceDir/$RelativeContentFolder"
+  # Create the directory if it does not exist
+  if (!(Test-Path $WorkspaceContentFolder)) {mkdir $WorkspaceContentFolder}
+  $WorkspaceContentFolder = Get-Item $WorkspaceContentFolder
+  # Recursively copy Content into our Workspace, overwriting the Workspace as needed
+  Write-Host "COPY: $($ContentFolder.FullName) => $($WorkspaceContentFolder.FullName)"
+  Copy-Item -Force -Recurse "$($ContentFolder.FullName)/*" $WorkspaceContentFolder
+}
+
 # Get a list of all 'Content' folders in the sample dir
+
 $LyraContentFolders = Get-ChildItem $LyraContentDir -Recurse -Directory `
     | Where-Object {$_.Name -ieq 'Content'}
 
-$DirPrefix = $(Get-Item $LyraContentDir).FullName
+Write-Host "The Lyra Content Folders are:"
+$LyraContentFolders | %{$_.FullName}
 
+# Copy all the 'Content' folders into the $WorkspaceDir
+
+$DirPrefix = (Get-Item $LyraContentDir).FullName
 foreach ($ContentFolder in $LyraContentFolders)
 {
-    # Remove the leading $ContentFolder from the name
-    $RelativeContentFolder = $ContentFolder.FullName.substring($DirPrefix.length+1)
-
-    # Add leading $WorkspaceDir folder to the name
-    $SourceContentFolder = "$WorkspaceDir/$RelativeContentFolder"
-    if (!(Test-Path $SourceContentFolder)) {mkdir $SourceContentFolder}
-    $SourceContentFolder = Get-Item $SourceContentFolder
-
-    Write-Host "COPY: $($ContentFolder.FullName) => $($SourceContentFolder.FullName)"
-    cp -Recurse $ContentFolder/* $SourceContentFolder
+  $NewFolder =& CopyLyraContentFolder $ContentFolder -DirPrefix:$DirPrefix
 }
 
 cd $WorkspaceDir
@@ -171,6 +218,8 @@ git add --all  # This might take a while...
 git commit -m "Initial Import of Lyra Launcher Content"
 ```
 
+
+<a id='create-lyra-xist'></a>
 # Create `lyra-xist` branch based on `lyra-main`
 
 ```powershell
@@ -186,6 +235,7 @@ git checkout $LyraCustomBranch  # Checkout lyra-xist
 - This is your shared-between-games custom Lyra
 
 
+<a id='create-xist-game'></a>
 # Create `xist-game` branch based on `lyra-xist`
 
 ```powershell
@@ -199,11 +249,18 @@ git checkout $GameBranch        # Checkout xist-game
 - This is the branch where your Game Feature Plugin goes
   - Any/all content and configs that are game-specific go here
 
+### Make your game!
+
+- Associate your new `.uproject` with your custom Engine
+- Generate Project Files
+- `rider Lyra.uproject` *(whatever you called your project)*
+
 
 # Clean up as Desired
 
-You no longer need the `$LyraContentDir` (`D:/Dev/LyraStarterGame`),
+You no longer need the `$LyraContentDir` (`D:/Dev/DefaultLyraProject`),
 as we copied all the interesting parts from it into our Git repo.
+You can delete this directory and all its contents if you like.
 
 
 # Periodically: Merge Updates from Epic
