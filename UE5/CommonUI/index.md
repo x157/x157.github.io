@@ -1,8 +1,8 @@
 ---
 title: "Common UI Plugin"
-description: "Annotation of tutorial videos relating to the Common UI plugin for Unreal Engine 5"
+description: "Overview of the Common UI plugin for Unreal Engine 5"
 breadcrumb_path: "UE5"
-breadcrumb_name: "CommonUI"
+breadcrumb_name: "Common UI"
 ---
 
 
