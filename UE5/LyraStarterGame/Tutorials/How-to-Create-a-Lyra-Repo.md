@@ -93,12 +93,27 @@ You can name your project whatever you want.
 <a id='CloneUnrealEngine'></a>
 # Update UnrealEngine Source from GitHub
 
-## If you already cloned Unreal Engine
+You either need to clone the Engine source (if you haven't already),
+or update the source you previously cloned.
 
-If you've already cloned Unreal Engine from GitHub,
-you don't need to clone it again.
+Here, we'll do both, just to be safe.
 
-Instead, you want to make sure you're on the correct branch,
+
+## Clone Unreal Engine from GitHub
+
+```powershell
+# cd to the PARENT of the $UE5Root directory.
+# This directory must exist.  Create it if needed.
+cd $UE5Root/..
+
+# $UE5Root does not exist; clone $EngineRepositoryUrl into $UE5Root
+git clone --branch $EngineBranch $EngineRepositoryUrl $UE5Root
+```
+
+
+## Update previously-cloned Unreal Engine Source
+
+First, you want to make sure you're on the correct branch,
 and then pull from Epic.
 
 ```powershell
@@ -118,18 +133,6 @@ git pull origin
 ```
 
 [Continue to Initialize Project Git Repo](#InitGitRepo), you do not need to clone again.
-
-## If you have not yet Cloned Unreal Engine from GitHub
-
-```powershell
-# cd to the PARENT of the $UE5Root directory.
-# This directory must exist.  Create it if needed.
-cd $UE5Root/..
-
-# $UE5Root does not exist; clone $EngineRepositoryUrl into $UE5Root
-git clone --branch $EngineBranch $EngineRepositoryUrl $UE5Root
-```
-
 
 <a id='InitGitRepo'></a>
 # Initialize Project Git Repo
