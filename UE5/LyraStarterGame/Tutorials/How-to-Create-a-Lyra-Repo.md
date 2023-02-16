@@ -101,6 +101,10 @@ Here, we'll do both, just to be safe.
 
 ## Clone Unreal Engine from GitHub
 
+NOTE: If you already cloned the Unreal Engine, you can skip this step.
+You will need to make sure that your `$UE5Root` value matches the directory
+where you cloned UE5.
+
 ```powershell
 # cd to the PARENT of the $UE5Root directory.
 # This directory must exist.  Create it if needed.
