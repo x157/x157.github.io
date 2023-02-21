@@ -33,6 +33,7 @@ Overview:
   - This is an exact mirror of Epic's Source Control.
   - Never make any changes directly to this branch.
 2. Create `lyra-xist` branch based on `lyra-main` (apply `LYRAGAME_API` updates, `virtual` overrides, etc)
+  - See the [Overview of `lyra-xist`](./lyra-xist) for more details
   - This is your custom Lyra. Base your new games on this branch.
 3. Create `xist-game` branch based on `lyra-xist`
   - This is your game branch. Build your game here.

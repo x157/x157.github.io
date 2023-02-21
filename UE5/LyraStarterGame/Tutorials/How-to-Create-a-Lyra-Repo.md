@@ -208,7 +208,7 @@ function CopyLyraContentFolder()
 $LyraContentFolders = Get-ChildItem $LyraContentDir -Recurse -Directory `
     | Where-Object {$_.Name -ieq 'Content'}
 
-Write-Host "The Lyra Content Folders are:"
+# To see all the Lyra Content Folder names:
 $LyraContentFolders | %{$_.FullName}
 
 # Copy all the 'Content' folders into the $WorkspaceDir
@@ -240,6 +240,9 @@ git checkout $LyraCustomBranch  # Checkout lyra-xist
 - Make any `LYRAGAME_API` edits to this branch
 - Add any shared Plugins to this branch and integrate them with Lyra
 - This is your shared-between-games custom Lyra
+
+For a detailed look at the kinds of things to commit to the `lyra-xist` branch,
+see [What is the `lyra-xist` Branch](/Git/lyra-xist).
 
 
 <a id='create-xist-game'></a>
