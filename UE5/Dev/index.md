@@ -23,6 +23,7 @@ each time you have an epiphany.
 ## Getting Started
 
 - Unreal Community Wiki: [Learn Unreal C++](https://unrealcommunity.wiki/unreal-cpp-d702003t)
+- [Unreal Engine C++ Complete Guide](https://www.tomlooman.com/unreal-engine-cpp-guide/) by Tom Looman
 
 
 #### Choose/Install Developer Tools
