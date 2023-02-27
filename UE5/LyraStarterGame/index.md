@@ -111,6 +111,8 @@ Common UI "owns" player input
   - Allows the player to interact with Actors in the World
 - [Inventory System](./Inventory/) *(prototype)*
   - Allows pawns to keep items in inventory
+- [Team System](./Teams/)
+  - Organize Players, Pawns, etc into Teams
 - [Weapon System](./Weapons/) *(prototype)*
   - Equipment extension: Equipment Items that are Weapons usable by Pawns
 
