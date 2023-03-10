@@ -10,6 +10,9 @@ breadcrumb_name: "Input"
 Lyra combines different UE5 systems and plugins together
 to coordinate a coherent input strategy.
 
+For a 5 minute high level conceptual overview, see my YT video:
+[UE5 Lyra Input Overview](https://youtu.be/mEIQDcW65qs)
+
 
 <a id='KeyConcepts'></a>
 ## Key Concepts
