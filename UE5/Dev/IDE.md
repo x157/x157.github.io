@@ -7,26 +7,20 @@ breadcrumb_name: "IDE"
 
 ## Choosing an IDE for UE5 Development
 
-Visual Studio Community 2022 is fine, and it's free.
+Personally I use [Rider](#Rider) as my IDE.
+Visual Studio 2022 also works.
 
-Personally I prefer to use
-[Rider](https://www.jetbrains.com/rider/)
-rather than Visual Studio as an IDE.  Rider has built-in UE5 integration
-that really is a **must-have** for any serious UE5 C++ developer.
+If you prefer to use [Visual Studio](#VS), you should seriously consider purchasing
+some paid plugins to save yourself insane amounts of time.
 
-If you prefer to use Visual Studio, you should seriously consider purchasing the
-[ReSharper](https://www.jetbrains.com/lp/resharper-cpp-unreal-engine/)
-plugin for Visual Studio to get UE5 integration similar to Rider.
-
-These tools aren't free, but they aren't prohibitively expensive either.
-Given that `time == $`, IMO it's worthwhile to
-spend some $ now to save yourself a lot of time later.
-Personally I tend to lean toward `time >= $`,
-assuming one has the luxury of discretionary spending.
-
-Check for student discounts if applicable, I believe they are sometimes (always?) offered.
+Technically you **can** use VS for free, but doing so
+is like trying to dig a hole with a wet noodle.
+It can be done, but it will waste a significant amount of your time.
+VS really needs paid plugins to be a competitive IDE,
+which makes it priced similarly to Rider for professional users.
 
 
+<a id='VS'></a>
 ### Visual Studio
 
 Microsoft's build environment is distributed with VS.  You don't have to use VS to edit code,
@@ -37,8 +31,24 @@ but you need to have it installed for access to its build tools.
         - Epic recommended setup: [Options for a New Visual Studio Installation](https://docs.unrealengine.com/5.0/en-US/setting-up-visual-studio-development-environment-for-cplusplus-projects-in-unreal-engine/)
     - Version notes:
         - Community version is fine
+    - [VS 2022 17.5 Unreal Engine IDE Setup](https://devblogs.microsoft.com/cppblog/unreal-engine-integrations-now-available-in-visual-studio-2022/)
+        - Upgrade to 17.5+ for this IDE support!  Very useful!
+
+<a id='VSPlugins'></a>
+#### VS Plugins (required for pro devs)
+
+You don't need **both** of these, but **you do need one** if you value your time at all.
+
+Choose which you prefer:
+
+*Either:* [ReSharper](https://www.jetbrains.com/lp/resharper-cpp-unreal-engine/)
+for VS by JetBrains (gives UE support) *(works like Rider)*
+
+*OR:* [Visual Assist](https://www.wholetomato.com/visual-assist-ue4-unreal-engine)
+for VS by Whole Tomato (gives UE support)
 
 
+<a id='Rider'></a>
 ### Rider
 
 Rider is optional, though **highly recommended**.  You have to pay for a license unless
@@ -55,5 +65,3 @@ You will also need to have VS installed in order to use Rider.
     - First time setup: "Customize JetBrains Rider"
         - Environment:
             - Install `.NET` SDK and Runtime
-        - Featured plugins:
-            - Install `Heap Allocations Viewer`
