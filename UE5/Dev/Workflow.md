@@ -11,7 +11,7 @@ breadcrumb_name: "Workflow"
   - Update Project
     - Modify Project Code
       - Run Editor
-        - Crash Editor
+        - Crash Editor into a *fully functional* Debugger `:)`
 
 As a C++ game dev, you will be spending most of your time in your IDE writing C++,
 or in the Unreal Editor doing play tests.
