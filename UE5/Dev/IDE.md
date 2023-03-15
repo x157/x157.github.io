@@ -26,13 +26,14 @@ which makes it priced similarly to Rider for professional users.
 Microsoft's build environment is distributed with VS.  You don't have to use VS to edit code,
 but you need to have it installed for access to its build tools.
 
-- [Install Visual Studio 2022](https://visualstudio.microsoft.com/downloads/)
-    - Set up Visual Studio Options
-        - Epic recommended setup: [Options for a New Visual Studio Installation](https://docs.unrealengine.com/5.0/en-US/setting-up-visual-studio-development-environment-for-cplusplus-projects-in-unreal-engine/)
-    - Version notes:
-        - Community version is fine
-    - [VS 2022 17.5 Unreal Engine IDE Setup](https://devblogs.microsoft.com/cppblog/unreal-engine-integrations-now-available-in-visual-studio-2022/)
-        - Upgrade to 17.5+ for this IDE support!  Very useful!
+- [Install Visual Studio 2022](https://visualstudio.microsoft.com/downloads/) *(Community version works)*
+  - Install [Unreal Engine IDE Support for VS 2022 17.5+](https://devblogs.microsoft.com/cppblog/unreal-engine-integrations-now-available-in-visual-studio-2022/)
+    - Upgrade to VS 2022 17.5+ for this IDE support!  Very useful!
+  - Install [UnrealVS Extension](https://docs.unrealengine.com/5.1/en-US/using-the-unrealvs-extension-for-unreal-engine-cplusplus-projects/)
+    - Free extension, part of Unreal Engine Binaries, you just have to install it
+  - Set up Visual Studio Options
+      - Epic recommended setup: [Options for a New Visual Studio Installation](https://docs.unrealengine.com/5.0/en-US/setting-up-visual-studio-development-environment-for-cplusplus-projects-in-unreal-engine/)
+
 
 <a id='VSPlugins'></a>
 #### VS Plugins (required for pro devs)
