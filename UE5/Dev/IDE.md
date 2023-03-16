@@ -5,7 +5,7 @@ breadcrumb_path: "UE5/Dev"
 breadcrumb_name: "IDE"
 ---
 
-## Choosing an IDE for UE5 Development
+# Choosing an IDE for UE5 Development
 
 Personally I use [Rider](#Rider) as my IDE.
 Visual Studio 2022 also works.
@@ -21,7 +21,7 @@ which makes it priced similarly to Rider for professional users.
 
 
 <a id='VS'></a>
-### Visual Studio
+## Option 1. Visual Studio
 
 Microsoft's build environment is distributed with VS.  You don't have to use VS to edit code,
 but you need to have it installed for access to its build tools.
@@ -31,12 +31,12 @@ but you need to have it installed for access to its build tools.
     - Upgrade to VS 2022 17.5+ for this IDE support!  Very useful!
   - Install [UnrealVS Extension](https://docs.unrealengine.com/5.1/en-US/using-the-unrealvs-extension-for-unreal-engine-cplusplus-projects/)
     - Free extension, part of Unreal Engine Binaries, you just have to install it
-  - Set up Visual Studio Options
+  - [Epic Options for a New Visual Studio Installation](https://docs.unrealengine.com/5.0/en-US/setting-up-visual-studio-development-environment-for-cplusplus-projects-in-unreal-engine/)
       - Epic recommended setup: [Options for a New Visual Studio Installation](https://docs.unrealengine.com/5.0/en-US/setting-up-visual-studio-development-environment-for-cplusplus-projects-in-unreal-engine/)
 
 
 <a id='VSPlugins'></a>
-#### VS Plugins (required for pro devs)
+### VS Plugins (required for pro devs)
 
 You don't need **both** of these, but **you do need one** if you value your time at all.
 
@@ -50,7 +50,7 @@ for VS by Whole Tomato (gives UE support)
 
 
 <a id='Rider'></a>
-### Rider
+## Option 2. Rider
 
 Rider is optional, though **highly recommended**.  You have to pay for a license unless
 you can get a trial or student license.  It's *well worth the cost* IMO.
