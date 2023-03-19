@@ -10,16 +10,21 @@ breadcrumb_name: "Custom Base C++ Wheeled Vehicle Class"
 ```c++
 UCLASS()
 class XCL_API AXclWheeledVehicle : public AWheeledVehiclePawn
-    , public IAbilitySystemInterface
+    , public IGameplayCueInterface
     , public ILyraTeamAgentInterface
 ```
 
-### Other Interfaces Supported by `ALyraCharacter`
+## Add Abilities
 
 ```c++
-    , public IGameplayCueInterface
-    , public IGameplayTagAssetInterface
+    , public IAbilitySystemInterface
+    , public IGameplayTagAssetInterface  // requires an ability system
 ```
+
+## Add Health & Death
+
+- HealthComponent
+- Health + Combat Attribute Sets
 
 
 # Advanced C++ Tasks
@@ -27,7 +32,8 @@ class XCL_API AXclWheeledVehicle : public AWheeledVehiclePawn
 - Add [Modular Gameplay](/UE5/ModularGameplay/) support (duplicate `AModularPawn` C++)
 - Add and fully integrate a **Pawn Extension Component** (duplicate C++ from `ALyraCharacter`)
 
-## XCL Interfaces
+
+## Add XCL Interfaces
 
 ```c++
     , public IXclInteractableTarget
