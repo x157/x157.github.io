@@ -32,8 +32,12 @@ but you need to have it installed for access to its build tools.
   - Install [UnrealVS Extension](https://docs.unrealengine.com/5.1/en-US/using-the-unrealvs-extension-for-unreal-engine-cplusplus-projects/)
     - Free extension, part of Unreal Engine Binaries, you just have to install it
   - [Epic Options for a New Visual Studio Installation](https://docs.unrealengine.com/5.0/en-US/setting-up-visual-studio-development-environment-for-cplusplus-projects-in-unreal-engine/)
-      - Epic recommended setup: [Options for a New Visual Studio Installation](https://docs.unrealengine.com/5.0/en-US/setting-up-visual-studio-development-environment-for-cplusplus-projects-in-unreal-engine/)
+  - **Disable Intellisense**, it is useless for Unreal and causes false positive error reporting
 
+### Recommended Engine or Project Plugin
+
+- [Visual Studio Integration Tool](https://www.unrealengine.com/marketplace/en-US/product/362651520df94e4fa65492dbcba44ae2)
+  from Microsoft *(FREE)*
 
 <a id='VSPlugins'></a>
 ### VS Plugins (required for pro devs)
