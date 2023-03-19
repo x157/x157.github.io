@@ -33,6 +33,7 @@ but you need to have it installed for access to its build tools.
     - Free extension, part of Unreal Engine Binaries, you just have to install it
   - [Epic Options for a New Visual Studio Installation](https://docs.unrealengine.com/5.0/en-US/setting-up-visual-studio-development-environment-for-cplusplus-projects-in-unreal-engine/)
   - **Disable Intellisense**, it is useless for Unreal and causes false positive error reporting
+  - Install [VsChromium](https://chromium.github.io/vs-chromium/) extension *(Optional)*
 
 ### Recommended Engine or Project Plugin
 
