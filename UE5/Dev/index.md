@@ -22,6 +22,12 @@ each time you have an epiphany.
 
 ## Getting Started
 
+If you're brand new to Unreal in general:
+
+- [Unreal Engine 5 Beginner Tutorial - UE5 Starter Course 2022](https://www.youtube.com/watch?v=k-zMkzmduqI)
+
+Specific to C++:
+
 - Unreal Community Wiki: [Learn Unreal C++](https://unrealcommunity.wiki/unreal-cpp-d702003t)
 - [Unreal Engine C++ Complete Guide](https://www.tomlooman.com/unreal-engine-cpp-guide/) by Tom Looman
 
