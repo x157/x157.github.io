@@ -166,8 +166,8 @@ git add --all
 git commit -m "Import Lyra Main $YYYYMMDD"
 
 # make snapshot tag, push to server
-git tag -a ${LyraMainBranch}.$YYYYMMDD -m "Lyra Main snapshot $YYYYMMDD"
-git push origin ${LyraMainBranch}.$YYYYMMDD
+git tag -a "${LyraMainBranch}.$YYYYMMDD" -m "Lyra Main snapshot $YYYYMMDD"
+git push origin "${LyraMainBranch}.$YYYYMMDD"
 
 # push $LyraMainBranch to server
 git push origin $LyraMainBranch
