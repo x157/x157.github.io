@@ -183,13 +183,13 @@ git merge --no-commit $LyraMainBranch
 ###  Manually resolve any merge conflicts
 ###
 
-git commit -m "Merge ${LyraMainBranch}.$YYYYMMDD into lyra-xist"
-git push origin lyra-xist
+git commit -m "Merge ${LyraMainBranch}.$YYYYMMDD into $LyraCustomBranch"
+git push origin $LyraCustomBranch
 
 # checkout my game dev branch
 # merge my (now updated) custom lyra into my game dev branch
-git checkout xist-game
-git merge --no-commit lyra-xist
+git checkout $GameBranch
+git merge --no-commit $LyraCustomBranch
 
 ################################################################################
 ################################################################################
@@ -197,8 +197,8 @@ git merge --no-commit lyra-xist
 ###  Manually resolve any merge conflicts
 ###
 
-git commit -m "Merge branch lyra-xist into xist-game"
-git push origin xist-game
+git commit -m "Merge branch $LyraCustomBranch into $GameBranch"
+git push origin $GameBranch
 ```
 
 # Build Game
