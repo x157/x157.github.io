@@ -125,7 +125,7 @@ and then pull from Epic.
 cd $UE5Root
 
 # Switch branches if $EngineBranch is not the current branch
-$isCorrectBranch = $EngineBranch -ieq (git branch)
+$isCorrectBranch = $EngineBranch -ieq (git branch --show-current)
 if (!$isCorrectBranch)
 {
   git fetch origin
