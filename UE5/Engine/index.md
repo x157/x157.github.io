@@ -1,20 +1,25 @@
 ---
-title: "Unreal Engine 5: The Engine"
-description: "Discussion of Unreal Engine 5, including how to use a Custom Engine that you can modify yourself."
+title: "UE5: The Unreal Engine"
+description: "Discussion of Unreal Engine 5, including how to build a Custom Engine and use it for your project."
 breadcrumb_path: "UE5"
 breadcrumb_name: "Engine"
 ---
 
 # Unreal Engine 5: Using the Engine
 
+Even if you do not make changes to the engine, a custom UE5 engine is required to support
+multiplayer projects.
+This page will help you understand the process.
+
 Quick Links:
 
-- [Where to get Engine and/or Lyra Source](#WhereToGetSource)
-- [Custom Engine Directory Structure](#CustomEngineDirectoryStructure)
-- [How to Generate Project Files](#HowToGenerateProjectFiles)
-- [Building a Custom UE Engine](#BuildingCustomEngine)
+- [Where to get UE5 Engine Source](#WhereToGetSource)
+- [How to Build a Custom Engine](#HowToBuild)
+  - [How to Register your Custom Engine with Windows](#HowToRegister)
   - [Procedure for Changing Engine Branches](#Procedure_ChangeEngineBranches)
     - When changing engine branches you MUST also reset all the downloaded Engine data
+- [Custom Engine Directory Structure](#CustomEngineDirectoryStructure)
+- [How to Generate Project Files](#HowToGenerateProjectFiles)
 
 
 <a id="WhereToGetSource"></a>
@@ -23,13 +28,16 @@ Quick Links:
 The latest official release of Unreal Engine is always the `release` branch of the official
 [Epic Games](https://github.com/EpicGames)
 GitHub repo:
-[Unreal Engine](https://github.com/EpicGames/UnrealEngine).
+[Unreal Engine](https://github.com/EpicGames/UnrealEngine)
 
-See the docs on [Accessing Unreal Engine source code on Github](https://www.unrealengine.com/en-US/ue-on-github)
-for more info.  The repository is **private**, so you will need to get access from Epic
-by following the procedure outined in that link.
+Epic's official docs:
 
-Once you have access, here is where to get the source:
+1. How to: [Accessing Unreal Engine source code on Github](https://www.unrealengine.com/en-US/ue-on-github)
+  - The repository is **private**, so you will need to get access from Epic by following the procedure outlined in the link above
+2. How to: [Download and Build Unreal Engine Source Code](https://docs.unrealengine.com/5.1/en-US/downloading-unreal-engine-source-code/)
+
+If you are using a Lyra project, make sure to match your Lyra version with the Engine version.
+*(Lyra is essentially distributed as an optional add-on for the Engine).*
 
 | Version Description     | UE5                                                               | Lyra                                                                                 |
 |-------------------------|-------------------------------------------------------------------|--------------------------------------------------------------------------------------|
@@ -41,6 +49,82 @@ Note: When the current release is `5.2`, the `5.2` branch may still be **ahead**
 The `release` branch is for official releases.  The `5.2` branch is for release staging, which means
 things get merged into that over time, and when Epic decides it's stable enough for a release,
 it gets merged into `release`.  Choose whichever branch is most appropriate for your use case.
+
+
+<a id="BuildingCustomEngine"></a>
+<a id="HowToBuild"></a>
+## How to Build a Custom Engine
+
+1. Get the [Engine Source](#WhereToGetSource)
+2. Run `Setup.bat`
+3. Run `GenerateProjectFiles.bat`
+4. Open `UE5.sln` Visual Studio
+  - Update and/or Add required Visual Studio components if needed
+  - Build `UE5` as either `Development Editor` *(the default)* or `Debug Editor` *(for C++ debugging)*
+
+
+<a id="HowToRegister"></a>
+### How to Register your Custom Engine with Windows
+
+After [building your custom engine](#HowToBuild), you need to register it with Windows.
+
+- Run `Engine/Binaries/Win64/UnrealVersionSelector-Shipping.exe`
+
+You built this EXE when you built the `UE5` project.
+Running this will register your custom Engine in your Windows Registry.
+
+By default, this generates a random GUID.
+See [UEngine.ps1](https://github.com/XistGG/UnrealXistTools/blob/main/UEngine.ps1)
+from [UnrealXistTools](https://github.com/XistGG/UnrealXistTools/)
+for an easy way to `-List` engines and change those random GUIDs to a `-NewName`.
+If your team coordinates the name used in the registry using this or some similar
+tool, you can all easily share a custom `EngineAssociation` in your `.uproject`.
+
+
+
+
+<a id="Procedure_ChangeEngineBranches"></a>
+### Procedure for Changing Engine Branches
+
+*NOTE: Engine projects are MASSIVE.  In general, you don't want to change branches often
+from say 4.27 to 5.0.  Doing so would literally change 100000s of files.**
+
+When working with Unreal Engine, you generally want to have multiple copies of the repository on
+your machine simultaneously.  Each major engine version should have its own copy of
+the repository in a dedicated directory on your machine.
+
+While this does consume extra drive space, in general it makes your life much easier.
+When you do change branches, from say `5.2` to `5.2-my-patch`, that's super easy.
+Only for UE version changes (`5.2` to `5.3`) will this be potentially tricky.
+
+When you change the engine from one branch to another, sometimes the Git repo can get into
+a funky state.  To fix issues:
+
+```powershell
+# BACK UP ANY FILES YOU DO NOT WISH TO PERMANENTLY LOSE
+
+# DELETE FILES - clean up your existing branch to make it possible to cleanly swap
+git reset --hard
+git clean -xfd
+
+git checkout release  # checkout whatever engine branch you want
+
+./Setup.bat
+./GenerateProjectFiles.bat
+
+# Now Open UE5.sln in Visual Studio and Build UE5
+```
+
+Sometimes when changing branches even after executing a `git reset --hard`, Git will still
+tell you that there are local changes to UE5.  The  solution is to run `git clean -xfd` which
+removes all of the `Setup.bat` downloaded files, so you end up with a truly-clean repository.
+
+Then when you run `Setup.bat` it will download the appropriate version of those files for the
+branch you have selected, rather than a perhaps-completely-incompatible set of files for the
+old branch.
+
+For my recent test on `5.2`, it's downloading ~ 20 GB.
+You won't want to have to do this often.
 
 
 <a id="CustomEngineDirectoryStructure"></a>
@@ -168,42 +252,3 @@ In the example calculation of `$EngineRoot` above, I've cloned the UnrealEngine 
 
 See the discussion below for more info on the expected directory structure for custom engines.
 
-
-<a id="BuildingCustomEngine"></a>
-# Building a Custom UE5 Engine
-
-
-Before you download the UE5 source, make sure you are familiar with this material:
-
-[Official UE 5 Docs: Downloading Unreal Engine Source Code](https://docs.unrealengine.com/5.0/en-US/downloading-unreal-engine-source-code/)
-
-Unless you know what you are doing, you will probably want the `release` branch, which is the most
-recent official release of the engine.
-
-
-<a id="Procedure_ChangeEngineBranches"></a>
-## Procedure for Changing Engine Branches
-
-When you change the engine from one branch to another, sometimes the Git repo can get into
-a funky state.  To fix issues:
-
-```powershell
-# clean up your existing branch to make it possible to cleanly swap
-git reset --hard
-git clean -xfd
-
-git checkout release  # whatever engine branch you want
-
-./Setup.bat
-./GenerateProjectFiles.bat
-
-# It's now safe to rebuild the engine
-```
-
-Sometimes when changing branches even after executing a `git reset --hard`, Git will still
-tell you that there are local changes to UE5.  The  solution is to run `git clean -xfd` which
-removes all of the `Setup.bat` downloaded files, so you end up with a truly-clean repository.
-
-Then when you run `Setup.bat` it will download the appropriate version of those files for the
-branch you have selected, rather than a perhaps-completely-incompatible set of files for the
-old branch.

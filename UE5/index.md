@@ -7,7 +7,7 @@ breadcrumb_name: UE5
 
 # Unreal Engine 5
 
-To understand Lyra, you also need an understanding of these UE5 plugins:
+To understand [Lyra](/UE5/LyraStarterGame/), you also need an understanding of these UE5 plugins:
 
 ## Important Plugins related to Lyra
 
@@ -22,15 +22,18 @@ To understand Lyra, you also need an understanding of these UE5 plugins:
 
 # Using Unreal Engine
 
-- [UE5 Engine Overview](./Engine/)
+- [UE5 Engine Overview](./Engine/) (How to build and use a Custom Engine)
+  - [Core Redirects: How to Redirect Blueprints to new/refactored C++](./Engine/Core-Redirects)
 - [Development in UE5](./Dev/)
-- [Core Redirects: How to Redirect Blueprints to new/refactored C++](./Engine/Core-Redirects)
 - [Re-save Project Assets when you Update the Engine](./Engine/Resave-Assets)
 
 
 # Windows Tips
 
-- [Windows Registry Keys: `HKEY_CLASSES_ROOT\Unreal.ProjectFile`](./Windows-Registry-Keys)
+Windows Registry Keys:
+
+- [Custom Engine Alias: `HKEY_CURRENT_USER\Software\Epic Games\Unreal Engine\Builds`](./Windows-Registry-Keys#CustomEngineAlias)
+- [Windows File Associations for `.uproject` Files: `HKEY_CLASSES_ROOT\Unreal.ProjectFile`](./Windows-Registry-Keys#UVS)
 
 
 # Source Control
