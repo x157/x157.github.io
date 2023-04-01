@@ -87,7 +87,7 @@ tool, you can all easily share a custom `EngineAssociation` in your `.uproject`.
 ### Procedure for Changing Engine Branches
 
 *NOTE: Engine projects are MASSIVE.  In general, you don't want to change branches often
-from say 4.27 to 5.0.  Doing so would literally change 100000s of files.**
+from say 4.27 to 5.0.  Doing so would literally change 100000s of files.*
 
 When working with Unreal Engine, you generally want to have multiple copies of the repository on
 your machine simultaneously.  Each major engine version should have its own copy of
