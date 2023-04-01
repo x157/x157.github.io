@@ -14,7 +14,7 @@ Read that as well for more info.
 
 ## Lyra UI Messaging Subsystem
 
-### `LyraUIMessagingSubsystem` : public `CommonMessagingSubsystem` from `CommonGame`
+### `LyraUIMessaging` : public `CommonMessagingSubsystem` from `CommonGame`
 
 The Lyra UI Messaging Subsystem manages the `UI.Layer.Modal` layer of the UI Layout.
 
