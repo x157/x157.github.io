@@ -5,10 +5,10 @@ is_site_index: true
 
 # Building on Lyra
 
-I'm developing a game based on the UE5 [Lyra](./UE5/LyraStarterGame/) Core
+I'm developing a game based on the UE5 [Lyra](/UE5/LyraStarterGame/) Core.
 
 Lyra integrates a number of UE5 systems,
-some of which are brand new and relatively undocumented.
+some of which are new and relatively undocumented.
 
 - [Common UI](/UE5/CommonUI/) + CommonGame
 - [Enhanced Input Subsystem](/UE5/EnhancedInput/)
@@ -17,17 +17,16 @@ some of which are brand new and relatively undocumented.
 - [`ModularGameplay` Plugin](/UE5/ModularGameplay/)
 - [UE5 Overview](/UE5/)
 
-Source Control Management
+### Source Control Management
 
   - [Git SCM](/Git/) for a Lyra UProject
   - [Perforce SCM](/Perforce/) for a Lyra UProject
 
-Want to be a better UE5 C++ Dev?
-My thoughts on
-[Development in UE5](/UE5/Dev/).
+### Unreal Developer Topics
 
-I've also started keeping some notes regarding
-[Software Development as a Windows user](/Windows/).
+- [Overview of Development in UE5](/UE5/Dev/)
+- [Software Development as a Windows user](/Windows/)
+- [UnrealXistTools](/UnrealXistTools/) -- tools to help UE5 devs
 
 
 # About Me
