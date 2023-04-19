@@ -24,7 +24,7 @@ issues you may experience.  I will gladly accept PRs for these as well.
 [UProjectClean.ps1](https://github.com/XistGG/UnrealXistTools#uprojectcleanps1)
 -- Completely Clean & Reset Project to Current Source
 
-[MigrateUEMarketplacePlugin.ps1](https://discord.com/channels/911050282996228217/1095075142863945838/1095435970511388773)
+[MigrateUEMarketplacePlugin.ps1](https://github.com/XistGG/UnrealXistTools#migrateuemarketplacepluginps1)
 -- Migrate a UE Marketplace C++ plugin from one Engine version to another
 
 For more scripts, see the
