@@ -13,6 +13,23 @@ The Common UI Action Router is the place to route all requests to set the input 
 Instead, have your code create Common UI `FUIInputConfig` settings and
 send them to Common UI to actually do the input mode changes.
 
+See my [Tutorial: How to Take Control of the Mouse in Lyra](/UE5/LyraStarterGame/Tutorials/How-to-Take-Control-of-the-Mouse)
+for more information about how to make the input modes in your Lyra-based game
+work exactly the way you want them to.
+
+
+## How to Override the Base UI Action Router
+
+To override `UCommonUIActionRouterBase` you simply need to derive your own child
+class from it.
+
+The existence of your derived class will suppress the base subsystem from being
+initialized, and your derived class will be used in your project rather than the base.
+
+This is a bit of Unreal Engine shenanigans.
+To see how and why this works, see `UCommonUIActionRouterBase::ShouldCreateSubsystem`
+and search for invocations of that method.
+
 
 ## Set Active UI Input Config
 

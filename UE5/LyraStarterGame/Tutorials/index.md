@@ -24,6 +24,7 @@ Once you're up and running:
 - [How to: Fix Unarmed Animation Bugs](./How-To-Fix-Lyra-Unarmed-Animation-Bugs)
 - [How to: Create a New Gameplay Ability](./How-To-Create-a-New-Gameplay-Ability)
 - [How to: Send Client Gameplay Ability Data to Server in C++](/UE5/GameplayAbilitySystem/How-To-Send-Client-Gameplay-Ability-Data-to-Server-in-C++)
+- [How to: Take Control of the Mouse in Lyra](./How-to-Take-Control-of-the-Mouse)
 
 Related material:
 
