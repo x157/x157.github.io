@@ -87,6 +87,7 @@ Common UI "owns" player input
   - [Lyra Input Overview](./Input/)
   - [How Common UI is Setup in Lyra](./CommonUI/)
   - [High Level Overview of Common UI in General](/UE5/CommonUI/)
+  - [How to take Control of the Mouse in Lyra](/UE5/LyraStarterGame/Tutorials/How-to-Take-Control-of-the-Mouse)
 
 
 ## Lyra Game Mode
