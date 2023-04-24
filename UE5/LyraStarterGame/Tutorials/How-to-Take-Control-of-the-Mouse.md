@@ -13,6 +13,11 @@ to manage the menu system and widgets in Lyra-based games.
 For a big picture overview of how it is all plugged together,
 see my [Lyra Input Overview](/UE5/LyraStarterGame/Input/).
 
+[This YouTube Video Tutorial](https://youtu.be/A9dp3cmCFtQ)
+covers the material outlined in this dev log.
+Reading this log and watching the video together may help
+make the material more clear.
+
 This tutorial will show you how to take full control over the mouse and
 input mode in your Lyra-based game.
 
@@ -21,42 +26,22 @@ This is useful if you want to:
 - Allow the user to use the mouse while playing the game (e.g. not just for menu navigation)
 - Change input modes during game play
 
-[TODO VIDEO LINK TODO](#TODO)
-
 
 ## Conceptual Overview
 
-1. You must use CommonUI to change input modes
-  - DO NOT USE THE OLD DEPRECATED UE4 METHODS, they do not work in Lyra
+You must use CommonUI to change input modes. DO NOT use old UE4 methods, they do not work in Lyra.
 
-2. Override the base [CommonUI Action Router](/UE5/CommonUI/ActionRouter)
+1. Create your own "change input mode" method
+  - Must call CommonUI's Action Router `SetActiveUIInputConfig` method to commit the input mode change
+  - Example: [Xisted Set Input Mode](#XistedSetInputMode)
+
+2. *(optional)* Override the base [CommonUI Action Router](/UE5/CommonUI/ActionRouter)
   - Completely override its `ApplyUIInputConfig` method
-  - For example see [Xisted UI Action Router](#XistedUIActionRouter)
-
-3. Create your own "change input mode" method(s)
-  - These must call CommonUI's Action Router `SetActiveUIInputConfig` method to commit the input mode change
-  - For example see [XistedSetInputMode](#XistedSetInputMode)
-
-
-<a id='XistedUIActionRouter'></a>
-## Example Action Router
-
-| File Type | URL                                                                                                                                         |
-|-----------|---------------------------------------------------------------------------------------------------------------------------------------------|
-| Header    | [XistedUIActionRouter.h](https://github.com/XistGG/LyraMouseTutorial/blob/main/Source/LyraMouseTutorial/Public/XistedUIActionRouter.h)      |
-| CPP       | [XistedUIActionRouter.cpp](https://github.com/XistGG/LyraMouseTutorial/blob/main/Source/LyraMouseTutorial/Private/XistedUIActionRouter.cpp) |
-
-In this example override of `UCommonUIActionRouterBase`,
-I implement a complete override of the `ApplyUIInputConfig` method.
-See the comments in the header file for more details.
-
-Note that you **DO NOT** need to keep the same implementation I am using here.
-You may want your game input modes to function differently.
-Modify the implementation as needed.
+  - Example: [Xisted UI Action Router](#XistedUIActionRouter)
 
 
 <a id='XistedSetInputMode'></a>
-## Example Input Mode Changing
+## Example: Xisted Set Input Mode
 
 | File Type | URL                                                                                                                                             |
 |-----------|-------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -123,3 +108,24 @@ and only every other click will go to the game.
 
 These settings, and more, are highly game specific, so play with them until you find
 the settings that are right for your game.
+
+
+<a id='XistedUIActionRouter'></a>
+## Example: Xisted UI Action Router
+
+| File Type | URL                                                                                                                                         |
+|-----------|---------------------------------------------------------------------------------------------------------------------------------------------|
+| Header    | [XistedUIActionRouter.h](https://github.com/XistGG/LyraMouseTutorial/blob/main/Source/LyraMouseTutorial/Public/XistedUIActionRouter.h)      |
+| CPP       | [XistedUIActionRouter.cpp](https://github.com/XistGG/LyraMouseTutorial/blob/main/Source/LyraMouseTutorial/Private/XistedUIActionRouter.cpp) |
+
+In this example override of `UCommonUIActionRouterBase`,
+I implement a complete override of the `ApplyUIInputConfig` method.
+See the comments in the header file for more details.
+
+Note that you **DO NOT** need to keep the same implementation I am using here.
+You may want your game input modes to function differently.
+Modify the implementation as needed.
+
+Also note that you *may not* actually need to change the default Common UI
+Action Router.  To know whether you do, see the video tutorial section:
+"[How to know if you must override Apply UI Input Config](https://youtu.be/A9dp3cmCFtQ?t=784s)"
