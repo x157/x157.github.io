@@ -67,7 +67,7 @@ To implement the `Modular Gameplay` Plugin, take a look at Lyra as an example.
 Lyra implements this module by:
 
 - Defines the `ULyraPawnExtensionComponent` that drives `IGameFrameworkInitStateInterface`
-  - Adds this component to every Character in the game (via base class `B_Hero_Default`)
+  - Adds this component to every Character in the game (via base class `ALyraCharacter`)
 - Implements `IGameFrameworkInitStateInterface` in other components as needed
 
 For more information, see:
