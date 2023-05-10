@@ -23,3 +23,17 @@ see that page for an overview.
 - The `B_PickRandomCharacter` asset is a Character Parts Controller Component
   - It gets injected into **all** `Controller` actors by the Experience Definition (thus it affects both Players and Bots)
     - For example see `B_ShooterGame_Elimination`
+
+
+## `B_PickRandomCharacter` Controller Component
+
+By default in Lyra 5.2 there are only 2 cosmetic components: Manny and Quinn.
+
+Lyra chooses randomly between Manny or Quinn and spawns that component on the server side;
+it is replicated to all clients.
+
+You can see this in action in the `B_PickRandomCharacter` blueprint.
+Here in the Controller component's `BeginPlay`, it chooses randomly between the Manny or Quinn
+character parts:
+
+[![B_PickRandomCharacter](./screenshots/B_PickRandomCharacter.png)](./screenshots/B_PickRandomCharacter.png)

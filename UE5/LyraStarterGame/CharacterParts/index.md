@@ -27,22 +27,19 @@ game is a huge success that warrants these optimizations.
   - defines a single reusable Character Part
 - [Controller Component](./ControllerComponent)
   - only present on the **Server** and the **Local Player** client *(because it's on the Controller)*
-- [Pawn Component](./PawnComponent)
+- [Pawn Component](./PawnComponent) (AKA "Pawn Customizer")
   - present on **all** clients, including remote clients
 
 
 ## Vanilla Lyra Configuration
 
-By default in Lyra 5.2 there are only 2 cosmetic components: Manny and Quinn.
+By default in Lyra 5.2 there are only 2 cosmetic components: `B_Manny` and `B_Quinn`
 
-Lyra chooses randomly between Manny or Quinn and spawns that component on the server side;
-it is replicated to all clients.
+Lyra chooses randomly between Manny or Quinn and spawns that part on the server side
+after the Controller `BeginPlay`; the part is then replicated to all clients.
 
-You can see this in action in the `B_PickRandomCharacter` blueprint.
-Here in the Controller component's `BeginPlay`, it chooses randomly between the Manny or Quinn
-character parts:
-
-[![B_PickRandomCharacter](./screenshots/B_PickRandomCharacter.png)](./screenshots/B_PickRandomCharacter.png)
+The server itself uses an invisible Manny-sized Character mesh regardless of what the cosmetic
+parts look like.
 
 
 ## Content Used
