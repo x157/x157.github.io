@@ -104,6 +104,8 @@ Common UI "owns" player input
 
 ## Lyra Gameplay Systems
 
+- [Character Parts](./CharacterParts/)
+  - Modular Character Parts
 - [Equipment System](./Equipment/) *(prototype)*
   - Inventory extension: Inventory Items that are pieces of Equipment usable by Pawns
 - [Health and Damage System](./Health-and-Damage/)
