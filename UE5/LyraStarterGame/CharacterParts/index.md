@@ -32,9 +32,11 @@ to easily support fully modular characters.
   - a single cosmetic part
   - could be the full body mesh
   - could be just the head, or just the torso, etc
+  - Character Part [Gameplay Tags drive the Character Animation Style](./CharacterPart#Animation)
 - [Controller Component](./ControllerComponent)
   - determines which parts will be added to the controller's pawn
   - only present on the **Server** and the **Local Player** client *(because it's on the Controller)*
+  - injected into **all** Controllers on the server, Player and Bot alike
 - [Pawn Component](./PawnComponent) (AKA "Pawn Customizer")
   - handles replicating the controller-chosen parts to clients
   - present on **all** clients, including remote clients

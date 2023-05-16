@@ -30,6 +30,9 @@ or `B_Quinn` for the feminine mannequin.
 You may also opt to use modular characters, where a character is comprised of many
 different parts.
 
+Lyra [drives animation](#Animation) based on the Gameplay Tags defined by all of
+the Character Parts, for example to choose between masculine and feminine animation styles.
+
 
 ### Properties of a Lyra Character Part
 
@@ -76,3 +79,66 @@ The `B_Quinn` blueprint defines the Quinn body, the feminine mannequin.
 | Base Class    | `ALyraTaggedActor`                                              |
 | Gameplay Tags | `Cosmetic.AnimationStyle.Feminine`, `Cosmetic.BodyStyle.Medium` |
 | Skeletal Mesh | `SKM_Quinn`                                                     |
+
+
+<a id='Animation'></a>
+## Driving Animation via Gameplay Tags
+
+Lyra uses the `Cosmetic.AnimationStyle.*` Gameplay Tags to drive its animation,
+so that it can animate Manny with "masculine" animations
+and Quinn with "feminine" animations.
+
+How exactly these animations work is beyond the scope of this documentation,
+however in general if you are interested in this, here are some things for you
+to search for.
+
+In your C++ IDE:
+
+- `FLyraAnimBodyStyleSelectionSet`
+  - In particular, this method: `SelectBestLayer`
+    - This is used by the `B_WeaponInstance_Base` Blueprint to select the animation set when ranged weapons are equipped or unequipped
+- `ULyraWeaponInstance`
+  - In particular, this method: `PickBestAnimLayer`
+
+In Unreal Editor:
+
+- `B_WeaponInstance_Base`
+  - This is the base class for all ranged [Lyra Weapons](/UE5/LyraStarterGame/Weapons/)
+  - When the weapon is equipped or unequipped, it changes the animation style accordingly, based on the collective Gameplay Tags defined by all the Character Parts
+- Search Gameplay Tag Asset References: `Cosmetic.AnimationStyle.Feminine`
+  - This will show you **all** of the Lyra Blueprints that reference this tag, including: `B_MannequinPawnCosmetics`, `B_Quinn`, `B_WeaponInstance_Base`, etc.
+
+
+### Example Pistol Animation Rules
+
+As an example, when a Lyra Character equips or unequips a Pistol, the `B_WeaponInstance_Pistol` blueprint
+defines the animation rules.
+
+[![B_WeaponInstance_Pistol Animation Rules](./screenshots/PistolAnimationRules.png)](./screenshots/PistolAnimationRules.png)
+
+Above you can see that if any of the Character Parts defines the `Cosmetic.AnimationStyle.Feminine`
+Gameplay Tag, the Character will use the `ABP_PistolAnimLayers_Feminine` animation blueprint
+when the pistol is equipped.
+Otherwise, the default `ABP_PistolAnimLayers` blueprint is used (the masculine version).
+
+When the pistol is unequipped, then again if any of the Character Parts defines the `Cosmetic.AnimationStyle.Feminine`
+Gameplay Tag, the feminine unarmed animation will be used (`ABP_UnarmedAnimLayers_Feminine`),
+and otherwise the default masculine `ABP_UnarmedAnimLayers` will be used.
+
+*Note: this is not at all efficient; **every single weapon** is forced to define the same exact
+unarmed animation set rules, but that is how Lyra works by default.*
+
+[Lyra Weapons](/UE5/LyraStarterGame/Weapons/) are discussed in more detail.
+
+
+### Conflicting Gameplay Tags are not handled by default
+
+By default, Lyra does not handle conflicting Gameplay Tags well.
+
+If you assign one part that defines `Masculine` animation and another part that defines `Feminine` animation,
+Lyra will not notice, and it will just select one of them.
+
+*It looks like it probably selects whichever animation set is defined first
+in the `FLyraAnimBodyStyleSelectionSet`'s `LayerRules`, so in the above example,
+the feminine animation set would always be used if both masculine and feminine tags are defined
+by different Character Parts.*
