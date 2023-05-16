@@ -18,19 +18,36 @@ see that page for an overview.
 
 ## Conceptual Overview
 
-A "Character Part" is an actor that is attached to a Pawn, which represents a part of the
-Character's body.  A single part may also represent the entire body, as is the case
-in Vanilla Lyra.
+A "Character Part" is an actor that is attached to a Pawn, which represents a cosmetic part of the
+Character's body.
+
+The actual character body is invisible, and the cosmetic parts are what you see.
+
+The character must have one or more parts to be visible.  In vanilla Lyra, there are only
+2 parts defined: `B_Manny` for the masculine mannequin
+or `B_Quinn` for the feminine mannequin.
+
+You may also opt to use modular characters, where a character is comprised of many
+different parts.
 
 
-## Properties of a Lyra Character Part
+### Properties of a Lyra Character Part
 
 - Actor Class Type
-- Socket Name to attach to
-- Collision Mode
+- Socket Name to attach to *(optional)*
+- Collision Mode *(optional)*
+
+The Actor Class can optionally implement the `IGameplayTagAssetInterface` interface,
+which allows it to communicate Gameplay Tags to the game.
+
+Lyra uses the `ALyraTaggedActor` C++ class as the base for its cosmetic parts
+to set `Masculine` or `Feminine` animation style tags,
+and a `Medium` body style, for example.  You can inherit from `ALyraTaggedActor`,
+or implement `IGameplayTagAssetInterface`, or neither, as you prefer for your game.
 
 Character Parts are considered to be equivalent if they are the same class type and attach
 to the same socket.
+Any difference in the collision setting is ignored for equivalence testing purposes.
 
 
 ## Vanilla Lyra Character Parts

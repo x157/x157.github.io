@@ -16,6 +16,11 @@ You don't necessarily have to implement all of this optimization in your early g
 but using the Lyra Character Parts system will give you the ability to add this later when your
 game is a huge success that warrants these optimizations.
 
+In general, the main Lyra Character mesh is invisible.
+What you see as the visible Character is a "Character Part", which is purely cosmetic.
+You can modify this so a Character is comprised of multiple parts if you prefer,
+to easily support fully modular characters.
+
 
 ## Intro: TODO Show Final Working Example
 
@@ -24,10 +29,14 @@ game is a huge success that warrants these optimizations.
 ## Conceptual Overview
 
 - [Character Part](./CharacterPart)
-  - defines a single reusable Character Part
+  - a single cosmetic part
+  - could be the full body mesh
+  - could be just the head, or just the torso, etc
 - [Controller Component](./ControllerComponent)
+  - determines which parts will be added to the controller's pawn
   - only present on the **Server** and the **Local Player** client *(because it's on the Controller)*
 - [Pawn Component](./PawnComponent) (AKA "Pawn Customizer")
+  - handles replicating the controller-chosen parts to clients
   - present on **all** clients, including remote clients
 
 
@@ -38,8 +47,8 @@ By default in Lyra 5.2 there are only 2 cosmetic components: `B_Manny` and `B_Qu
 Lyra chooses randomly between Manny or Quinn and spawns that part on the server side
 after the Controller `BeginPlay`; the part is then replicated to all clients.
 
-The server itself uses an invisible Manny-sized Character mesh regardless of what the cosmetic
-parts look like.
+The server itself uses an invisible Manny-sized Character mesh regardless of
+how many cosmetic parts there are or what they look like.
 
 
 ## Content Used
