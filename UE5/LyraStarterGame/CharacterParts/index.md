@@ -53,6 +53,34 @@ The server itself uses an invisible Manny-sized Character mesh regardless of
 how many cosmetic parts there are or what they look like.
 
 
+### Differences Between Client and Server Contexts
+
+The [Controller Component](./ControllerComponent) determines which parts will be present
+for any given Pawn.  This exists only on the Server (for all Players)
+and on the Local Player client, since it is a Controller component.
+It does not exist on Remote Player clients; instead, they get settings replicated
+to them over the network from the server.
+
+The [Pawn Component](./PawnComponent) is responsible for actually spawning the actor
+that represents any given Character Part.
+
+**It does not spawn cosmetic components on a dedicated server.**
+
+This is worth repeating.
+The server **does not** spawn cosmetic character part actors.
+**ONLY clients** spawn the cosmetic character part actors.
+
+The reason for this is that nobody is sitting on the server looking at its display.
+Thus there is no reason at all to spawn and process actors that are purely cosmetic.
+This is a server efficiency optimization.
+
+If you run a server in Listen Server mode (e.g. there is a Local Player sitting at their
+PC hosting a game for others to join) then the server DOES spawn cosmetic components
+for the benefit of the Local Player.
+However, in a Dedicated Server, where the server is handling a Remote Player client,
+no cosmetic Character Part actors are spawned.
+
+
 ## Content Used
 
 You can obviously use your own content, but here is the free stuff I used:

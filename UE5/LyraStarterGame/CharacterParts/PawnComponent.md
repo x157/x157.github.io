@@ -33,6 +33,25 @@ section below.
 **There must be only one Pawn Customizer Component on any given Pawn.**
 
 
+### Character Part Actors are NOT Spawned on Dedicated Servers
+
+For server efficiency, purely cosmetic actors (Character Parts)
+**are NOT spawned on dedicated servers**.
+
+There is exactly zero reason for a dedicated server to spawn and manage
+a bunch of cosmetic actors that nobody will ever see.  So it is not done.
+
+The code that enforces this is `FLyraCharacterPartList::SpawnActorForEntry`
+in case you want to read through it.  It explicitly refuses to spawn
+Character Part cosmetics on a dedicated server.
+
+This may cause confusion if you are trying for example to iterate
+the cosmetic actors after a call to `GetCharacterPartActors`.
+On clients this will return an array of actors.
+On servers this will return an empty array,
+because there are no cosmetic actors on a dedicated server.
+
+
 ### How Lyra Sets This Up
 
 - The `B_MannequinPawnCosmetics` Blueprint is based on the `ULyraPawnComponent_CharacterParts` C++ class
