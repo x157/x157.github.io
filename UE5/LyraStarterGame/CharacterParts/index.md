@@ -30,17 +30,17 @@ to easily support fully modular characters.
 
 - [Character Part](./CharacterPart)
   - a single cosmetic part
-  - could be the full body mesh
-  - could be just the head, or just the torso, etc
+    - could be the full body mesh
+    - could be just the head, or just the torso, etc
   - Character Part [Gameplay Tags drive the Character Animation Style](./CharacterPart#Animation)
 - [Controller Component](./ControllerComponent)
   - determines which parts will be added to the controller's pawn
-  - only present on the **Server** and the **Local Player** client *(because it's on the Controller)*
   - injected into **all** Controllers on the server, Player and Bot alike
+    - only present on the **Server**
 - [Pawn Component](./PawnComponent) (AKA "Pawn Customizer")
   - handles replicating the controller-chosen parts to clients
   - actually spawns the character part actors *(on clients only)*
-  - present on **all** clients, including remote clients
+  - present on server and **all** clients, including remote clients
 
 
 ## Vanilla Lyra Configuration
@@ -58,13 +58,12 @@ how many cosmetic parts there are or what they look like.
 ### Differences Between Client and Server Contexts
 
 The [Controller Component](./ControllerComponent) determines which parts will be present
-for any given Pawn.  This exists only on the Server (for all Players)
-and on the Local Player client, since it is a Controller component.
-It does not exist on Remote Player clients; instead, they get settings replicated
-to them over the network from the server.
+for any given Pawn.  This exists only on the Server (for all Players),
+due to the injection setup limiting it to server-only.
+It does not exist on any client.
 
 The [Pawn Component](./PawnComponent) is responsible for actually spawning the actor
-that represents any given Character Part.
+that represents any given Character Part, based on settings replicated to it by the server.
 
 **It does not spawn cosmetic components on a dedicated server.**
 
