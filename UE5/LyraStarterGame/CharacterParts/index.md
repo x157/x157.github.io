@@ -39,6 +39,7 @@ to easily support fully modular characters.
   - injected into **all** Controllers on the server, Player and Bot alike
 - [Pawn Component](./PawnComponent) (AKA "Pawn Customizer")
   - handles replicating the controller-chosen parts to clients
+  - actually spawns the character part actors *(on clients only)*
   - present on **all** clients, including remote clients
 
 
@@ -46,10 +47,11 @@ to easily support fully modular characters.
 
 By default in Lyra 5.2 there are only 2 cosmetic components: `B_Manny` and `B_Quinn`
 
-Lyra chooses randomly between Manny or Quinn and spawns that part on the server side
-after the Controller `BeginPlay`; the part is then replicated to all clients.
+The Lyra server chooses randomly between Manny or Quinn
+after the Controller `BeginPlay` and replicates the decision to all clients.
+The clients handle spawning the actual parts themselves.
 
-The server itself uses an invisible Manny-sized Character mesh regardless of
+The server uses an invisible Character mesh regardless of
 how many cosmetic parts there are or what they look like.
 
 
