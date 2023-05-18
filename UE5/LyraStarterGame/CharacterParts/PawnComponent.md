@@ -1,6 +1,6 @@
 ---
-title: "Lyra Character Parts Pawn Component"
-description: "Details of the Lyra Character Parts Pawn-specific Component"
+title: "Lyra Character Parts: Pawn Component"
+description: "Details the Pawn-specific Component that manages the client-side cosmetics of the Lyra Character Parts system"
 breadcrumb_path: "UE5/LyraStarterGame/CharacterParts"
 breadcrumb_name: "Pawn Component"
 ---

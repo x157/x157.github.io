@@ -1,6 +1,6 @@
 ---
 title: "Lyra Character Parts"
-description: "Overview of UE5 Modular Character Parts as implemented in Lyra Starter Game"
+description: "Overview of UE5 Fortnite-style Modular Character Parts as implemented in Lyra Starter Game"
 breadcrumb_path: "UE5/LyraStarterGame"
 breadcrumb_name: "Character Parts"
 ---

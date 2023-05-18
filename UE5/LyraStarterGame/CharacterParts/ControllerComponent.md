@@ -1,6 +1,6 @@
 ---
-title: "Lyra Character Parts Controller Component"
-description: "Details of the Lyra Character Parts Controller-specific Component"
+title: "Lyra Character Parts: Controller Component"
+description: "Details the Controller-specific Component that drives the Lyra Character Parts system"
 breadcrumb_path: "UE5/LyraStarterGame/CharacterParts"
 breadcrumb_name: "Controller Component"
 ---
