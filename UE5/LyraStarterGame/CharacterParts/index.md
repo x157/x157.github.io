@@ -7,6 +7,9 @@ breadcrumb_name: "Character Parts"
 
 # Lyra Character Parts
 
+For more info, check out my video [UE5 Lyra: Character Parts Overview](https://youtu.be/PYZmQPkvY5M)
+covering this topic.
+
 Lyra's Character Parts system is inspired by Fortnite.
 The Character Parts are **purely cosmetic**, which allows for some nice efficiencies
 in multiplayer games.  For example, the server can mostly ignore the cosmetics, and a local player's
@@ -20,10 +23,6 @@ In general, the main Lyra Character mesh is invisible.
 What you see as the visible Character is a "Character Part", which is purely cosmetic.
 You can modify this so a Character is comprised of multiple parts if you prefer,
 to easily support fully modular characters.
-
-
-## Intro: TODO Show Final Working Example
-
 
 
 ## Conceptual Overview
