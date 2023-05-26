@@ -175,7 +175,7 @@ git push origin $LyraMainBranch
 # checkout my modified version of Lyra branch
 # merge epic's official changes into my $LyraCustomBranch branch
 git checkout $LyraCustomBranch
-git merge --no-commit $LyraCustomBranch
+git merge --no-commit $LyraMainBranch  # merge main into custom
 
 ################################################################################
 ################################################################################
@@ -189,7 +189,7 @@ git push origin $LyraCustomBranch
 # checkout my game dev branch
 # merge my (now updated) custom lyra into my game dev branch
 git checkout $GameBranch
-git merge --no-commit $LyraCustomBranch
+git merge --no-commit $LyraCustomBranch  # merge custom into game
 
 ################################################################################
 ################################################################################
