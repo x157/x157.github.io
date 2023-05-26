@@ -173,9 +173,9 @@ git push origin "${LyraMainBranch}.$YYYYMMDD"
 git push origin $LyraMainBranch
 
 # checkout my modified version of Lyra branch
-# merge epic's official changes into my $LyraMainBranch branch
-git checkout $LyraMainBranch
-git merge --no-commit $LyraMainBranch
+# merge epic's official changes into my $LyraCustomBranch branch
+git checkout $LyraCustomBranch
+git merge --no-commit $LyraCustomBranch
 
 ################################################################################
 ################################################################################
