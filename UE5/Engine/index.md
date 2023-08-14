@@ -20,6 +20,7 @@ Quick Links:
     - When changing engine branches you MUST also reset all the downloaded Engine data
 - [Custom Engine Directory Structure](#CustomEngineDirectoryStructure)
 - [How to Generate Project Files](#HowToGenerateProjectFiles)
+- [How to Migrate a UE Marketplace Plugin to a Custom Engine](./Migrate-UE-Marketplace-Plugin)
 
 
 <a id="WhereToGetSource"></a>
