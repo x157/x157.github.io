@@ -56,19 +56,19 @@ If you are a Windows user, see my notes and tips regarding
 ## Official Tutorials from Epic
 
 - [BeginPlay - Introduction to some interesting Unreal Engine features](https://dev.epicgames.com/community/learning/paths/0w/unreal-engine-beginplay)
-- [C++ Programming Tutorials](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/CPPTutorials/)
-  - [Introduction to C++ Programming in UE4](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/IntroductionToCPP/)
-- [Unreal Architecture](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/)
-  - [Actors](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/Actors/)
-  - [Delegates](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/Delegates/)
-  - [Objects](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/Objects/)
-      - [Object Handling (memory management, casting)](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/Objects/Optimizations/)
-  - [Strings](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/StringHandling/)
-  - [Smart Pointer Library](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/SmartPointerLibrary/)
+- [C++ Programming Tutorials](https://docs.unrealengine.com/5.2/en-US/unreal-engine-cpp-programming-tutortials/)
+  - [Introduction to C++ Programming in UE5](https://docs.unrealengine.com/5.2/en-US/programming-with-cplusplus-in-unreal-engine/)
+- [Unreal Gameplay Framework](https://docs.unrealengine.com/5.2/en-US/gameplay-framework-in-unreal-engine/)
+  - [Actors](https://docs.unrealengine.com/5.2/en-US/actors-in-unreal-engine/)
+  - [Delegates](https://docs.unrealengine.com/5.2/en-US/delegates-and-lamba-functions-in-unreal-engine/)
+  - [Objects](https://docs.unrealengine.com/5.2/en-US/objects-in-unreal-engine/)
+      - [Object Handling (memory management, casting)](https://docs.unrealengine.com/5.2/en-US/unreal-object-handling-in-unreal-engine/)
+  - [Strings](https://docs.unrealengine.com/5.2/en-US/string-handling-in-unreal-engine/)
+  - [Smart Pointer Library](https://docs.unrealengine.com/5.2/en-US/smart-pointers-in-unreal-engine/)
     - [All about Soft and Weak Pointers](https://dev.epicgames.com/community/learning/tutorials/kx/all-about-soft-and-weak-pointers)
-- [Actor Communication](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ActorCommunication/)
-- [Gameplay Architecture](https://docs.unrealengine.com/5.0/en-US/programming-with-cpp-in-unreal-engine/)
-  - [Unreal Engine Modules](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/Modules/)
+- [Actor Communication](https://docs.unrealengine.com/5.2/en-US/actor-communication-in-unreal-engine/)
+- [Gameplay Architecture](https://docs.unrealengine.com/5.2/en-US/programming-with-cpp-in-unreal-engine/)
+  - [Unreal Engine Modules](https://docs.unrealengine.com/5.2/en-US/unreal-engine-modules/)
 
 
 ## Other Useful Tutorials
