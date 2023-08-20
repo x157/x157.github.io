@@ -182,7 +182,10 @@ These switches are meaningless if you use Git.
 
 # See Also
 
-If you have a UDN subscription, there is an ongoing *(Dec 2022)* discussion about the performance
+- [2016 Coconut Lizard blog post](https://www.coconutlizard.co.uk/blog/the-cook-the-resave-his-garbage-and-her-optimization/)
+  - *Especially insightful regarding `-GCFREQ` value tuning for **your specific** use case*
+
+If you have a UDN subscription, there is a discussion about the performance
 of `ResavePackages` as well as when you may want to use
 World Partition Resave Actors Builder Commandlet instead
 (e.g. when you have 10000s of `__ExternalActors__` assets).
