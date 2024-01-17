@@ -120,6 +120,12 @@ Common UI "owns" player input
   - Equipment extension: Equipment Items that are Weapons usable by Pawns
 
 
+## Other Lyra Systems
+
+- [Game Settings](https://docs.unrealengine.com/5.3/en-US/lyra-sample-game-settings-in-unreal-engine/)
+  - Comprehensive Game Settings *(this is a beast to try to copy out due to the extensive use of UI assets, but it can be done)*
+
+
 ## Lyra Character
 
 - [Shooter Mannequin Character](./ShooterMannequin)
