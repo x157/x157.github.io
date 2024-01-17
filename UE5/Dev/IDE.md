@@ -19,6 +19,9 @@ It can be done, but it will waste a significant amount of your time.
 VS really needs paid plugins to be a competitive IDE,
 which makes it priced similarly to Rider for professional users.
 
+If you're developing on a Mac, [Rider](#Rider) is really your only option.
+Xcode is just plain bad for UE coding.
+
 
 <a id='VS'></a>
 ## Option 1. Visual Studio
