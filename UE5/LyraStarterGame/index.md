@@ -178,5 +178,6 @@ Works in progress:
 
 As I learn more about LyraStarterGame I'm keeping a list of references.
 
+- [Lyra 5.3 Release Notes](https://docs.unrealengine.com/5.3/en-US/upgrading-the-lyra-starter-game-to-the-latest-engine-release-in-unreal-engine/#unrealengine5.3)
 - [Epic Games Developer Discussion References](./Epic-Games-Developer-Discussion-References)
 
