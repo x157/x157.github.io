@@ -7,24 +7,36 @@ breadcrumb_name: "Debugging Tips"
 
 # C++ Debugging Tips
 
-- [Build Target: `Debug Editor`](#BuildTarget_Debug_Editor)
+- [Build Target: `DebugGame Editor`](#BuildTarget_DebugGame_Editor)
 - [C++ Coding Style for Easy Debugging](#CppCodingStyleDebugging)
 - [Xist Log Format](#XistLogFormat)
 
 
 <a id="BuildTarget_DebugGame_Editor"></a>
 <a id="BuildTarget_Debug_Editor"></a>
-## Build Target: `Debug Editor`
+## Build Target: `DebugGame Editor`
 
 **You cannot easily debug executables without debugging symbols.**
 
-Build **both the Engine AND the Game** using the `Debug Editor` build target.
+In general, it's preferred to build your game in `DebugGame Editor`.
+This will run your game in Debug mode, and the Editor in non-Debug mode.
+Usually that's fine since when you are crashing, you are likely going to be
+crashing in your own code rather than in Engine code.
 
-`Debug Editor` is what adds the Debug symbols to make debugging much easier.
+However sometimes you will notice that you're crashing in Engine code,
+in which case to debug it you will need to compile a debug
+build of **both the Engine AND the Game** using the `Debug Editor` build target.
 
 *NOTE: This is useful (REQUIRED!) for C++ devs, but not for BP devs, artists, etc.
-That is why Epic typically doesn't recommend this setting themselves.
+That is why Epic typically doesn't recommend this setting in general.
 Most UE5 users are not C++ devs, but we are, and this is how we debug our C++.*
+
+Running in `Debug Editor` can be painfully slow, so in general you want to avoid it,
+and instead run in `DebugGame Editor`.
+On *extremely large* projects, even `DebugGame Editor` may be slow, in which case
+you'll want to run in `Development Editor` unless/until you are specifically trying
+to diagnose a crash, and then switch to `DebugGame Editor` or `Debug Editor` depending
+on where the crash is occurring.
 
 
 <a id="CppCodingStyleDebugging"></a>

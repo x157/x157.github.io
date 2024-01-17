@@ -21,7 +21,7 @@ or in the Unreal Editor doing play tests.
 
 - Download, fetch, pull, sync, whatever to get the latest version of your Engine Source
 - `GenerateProjectFiles.bat`
-- Compile engine: `Debug Editor`
+- Compile engine: `DebugGame Editor`
 
 Note that switching branches can be problematic.  If you think funny stuff is happening
 when you switch branches, see
@@ -38,7 +38,7 @@ when you switch branches, see
 ## Modify Project Code
 
 - Make C++ Code Changes
-- Compile project: `Debug Editor`
+- Compile project: `DebugGame Editor`
 
 
 ## Run Editor
