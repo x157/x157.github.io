@@ -20,7 +20,13 @@ and how to extend the framework they have built.
 [Pros and Cons](./Pros-and-Cons) discusses why you may or may not want to use Lyra yourself.
 There are legitimate reasons both to use and to not use Lyra depending on your circumstances.
 
-There are multiple viable ways to base your game on Lyra.
+If you already have an existing game, Lyra offers some plugins and game systems
+that you can copy into your game to save yourself a lot of work.
+
+If you are starting a new game, it's probably easier to start with Lyra and delete the
+stuff you don't want, rather than to copy the *(likely significant)* stuff you do want
+from Lyra into a blank game.
+There are multiple viable ways to base your new game on Lyra.
 Some options are discussed here:
 
 [Extending Lyra: Development Considerations](./Development-Considerations)
