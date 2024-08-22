@@ -19,6 +19,10 @@ To understand [Lyra](/UE5/LyraStarterGame/), you also need an understanding of t
 - [`ModularGameplay` Plugin](/UE5/ModularGameplay/)
 - [UI Extension Plugin](/UE5/UIExtension/)
 
+## Mass Entity and related plugins
+
+- [Mass Entity](/UE5/Mass/) Overview
+
 
 # Using Unreal Engine
 

@@ -36,7 +36,7 @@ some are completely different and incompatible with UE4 methodologies
 
 # About Me
 
-For the two years or so I've been working my way through UE5's Lyra Starter Game,
+For the past few years I've been working my way through UE5's Lyra Starter Game,
 learning both Unreal Engine and Lyra simultaneously.
 
 In an attempt to save fellow simulants some discovery time,
