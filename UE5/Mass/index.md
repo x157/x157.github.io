@@ -173,6 +173,43 @@ To use Visual Logger in Editor Menu:
 In fact, there are a lot of CVars in the `mass.debug.*` namespace
 that affect Mass behavior.  Familiarize yourself with them.
 
+### Disable C++ Optimizations in Mass-related Engine Modules
+
+One thing I have found to be tremendously useful is to specifically disable code optimization
+in the Mass-related Engine modules.
+
+This allows me to run the game in `DebugGame` mode and step through everything,
+including the Mass internals, to see what is being called and why.
+
+Very highly recommended.
+
+#### Example MassEntity.Build.cs change
+
+For example, I add this code right at the top of the `MassEntity.Build.cs`.
+I do something similar in `MassSimulation.Build.cs`
+and you can add something like this to any Engine module you are actively working with to make it easy to debug.
+*(Don't commit these kinds of changes to your Engine! These should be for your workspace only).*
+
+```c#
+// Example MassEntity.Build.cs
+namespace UnrealBuildTool.Rules
+{
+	public class MassEntity : ModuleRules
+	{
+		public MassEntity(ReadOnlyTargetRules Target) : base(Target)
+		{
+			// Allow debugger stepping in this Engine module when built as DebugGame
+			if (Target.Configuration == UnrealTargetConfiguration.DebugGame)
+			{
+				OptimizeCode = CodeOptimization.Never;  // don't optimize in DebugGame builds
+			}
+
+			// NOTICE: Keep all the rest of this method the same. I omitted it for brevity.
+		}
+	}
+}
+```
+
 
 <a id='RecommendedPRs'></a>
 # Recommended PRs for UE 5.4
