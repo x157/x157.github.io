@@ -290,3 +290,7 @@ These are some excellent sources of info related to Mass.
   - [MassEntity Overview](https://dev.epicgames.com/documentation/en-us/unreal-engine/overview-of-mass-entity-in-unreal-engine)
   - [MassGameplay Overview](https://dev.epicgames.com/documentation/en-us/unreal-engine/overview-of-mass-gameplay-in-unreal-engine)
 - [Mass Framework for crowds & traffic simulation in Unreal Engine](https://vrealmatic.com/unreal-engine/mass)
+- Open Source Community projects:
+  - [Megafunk's Mass Sample Project](https://github.com/Megafunk/MassSample)
+  - [Ji-Rath's Mass AI Example Project](https://github.com/Ji-Rath/MassAIExample)
+  - [Myxcil's Mass Traffic Test Project](https://github.com/Myxcil/MassTraffic-Test)
