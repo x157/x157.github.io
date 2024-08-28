@@ -7,6 +7,8 @@ breadcrumb_name: "Mass"
 
 # Mass Entities in UE5
 
+Mass is a native C++ simulation processor, introduced experimentally in UE 5.2.
+
 Before you read this, make sure you have watched the official Epic Games Video:
 [Large Numbers of Entities with Mass in Unreal Engine 5](https://www.youtube.com/watch?v=f9q8A-9DvPo)
 by Mario Palermo.  If you're not really sure what Mass is or why you may want to use it,
@@ -18,22 +20,153 @@ in the big picture.
 See also [Other Mass Resources](#SeeAlso) that I have found useful.
 
 If you are coding UE 5.4 Mass, see my [Recommended PRs](#RecommendedPRs)
-for some bug fixes and new Mass features.
+for some bug fixes and features you may find interesting.
+
 
 ## Section Overview
 
-- [Experimental Modules](#ExperimentalModules)
-- [Important Mass Subsystems](#MassSubsystems)
-- [Mass Entity Manager](#EntityManager)
+- [Mass Simulation Instance](#MassSimulationInstance)
+  - [Multiple Simulation Instances](#MultipleSimulationInstances)
 - [Mass Simulation](#Simulation)
-- [Mass Processing Phase Manager](#PhaseManager)
+  - [Mass Entity Manager](#EntityManager)
+  - [Mass Processing Phase Manager](#PhaseManager)
+- [Related Modules](#RelatedModules)
+- [Important Mass Subsystems](#MassSubsystems)
 - [Debugging Tips](#DebuggingTips)
 - [Recommended PRs for UE 5.4](#RecommendedPRs)
 - [Other Mass Resources](#SeeAlso)
 
 
+<a id='MassSimulationInstance'></a>
+## Mass Simulation Instance
+
+The Mass Simulation engine is effectively comprised of two parts.
+The combination of these elements makes up a single simulation instance.
+
+### 1. [Mass Entity Manager](#EntityManager)
+- Memory container
+  - Compact storage of all data related to all entities in a given simulation instance.
+
+### 2. [Mass Processing Phase Manager](#PhaseManager)
+- Ticks the simulation
+  - Processes Mass Simulation Phases in ascending order each tick.
+
+
+<a id='MultipleSimulationInstances'></a>
+### Multiple Simulation Instances
+
+As of UE 5.4 there are currently 2 simulation instances:
+
+- `UMassEntitySubsystem` (World subsystem)
+  - Automatically Creates/destroys simulation instances for each Game world
+  - Each Game world automatically gets its own:
+    - Mass Entity Manager
+    - Mass Processing Phase Manager
+- `UMassEntityEditorSubsystem` (Editor subsystem)
+  - Always exists in Editor
+  - Editor world has its own:
+    - Mass Entity Manager
+    - Mass Processing Phase Manager
+
+
+<a id='Simulation'></a>
+## Mass Simulation
+
+You can start and stop any instance of the simulation, which triggers some events and
+manages the ticking of `FMassProcessingPhaseManager`
+which does all the actual work of running the simulation.
+When you stop a simulation, it performs a full reset and discards all data.
+
+You can disable the simulation entirely by setting the CVar
+`mass.SimulationTickingEnabled` to false.
+
+### How/when/where does the Simulation start/stop?
+
+`UMassSimulationSubsystem::StartSimulation` is the method that actually starts the simulation ticking.
+
+By default, it's called in these cases:
+
+1. In Editor during Editor subsystem `PostInitialize` (when Editor starts; starts Editor sim)
+2. On World `BeginPlay` (starts Game sim)
+3. When you change CVar `bSimulationTickingEnabled` from `false` to `true`, if the World has begun play.
+
+#### Editor world simulation
+
+`UMassEntityEditorSubsystem` runs a second simulation for the Editor world.
+This simulation runs any time the Editor is running, but not during PIE.
+Thus, there is always 1 sim running in Editor, it's either the Editor sim or the Game World sim.
+
+When PIE starts, the Editor sim is stopped. World load auto-starts the Game sim.
+
+When PIE ends, the Editor sim is restarted. World unload auto-stops the Game sim.
+
+Note: In 5.4 this is bugged, see [PR #12249](https://github.com/EpicGames/UnrealEngine/pull/12249) for the fix (which is a 5.5 patch so you'll have to manually merge it into 5.4 if you're still on 5.4).
+
+
+<a id='EntityManager'></a>
+### Mass Entity Manager
+
+This is the set of all entities that exist in the sim.  It's a memory container.
+
+`UMassEntityManager` is responsible for hosting Entities managing Archetypes.
+Entities are stored as FEntityData entries in a chunked array.
+Each valid entity is assigned to an Archetype that store the fragments associated with a given entity at the moment.
+
+
+#### TODO - IMPORTANT CLASS - DOCUMENT API
+
+
+<a id='PhaseManager'></a>
+### Mass Processing Phase Manager
+
+`FMassProcessingPhaseManager` is the C++ class that actually handles ticking the simulation
+through the defined ordered phases of execution.
+
+The World Sim subsystem owns one and the Editor Sim subsystem owns a second one.
+
+As of 5.4 there isn't much ability to customize or override this without modifying the engine.
+
+#### Initialization
+
+- set `ProcessingExecutionFlags`
+- for each `EMassProcessingPhase` in ascending order:
+  - create new Phase Processor `UMassCompositeProcessor`
+
+### Mass Processing Phases (UE 5.4)
+
+During each Editor/Game tick, the `PhaseManager` processes these phases in ascending order.
+
+```c++
+UENUM()
+enum class EMassProcessingPhase : uint8
+{
+    PrePhysics,
+    StartPhysics,
+    DuringPhysics,
+    EndPhysics,
+    PostPhysics,
+    FrameEnd,
+    MAX,
+};
+```
+
+
+<a id='RelatedModules'></a>
+## Related Modules
+
+By default, Mass Entities don't contain any gameplay logic.
+
+Epic released some modules to add various aspects of gameplay, or you can use your own.
+
+For example you can:
+
+- Make your own movement related fragments and processors (as Mario shows you how to do in the intro video).
+- [OR] Use the more complex, feature rich [MassNavigation](/UE5/Mass/Navigation) plugin.
+  - As of 5.4 the only implementation of which also requires Zone Graphs, etc.
+
+
 <a id='ExperimentalModules'></a>
-## Experimental Modules
+### Experimental Modules
 
 Mass is implemented by several different modules,
 all of which are under heavy development as of UE 5.5.
@@ -66,96 +199,6 @@ The really important ones you absolutely should know about at a bare minimum are
   - In Editor and during PIE this subsystem manages the simulation ticking
 
 
-<a id='EntityManager'></a>
-## Mass Entity Manager
-
-This is the set of all entities that exist in the sim.  It's a memory container.
-
-`UMassEntityManager` is responsible for hosting Entities managing Archetypes.
-Entities are stored as FEntityData entries in a chunked array.
-Each valid entity is assigned to an Archetype that store the fragments associated with a given entity at the moment.
-
-As of 5.4 there are 2 Entity Managers in Editor:
-
-- Game Entity Manager
-  - Owned by `UMassEntitySubsystem`
-    - Create/destroy one for each game world
-- Editor Module's Entity Manager
-  - Owned by `UMassEntityEditorSubsystem`
-    - Always exists in Editor
-
-### TODO - IMPORTANT CLASS - DOCUMENT API
-
-
-<a id='Simulation'></a>
-## Mass Simulation
-
-You can start and stop the simulation, which triggers some events and
-manages the ticking of `FMassProcessingPhaseManager`
-which does all the actual work of running the simulation.
-When you stop a simulation, it performs a full reset and discards all data.
-
-You can disable the simulation entirely by setting the CVar
-`mass.SimulationTickingEnabled` to false.
-
-### How/when/where does the Simulation start/stop?
-
-`UMassSimulationSubsystem::StartSimulation` is the method that actually starts the simulation ticking.
-
-By default, it's called in these cases:
-
-1. In Editor during Editor subsystem `PostInitialize` (when Editor starts; starts Editor sim)
-2. On World `BeginPlay` (starts Game sim)
-3. When you change CVar `bSimulationTickingEnabled` from `false` to `true`, if the World has begun play.
-
-#### Editor world simulation
-
-`UMassEntityEditorSubsystem` runs a second simulation for the Editor world.
-This simulation runs any time the Editor is running, but not during PIE.
-Thus, there is always 1 sim running in Editor, it's either the Editor sim or the Game World sim.
-
-When PIE starts, the Editor sim is stopped. World load auto-starts the Game sim.
-
-When PIE ends, the Editor sim is restarted. World unload auto-stops the Game sim.
-
-Note: In 5.4 this is bugged, see [PR #12249](https://github.com/EpicGames/UnrealEngine/pull/12249) for the fix (which is a 5.5 patch so you'll have to manually merge it into 5.4 if you're still on 5.4).
-
-
-<a id='PhaseManager'></a>
-## Mass Processing Phase Manager
-
-`FMassProcessingPhaseManager` is the C++ class that actually handles ticking the simulation
-through the defined ordered phases of execution.
-
-The World Sim subsystem owns one and the Editor Sim subsystem owns a second one.
-
-As of 5.4 there isn't much ability to customize or override this without modifying the engine.
-
-### Initialization
-
-- set `ProcessingExecutionFlags`
-- for each `EMassProcessingPhase` in ascending order:
-  - create new Phase Processor `UMassCompositeProcessor`
-
-### Mass Processing Phases (UE 5.4)
-
-During each Editor/Game tick, the `PhaseManager` processes these phases in ascending order.
-
-```c++
-UENUM()
-enum class EMassProcessingPhase : uint8
-{
-    PrePhysics,
-    StartPhysics,
-    DuringPhysics,
-    EndPhysics,
-    PostPhysics,
-    FrameEnd,
-    MAX,
-};
-```
-
-
 <a id='DebuggingTips'></a>
 ## Debugging Tips
 
@@ -186,9 +229,10 @@ Very highly recommended.
 #### Example MassEntity.Build.cs change
 
 For example, I add this code right at the top of the `MassEntity.Build.cs`.
-I do something similar in `MassSimulation.Build.cs`
-and you can add something like this to any Engine module you are actively working with to make it easy to debug.
 *(Don't commit these kinds of changes to your Engine! These should be for your workspace only).*
+
+Other Engine Build.cs files that I sometimes modify similarly for debugging:
+`MassSimulation.Build.cs`, `MassSpawner.Build.cs`, etc.
 
 ```c#
 // Example MassEntity.Build.cs
@@ -198,11 +242,13 @@ namespace UnrealBuildTool.Rules
 	{
 		public MassEntity(ReadOnlyTargetRules Target) : base(Target)
 		{
+			// [BEGIN xist debug hack]
 			// Allow debugger stepping in this Engine module when built as DebugGame
 			if (Target.Configuration == UnrealTargetConfiguration.DebugGame)
 			{
-				OptimizeCode = CodeOptimization.Never;  // don't optimize in DebugGame builds
+				OptimizeCode = CodeOptimization.Never;  // never optimize DebugGame builds even tho it's an Engine module
 			}
+			// [END xist debug hack]
 
 			// NOTICE: Keep all the rest of this method the same. I omitted it for brevity.
 		}
