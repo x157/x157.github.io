@@ -55,16 +55,20 @@ The combination of these elements makes up a single simulation instance.
 <a id='MultipleSimulationInstances'></a>
 ### Multiple Simulation Instances
 
-As of UE 5.4 there are currently 2 simulation instances:
+As of UE 5.4 there are currently 3 simulation instances:
 
-- `UMassEntitySubsystem` (World subsystem)
-  - Automatically Creates/destroys simulation instances for each Game world
-  - Each Game world automatically gets its own:
+- `UMassEntityEditorSubsystem` (Editor subsystem)
+  - Always exists in Editor (for example it's driving widgets like the Scene Outliner, via TEDS)
+  - Editor world has its own:
     - Mass Entity Manager
     - Mass Processing Phase Manager
-- `UMassEntityEditorSubsystem` (Editor subsystem)
-  - Always exists in Editor
-  - Editor world has its own:
+- `UMassSimulationSubsystem` owned by the `UWorld` loaded in the editor (it's `WorldType == Editor`)
+  - this subsystem ticks in the editor mode only if editor's viewport is in "Realtime" mode
+  - this is the subsystem receiving the `OnPieBegin` and `OnPieEnd` calls, stopping ticking during PIE and resuming afterward.
+- `UMassSimulationSubsystem` owned by the PIE `UWorld` (it's `WorldType == PIE`)
+  - this is the runtime/gametime Mass simulation
+  - Automatically Creates/destroys simulation instances for each Game world
+  - Each Game world automatically gets its own:
     - Mass Entity Manager
     - Mass Processing Phase Manager
 
@@ -87,20 +91,8 @@ You can disable the simulation entirely by setting the CVar
 By default, it's called in these cases:
 
 1. In Editor during Editor subsystem `PostInitialize` (when Editor starts; starts Editor sim)
-2. On World `BeginPlay` (starts Game sim)
+2. On World `BeginPlay`
 3. When you change CVar `bSimulationTickingEnabled` from `false` to `true`, if the World has begun play.
-
-#### Editor world simulation
-
-`UMassEntityEditorSubsystem` runs a second simulation for the Editor world.
-This simulation runs any time the Editor is running, but not during PIE.
-Thus, there is always 1 sim running in Editor, it's either the Editor sim or the Game World sim.
-
-When PIE starts, the Editor sim is stopped. World load auto-starts the Game sim.
-
-When PIE ends, the Editor sim is restarted. World unload auto-stops the Game sim.
-
-Note: In 5.4 this is bugged, see [PR #12249](https://github.com/EpicGames/UnrealEngine/pull/12249) for the fix (which is a 5.5 patch so you'll have to manually merge it into 5.4 if you're still on 5.4).
 
 
 <a id='EntityManager'></a>
@@ -210,6 +202,11 @@ To use Visual Logger in Editor Menu:
 
     Tools > Debug > Visual Logger
 
+**NOTICE: ENABLE UNIQUE NAMES IN VISLOG.**
+If you don't have unique names enabled in VisLog then
+both `UMassSimulationSubsystem` instances will usually end up in the same visual log row
+(both will usually be names `MassSimulationSubsystem_0`) which can be confusing.
+
 ### Editor Commands
 
 `mass.debug` in UEditor to debug while running a simulation.
@@ -267,10 +264,6 @@ If you use UE 5.4, consider these PRs for your engine.
 Xist Features:
 
 - [#12263 - Add optional Mass Simulation Pause/Resume and Time Dilation capabilities](https://github.com/EpicGames/UnrealEngine/pull/12263)
-
-Editor performance:
-
-- <a id='PR12249'></a>[#12249 - Stop Editor-only Mass Sim from ticking during PIE](https://github.com/EpicGames/UnrealEngine/pull/12249)
 
 Mass-related VLogs for easier debugging:
 
