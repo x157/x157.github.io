@@ -7,7 +7,7 @@
 
         <p>
             Github:
-            <a href="https://github.com/x157/x157.github.io">source</a>
+            <a href="https://github.com/x157/x157.github.io" id="SourceUrl">source</a>
             |
             <a href="https://github.com/x157/x157.github.io/issues">issues</a>
         </p>
@@ -21,3 +21,21 @@
         </p>
     </div>
 </footer>
+
+<script>
+    // Update the SourceUrl to be the exact url for the page currently being viewed.
+    (function(link, path) {
+        if (link) {
+            // path is like "/foo/" for index.md
+            if (path.charAt(path.length - 1) === "/") {
+                path += "index"
+            }
+            // links aren't **supposed** to end in ".md" but they might.
+            if (path.substring(path.length - 3) !== ".md") {
+                path += ".md"
+            }
+            // "plain=1" parameter tells GitHub we want to see the source, not the preview
+            link.href = "https://github.com/x157/x157.github.io/blob/main" + path + "?plain=1";
+        }
+    })(document.getElementById("SourceUrl"), window.location.pathname);
+</script>
