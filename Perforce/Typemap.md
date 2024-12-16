@@ -1,6 +1,6 @@
 ---
 title: "Perforce Typemap"
-description: "Sample Perforce (P4) typemap for a UE 5.1 UProject depot"
+description: "Sample Perforce (P4) typemap for a UE5 UProject depot"
 breadcrumb_path: "Perforce"
 breadcrumb_name: "Typemap"
 ---
@@ -55,7 +55,7 @@ Typemap:
 <a id='Example'></a>
 # Example P4 Typemap
 
-This is an example `p4 typemap` for a UE 5.1 [Lyra](/UE5/LyraStarterGame/) project with a custom UE 5.1 Engine.
+This is an example `p4 typemap` for a [Lyra](/UE5/LyraStarterGame/) project with a UE 5.5 Engine.
 
 [https://github.com/XistGG/Perforce-Setup/blob/main/typemap.txt](https://github.com/XistGG/Perforce-Setup/blob/main/typemap.txt)
 
