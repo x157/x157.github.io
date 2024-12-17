@@ -19,9 +19,6 @@ this info should help you quickly discover where to look in C++ and how the C++ 
 in the big picture.
 See also [Other Mass Resources](#SeeAlso) that I have found useful.
 
-If you are coding UE 5.4 Mass, see my [Recommended PRs](#RecommendedPRs)
-for some bug fixes and features you may find interesting.
-
 
 ## Section Overview
 
@@ -33,7 +30,6 @@ for some bug fixes and features you may find interesting.
 - [Related Modules](#RelatedModules)
 - [Important Mass Subsystems](#MassSubsystems)
 - [Debugging Tips](#DebuggingTips)
-- [Recommended PRs for UE 5.4](#RecommendedPRs)
 - [Other Mass Resources](#SeeAlso)
 
 
@@ -252,22 +248,6 @@ namespace UnrealBuildTool.Rules
 	}
 }
 ```
-
-
-<a id='RecommendedPRs'></a>
-# Recommended PRs for UE 5.4
-
-Mass is under significant development and undergoing a lot of changes as of UE 5.4.
-
-If you use UE 5.4, consider these PRs for your engine.
-
-Xist Features:
-
-- [#12263 - Add optional Mass Simulation Pause/Resume and Time Dilation capabilities](https://github.com/EpicGames/UnrealEngine/pull/12263)
-
-Mass-related VLogs for easier debugging:
-
-- [#12250 - Add WITH_MASSENTITY_DEBUG VLog messages](https://github.com/EpicGames/UnrealEngine/pull/12250)
 
 
 <a id='SeeAlso'></a>
