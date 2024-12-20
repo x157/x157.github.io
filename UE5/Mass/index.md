@@ -19,6 +19,13 @@ this info should help you quickly discover where to look in C++ and how the C++ 
 in the big picture.
 See also [Other Mass Resources](#SeeAlso) that I have found useful.
 
+In late 2024, Epic roughly doubled the size of the Mass development team and there are
+rumors internally that the scope of Mass may significantly expand in both scope and importance
+to Unreal Engine.
+
+TLDR though it's still early days, there doesn't seem to be much risk of Mass being
+shelved in the foreseeable future. Quite to the contrary, Epic is investing in the future of Mass.
+
 
 ## Section Overview
 
@@ -46,6 +53,7 @@ The combination of these elements makes up a single simulation instance.
 ### 2. [Mass Processing Phase Manager](#PhaseManager)
 - Ticks the simulation
   - Processes Mass Simulation Phases in ascending order each tick.
+    - Executes Mass Processors in order of dependencies
 
 
 <a id='MultipleSimulationInstances'></a>
@@ -100,8 +108,9 @@ This is the set of all entities that exist in the sim.  It's a memory container.
 Entities are stored as FEntityData entries in a chunked array.
 Each valid entity is assigned to an Archetype that store the fragments associated with a given entity at the moment.
 
-
-#### TODO - IMPORTANT CLASS - DOCUMENT API
+Epic released an excellent
+[MassEntity Overview](https://dev.epicgames.com/documentation/en-us/unreal-engine/overview-of-mass-entity-in-unreal-engine)
+document that you should absolutely read if you haven't already.
 
 
 <a id='PhaseManager'></a>
@@ -112,7 +121,7 @@ through the defined ordered phases of execution.
 
 The World Sim subsystem owns one and the Editor Sim subsystem owns a second one.
 
-As of 5.4 there isn't much ability to customize or override this without modifying the engine.
+As of 5.5 there isn't much ability to customize or override this without modifying the engine.
 
 #### Initialization
 
@@ -120,7 +129,7 @@ As of 5.4 there isn't much ability to customize or override this without modifyi
 - for each `EMassProcessingPhase` in ascending order:
   - create new Phase Processor `UMassCompositeProcessor`
 
-### Mass Processing Phases (UE 5.4)
+### Mass Processing Phases (UE 5.5)
 
 During each Editor/Game tick, the `PhaseManager` processes these phases in ascending order.
 
@@ -146,11 +155,10 @@ By default, Mass Entities don't contain any gameplay logic.
 
 Epic released some modules to add various aspects of gameplay, or you can use your own.
 
-For example you can:
+For example, you can:
 
 - Make your own movement related fragments and processors (as Mario shows you how to do in the intro video).
 - [OR] Use the more complex, feature rich [MassNavigation](/UE5/Mass/Navigation) plugin.
-  - As of 5.4 the only implementation of which also requires Zone Graphs, etc.
 
 
 <a id='ExperimentalModules'></a>
@@ -158,14 +166,8 @@ For example you can:
 
 Mass is implemented by several different modules,
 all of which are under heavy development as of UE 5.5.
-Since 5.2 the API has changed, and it is expected that it
+Since 5.2 the API has changed, in some cases quite a bit, and it is expected that it
 **will change** some more in future versions.
-
-For example, in 5.5 `MassEntity` is converting from an optional Plugin into a core Engine module,
-complicating Engine plugin/source merges for pre-5.5 Engines.
-Knowing about this change, you can easily do the necessary manual git merge.
-It's not terribly difficult, but it is extra manual future-work to be aware of
-if you are already using 5.4 or a previous version.
 
 
 <a id='MassSubsystems'></a>
@@ -201,7 +203,27 @@ To use Visual Logger in Editor Menu:
 **NOTICE: ENABLE UNIQUE NAMES IN VISLOG.**
 If you don't have unique names enabled in VisLog then
 both `UMassSimulationSubsystem` instances will usually end up in the same visual log row
-(both will usually be names `MassSimulationSubsystem_0`) which can be confusing.
+(with names like `MassSimulationSubsystem_0`) which can be confusing.
+
+### Gameplay Debugger
+
+The `MassAI` plugin contains optional debugging code that you can compile into your project
+for enhanced debugging capabilities.
+
+For example, see
+[GameplayDebuggerCategory_Mass.cpp](https://github.com/EpicGames/UnrealEngine/blob/5.5/Engine/Plugins/AI/MassAI/Source/MassAIDebug/Private/GameplayDebuggerCategory_Mass.cpp)
+to see what your options are.
+The `FGameplayDebuggerCategory_Mass` constructor defined in that file
+contains a lot of `BindKeyPress` function calls to map `Shift+A`, `Shift+O`, `Shift+V`
+and many other key combinations to help you gain insight into what Mass is doing.
+
+To use this in your project, you must have compiled your project with
+both `WITH_GAMEPLAY_DEBUGGER` and `WITH_MASSGAMEPLAY_DEBUG`
+enabled.
+
+For more info see Epic's
+[Gameplay Debugger](https://dev.epicgames.com/documentation/en-us/unreal-engine/using-the-gameplay-debugger-in-unreal-engine)
+documentation.
 
 ### Editor Commands
 
