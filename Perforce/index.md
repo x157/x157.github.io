@@ -63,6 +63,11 @@ For more details see: [How to: Create a Custom UE5 Engine Source Depot & Streams
   - Inspired by: [Setting Up Perforce with Docker for Unreal Engine 4](https://www.froyok.fr/blog/2018-09-setting-up-perforce-with-docker-for-unreal-engine-4/) (conceptually identical to **UE5**)
 
 
+# Tips for P4 Administration and Use
+
+- P4 Admin: [How to Delete a (deleted) Stream](./How-to-Delete-a-Deleted-Stream)
+
+
 # Recommended Reading
 
 - [How to use Perforce Streams 101](https://www.perforce.com/blog/vcs/how-use-perforce-streams-101)
