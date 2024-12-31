@@ -31,7 +31,7 @@ To set it up, follow the steps below.  For additional reading, consider: [Testin
 - requires Reboot
 
 ## Install [Jekyll](https://jekyllrb.com/docs/)
-- requires Ruby:
+- requires Ruby: (Mac users refer to: [How to install ruby on Mac with rbenv](https://www.google.com/search?q=how+to+install+ruby+on+mac+with+rbenv))
   - install rbenv
   - install ruby + headers (required)
   ```shell
