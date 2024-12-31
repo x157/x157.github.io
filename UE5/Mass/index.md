@@ -27,7 +27,7 @@ TLDR though it's still early days, there doesn't seem to be much risk of Mass be
 shelved in the foreseeable future. Quite to the contrary, Epic is investing in the future of Mass.
 
 
-## Section Overview
+## Overview
 
 - [Mass Simulation Instance](#MassSimulationInstance)
   - [Multiple Simulation Instances](#MultipleSimulationInstances)
@@ -35,6 +35,7 @@ shelved in the foreseeable future. Quite to the contrary, Epic is investing in t
   - [Mass Entity Manager](#EntityManager)
   - [Mass Processing Phase Manager](#PhaseManager)
 - [Related Modules](#RelatedModules)
+  - [Mass Navigation](/UE5/Mass/Navigation)
 - [Important Mass Subsystems](#MassSubsystems)
 - [Debugging Tips](#DebuggingTips)
 - [Other Mass Resources](#SeeAlso)
