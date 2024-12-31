@@ -53,16 +53,59 @@ multiple h rules in a row
 
 ### C++ Code
 
-```c++
+```cpp
+// Sample UObject class
+
 UCLASS(DisplayName="Unreal Name")
-class UFoo : public UObject
+class FOO_API UFoo : public UObject
 {
-    // Test if Github's C++ processor has UE preprocessor support
+	GENERATED_BODY()
+
+    Foo(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());
+
+protected:
     UPROPERTY(BlueprintReadWrite, Category="Xist")
     bool bHopeForSuccess = true;
 
-    Foo(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get())
-      : Super(ObjectInitializer)
-      {}
 };
+```
+
+### C# Code
+
+```cs
+// MassGameTime.Build.cs
+
+using UnrealBuildTool;
+using System.Collections.Generic;
+
+public class MassTimeGameTarget : TargetRules
+{
+	public MassTimeGameTarget(TargetInfo Target) : base(Target)
+	{
+		Type = TargetType.Game;
+		DefaultBuildSettings = BuildSettingsVersion.V5;
+		IncludeOrderVersion = EngineIncludeOrderVersion.Unreal5_6;
+		ExtraModuleNames.Add("MassTimeGame");
+	}
+}
+```
+
+### INI File
+
+```ini
+[CoreRedirects]
++ClassRedirects=(OldName="/Script/XistGame.OldName",NewName="/Script/XistGame.NewName")
+```
+
+### Powershell Code
+
+```powershell
+#!/usr/bin/env pwsh
+
+$MinPSVersion = 7
+
+if ($MinPSVersion -gt $PSVersionTable.PSVersion.Major) {
+    Write-Error "This system is using PowerShell version $($PSVersionTable.PSVersion.Major), which is not adequate to run UnrealXistTools."
+    throw "Powershell $($MinPSVersion)+ is required. Install it with 'winget install Microsoft.PowerShell'"
+}
 ```
