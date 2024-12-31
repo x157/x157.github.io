@@ -7,6 +7,8 @@ This site uses:
 - [Jekyll](https://jekyllrb.com/)
 - [Jekyll Sitemap Plugin](https://github.com/jekyll/jekyll-sitemap)
 - the [Hacker](https://github.com/pages-themes/hacker) GitHub Pages theme
+- [Prism.js](https://prismjs.com/) for syntax highlighting
+  - [Download with x157.github.io settings](https://prismjs.com/download.html#themes=prism-okaidia&languages=markup+clike+javascript+bash+c+csharp+cpp+docker+git+hlsl+ini+java+javadoc+javadoclike+jsdoc+json+latex+lua+markdown+powershell+python+shell-session+typescript+xml-doc+yaml&plugins=autoloader)
 
 
 # Preferred Editor
