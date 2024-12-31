@@ -45,7 +45,7 @@ on where the crash is occurring.
 **TLDR: Resist the urge to write a 1-liner and profit by reduced time spent debugging and explaining code later.**
 
 ### Bad: Difficult to Debug
-```c++
+```cpp
 // Bad: DIFFICULT TO DEBUG
 UMyComp* FindMyComp(const AActor* Actor)
 {
@@ -71,7 +71,7 @@ refactoring the code to something like this:
 
 ### Good: Easy to Debug
 
-```c++
+```cpp
 // Good: EASY TO DEBUG
 UMyComp* FindMyComp(const AActor* Actor)
 {
@@ -166,7 +166,7 @@ like `Actor`, `Object`, `GameplayAbility`, `AbilityTask`, etc.
 
 Inside any `GameplayAbility` for example, I just log like this;
 
-```c++
+```cpp
 XIST_GALOG(TEXT("Committing ability"));
 ```
 
@@ -188,7 +188,7 @@ Under the hood this just uses the `UE_LOG` macro that you probably already know 
 
 For example, you could use something like this for any `UObject` or `UObject`-derived class:
 
-```c++
+```cpp
 /**
  * XIST_ULOG
  *

@@ -42,7 +42,7 @@ See its C++ code if you need to do that.
 ## Lyra UI Policy
 ### `B_LyraUIPolicy` : public `GameUIPolicy` from `CommonGame`
 
-```c++
+```cpp
 UCLASS(Abstract, Blueprintable, Within = GameUIManagerSubsystem)
 class COMMONGAME_API UGameUIPolicy : public UObject
 ```
@@ -58,7 +58,7 @@ This BP specifies a single global UI Layout Widget:
 ## Overall UI Layout
 ### `W_OverallUILayout` : public `PrimaryGameLayout` from `CommonGame`
 
-```c++
+```cpp
 /**
  * The primary game UI layout of your game.  This widget class represents how to layout, push and display all layers
  * of the UI for a single player.  Each player in a split-screen game will receive their own primary game layout.
@@ -87,7 +87,7 @@ your own layer type by deriving from
 
 ### Common Activatable Widget Stack
 #### `CommonActivatableWidgetStack` : public `UCommonActivatableWidgetContainerBase` from `CommonUI`
-```c++
+```cpp
 /** 
  * A display stack of ActivatableWidget elements. 
  * 
@@ -107,7 +107,7 @@ added directly to the viewport, they get pushed onto one of the UI layer stacks.
 
 ### Common Activatable Widget Queue
 #### `CommonActivatableWidgetQueue` : public `UCommonActivatableWidgetContainerBase` from `CommonUI`
-```c++
+```cpp
 /** 
  * A display queue of ActivatableWidget elements. 
  *

@@ -65,7 +65,7 @@ CommonUI Action Router's `SetActiveUIInputConfig` method.
 
 ### C++ Usage Example
 
-```c++
+```cpp
 APlayerController* PC = /*YOU_MUST_SET_THIS*/;
 
 bool bVisibleMouse = true;

@@ -71,7 +71,7 @@ To get an Entity to move, you need to set its `FMassMoveTargetFragment`
 You can safely do this anywhere in your Gameplay code via an asynchronous
 command to the World's Entity Manager like this:
 
-```c++
+```cpp
 /**
  * This code snippet issues a deferred (asynchronous) command to the Mass Entity Manager
  * to update the given Entity's `FMassMoveTargetFragment` with a random point to which

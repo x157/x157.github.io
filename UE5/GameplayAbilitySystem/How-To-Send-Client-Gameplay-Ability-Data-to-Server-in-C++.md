@@ -122,7 +122,7 @@ Only two methods must be defined to accomplish this:
 
 ## `UExampleClientToServerAbility.h`
 
-```c++
+```cpp
 #pragma once
 
 #include "CoreMinimal.h"
@@ -162,7 +162,7 @@ In the below example we just send the value `FVector::ZeroVector` as the `Target
 You **must use the system `new` operator** to instantiate the `TargetData` value or you will get memory
 related game crashes.  This is a (Lyra?) Gameplay Ability System requirement.
 
-```c++
+```cpp
 void UExampleClientToServerAbility::ActivateLocalPlayerAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData)
 {
 	// Compute the TargetData
@@ -197,7 +197,7 @@ In this example all we do is log the `ClientLocation` that we retrieve from the
 `TargetData` the client sent, but you could spawn a black hole there and consume the world,
 or whatever else you prefer.
 
-```c++
+```cpp
 void UExampleClientToServerAbility::ActivateAbilityWithTargetData(const FGameplayAbilityTargetDataHandle& TargetDataHandle, FGameplayTag ApplicationTag)
 {
 	// retrieve data
@@ -265,7 +265,7 @@ Having it here ensures the client doesn't attempt to execute the ability unless 
 actually succeed on the server.
 
 
-```c++
+```cpp
 void UXCLGameplayAbility_ClientToServer::NotifyTargetDataReady(const FGameplayAbilityTargetDataHandle& InData, FGameplayTag ApplicationTag)
 {
 	UAbilitySystemComponent* ASC = CurrentActorInfo->AbilitySystemComponent.Get();
@@ -315,7 +315,7 @@ It does nothing other than listen for
 
 Each time the client invokes the RPC with `TargetData`, the server executes `NotifyTargetDataReady`(`TargetData`)
 
-```c++
+```cpp
 void UXCLGameplayAbility_ClientToServer::ActivateServerAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData)
 {
 	UAbilitySystemComponent* ASC = ActorInfo->AbilitySystemComponent.Get();
@@ -336,7 +336,7 @@ You can put this in your `EndAbility`, but I'm using my custom `EndAbilityCleanu
 from `XCLGameplayAbility` that makes derived
 class code much simpler and with far less copy/paste.
 
-```c++
+```cpp
 void UXCLGameplayAbility_ClientToServer::EndAbilityCleanup(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, bool bReplicateEndAbility, bool bWasCancelled)
 {
 	UAbilitySystemComponent* ASC = CurrentActorInfo->AbilitySystemComponent.Get();

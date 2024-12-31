@@ -58,7 +58,7 @@ as desired when I want to change the player controls.
 During Gameplay you can change the Input Mapping Contexts (IMC).
 You simply add/remove IMC from the Enhanced Input Subsystem as needed.
 
-```c++
+```cpp
 APlayerController* PC = nullptr;  // <-- YOU MUST ASSIGN THE PLAYER CONTROLLER TO NON-nullptr
 if (ULocalPlayer* LP = PC->GetLocalPlayer())
 {
@@ -79,7 +79,7 @@ You can add new IMCs to the current applied context via
 The current list of applied IMCs will be sorted and your new IMC will be considered
 at whatever priority you assigned to it.
 
-```c++
+```cpp
 /**
  * Add a control mapping context.
  * @param MappingContext    A set of key to action mappings to apply to this player
@@ -97,7 +97,7 @@ virtual void AddMappingContext(const UInputMappingContext* MappingContext, int32
 You can remove one particular IMC via
 `Subsystem`➔`RemoveMappingContext`
 
-```c++
+```cpp
 /**
  * Remove a specific control context. 
  * This is safe to call even if the context is not applied.
@@ -115,7 +115,7 @@ virtual void RemoveMappingContext(const UInputMappingContext* MappingContext, co
 To remove **all** previously configured IMCs, use
 `Subsystem`➔`ClearAllMappings`
 
-```c++
+```cpp
 /**
  * Remove all applied mapping contexts.
  */
@@ -129,7 +129,7 @@ virtual void ClearAllMappings();
 
 For debugging, see `IEnhancedInputSubsystemInterface`::`RebuildControlMappings`,
 in particular breakpoint this line:
-```c++
+```cpp
 for (const TPair<TObjectPtr<const UInputMappingContext>, int32>& ContextPair : OrderedInputContexts)
 ```
 

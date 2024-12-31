@@ -52,7 +52,7 @@ For general information about `CommonUI`, see my [Common UI Overview](/UE5/Commo
 <a id="LyraHUDLayout"></a>
 ## Lyra HUD Layout
 ### `LyraHUDLayout` : public `LyraActivatableWidget` from `CommonUI`
-```c++
+```cpp
 /**
  * ULyraHUDLayout
  *

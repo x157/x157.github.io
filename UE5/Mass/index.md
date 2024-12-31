@@ -134,7 +134,7 @@ As of 5.5 there isn't much ability to customize or override this without modifyi
 
 During each Editor/Game tick, the `PhaseManager` processes these phases in ascending order.
 
-```c++
+```cpp
 UENUM()
 enum class EMassProcessingPhase : uint8
 {
@@ -250,7 +250,7 @@ For example, I add this code right at the top of the `MassEntity.Build.cs`.
 Other Engine Build.cs files that I sometimes modify similarly for debugging:
 `MassSimulation.Build.cs`, `MassSpawner.Build.cs`, etc.
 
-```c#
+```cs
 // Example MassEntity.Build.cs
 namespace UnrealBuildTool.Rules
 {

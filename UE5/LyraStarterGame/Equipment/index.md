@@ -167,7 +167,7 @@ You should consider this to understand how it helps support the system overall.
 <a id="EquipmentManagerComponent"></a>
 ### `ULyraEquipmentManagerComponent`::`EquipItem`
 
-```c++
+```cpp
 ULyraEquipmentInstance* EquipItem (TSubclassOf<ULyraEquipmentDefinition> EquipmentDefinition);
 ```
 
@@ -179,7 +179,7 @@ The Equipment Instance is created via a call to:
 <a id="EquipmentList_AddEntry"></a>
 ### `FLyraEquipmentList`::`AddEntry`
 
-```c++
+```cpp
 ULyraEquipmentInstance* AddEntry (TSubclassOf<ULyraEquipmentDefinition> EquipmentDefinition);
 ```
 

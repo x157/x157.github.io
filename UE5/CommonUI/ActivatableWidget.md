@@ -21,7 +21,7 @@ Common use cases for an Activatable Widget are
 
 ### Is Activated?
 
-```c++
+```cpp
 UFUNCTION(BlueprintCallable, Category = ActivatableWidget)
 bool IsActivated() const { return bIsActive; }
 ```
@@ -29,14 +29,14 @@ bool IsActivated() const { return bIsActive; }
 
 ## Activate Widget
 
-```c++
+```cpp
 UFUNCTION(BlueprintCallable, Category = ActivatableWidget)
 void ActivateWidget();
 ```
 
 ### OnActivated
 
-```c++
+```cpp
 UFUNCTION(BlueprintImplementableEvent, Category = ActivatableWidget, meta = (DisplayName = "On Activated"))
 void BP_OnActivated();
 
@@ -46,14 +46,14 @@ virtual void NativeOnActivated();
 
 ## Deactivate Widget
 
-```c++
+```cpp
 UFUNCTION(BlueprintCallable, Category = ActivatableWidget)
 void DeactivateWidget();
 ```
 
 ### OnDeactivated
 
-```c++
+```cpp
 UFUNCTION(BlueprintImplementableEvent, Category = ActivatableWidget, meta = (DisplayName = "On Deactivated"))
 void BP_OnDeactivated();
 
@@ -64,7 +64,7 @@ virtual void NativeOnDeactivated();
 <a id='GetDesiredInputConfig'></a>
 ## Get Desired Input Config
 
-```c++
+```cpp
 /**
  * Gets the desired input configuration to establish when this widget activates
  * and can receive input (i.e. all parents are also active).
@@ -89,7 +89,7 @@ to explicitly set the game input mode when this widget is activated.
 <a id='GetDesiredFocusTarget'></a>
 ## Get Desired Focus Target
 
-```c++
+```cpp
 /**
  * Override to provide the desired widget that should receive focus
  * when this becomes the primary active widget.
@@ -112,6 +112,6 @@ like Gamepad buttons or Keyboard keys.
 <a id='GetDesiredCameraConfig'></a>
 ## Get Desired Camera Config
 
-```c++
+```cpp
 virtual TOptional<FUICameraConfig> GetDesiredCameraConfig() const;
 ```

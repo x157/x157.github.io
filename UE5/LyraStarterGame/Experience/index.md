@@ -343,7 +343,7 @@ Some examples of particular interest are discussed below.
 
 In this C++ example, you'd set `BeginPlay` as follows:
 
-```c++
+```cpp
 void AMyExampleActor::BeginPlay()
 {
     Super::BeginPlay();
@@ -361,7 +361,7 @@ void AMyExampleActor::BeginPlay()
 You must also create an `OnExperienceLoaded` handler in `AMyExampleActor`
 to receive the event:
 
-```c++
+```cpp
 // Called by Lyra Experience Manager
 void AMyExampleActor::OnExperienceLoaded(const ULyraExperienceDefinition* Experience)
 {

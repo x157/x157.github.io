@@ -33,7 +33,7 @@ and search for invocations of that method.
 
 ## Set Active UI Input Config
 
-```c++
+```cpp
 void SetActiveUIInputConfig(const FUIInputConfig& NewConfig);
 ```
 
@@ -44,7 +44,7 @@ Call this from Game code to change the Common UI Input Config to your preferred 
 
 ## Apply UI Input Config
 
-```c++
+```cpp
 virtual void ApplyUIInputConfig(const FUIInputConfig& NewConfig, bool bForceRefresh);
 ```
 
