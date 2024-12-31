@@ -46,7 +46,7 @@ Blueprint Scripting, and the
 (OSS) or other online backends.
 It is a standalone plugin that can be used in any project.
 
-[Official Epic Docs: Common User Plugin](https://docs.unrealengine.com/5.1/en-US/common-user-plugin-in-unreal-engine-for-lyra-sample-game/)
+[Official Epic Docs: Common User Plugin](https://dev.epicgames.com/documentation/en-us/unreal-engine/common-user-plugin-in-unreal-engine-for-lyra-sample-game)
 
 Provides `Common User Subsystem`, `Common Session Subsystem` and a `Common User Initialize` async action.
 
