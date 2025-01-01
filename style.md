@@ -51,6 +51,12 @@ multiple h rules in a row
 ------------------------------------------------------------
 ------------------------------------------------------------
 
+### Image linking to full resolution self
+
+[![Xist Icon](./assets/images/favicon-192.png)](./assets/images/favicon-192.png)
+
+------------------------------------------------------------
+
 ### C++ Code
 
 ```cpp
