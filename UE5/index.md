@@ -17,11 +17,13 @@ To understand [Lyra](/UE5/LyraStarterGame/), you also need an understanding of t
   - Gameplay Attributes and Gameplay Effects ([Epic Documentation](https://docs.unrealengine.com/5.0/en-US/gameplay-attributes-and-gameplay-effects-for-the-gameplay-ability-system-in-unreal-engine/))
 - [GameFeature Plugins](/UE5/GameFeatures/)
 - [Modular Gameplay Plugin](/UE5/ModularGameplay/)
+- [Online Services](/UE5/OnlineServices/)
 - [UI Extension Plugin](/UE5/UIExtension/)
 
-## Mass Entity and related plugins
+## Mass Entity
 
 - [Mass Entity](/UE5/Mass/) Overview
+- [Mass Navigation](/UE5/Mass/Navigation)
 
 
 # Using Unreal Engine
