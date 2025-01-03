@@ -92,6 +92,7 @@ in a few Engine `Target.cs` build scripts, including:
 - `Engine/Plugins/Online/OnlineServices/Source/OnlineServicesCommon/OnlineServicesCommon.Build.cs`
 - `Engine/Plugins/Online/OnlineServices/Source/OnlineServicesCommonEngineUtils/OnlineServicesCommonEngineUtils.Build.cs`
 - `Engine/Plugins/Online/OnlineServices/Source/OnlineServicesInterface/OnlineServicesInterface.Build.cs`
+- `Engine/Plugins/Online/OnlineServicesNull/Source/OnlineServicesNull.Build.cs`
 
 ### Example Diff for `OnlineServicesInterface.Build.cs`
 
