@@ -18,6 +18,10 @@ covers the material outlined in this dev log.
 Reading this log and watching the video together may help
 make the material more clear.
 
+NOTICE: The video covers the code for UE 5.2, and it has been updated some in UE 5.5.
+The concepts are the same but the code is a bit different.
+These updated notes cover the code as of UE 5.5.
+
 This tutorial will show you how to take full control over the mouse and
 input mode in your Lyra-based game.
 
@@ -51,16 +55,9 @@ You must use CommonUI to change input modes. DO NOT use old UE4 methods, they do
 This is an example of a Blueprint Function Library that provides a single static C++
 method that can be used by either C++ or Blueprint code.
 
-In this example, there are 3 possible switches:
+You must pass in the Player Controller whose input mode you wish to change
+as well as the `ECommonInputMode` you want to activate.
 
-- Set mouse visible? (bool)
-- Ignore look input? (bool)
-- Ignore move input? (bool)
-
-You must pass in the Player Controller whose input mode you wish to change, and then
-based on the settings of these 3 switches, it will compute the appropriate
-CommonUI `FUIInputConfig`, set the mouse visibility and then call the
-CommonUI Action Router's `SetActiveUIInputConfig` method.
 
 
 ### C++ Usage Example
@@ -68,21 +65,15 @@ CommonUI Action Router's `SetActiveUIInputConfig` method.
 ```cpp
 APlayerController* PC = /*YOU_MUST_SET_THIS*/;
 
-bool bVisibleMouse = true;
-bool bIgnoreLook = true;
-bool bIgnoreMove = false;
+// Activate "Game" mode (invisible mouse; mouse is used for look input)
+UXistedInputModeStatics::XistedSetInputMode(PC, ECommonInputMode::Game);
 
-UXistedInputModeStatics::XistedSetInputMode(PC, bVisibleMouse, bIgnoreLook, bIgnoreMove);
+// Activate "All" mode (visible mouse; mouse is NOT used for look input; Game receives input)
+UXistedInputModeStatics::XistedSetInputMode(PC, ECommonInputMode::All);
+
+// Activate "Menu" mode (visible mouse; mouse is NOT used for look input; Game receives NO input)
+UXistedInputModeStatics::XistedSetInputMode(PC, ECommonInputMode::Menu);
 ```
-
-
-### Blueprint Usage Example
-
-In this example Gameplay Ability blueprint, we're calling the static
-blueprint function library method `XistedSetInputMode` to change the
-input mode of the Player Controller that currently owns the ability.
-
-[![ChangeInputMode screenshot](./screenshots/ChangeInputMode.png)](./screenshots/ChangeInputMode.png)
 
 
 ## Make it work like you want
