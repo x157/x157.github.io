@@ -288,5 +288,13 @@ These are some excellent sources of info related to Mass.
 - [Mass Framework for crowds & traffic simulation in Unreal Engine](https://vrealmatic.com/unreal-engine/mass)
 - Open Source Community projects:
   - [Megafunk's Mass Sample Project](https://github.com/Megafunk/MassSample)
+    - Contains some very detailed info in the README, definitely read this!
   - [Ji-Rath's Mass AI Example Project](https://github.com/Ji-Rath/MassAIExample)
+    - Focuses on animation, use of State Trees and Smart Objects
   - [Myxcil's Mass Traffic Test Project](https://github.com/Myxcil/MassTraffic-Test)
+    - Detailed vehicle driving/traffic simulation
+    - Derived from Epic's [CitySample](https://dev.epicgames.com/documentation/en-us/unreal-engine/city-sample-project-unreal-engine-demonstration)
+  - [Arkena's Mass Sample](https://github.com/arkena00/sample.mass/)
+    - Example of how to replicate mass data *(SOON TO BE DEPRECATED)*
+      - If you MUST have replication NOW, see this example
+      - If you can wait, then **wait** for the new Iris-based replication implementation from Epic
