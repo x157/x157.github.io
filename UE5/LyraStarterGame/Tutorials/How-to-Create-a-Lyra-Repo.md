@@ -153,6 +153,7 @@ if (!(Test-Path $WorkspaceDir)) {mkdir $WorkspaceDir}
 cd $WorkspaceDir
 
 git init
+git lfs install
 git add .gitignore .gitattributes  # YOU MUST PROVIDE THESE FILES
 git commit -m "Initialize Git"
 ```
