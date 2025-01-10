@@ -31,12 +31,7 @@ In general the primary takeaways for using `FRunnable` are:
     ```
 
 - In your `FRunnable` destructor when you `Thread->Kill()`, it will
-  automatically execute code similar to the following:
-
-    ```cpp
-    Runnable->Stop();
-    Runnable->Exit();
-    ```
+  automatically call `Runnable->Stop()`
 
 - In your main game thread (or whatever thread is managing your `FRunnable` threads):
   - You can explicitly call `Runnable->Stop()` to schedule the thread to exit, but
