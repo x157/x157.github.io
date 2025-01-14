@@ -8,7 +8,13 @@ breadcrumb_name: "Linux"
 
 - [How to use p4 on Linux](/UE5/Linux/p4)
 
-## Setting up the toolchain
+## Setting up a build machine
+
+- Create a `Ubuntu 22.04 LTS Minimal` VM on Google Compute
+  - Need at least 200 GB disk
+  - Ideally at least 16 physical cores (more builds faster but is more expensive)
+
+### Install prerequisite packages
 
 ```bash
 # You need some Ubuntu packages installed before you do anything else
@@ -16,49 +22,75 @@ sudo apt-get -y install \
   autoconf \
   binutils \
   bison \
+  build-essential \
   bzip2 \
   cmake \
   flex \
   gettext \
   gcc \
+  git \
   help2man \
   libncurses-dev \
   libtool libtool-bin libtool-doc \
+  lsb-core \
   texinfo \
   zip
 ```
 
-Surely somewhere Epic links to this in a more obvious place (?), but I found it in this obscure
-["Version History"](https://dev.epicgames.com/documentation/en-us/unreal-engine/linux-development-requirements-for-unreal-engine#versionhistory)
-table at the bottom of
-[Linux Development Requirements](https://dev.epicgames.com/documentation/en-us/unreal-engine/linux-development-requirements-for-unreal-engine).
+## Get Engine Source
 
-Download:
-[Linux toolchain clang-18.1.0 for Ubuntu 22.04](https://cdn.unrealengine.com/Toolchain_Linux/native-linux-v23_clang-18.1.0-rockylinux8.tar.gz)
-(~ 1.5 GB)
+Either `git clone` the Engine source, or
+[install p4](/UE/Linux/p4) and sync your Engine stream.
+
+If you cloned git, then run `./Setup.sh` from the repo clone just as
+you would on any other OS.
+
+### p4 stream toolchain setup
+
+If you sync'd from p4, then instead of `./Setup.sh` you need to:
 
 ```bash
-# Install scripts into expected /src location:
-sudo mkdir /src
+pushd Engine/Build/BatchFiles/Linux
 
-sudo cp -r v23_clang-18.1.0-rockylinux8/build/scripts/* /src
+# Run Linux-specific SetupToolchain.sh
+./SetupToolchain.sh
+
+# Build third party libs if needed
+./BuildThirdParty.sh
+
+popd
 ```
 
-After you extract that archive, look in the `build/scripts` directory.
+## Generate Project Files
 
-## `build_linux_toolchain.sh`
+```bash
+# Generate project files (AFTER Setup.sh)
+./GenerateProjectFiles.sh
+```
 
-The main file we need to run is `./build_linux_toolchain.sh` from `build/scripts`
-in the toolchain zip we downloaded from Epic (above).
+## Building Project
 
-Note that they're expecting this to run inside a Docker container and it doesn't necessarily
-recover from failures (especially Github cloning failures, which are rampant).
+```bash
+./Engine/Build/BatchFiles/Linux/Build.sh LyraEditor Linux DebugGame
+```
 
-Ideally you'll step through this manually so you can fix any errors that occur as they occur.
-This is Linux, after all.  `:-)`
+### Fixup executable permissions
+
+I'm probably just bad, but having imported my Engine source from UDN p4, some Linux executables
+weren't set as executables in my p4 depot, here are the ones I needed to update:
+
+```bash
+p4 edit -t binary+x Engine/Source/ThirdParty/Intel/ISPC/bin/Linux/ispc
+p4 edit -t binary+x Engine/Binaries/Linux/BreakpadSymbolEncoder
+p4 edit -t binary+x Engine/Binaries/Linux/EpicWebHelper
+p4 edit -t binary+x Engine/Binaries/Linux/UnrealTraceServer
+p4 edit -t binary+x Engine/Binaries/Linux/UnrealVersionSelector-Linux-Shipping
+p4 edit -t binary+x Engine/Binaries/Linux/dump_syms
+p4 edit -t binary+x Engine/Binaries/Linux/zen*
+```
 
 
-
+<a id='see-also'></a>
 # See Also
 
 - [Linux Game Development Overview](https://dev.epicgames.com/documentation/en-us/unreal-engine/linux-game-development-in-unreal-engine)
