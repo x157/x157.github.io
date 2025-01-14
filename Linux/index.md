@@ -18,6 +18,7 @@ breadcrumb_name: "Linux"
 
 ```bash
 # You need some Ubuntu packages installed before you do anything else
+sudo apt-get -y update
 sudo apt-get -y install \
   autoconf \
   binutils \
@@ -70,9 +71,12 @@ popd
 
 ## Building Project
 
+In this example we're building the `LyraEditor` target in the `Development` configuration:
+
 ```bash
-./Engine/Build/BatchFiles/Linux/Build.sh LyraEditor Linux DebugGame
+./Engine/Build/BatchFiles/Linux/Build.sh LyraEditor Linux Development
 ```
+
 
 ### Fixup executable permissions
 
