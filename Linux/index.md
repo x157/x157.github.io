@@ -38,6 +38,19 @@ sudo apt-get -y install \
   zip
 ```
 
+### Install PowerShell for UnrealXistTools
+
+If you're using [UnrealXistTools](/UnrealXistTools/), you need to install PowerShell:
+
+```bash
+# Install PowerShell
+sudo snap install powershell --classic
+```
+
+If you don't have or want to use `snap`, see this
+[Microsoft Documentation](https://learn.microsoft.com/en-us/powershell/scripting/install/install-ubuntu?view=powershell-7.4)
+regarding how else to install Powershell on Ubuntu 22.04.
+
 ## Get Engine Source
 
 Either `git clone` the Engine source, or
@@ -46,11 +59,13 @@ Either `git clone` the Engine source, or
 If you cloned git, then run `./Setup.sh` from the repo clone just as
 you would on any other OS.
 
-### p4 stream toolchain setup
+### `./Setup.sh` for P4-based Engine source
 
-If you sync'd from p4, then instead of `./Setup.sh` you need to:
+If your Engine source is derived from UDN P4 rather than Github,
+then instead of `./Setup.sh` (which doesn't exist), you need to:
 
 ```bash
+# cd into Linux-specific Build BatchFiles
 pushd Engine/Build/BatchFiles/Linux
 
 # Run Linux-specific SetupToolchain.sh
@@ -65,7 +80,7 @@ popd
 ## Generate Project Files
 
 ```bash
-# Generate project files (AFTER Setup.sh)
+# Generate project files (AFTER Setup completed successfully)
 ./GenerateProjectFiles.sh
 ```
 
@@ -74,14 +89,22 @@ popd
 In this example we're building the `LyraEditor` target in the `Development` configuration:
 
 ```bash
-./Engine/Build/BatchFiles/Linux/Build.sh LyraEditor Linux Development
+# Change these based on what you want to build
+$Target = "LyraEditor"  # prefix of the "*.Target.cs" to build
+$Platform = "Linux"  # always Linux on Linux
+$Configuration = "Development"  # or "DebugGame" or "Shipping" etc
+
+# cd to your Engine's root dir
+./runUBT.sh $Target $Platform $Configuration
 ```
 
 
 ### Fixup executable permissions
 
-I'm probably just bad, but having imported my Engine source from UDN p4, some Linux executables
-weren't set as executables in my p4 depot, here are the ones I needed to update:
+Since I imported my Engine source from UDN p4 using a Windows machine as the intermediary,
+all the Linux executables in my p4 depot had lost their execute bits.
+
+To fix this, I had to:
 
 ```bash
 p4 edit -t binary+x Engine/Source/ThirdParty/Intel/ISPC/bin/Linux/ispc
@@ -91,6 +114,8 @@ p4 edit -t binary+x Engine/Binaries/Linux/UnrealTraceServer
 p4 edit -t binary+x Engine/Binaries/Linux/UnrealVersionSelector-Linux-Shipping
 p4 edit -t binary+x Engine/Binaries/Linux/dump_syms
 p4 edit -t binary+x Engine/Binaries/Linux/zen*
+
+p4 submit -m "Add executable bits to Linux executables"
 ```
 
 
