@@ -11,15 +11,17 @@ Source: [https://github.com/XistGG/UnrealXistTools](https://github.com/XistGG/Un
 [UnrealXistTools](https://github.com/XistGG/UnrealXistTools)
 is a set of PowerShell 7 scripts for UE5 developers.
 
-Currently this is only used in Windows, though it may also work for Mac or Linux.
-I generally try to write software that works everywhere,
-but I haven't actually tested Mac or Linux.
-
-At the very least it should be very easy for you to find/fix any alt-platform
-issues you may experience.  I will gladly accept PRs for these as well.
+We use these scripts on Windows, Mac and Linux.
 
 
 ## Example Uses
+
+[UAT.ps1]()
+-- Simplified interface to `RunUAT.(bat|sh)`
+
+```powershell
+UAT.ps1 Lyra.uproject -Target LyraGameEOS -Build -Cook -Stage -Run
+```
 
 [UProjectClean.ps1](https://github.com/XistGG/UnrealXistTools#uprojectcleanps1)
 -- Completely Clean & Reset Project to Current Source
