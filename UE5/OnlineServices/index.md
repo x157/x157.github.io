@@ -29,7 +29,7 @@ To upgrade your Lyra config for OSSv2 see this
 
 In general the Epic docs for how to configure EOS are good, but when I initially set this up in
 my project, I found the INI a bit confusing.  To make it more clear, here is the diff you will
-need to make to the EOS INI:
+need to make to `Config/Custom/EOS/DefaultEngine.ini`:
 
 | Default Config/Custom/EOS/DefaultEngine.ini                                                                                                                                      | Modified Config/Custom/EOS/DefaultEngine.ini                                                                                                                                              |
 |---|---|
@@ -39,6 +39,30 @@ In other words, don't just uncomment the default settings, as Epic says,
 but also remove the leading `+` character from each of the lines.
 
 Though a leading `+` is required in some cases in INI files, they are NOT wanted here.
+
+Obviously, you also want to populate `PRODUCTID`, `SANDBOXID` and the other ALLCAPS values with your project info
+as described in the Epic docs.
+
+## 5.6 INI change
+
+In UE 5.5 they made another change here, with a deprecation notice to take effect in 5.6.
+After following the Epic docs, you may get a warning like this every time you start UEditor:
+
+```text
+LogOnlineEngine: Warning: bUseOnlineServicesV2 is deprecated, please instead configure [/Script/Engine.OnlineEngineInterface]:ClassName=/Script/OnlineSubsystemUtils.OnlineServicesEngineInterfaceImpl
+```
+
+To fix it, just comment out `bUseOnlineServicesV2` and add the line they told you to add in the warning.
+The appropriate config for `[/Script/Engine.OnlineEngineInterface]` looks like this:
+
+```ini
+[/Script/Engine.OnlineEngineInterface]
+;bUseOnlineServicesV2=true
+ClassName=/Script/OnlineSubsystemUtils.OnlineServicesEngineInterfaceImpl
+```
+
+*You don't have to leave the commented-out `bUseOnlineServicesV2=true`,
+I just did so to make it clear that we're replacing that line with the `ClassName=...` line.*
 
 # Game Initialization
 
@@ -93,6 +117,19 @@ in a few Engine `Target.cs` build scripts, including:
 - `Engine/Plugins/Online/OnlineServices/Source/OnlineServicesCommonEngineUtils/OnlineServicesCommonEngineUtils.Build.cs`
 - `Engine/Plugins/Online/OnlineServices/Source/OnlineServicesInterface/OnlineServicesInterface.Build.cs`
 - `Engine/Plugins/Online/OnlineServicesNull/Source/OnlineServicesNull.Build.cs`
+
+### Code snippet
+
+```cs
+// [BEGIN xist debug hack]
+// Allow debugger stepping in this Engine module when built as DebugGame
+if (Target.Configuration == UnrealTargetConfiguration.DebugGame)
+{
+    OptimizeCode = CodeOptimization.Never;
+}
+// [END xist debug hack]
+
+```
 
 ### Example Diff for `OnlineServicesInterface.Build.cs`
 
