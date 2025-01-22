@@ -36,6 +36,8 @@ sudo apt-get -y install \
   lsb-core \
   texinfo \
   zip
+# These packages seem to be needed for UnrealVersionSelector at least
+sudo apt-get -y install xdg-user-dirs xdg-utils
 ```
 
 ### Install PowerShell for UnrealXistTools
