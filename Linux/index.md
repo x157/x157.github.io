@@ -81,44 +81,79 @@ popd
 
 ## Generate Project Files
 
+However you go about running your `./Setup.sh`, afterward you need to
+Generate Project Files.
+
 ```bash
 # Generate project files (AFTER Setup completed successfully)
 ./GenerateProjectFiles.sh
 ```
 
-## Building Project
+## Building the Project
 
 In this example we're building the `LyraEditor` target in the `Development` configuration:
 
 ```bash
 # Change these based on what you want to build
-$Target = "LyraEditor"  # prefix of the "*.Target.cs" to build
-$Platform = "Linux"  # always Linux on Linux
-$Configuration = "Development"  # or "DebugGame" or "Shipping" etc
+Target="LyraEditor"  # prefix of the "*.Target.cs" to build
+Platform="Linux"  # always Linux on Linux
+Configuration="Development"  # or "DebugGame" or "Shipping" etc
 
 # cd to your Engine's root dir
-./runUBT.sh $Target $Platform $Configuration
+./RunUBT.sh $Target $Platform $Configuration
 ```
 
+Given this is Linux, you probably want to build `LyraServerEOS`, right?  `:)`
 
-### Fixup executable permissions
 
-Since I imported my Engine source from UDN p4 using a Windows machine as the intermediary,
-all the Linux executables in my p4 depot had lost their execute bits.
+## Building UnrealVersionSelector
 
-To fix this, I had to:
+To rebuild `UnrealVersionSelector` for Linux, run this command:
 
 ```bash
-p4 edit -t binary+x Engine/Source/ThirdParty/Intel/ISPC/bin/Linux/ispc
-p4 edit -t binary+x Engine/Binaries/Linux/BreakpadSymbolEncoder
-p4 edit -t binary+x Engine/Binaries/Linux/EpicWebHelper
-p4 edit -t binary+x Engine/Binaries/Linux/UnrealTraceServer
-p4 edit -t binary+x Engine/Binaries/Linux/UnrealVersionSelector-Linux-Shipping
-p4 edit -t binary+x Engine/Binaries/Linux/dump_syms
-p4 edit -t binary+x Engine/Binaries/Linux/zen*
-
-p4 submit -m "Add executable bits to Linux executables"
+# Rebuild UnrealVersionSelector
+./Engine/Build/BatchFiles/Linux/Build.sh UnrealVersionSelector Linux Shipping
 ```
+
+This generates `Engine/Binaries/Linux/UnrealVersionSelector-Linux-Shipping`
+
+### Register your Custom Engine
+
+After building `UnrealVersionSelector`, run:
+
+```bash
+# Register this custom UE version on the current host
+./Engine/Binaries/Linux/UnrealVersionSelector-Linux-Shipping -register -unattended
+```
+
+After running that, you can look in the Linux custom engine registry to find your engine listed:
+
+```bash
+cat $HOME/.config/Epic/UnrealEngine/Install.ini
+```
+
+The output looks something like this:
+
+```ini
+[Installations]
+148492FA-37EF-4C22-AA40-9C709BBEB08F=/opt/UE_5.5
+```
+
+If you need to coordinate custom engine names with your team, you can add
+a custom name for your engine, like:
+
+```ini
+[Installations]
+148492FA-37EF-4C22-AA40-9C709BBEB08F=/opt/UE_5.5
+MyCustomEngine=/opt/UE_5.5
+```
+
+This will allow you to use `EngineAssociation = "MyCustomEngine"`
+in your `.uproject` file, assuming everyone on your team does this.
+
+See [UEngine.ps1](https://github.com/XistGG/UnrealXistTools?tab=readme-ov-file#uengineps1)
+in [UnrealXistTools](https://github.com/XistGG/UnrealXistTools)
+for a fully cross-platform PowerShell script to make custom engine management easier.
 
 
 <a id='see-also'></a>
