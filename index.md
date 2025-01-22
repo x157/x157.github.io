@@ -28,7 +28,8 @@ some are completely different and incompatible with UE4 methodologies
 
 ### Unreal Developer Topics
 
-- [Overview of Development in UE5](/UE5/Dev/)
+- [Overview of Development in UE5 in general](/UE5/Dev/)
+  - [Developing UE5 on Linux](/UE5/Linux/)
 - [Software Development as a Windows user](/Windows/)
 - [UnrealXistTools](/UnrealXistTools/) -- tools to help UE5 devs
 - [github.com/XistGG](https://github.com/XistGG) -- sample projects and other MIT licensed public code and examples

@@ -4,7 +4,7 @@ description: "Developing Unreal Engine on Linux"
 breadcrumb_name: "Linux"
 ---
 
-# Linux Dev Notes
+# Linux UE5 Dev Notes
 
 - [How to use p4 on Linux](/UE5/Linux/p4)
 
@@ -19,6 +19,7 @@ breadcrumb_name: "Linux"
 ```bash
 # You need some Ubuntu packages installed before you do anything else
 sudo apt-get -y update
+
 sudo apt-get -y install \
   autoconf \
   binutils \
@@ -36,35 +37,39 @@ sudo apt-get -y install \
   lsb-core \
   texinfo \
   zip
+
 # These packages seem to be needed for UnrealVersionSelector at least
 sudo apt-get -y install xdg-user-dirs xdg-utils
 ```
 
 ### Install PowerShell for UnrealXistTools
 
-If you're using [UnrealXistTools](/UnrealXistTools/), you need to install PowerShell:
+If you're using [UnrealXistTools](/UnrealXistTools/), you need to install PowerShell.
 
-```bash
-# Install PowerShell
-sudo snap install powershell --classic
-```
-
-If you don't have or want to use `snap`, see this
+Check this official
 [Microsoft Documentation](https://learn.microsoft.com/en-us/powershell/scripting/install/install-ubuntu?view=powershell-7.4)
 regarding how else to install Powershell on Ubuntu 22.04.
+
+TLDR you need to run 8-10 commands, you can mostly cut/paste from that page.
 
 ## Get Engine Source
 
 Either `git clone` the Engine source, or
 [install p4](/UE/Linux/p4) and sync your Engine stream.
 
+## Run `./Setup.sh`
+
 If you cloned git, then run `./Setup.sh` from the repo clone just as
 you would on any other OS.
 
-### `./Setup.sh` for P4-based Engine source
+This is fairly easy and after it completes you can skip to
+[Generate Project Files](#GenerateProjectFiles) below.
 
 If your Engine source is derived from UDN P4 rather than Github,
-then instead of `./Setup.sh` (which doesn't exist), you need to:
+then instead of `./Setup.sh` (which doesn't exist), the process is
+slightly more complex.  Keep reading.
+
+### `./Setup.sh` for P4-based Engine source
 
 ```bash
 # cd into Linux-specific Build BatchFiles
@@ -79,6 +84,7 @@ pushd Engine/Build/BatchFiles/Linux
 popd
 ```
 
+<a id="GenerateProjectFiles"></a>
 ## Generate Project Files
 
 However you go about running your `./Setup.sh`, afterward you need to
