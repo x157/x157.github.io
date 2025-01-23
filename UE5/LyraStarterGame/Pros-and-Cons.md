@@ -24,7 +24,7 @@ Both using and not using Lyra are valid choices.  You must decide which is best 
 
 ## Pros
 
-- Lyra uses UE 5.1 Standards for New Game Development
+- Lyra uses UE 5.1+ Standards for New Game Development
   - Multi-threaded Animations
   - [Enhanced Input](/UE5/EnhancedInput/)
   - [Gameplay Ability System](/UE5/GameplayAbilitySystem/)
@@ -33,7 +33,7 @@ Both using and not using Lyra are valid choices.  You must decide which is best 
 - Lyra is **already** a multiplayer game
   - You can add multiplayer features by copying Epic's examples
   - Great learning experience for people new to Unreal Networking
-- Epic has done **weeks** or **months** of work for you
+- Epic has done **months** of work for you
   - Stuff that **is not fun** to do, but **must be done** for every game.
     - Gameplay Message Subsystem
     - C++ system to support multi-threaded animations
@@ -50,9 +50,9 @@ Both using and not using Lyra are valid choices.  You must decide which is best 
 
 - For a **New** game:
     - You're going to be forced to use:
-      - the new UE 5.1 standard [Enhanced Input](/UE5/EnhancedInput/) *(you should probably use this anyway...)*
+      - the UE 5.1+ standard [Enhanced Input](/UE5/EnhancedInput/) *(you should probably use this anyway...)*
       - `CommonUI` is the player input system
-          - `CommonUI` is still in the experimental development phase, meaning it is changing A LOT
+          - `CommonUI` is still being actively developed, meaning it is changing
             with each release, is not particularly well documented,
             and literally has CONTROL over player input.
             - I have attempted to demystify [CommonUI](/UE5/CommonUI/), but it's a beast.
@@ -60,7 +60,6 @@ Both using and not using Lyra are valid choices.  You must decide which is best 
             - Lyra supports shooter style input controls out of the box.
             - For an RTS or MOBA game where you want the player to actually use the mouse,
               you will need to do some cusomization of `CommonUI` to get it to work.
-              - In Engines 5.1 and before this required a custom Engine.
               - Engine 5.2+ supports this by default, see [this GitHub issue](https://github.com/x157/x157.github.io/issues/14) for more info.
       - Gameplay Ability System (GAS)
         - GAS is very complex. It is also THE UE STANDARD for how to execute abilities over the network.

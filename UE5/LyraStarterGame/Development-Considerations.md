@@ -8,18 +8,32 @@ breadcrumb_name: "Development Considerations"
 
 # Extending Lyra: Development Considerations
 
-For my purposes, my goal is to **NEVER MODIFY** base Lyra code or
-assets unless it's strictly required (which is rare).
+For my purposes, my goal is to not modify Lyra binary assets whenever possible,
+and to make as few changes to base Lyra C++ as is reasonable.
 
 The more closely I achieve this goal, the easier it will be to merge Epic's
 future Lyra releases into my code.  If they make bug fixes to code I'm
 using, I want those.  If they add new features, I'd like to be able to
 implement them as easily as possible.
 
+**UE 5.6 UPDATE**: As of the upcoming UE 5.6, It has now been roughly 3 years since
+Lyra was released, and so far Epic hasn't made any significant changes
+to it. They have made some bug fixes, but in general it doesn't seem
+that they are going to be adding much to it moving forward.
+
+At this point, the "hack Lyra all you want" philosophy probably makes
+the most sense, given that future updates from Epic seem increasingly
+unlikely the longer we go without one.
+Do note that hacking Lyra guarantees that if Epic makes changes to binaries
+in the future, it WILL be a huge pain to integrate those changes into your game.
+
 - [Extend Lyra C++ Code](#ExtendCPP)
   - [Fill in Some Gaps in Lyra C++ Code](#FillInCPPGaps)
   - [Duplicate Lyra Prototype C++ Code](#DuplicatePrototypeCpp)
 - [Duplicate Lyra Binary Assets](#DuplicateAssets)
+  - [Problem: It is not possible to merge multiple branches of a binary file](#ProblemCannotMergeBinary)
+  - [Solution: Duplicate the Lyra asset into your own GFP and modify the duplicate](#SolutionDuplicateBinary)
+  - [Alternative: Hack Lyra Directly](#AlternativeHackLyra)
 - [Xist Project Structure: XCL Plugin + XaiLife GFP](#Structure)
 
 
@@ -64,8 +78,8 @@ to my own
 and removed the player-specific code to make a nice generic base
 Modular AI Controller for all of my future Lyra projects.
 
-Hopefully Epic will add a generic AI Controller in the future,
-at which time I can either rebase my XCL AI Controller onto the new
+If Epic ever adds a generic AI Controller in the future,
+I can either rebase my XCL AI Controller onto the new
 Lyra AI Controller, or not, depending on what they do with it.
 
 #### Generic Actor with Ability System
@@ -96,42 +110,60 @@ to duplicating it.
 <a id='DuplicateAssets'></a>
 ## Duplicate Lyra Binary Assets
 
-###### Problem: It is not possible to merge multiple branches of a binary file
+The question of whether to duplicate binaries and change the duplicates,
+or to directly modify Lyra binaries in place, is a big one.
 
-Because of this,
-**you should not modify Lyra assets**
+On the one hand, it's way faster just to start modifying assets in place.
+You get up and running immediately with no up-front setup time.
+
+On the other hand, **IF** Epic makes changes to these assets, the process
+of reviewing their changes and integrating them into your changes is
+extremely annoying, time consuming and error prone.
+
+Merging their C++ changes into yours is fairly easy.
+
+Merging their binary changes into yours is a nightmare.
+
+<a id='ProblemCannotMergeBinary'></a>
+##### Problem: It is not possible to merge multiple branches of a binary file
+
+Because it is not possible to merge multiple branches of a binary file,
 if you want future Lyra updates from Epic
-that don't completely break your game.
+then you SHOULD NOT modify the assets they ship with Lyra.
 
-###### Solution: Duplicate the Lyra asset into your own GFP and modify your duplicated asset
+<a id='SolutionDuplicateBinary'></a>
+##### Solution: Duplicate the Lyra asset into your own GFP and modify the duplicate
 
 When you find yourself needing to save a Lyra uasset
 (Blueprint, Data Asset, Widget, anything),
 **DO NOT** modify the Lyra asset.
 Instead, duplicate it into your own GFP and modify your duplicate.
 
-This way Epic can update the Lyra binary assets as much as they want,
-and it will not affect your game.  The only Lyra assets you will be using
+This way Epic can update the Lyra binary assets as much as they want
+*(which again, has been rare in the past 3 years)*,
+and you can bring in their updates without affecting your game.
+The only Lyra assets you will be using directly
 are the ones you haven't changed at all.
 
 You will be able to choose **if and when**
 to copy Epic's future Lyra changes (if and when they make them).
 `:-)`
 
-###### Alternative: Hack Lyra Directly
+<a id='AlternativeHackLyra'></a>
+##### Alternative: Hack Lyra Directly
 
 This is by far the easiest option to get started with Lyra.
 Just hack the files how you want and save them immediately.
 
 In the long run, by choosing this option you are choosing to
-**not be able to get** future Lyra updates from Epic.
+not be able to easily get future Lyra updates from Epic.
 
 If you're just messing around with Lyra to learn, then by all means,
 hack Lyra all you want.
-If you intend to build an actual game product on Lyra then
-I personally don't recommend hacking it, but you're not me,
-so you do you.
-
+Just know that IF Epic makes updates in the future and IF you want
+to use those updates, you're going to have a LOT of manual Blueprint
+inspection work ahead of you to compare their changes to yours and
+incorporate their changes into your assets.
 
 #### Digression: Binary Assets SUCK
 
