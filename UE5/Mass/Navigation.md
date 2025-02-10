@@ -129,13 +129,15 @@ EntityManager.Defer().PushCommand<FMassDeferredSetCommand>(
 		FMassArchetypeHandle Archetype = System.GetArchetypeForEntity(Entity);
 		FMassEntityView View(Archetype, Entity);
 
+		const FAgentRadiusFragment& AgentRadius = View.GetFragmentData<FAgentRadiusFragment>();
 		FMassMoveTargetFragment& MoveTargetFragment = View.GetFragmentData<FMassMoveTargetFragment>();
 		const FTransformFragment& TransformFragment = View.GetFragmentData<FTransformFragment>();
 		const FMassMovementParameters& MovementParams = View.GetConstSharedFragmentData<FMassMovementParameters>();
 
 		MoveTargetFragment.CreateNewAction(EMassMovementAction::Move, *System.GetWorld());
-		MoveTargetFragment.DesiredSpeed = FMassInt16Real(MovementParams.DefaultDesiredSpeed);
+		MoveTargetFragment.DesiredSpeed.Set(MovementParams.DefaultDesiredSpeed);
 		MoveTargetFragment.IntentAtGoal = EMassMovementAction::Stand;
+		MoveTargetFragment.SlackRadius = AgentRadius.Radius;
 
 		// Choose a random point to move to around the World Origin at Z=0
 		const FVector2D RandomPoint = FMath::RandPointInCircle(1000.f);
