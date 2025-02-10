@@ -262,9 +262,6 @@ Very highly recommended.
 For example, I add this code right at the top of the `MassEntity.Build.cs`.
 *(Don't commit these kinds of changes to your Engine! These should be for your workspace only).*
 
-Other Engine Build.cs files that I sometimes modify similarly for debugging:
-`MassSimulation.Build.cs`, `MassSpawner.Build.cs`, etc.
-
 ```cs
 // Example MassEntity.Build.cs
 namespace UnrealBuildTool.Rules
@@ -286,6 +283,30 @@ namespace UnrealBuildTool.Rules
 	}
 }
 ```
+
+#### Engine Build.cs useful to hack for debugging
+
+- Engine/Source/Runtime/MassEntity/MassEntity.Build.cs
+
+##### MassAI Build.cs debug hacks
+
+- Engine/Plugins/AI/MassAI/Source/MassAIBehavior/MassAIBehavior.Build.cs
+- Engine/Plugins/AI/MassAI/Source/MassNavigation/MassNavigation.Build.cs
+
+##### MassGameplay Build.cs debug hacks
+
+- Engine/Plugins/Runtime/MassGameplay/Source/MassActors/MassActors.Build.cs
+- Engine/Plugins/Runtime/MassGameplay/Source/MassLOD/MassLOD.Build.cs
+- Engine/Plugins/Runtime/MassGameplay/Source/MassMovement/MassMovement.Build.cs
+- Engine/Plugins/Runtime/MassGameplay/Source/MassRepresentation/MassRepresentation.Build.cs
+- Engine/Plugins/Runtime/MassGameplay/Source/MassSignals/MassSignals.Build.cs
+- Engine/Plugins/Runtime/MassGameplay/Source/MassSimulation/MassSimulation.Build.cs
+- Engine/Plugins/Runtime/MassGameplay/Source/MassSmartObjects/MassSmartObjects.Build.cs
+- Engine/Plugins/Runtime/MassGameplay/Source/MassSpawner/MassSpawner.Build.cs
+
+There are other modules related to `Crowd` and `ZoneGraph`, but I'm not using those in my project.
+Generally any Mass module that you're listing in your own module `Build.cs`, you should consider
+disabling code optimization in the `DebugGame` configuration to make debugging easy.
 
 
 <a id='SeeAlso'></a>
