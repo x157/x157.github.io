@@ -19,8 +19,8 @@ this info should help you quickly discover where to look in C++ and how the C++ 
 in the big picture.
 See also [Other Mass Resources](#SeeAlso) that I have found useful.
 
-In late 2024, Epic roughly doubled the size of the Mass development team and there are
-rumors internally that the scope of Mass may significantly expand in both scope and importance
+As of late 2024, Epic increased the size of the Mass development team and there are
+rumors internally that Mass may significantly expand in both scope and importance
 to Unreal Engine.
 
 TLDR though it's still early days, there doesn't seem to be much risk of Mass being
@@ -35,10 +35,15 @@ shelved in the foreseeable future. Quite to the contrary, Epic is investing in t
   - [Mass Entity Manager](#EntityManager)
   - [Mass Processing Phase Manager](#PhaseManager)
 - [Related Modules](#RelatedModules)
-  - [Mass Navigation](/UE5/Mass/Navigation)
 - [Important Mass Subsystems](#MassSubsystems)
 - [Debugging Tips](#DebuggingTips)
 - [Other Mass Resources](#SeeAlso)
+
+
+### Related Mass Topics
+
+- [Mass Navigation](/UE5/Mass/Navigation)
+- [Mass StateTree](/UE5/Mass/StateTree)
 
 
 <a id='MassSimulationInstance'></a>
@@ -231,6 +236,16 @@ documentation.
 `mass.debug` in UEditor to debug while running a simulation.
 In fact, there are a lot of CVars in the `mass.debug.*` namespace
 that affect Mass behavior.  Familiarize yourself with them.
+
+#### Debugging Specific Entities
+
+You can enable debugging for a specific Mass Entity with `mass.debug.DebugEntity Index`,
+where `Index` is the `MassEntityHandle.Index` value.
+
+You can debug a range of indices with `mass.debug.SetDebugEntityRange Index0 IndexN`,
+where `Index0` is the first inclusive index and `IndexN` is the last inclusive index.
+
+To reset specific entity debugging, use `mass.debug.ResetDebugEntity`
 
 ### Disable C++ Optimizations in Mass-related Engine Modules
 
