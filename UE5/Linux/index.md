@@ -55,7 +55,7 @@ TLDR you need to run 8-10 commands, you can mostly cut/paste from that page.
 ## Get Engine Source
 
 Either `git clone` the Engine source, or
-[install p4](/UE/Linux/p4) and sync your Engine stream.
+[install p4](/UE5/Linux/p4) and sync your Engine stream.
 
 ## Run `./Setup.sh`
 
