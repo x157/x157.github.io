@@ -65,22 +65,24 @@ The combination of these elements makes up a single simulation instance.
 <a id='MultipleSimulationInstances'></a>
 ### Multiple Simulation Instances
 
-As of UE 5.4 there are currently 3 simulation instances:
+As of UE 5.5 there are currently 3 simulation instances:
 
-- `UMassEntityEditorSubsystem` (Editor subsystem)
-  - Always exists in Editor (for example it's driving widgets like the Scene Outliner, via TEDS)
-  - Editor world has its own:
-    - Mass Entity Manager
-    - Mass Processing Phase Manager
 - `UMassSimulationSubsystem` owned by the `UWorld` loaded in the editor (it's `WorldType == Editor`)
   - this subsystem ticks in the editor mode only if editor's viewport is in "Realtime" mode
   - this is the subsystem receiving the `OnPieBegin` and `OnPieEnd` calls, stopping ticking during PIE and resuming afterward.
-- `UMassSimulationSubsystem` owned by the PIE `UWorld` (it's `WorldType == PIE`)
+  - Editor world has its own:
+    - Mass Entity Manager
+    - Mass Processing Phase Manager
+- `UMassSimulationSubsystem` owned by the Game/PIE `UWorld` (it's `WorldType == Game/PIE`)
   - this is the runtime/gametime Mass simulation
   - Automatically Creates/destroys simulation instances for each Game world
   - Each Game world automatically gets its own:
     - Mass Entity Manager
     - Mass Processing Phase Manager
+- `UMassEntityEditorSubsystem` (Editor subsystem, aka `No World` environment)
+  - Always exists in Editor (for example it's driving widgets like the Scene Outliner, via TEDS)
+  - Intended to be used for **Editor functions only**
+  - Unrelated to any `UWorld`
 
 
 <a id='Simulation'></a>
