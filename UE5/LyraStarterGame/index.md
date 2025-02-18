@@ -33,7 +33,8 @@ Before you start coding, read: [Extending Lyra: Development Considerations](./De
   src="https://discord.com/api/guilds/911050282996228217/embed.png?style=banner3"/></a>
 </div>
 
-We have a community Discord for discussing Lyra game development.
+[Lyra Dev Net](https://discord.gg/RS99Jcur6q)
+is a community Discord for discussing Lyra game development.
 
 Open to C++ devs, BP devs and enthusiasts.
 
@@ -48,12 +49,17 @@ Dev talk only.  No politics, religion or hate.
 
 Ready to create your own LyraStarterGame project?
 
-- [Epic official tutorial: How to create a new Game Feature Plugin and Experience in Lyra](https://dev.epicgames.com/community/learning/tutorials/rdW2/unreal-engine-how-to-create-a-new-game-feature-plugin-and-experience-in-lyra)
+[Epic official tutorial: How to create a new Game Feature Plugin and Experience in Lyra](https://dev.epicgames.com/community/learning/tutorials/rdW2/unreal-engine-how-to-create-a-new-game-feature-plugin-and-experience-in-lyra)
 
 I made this How-To before an official one was available, I leave it here for posterity: [Set Up a New LyraStarterGame Project](./Getting-Started-Setting-Up-a-New-LyraStarterGame-Project)
 
 
 # Lyra Concepts
+
+[Miro: Mind Map: Lyra & Unreal Overview](https://miro.com/app/board/uXjVPvPBawA=/)
+is a great visual representation of Lyra,
+courtesy of `bIsMike` on the
+[Lyra Dev Net Discord](https://discord.gg/RS99Jcur6q). Thanks Mike!
 
 ## Project Organization
 
