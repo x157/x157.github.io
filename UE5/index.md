@@ -28,6 +28,7 @@ To understand [Lyra](/UE5/LyraStarterGame/), you also need an understanding of t
 
 ## Other Miscellaneous UE5 Stuff
 
+- [Core Library](/UE5/Core/) interesting tidbits
 - [`FRunnable` Threads](/UE5/Threads/)
 
 
