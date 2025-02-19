@@ -42,6 +42,7 @@ shelved in the foreseeable future. Quite to the contrary, Epic is investing in t
 
 ### Related Mass Topics
 
+- [Mass Data Types](/UE5/Mass/DataTypes)
 - [Mass Navigation](/UE5/Mass/Navigation)
 - [Mass StateTree](/UE5/Mass/StateTree)
 
