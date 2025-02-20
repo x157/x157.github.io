@@ -54,7 +54,6 @@ with the following traits:
 
 - Assorted Fragments:
   - **Mass Actor Fragment** (`FMassActorFragment`)
-- **Agent Capsule Collision Sync** (`UMassAgentCapsuleCollisionSyncTrait`)
 
 
 - **LODCollector** (`UMassLODCollectorTrait`)
@@ -66,8 +65,8 @@ The Actor class that you configure in the Mass Movable Visualization Trait MUST:
 - have a **MassAgent** component (`UMassAgentComponent`)
   - with an **Agent Capsule Collision Sync** trait (`UMassAgentCapsuleCollisionSyncTrait`)
 
-In my case, I configured the `DA_MovingEntity` **and** the `BP_MovingEntityActor`
-assets such that they both have their `UMassAgentCapsuleCollisionSyncTrait` set to
+In my case, I configured the `BP_MovingEntityActor`
+assets such that its `UMassAgentCapsuleCollisionSyncTrait` is set to
 sync the capsule transform **From Mass to Actor**, since I want Mass to be the
 authority for an Actor's location.
 There are likely other functional configurations.
