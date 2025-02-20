@@ -28,7 +28,7 @@ The Processors execute once per simulation cycle to update the data.
 - [Processors You Probably Want to Disable](#ProcessorsToDisable)
 
 
-<a id='#BasicMovement'></a>
+<a id='BasicMovement'></a>
 ## Basic Movement and Navigation
 
 In the simplest example, I'll be ignoring Crowd and Zone Graphs, and just looking at what it takes
@@ -36,7 +36,7 @@ to have a simple 2D map with Mass Entities moving around toward target locations
 and avoiding each other as they move.
 
 
-<a id='#Setup'></a>
+<a id='Setup'></a>
 ###  Entity and Actor Setup
 
 To set this up, create a `DA_MovingEntity` (a `MassEntityConfigAsset` that can be used with a `MassSpawner`)
@@ -72,7 +72,7 @@ authority for an Actor's location.
 There are likely other functional configurations.
 
 
-<a id='#ProcessorsToEnable'></a>
+<a id='ProcessorsToEnable'></a>
 ## Processors You Need to Enable
 
 In order for the above setup to work, you need to make sure you enable some
@@ -96,7 +96,7 @@ bAutoRegisterWithProcessingPhases=True
 ```
 
 
-<a id='#EnactingMovement'></a>
+<a id='EnactingMovement'></a>
 ## Getting the Entities to Move
 
 With the setup above, the Entities don't yet exhibit any movement behavior.
@@ -108,7 +108,7 @@ To get an Entity to move, you need to set its `FMassMoveTargetFragment`
 You can safely do this anywhere in your Gameplay code via an asynchronous
 command to the World's Entity Manager like this:
 
-<a id='#EnactingMovementCpp'></a>
+<a id='EnactingMovementCpp'></a>
 ```cpp
 /**
  * This code snippet issues a deferred (asynchronous) command to the Mass Entity Manager
@@ -157,7 +157,7 @@ entity is set up to use a StateTree.
 See [Mass StateTree integration](./StateTree) for more details.
 
 
-<a id='#ProcessorsToDisable'></a>
+<a id='ProcessorsToDisable'></a>
 ## Processors You Probably Want to Disable
 
 ### Mass "Off LOD" Navigation Processor
