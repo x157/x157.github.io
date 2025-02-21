@@ -172,3 +172,9 @@ Once a template is stored in the registry, it cannot be changed.
 <a id='FMassEntityConfig'></a>
 ## `FMassEntityConfig`
 
+A collection of traits that are combined to make up an Entity's composition.
+
+Supports inheritance via a reference to a parent `UMassEntityConfigAsset`.
+
+Used by `UMassEntityConfigAsset` as the internal storage mechanism for the
+trait data described by the asset.
