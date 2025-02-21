@@ -18,8 +18,6 @@ Other info are my thoughts related to it.
 
 ### Entity Composition
 
-TODO: THIS SECTION IS WIP
-
 - [`FMassFragment`](#FMassFragment)
 - [`FMassTag`](#FMassTag)
 - [`FMassChunkFragment`](#FMassChunkFragment)
@@ -47,6 +45,61 @@ It is safe to use as a `TMap` hash key.
 This is effectively a 64-bit integer.
 You can explicitly access the 64-bit value as a `uint64` via `AsNumber()` and `FromNumber()`
 as needed.
+
+
+<a id='FMassFragment'></a>
+## `FMassFragment`
+
+The base `UStruct` for all data fragments that will make up your Entity.
+
+Use a fragment when the data will be unique to the entity.
+
+Don't try to cram **all** of your data into 1 fragment.
+Ideally you want these to be small, reusable fragments that contain
+very specific related data.
+
+For example, Mass supplies a `FTransformFragment` which contains only
+the entity's transform, and a `FMassMoveTargetFragment` that contains only
+the target to which an Entity should try to move.
+
+
+<a id='FMassTag'></a>
+## `FMassTag`
+
+This is the base class for types that will only be tested for presence/absence, i.e. Tags.
+
+**Subclasses should never contain any member properties.**
+
+
+<a id='FMassChunkFragment'></a>
+## `FMassChunkFragment`
+
+The base `UStruct` for data fragments that are shared among all entities in a given Chunk.
+
+This is similar to `FMassSharedFragment`, but instead of only 1 fragment that is shared
+across all Entities, there is 1 fragment **per Chunk**.
+
+To understand Chunks, familiarize yourself with the
+[Mass Archetype Model](https://github.com/Megafunk/MassSample?tab=readme-ov-file#mass-arch-mod),
+as documented in [MassSample](https://github.com/Megafunk/MassSample).
+
+
+<a id='FMassConstSharedFragment'></a>
+## `FMassConstSharedFragment`
+
+The base `UStruct` for `const` data fragments that are shared amongst multiple Entities.
+
+Just like `FMassSharedFragment`, but this fragment is `const`.
+
+
+<a id='FMassSharedFragment'></a>
+## `FMassSharedFragment`
+
+The base `UStruct` for data fragments that are shared amongst multiple Entities.
+
+Use a shared fragment when you want to have a single small amount of data
+that affects many fragments.  Changing the data once immediately affects
+ALL of the entities that share it.
 
 
 <a id='FMassEntityTemplate'></a>
