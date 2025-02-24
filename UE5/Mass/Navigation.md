@@ -1,5 +1,5 @@
 ---
-title: "Mass Navigation in UE5"
+title: "Mass Navigation | UE5 Mass"
 description: "Overview of Unreal Engine's MassNavigation modules."
 breadcrumb_path: "UE5/Mass"
 breadcrumb_name: "Navigation"

@@ -1,5 +1,5 @@
 ---
-title: "Mass Entity Data Types in UE5"
+title: "Mass Entity Data Types | UE5 Mass"
 description: "Overview of some important Mass Entity data types"
 breadcrumb_path: "UE5/Mass"
 breadcrumb_name: "DataTypes"

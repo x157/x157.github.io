@@ -1,11 +1,11 @@
 ---
-title: "Mass Entities in UE5"
+title: "Mass Entity | UE5 Mass"
 description: "Overview of Unreal Engine's MassAI, MassEntity, MassGameplay and associated modules."
 breadcrumb_path: "UE5"
 breadcrumb_name: "Mass"
 ---
 
-# Mass Entities in UE5
+# Mass Entity
 
 Mass is a native C++ simulation processor, introduced experimentally in UE 5.2.
 
@@ -45,6 +45,11 @@ shelved in the foreseeable future. Quite to the contrary, Epic is investing in t
 - [Mass Data Types](/UE5/Mass/DataTypes)
 - [Mass Navigation](/UE5/Mass/Navigation)
 - [Mass StateTree](/UE5/Mass/StateTree)
+
+
+### How To
+
+- [How To: Spawn Entities](/UE5/Mass/HowTo/SpawnEntities)
 
 
 <a id='MassSimulationInstance'></a>

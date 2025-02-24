@@ -1,5 +1,5 @@
 ---
-title: "UE5 Mass StateTree integration"
+title: "Mass StateTree integration | UE5 Mass"
 description: "How to use StateTrees with Mass Entities"
 breadcrumb_path: "UE5/Mass"
 breadcrumb_name: "StateTree"
