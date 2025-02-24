@@ -194,6 +194,9 @@ check(Config->NumToSpawn == Config->Entities.Num());
 // async spawn below.
 DoStuffWith(Config->Entities);
 
+// NOTICE: YOU MUST MAKE SURE Config DOES NOT GET GC'D BEFORE THE LAMBDA EXECUTES!
+// (Keep a reference to it somewhere, clean it up in NativeOnEntitiesCreated)
+
 // INITIATE ASYNC SPAWN:
 EntityManager.Defer().PushCommand<FMassDeferredSetCommand>(
     [Config](FMassEntityManager& EntityManager)
