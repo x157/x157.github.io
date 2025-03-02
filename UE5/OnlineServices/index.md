@@ -1,11 +1,11 @@
 ---
-title: "Online Services in UE5"
+title: "Online Services (OSSv2) | UE5"
 description: "Overview of Unreal Engine's Online Services (OSSv2) plugin"
 breadcrumb_path: "UE5"
 breadcrumb_name: "Online Services"
 ---
 
-# Online Services
+# Online Services (OSSv2)
 
 The Online Services plugin is some of the new hotness in UE 5.1+.
 Though it's still in beta as of UE 5.5, if your new game intends to upgrade
@@ -21,7 +21,8 @@ plugin that ships with Lyra.
 The information in this document is based on Lyra's implementation of
 Online Services and Common User, given a Lyra project that has been configured
 to use OSSv2 *(NOT the default configuration as of UE 5.5)*.
-To upgrade your Lyra config for OSSv2 see this
+
+To upgrade your Lyra config for OSSv2, see this
 [official Epic documentation](https://dev.epicgames.com/documentation/en-us/unreal-engine/common-user-plugin-in-unreal-engine-for-lyra-sample-game#usingtheonlineservicesplugin).
 
 
@@ -31,7 +32,7 @@ In general the Epic docs for how to configure EOS are good, but when I initially
 my project, I found the INI a bit confusing.  To make it more clear, here is the diff you will
 need to make to `Config/Custom/EOS/DefaultEngine.ini`:
 
-| Default Config/Custom/EOS/DefaultEngine.ini                                                                                                                                      | Modified Config/Custom/EOS/DefaultEngine.ini                                                                                                                                              |
+| Default Config/Custom/EOS/DefaultEngine.ini | Modified Config/Custom/EOS/DefaultEngine.ini |
 |---|---|
 | <code>;+[OnlineServices.EOS]<br/>;+ProductId=PRODUCTID<br/>;+SandboxId=SANDBOXID<br/>;+DeploymentId=DEPLOYTMENTID<br/>;+ClientId=CLIENTID<br/>;+ClientSecret=CLIENTSECRET</code> | <code>[OnlineServices.EOS]<br/>ProductId=PRODUCTID<br/>SandboxId=SANDBOXID<br/>DeploymentId=DEPLOYTMENTID<br/>ClientId=CLIENTID<br/>ClientSecret=CLIENTSECRET</code> |
 
@@ -52,12 +53,14 @@ After following the Epic docs, you may get a warning like this every time you st
 LogOnlineEngine: Warning: bUseOnlineServicesV2 is deprecated, please instead configure [/Script/Engine.OnlineEngineInterface]:ClassName=/Script/OnlineSubsystemUtils.OnlineServicesEngineInterfaceImpl
 ```
 
-To fix it, just comment out `bUseOnlineServicesV2` and add the line they told you to add in the warning.
-The appropriate config for `[/Script/Engine.OnlineEngineInterface]` looks like this:
+To fix it, comment out `bUseOnlineServicesV2` and replace it
+with the updated config setting as described in the warning.
+
+The updated UE 5.5+ `Config/DefaultEngine.ini` looks something like this:
 
 ```ini
 [/Script/Engine.OnlineEngineInterface]
-;bUseOnlineServicesV2=true
+;bUseOnlineServicesV2=true ;; deprecated in UE 5.5, replaced with:
 ClassName=/Script/OnlineSubsystemUtils.OnlineServicesEngineInterfaceImpl
 ```
 
