@@ -1,6 +1,7 @@
 ---
 title: "Linux"
 description: "Developing Unreal Engine on Linux"
+breadcrumb_path: "UE5"
 breadcrumb_name: "Linux"
 ---
 
