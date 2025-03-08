@@ -6,7 +6,7 @@ breadcrumb_name: "Linux"
 
 # Linux UE5 Dev Notes
 
-- [How to use p4 on Linux](/UE5/Linux/p4)
+- [How to use Perforce on Linux](/UE5/Linux/p4) covers installation and basic usage
 
 ## Setting up a build machine
 
