@@ -46,9 +46,8 @@ sudo apt-get -y install xdg-user-dirs xdg-utils
 
 If you're using [UnrealXistTools](/UnrealXistTools/), you need to install PowerShell.
 
-Check this official
-[Microsoft Documentation](https://learn.microsoft.com/en-us/powershell/scripting/install/install-ubuntu?view=powershell-7.4)
-regarding how else to install Powershell on Ubuntu 22.04.
+Check this official Microsoft documentation:
+[Installing PowerShell on Ubuntu](https://learn.microsoft.com/en-us/powershell/scripting/install/install-ubuntu#installation-via-package-repository-the-package-repository)
 
 TLDR you need to run 8-10 commands, you can mostly cut/paste from that page.
 
