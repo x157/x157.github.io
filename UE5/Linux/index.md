@@ -43,6 +43,17 @@ sudo apt-get -y install \
 sudo apt-get -y install xdg-user-dirs xdg-utils
 ```
 
+### Install packages required to cook
+
+Games will build without these, but you cannot Cook without these (UE 5.6):
+
+```bash
+sudo apt-get -y install \
+  libasound2 \
+  libgbm-dev
+```
+
+
 ### Install PowerShell for UnrealXistTools
 
 If you're using [UnrealXistTools](/UnrealXistTools/), you need to install PowerShell.
