@@ -63,6 +63,16 @@ Check this official Microsoft documentation:
 
 TLDR you need to run 8-10 commands, you can mostly cut/paste from that page.
 
+
+### nVidia Drivers (only needed for Desktop)
+
+You cannot run UEditor on Ubuntu Desktop without Vulkan drivers.
+If you have an nVidia card like me, this is an easy way to install
+the drivers:
+
+https://www.geeksforgeeks.org/how-to-install-nvidia-driver-on-ubuntu/
+
+
 ## Get Engine Source
 
 Either `git clone` the Engine source, or
