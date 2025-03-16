@@ -213,4 +213,4 @@ git push origin $GameBranch
         - Exec `GenerateProjectFiles` for the project
 - Rider `XistGame.uproject`
     - Build `XistGame` Project
-        - Target = `Debug Editor`
+        - Target = `DebugGame Editor`

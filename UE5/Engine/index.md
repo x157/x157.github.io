@@ -63,7 +63,7 @@ it gets merged into `release`.  Choose whichever branch is most appropriate for 
 3. Run `GenerateProjectFiles.bat`
 4. Open `UE5.sln` Visual Studio
   - Update and/or Add required Visual Studio components if needed
-  - Build `UE5` as either `Development Editor` *(the default)* or `Debug Editor` *(for C++ debugging)*
+  - Build `UE5` as either `Development Editor` *(the default)* or `DebugGame Editor` *(for C++ debugging)*
 
 
 <a id="HowToRegister"></a>

@@ -163,4 +163,4 @@ p4 submit -d "Integrate //Lyra/Xist/...@$LyraXist_HAVE_CL"
         - Exec `GenerateProjectFiles` for the project
 - Rider `XistGame.uproject`
     - Build `XistGame` Project
-        - Target = `Debug Editor`
+        - Target = `DebugGame Editor`
