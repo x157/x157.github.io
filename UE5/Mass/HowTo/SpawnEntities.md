@@ -11,13 +11,21 @@ Personally I use a combination of all of these methods.
 There isn't really a "right way" per se, there are instead different ways
 that are good for different situations.
 
-- [Mass Spawner in Level](#MassSpawnerInLevel)
+- [Mass Spawner in Level](#MassSpawnerInLevel) (UE 5.2+)
   - Place a Mass Spawner actor in Level
   - Auto spawns entities when the Level loads
-- [Mass Spawner in Gameplay code](#MassSpawnerInCode)
+- [Mass Entity Builder](#MassEntityBuilder) (UE 5.6+)
+  - Excellent for procedural entity generation
+  - Code Examples:
+    [ [Add](#MassEntityBuilder_Add)
+    | [Add_GetRef](#MassEntityBuilder_AddGetRef)
+    | [GetOrCreate](#MassEntityBuilder_GetOrCreate)
+    | [Chaining](#MassEntityBuilder_Chaining)
+    ]
+- [Mass Spawner in Gameplay code](#MassSpawnerInCode) (UE 5.4+)
   - Use the Mass Spawner subsystem
   - Defer Spawn entities on demand from Gameplay code
-- [Entity Manager Reservation](#EntityManagerReservation)
+- [Entity Manager Reservation](#EntityManagerReservation) (UE 5.4+)
   - Batch Reserve Entities using Entity Manager
     - Their Entity Handles are immediately available
   - Defer Spawn Reserved Entities using Entity Manager
@@ -41,6 +49,76 @@ of spawning a static set of entities when your Level loads.
 ### Cons
 - Difficult to do much customization
 - Only spawns entities on level load, doesn't help you spawn entities at Runtime
+
+
+<a id='MassEntityBuilder'></a>
+## Mass Entity Builder
+
+*I copied most of this `UE::Mass::FEntityBuilder` info from UE 5.6 `MassEntityBuilder.h` header docs.*
+
+`FEntityBuilder` is a utility struct that provides a convenient way to create and configure entities
+in the Mass framework. It bridges multiple APIs from
+[`FMassEntityManager`](../#EntityManager),
+`UMassSpawnerSubsystem`,
+[`FMassEntityTemplate`](../DataTypes#FMassEntityTemplate)
+and other related components, allowing for streamlined entity creation and configuration.
+
+#### Key Features
+- Can be seamlessly used in place of `FMassEntityHandle`, allowing for consistent and intuitive usage.
+- An entity only gets created once `Commit()` is called.
+- Copyable, but copied instances represent new entities without carrying over the reserved entity handle.
+
+#### Current Limitations
+- Committing entities while Mass's processing is in progress is not yet supported;
+  this functionality will be implemented in the near future.
+  - For now, use `EntityManager.Defer().PushCommand` to execute `Commit()`
+- No support for entity grouping.
+
+#### Example Usages
+
+<a id='MassEntityBuilder_Add'></a>
+##### Add fragments with known values
+
+```cpp
+FEntityBuilder Builder(EntityManager);
+Builder.Add<FTransformFragment>(FTransform(FVector(100, 200, 300)))
+    .Commit();  // the entity gets reserved and built by this call
+``` 
+
+<a id='MassEntityBuilder_AddGetRef'></a>
+##### Get references to added fragments for additional configuration
+
+```cpp
+FEntityBuilder Builder(EntityManager);
+FMassEntityHandle ReservedEntity = Builder; // Entity handle reserved, can be used for commands.
+Builder.Add_GetRef<FTransformFragment>().GetMutableTransform().SetTranslation(FVector(100, 200, 300));
+Builder.Commit(); // Entity creation is finalized at this point.
+```
+
+<a id='MassEntityBuilder_GetOrCreate'></a>
+##### Change a previously added fragment, if it exists, or add it
+
+```cpp
+// initially:
+FEntityBuilder Builder(EntityManager);
+Builder.Add<FTransformFragment>(FTransform(FVector(100, 200, 300)));
+// then sometime later, elsewhere in code:
+Builder.GetOrCreate<FTransformFragment>().GetMutableTransform().SetTranslation(FVector(111, 222, 333));
+// and finally:
+Builder.Commit();
+```
+
+<a id='MassEntityBuilder_Chaining'></a>
+##### Chaining with `FMassEntityManager::MakeEntityBuilder`:
+
+```cpp
+FMassEntityHandle NewEntity = EntityManager.MakeEntityBuilder()
+    .Add<FMassStaticRepresentationTag>()
+    .Add<FTransformFragment>()
+    .Add<FAgentRadiusFragment>(FAgentRadiusFragment{ .Radius = 35.f })
+    .Add<FMassVelocityFragment>()
+    .Commit();
+```
 
 
 <a id='MassSpawnerInCode'></a>
