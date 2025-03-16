@@ -48,6 +48,7 @@ If you are a Windows user, see my notes and tips regarding
 
 ### Debug Tips
 
+- [Customize Your `BuildConfiguration.xml`](/UE5/Engine/BuildConfiguration)
 - [Build Target: `DebugGame Editor`](./DebuggingTips#BuildTarget_DebugGame_Editor)
 - [C++ Debug Coding Style](./DebuggingTips#CppCodingStyleDebugging)
 - [Xist Log Format](./DebuggingTips#XistLogFormat) -- Logs are helpful and save time

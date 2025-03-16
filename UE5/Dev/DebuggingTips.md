@@ -7,16 +7,30 @@ breadcrumb_name: "Debugging Tips"
 
 # C++ Debugging Tips
 
+- [Customize Your Own `BuildConfiguration.xml`](#CustomBuildConfigurationXml)
 - [Build Target: `DebugGame Editor`](#BuildTarget_DebugGame_Editor)
 - [C++ Coding Style for Easy Debugging](#CppCodingStyleDebugging)
 - [Xist Log Format](#XistLogFormat)
+
+
+## Customize Your Own `BuildConfiguration.xml`
+
+This is **very highly** recommended for all C++ developers, it will really make your life a lot easier.
+
+I have set up my `BuildConfiguration.xml` so that any time I check files out of Perforce,
+it **automatically** makes them *very easy to debug*.
+
+This requires zero effort on my part other than customizing my `BuildConfiguration.xml` once
+on each of my dev workstations.  I do this on all platforms: Windows, Mac and Linux.
+
+For details see [UE5 BuildConfiguration.xml](/UE5/Engine/BuildConfiguration)
 
 
 <a id="BuildTarget_DebugGame_Editor"></a>
 <a id="BuildTarget_Debug_Editor"></a>
 ## Build Target: `DebugGame Editor`
 
-**You cannot easily debug executables without debugging symbols.**
+**You cannot debug executables without debugging symbols.**
 
 In general, it's preferred to build your game in `DebugGame Editor`.
 This will run your game in Debug mode, and the Editor in non-Debug mode.

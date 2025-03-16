@@ -56,6 +56,8 @@ it gets merged into `release`.  Choose whichever branch is most appropriate for 
 <a id="HowToBuild"></a>
 ## How to Build a Custom Engine
 
+*Optional pre-build step: [Set up BuildConfiguration.xml](/UE5/Engine/BuildConfiguration)*
+
 1. Get the [Engine Source](#WhereToGetSource)
 2. Run `Setup.bat`
 3. Run `GenerateProjectFiles.bat`
