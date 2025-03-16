@@ -35,21 +35,26 @@ Epic's official docs:
 
 1. How to: [Accessing Unreal Engine source code on Github](https://www.unrealengine.com/en-US/ue-on-github)
   - The repository is **private**, so you will need to get access from Epic by following the procedure outlined in the link above
-2. How to: [Download and Build Unreal Engine Source Code](https://docs.unrealengine.com/5.1/en-US/downloading-unreal-engine-source-code/)
+2. How to: [Download and Build Unreal Engine Source Code](https://docs.unrealengine.com/5.5/en-US/downloading-unreal-engine-source-code/)
 
 If you are using a Lyra project, make sure to match your Lyra version with the Engine version.
 *(Lyra is essentially distributed as an optional add-on for the Engine).*
 
-| Version Description     | UE5                                                               | Lyra                                                                                 |
-|-------------------------|-------------------------------------------------------------------|--------------------------------------------------------------------------------------|
-| Current Release         | [release](https://github.com/EpicGames/UnrealEngine/tree/release) | [release](https://github.com/EpicGames/UnrealEngine/tree/release/Samples/Games/Lyra) |
-| Release Staging for 5.1 | [5.1](https://github.com/EpicGames/UnrealEngine/tree/5.1)         | [5.1](https://github.com/EpicGames/UnrealEngine/tree/5.1/Samples/Games/Lyra)         |
-| Release Staging for 5.2 | [5.2](https://github.com/EpicGames/UnrealEngine/tree/5.2)         | [5.2](https://github.com/EpicGames/UnrealEngine/tree/5.2/Samples/Games/Lyra)         |
+| Version Description    | UE5                                                                 | Lyra                                                                                   |
+|------------------------|---------------------------------------------------------------------|----------------------------------------------------------------------------------------|
+| Current Release        | [release](https://github.com/EpicGames/UnrealEngine/tree/release)   | [release](https://github.com/EpicGames/UnrealEngine/tree/release/Samples/Games/Lyra)   |
+| 5.5.x Release Staging  | [5.5](https://github.com/EpicGames/UnrealEngine/tree/5.5)           | [5.5](https://github.com/EpicGames/UnrealEngine/tree/5.5/Samples/Games/Lyra)           |
+| Bleeding Edge ue5-main | [ue5-main](https://github.com/EpicGames/UnrealEngine/tree/ue5-main) | [ue5-main](https://github.com/EpicGames/UnrealEngine/tree/ue5-main/Samples/Games/Lyra) |
 
-Note: When the current release is `5.2`, the `5.2` branch may still be **ahead** of the `release` branch.
-The `release` branch is for official releases.  The `5.2` branch is for release staging, which means
+Note: When the current release is `5.5`, the `5.5` branch may still be **ahead** of the `release` branch.
+The `release` branch is for official releases.  The `5.5` branch is for release staging, which means
 things get merged into that over time, and when Epic decides it's stable enough for a release,
 it gets merged into `release`.  Choose whichever branch is most appropriate for your use case.
+
+The absolute bleeding edge of UE5 development is in the `ue5-main` branch.  It's so bleeding edge,
+it may not compile.  Lyra, in particular, does **not** have binary assets available for the `ue5-main`
+branch, so for Lyra projects you will want to stay off that and stay on a release branch,
+unless you're not using Lyra's binary assets, and you're only using its C++/INI.
 
 
 <a id="BuildingCustomEngine"></a>
@@ -183,7 +188,7 @@ Ultimately, you can put your project anywhere you want.
 
 For more information about possible locations to store your project files and the implications
 of each, see Epic's Official
-[Managing Game Code in Unreal](https://docs.unrealengine.com/5.1/en-US/managing-game-code-in-unreal-engine/)
+[Managing Game Code in Unreal](https://docs.unrealengine.com/5.5/en-US/managing-game-code-in-unreal-engine/)
 documentation.
 
 
@@ -197,44 +202,37 @@ In these examples, I'm using PowerShell 7.  If you use another shell, you can st
 what I'm doing here.
 
 
-## Launcher Engine Command: `-projectfiles`
+## Installed/Launcher Engine
 
-When using an Epic Games Launcher Engine, use the `-projectfiles` command instead.
+When using an Epic Games Launcher Engine, use the `-projectfiles` command.
 
 In this case, the Engine will continue to be managed by the Epic Games Launcher tools.
-Thus the command is simpler, you only need to tell it the name of your `$UProjectFile`.
+This command is simple, you only need to tell it the name of your `$UProjectFile`.
 
 ```powershell
-####  Use the Epic Games Launcher to: Generate Visual Studio project files...
+####  Use the Epic Games Launcher to: Generate Visual Studio project files
+
 & $UnrealVersionSelector -projectfiles $UProjectFile
 ```
 
-## Custom Engine Command: `-switchversionsilent`
+The above command is what is being run under the hood by your GUI when you right-click
+the `.uproject` file and choose the "Generate Project Files" option.
+
+## Custom Engine Command: `GenerateProjectFiles.bat|sh`
 
 If you're running a Custom Engine, you should generate your project files using
-the `-switchversionsilent` command.
+the `GenerateProjectFiles.bat` (or `.sh`) script:
 
 ```powershell
-####  Assign $EngineRoot as $UProjectFile's custom engine (if it isn't already),
-####  and Generate Visual Studio project files...
+####  Execute the custom engine's GenerateProjectFiles.bat (or .sh)
 
-& $UnrealVersionSelector -switchversionsilent $UProjectFile $EngineRoot
+& $EngineRoot/GenerateProjectFiles.bat
 ```
 
-You don't need to explicitly execute the `-projectfiles` as well;
-`-switchversionsilent` will implicitly also execute `-projectfiles`.
 
-See [How to Compute these PowerShell Variables](#How_to_Compute_these_PowerShell_Variables)
-below for specifics.  In particular, `$EngineRoot` must be the `Engine` PARENT directory,
-or the `Root` directory in which the `Engine` directory exists.
-
-
-<a id="How_to_Compute_these_PowerShell_Variables"></a>
 ## How to Compute these PowerShell Variables
 
 These variables are used both for Custom Engines and for Launcher Engines.
-
-In both cases we need to know the path to `UnrealVersionSelector` on your system.
 
 - You need to compute these variables for your system:
 
