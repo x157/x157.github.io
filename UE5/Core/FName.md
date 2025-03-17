@@ -12,17 +12,30 @@ breadcrumb_name: "FName"
 Most `FName` in UE don't contain numbers, but an optional number IS
 supported as a part of the `FName`.
 
+To help visualize this, here's a table with some examples:
+
+| Expression        | PlainName | Number | ToString() |
+|-------------------|-----------|--------|------------|
+| `FName("Foo")`    | `"Foo"`   | `0`    | `"Foo"`    |
+| `FName("Foo", 0)` | `"Foo"`   | `0`    | `"Foo"`    |
+| `FName("Foo_0")`  | `"Foo"`   | `1`    | `"Foo_0"`  |
+| `FName("Foo", 1)` | `"Foo"`   | `1`    | `"Foo_0"`  |
+| `FName("Foo_1")`  | `"Foo"`   | `2`    | `"Foo_1"`  |
+| `FName("Foo", 2)` | `"Foo"`   | `2`    | `"Foo_1"`  |
+
+
 Significantly, notice that the internal Number is always `1` greater
 than the number represented in the string.
-This allows for `FName("Foo")` to be distinctly different
-to `FName("Foo_0")`.
+This allows for `FName("Foo")` to be functionally equivalent
+to `FName("Foo", 0)` and distinctly different
+from `FName("Foo_0")`.
 
-The `operator==` considers both the `PlainString` part of the
+The `operator==` considers **both** the `PlainString` part of the
 `FName` **and** the `Number` part of the name, such that
-`FName("Foo_1") != FName("Foo_2")`
+`FName("Foo", 1) != FName("Foo", 2)`
 
 If you want to compare **only** the `PlainString` part of the name,
-such that `Foo_1` will be considered equivalent to `Foo_2`,
+such that `FName("Foo", 1)` will be considered equivalent to `FName("Foo", 2)`,
 the most efficient way to do so is to use `GetComparisonIndex()`, like:
 
 ```cpp
