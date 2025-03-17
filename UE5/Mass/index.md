@@ -7,7 +7,9 @@ breadcrumb_name: "Mass"
 
 # Mass Entity
 
-Mass is a native C++ simulation processor, introduced experimentally in UE 5.2.
+Mass is a native C++ simulation processor, introduced in UE 5.0
+and marked as production-ready in 5.2.
+It is still in active development as of 5.6.
 
 Before you read this, make sure you have watched the official Epic Games Video:
 [Large Numbers of Entities with Mass in Unreal Engine 5](https://www.youtube.com/watch?v=f9q8A-9DvPo)
@@ -18,13 +20,6 @@ Once you've decided that Mass is for you and you want to learn how to actually b
 this info should help you quickly discover where to look in C++ and how the C++ fits together
 in the big picture.
 See also [Other Mass Resources](#SeeAlso) that I have found useful.
-
-As of late 2024, Epic increased the size of the Mass development team and there are
-rumors internally that Mass may significantly expand in both scope and importance
-to Unreal Engine.
-
-TLDR though it's still early days, there doesn't seem to be much risk of Mass being
-shelved in the foreseeable future. Quite to the contrary, Epic is investing in the future of Mass.
 
 
 ## Overview
