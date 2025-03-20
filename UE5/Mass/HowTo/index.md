@@ -10,3 +10,5 @@ breadcrumb_name: "HowTo"
 - [How to: Spawn Entities](/UE5/Mass/HowTo/SpawnEntities)
 - [How Simple Navigation Works](/UE5/Mass/Navigation)
   - [How to Update Mass Entity Navigation Data from Gameplay Code](/UE5/Mass/Navigation#EnactingMovement)
+- [YT: How to: Pause/Resume and Time Dilate Mass Simulations](https://youtu.be/lUWjiRx5LkM)
+  - [GitHub: MassTimeGame project source](https://github.com/XistGG/MassTimeGame)
