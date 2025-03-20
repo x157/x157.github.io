@@ -26,12 +26,6 @@ If you're brand new to Unreal in general:
 
 - [Unreal Engine 5 Beginner Tutorial - UE5 Starter Course 2022](https://www.youtube.com/watch?v=k-zMkzmduqI)
 
-Specific to C++:
-
-- Unreal Community Wiki: [Learn Unreal C++](https://unrealcommunity.wiki/unreal-cpp-d702003t)
-- [Unreal Engine C++ Complete Guide](https://www.tomlooman.com/unreal-engine-cpp-guide/) by Tom Looman
-
-
 #### Choose/Install Developer Tools
 
 - [IDE Options](./IDE) - choosing the right IDE will save you time (`time == $`)
@@ -39,6 +33,14 @@ Specific to C++:
 
 If you are a Windows user, see my notes and tips regarding
 [Development on Windows](/Windows/).
+
+
+#### C++ and Unreal Resources
+
+- Unreal Community Wiki: [Learn Unreal C++](https://unrealcommunity.wiki/unreal-cpp-d702003t)
+- [Unreal Engine C++ Complete Guide](https://www.tomlooman.com/unreal-engine-cpp-guide/) by Tom Looman
+- [Unreal C++ Speedrun](https://landelare.github.io/2023/01/07/cpp-speedrun.html) by Laura
+- [Common Unreal Slacker Issues & Tips](https://tackytortoise.github.io/2022/06/24/common-slacker-issues.html) by Dieter
 
 
 ### On being a UE5 C++ Dev
