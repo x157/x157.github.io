@@ -16,6 +16,7 @@ The Mass LOD system consists of several different elements working together.
 - [`UMassSimulationLODProcessor`](#MassSimulationLODProcessor)
   - Computes and updates LOD settings for Entities
     - Every tick unless you enable variable ticking per LOD
+- [`UMassVisualizationLODProcessor`](#MassVisualizationLODProcessor)
 - [`UMassLODSubsystem`](#MassLODSubsystem)
   - Tracks Viewers: Locations, Rotations, FOV, Aspect Ratio
 - [LOD Traits](#LODTraits)
@@ -23,15 +24,15 @@ The Mass LOD system consists of several different elements working together.
     - Either: [`UMassDistanceLODCollectorTrait`](#MassDistanceLODCollectorTrait)
     - Or: [`UMassLODCollectorTrait`](#MassLODCollectorTrait)
   - [`UMassSimulationLODTrait`](#MassSimulationLODTrait)
-    - [with `bEnableVariableTicking`](#MassSimulationLODTrait_EnableVariableTicking)
+    - with optional [`bEnableVariableTicking`](#MassSimulationLODTrait_EnableVariableTicking)
 
 
 ## Different Ways to Compute LOD
 
 1. Proximity to Viewers *(regardless of Viewer perspective)*
-   - Add `UMassDistanceLODCollectorTrait` to Entity
+  - Add `UMassDistanceLODCollectorTrait` to Entity
 2. Visible by Viewers
-   - Add `UMassLODCollectorTrait` to Entity
+  - Add `UMassLODCollectorTrait` to Entity
 
 For any given Entity, choose which type of LOD calculation you want it to use,
 and add the appropriate LOD Collector Trait.
@@ -136,6 +137,23 @@ Execution logic:
         an attempt to spread updates over multiple frames at approximately the time
         interval specified.
       - This comes from `FMassSimulationVariableTickParameters.TickRates`
+
+
+<a id='MassVisualizationLODProcessor'></a>
+## `UMassVisualizationLODProcessor`
+
+- TODO
+- TODO
+- TODO
+- TODO
+
+
+### Important Data Types
+
+- `FMassVisualizationLODParameters`
+- `FMassVisualizationLODSharedFragment`
+- `FMassRepresentationLODFragment`
+- `FMassVisualizationLODProcessorTag`
 
 
 <a id='MassLODSubsystem'></a>
