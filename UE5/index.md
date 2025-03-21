@@ -25,6 +25,7 @@ To understand [Lyra](/UE5/LyraStarterGame/), you also need an understanding of t
 - [Mass Entity](/UE5/Mass/) Overview
   - [Mass Data Types](/UE5/Mass/DataTypes)
   - [How To Spawn Entities](/UE5/Mass/HowTo/SpawnEntities)
+- [Mass LOD](/UE5/Mass/LOD)
 - [Mass Navigation](/UE5/Mass/Navigation)
 - [Mass StateTree](/UE5/Mass/StateTree)
 
