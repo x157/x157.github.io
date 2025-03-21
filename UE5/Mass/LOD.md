@@ -19,8 +19,9 @@ The Mass LOD system consists of several different elements working together.
 - [`UMassLODSubsystem`](#MassLODSubsystem)
   - Tracks Viewers: Locations, Rotations, FOV, Aspect Ratio
 - [LOD Traits](#LODTraits)
-  - [`UMassDistanceLODCollectorTrait`](#MassDistanceLODCollectorTrait)
-  - [`UMassLODCollectorTrait`](#MassLODCollectorTrait)
+  - LOD Collector
+    - Either: [`UMassDistanceLODCollectorTrait`](#MassDistanceLODCollectorTrait)
+    - Or: [`UMassLODCollectorTrait`](#MassLODCollectorTrait)
   - [`UMassSimulationLODTrait`](#MassSimulationLODTrait)
     - [with `bEnableVariableTicking`](#MassSimulationLODTrait_EnableVariableTicking)
 
