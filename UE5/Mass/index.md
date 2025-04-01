@@ -338,7 +338,14 @@ These are some excellent sources of info related to Mass.
   - [Myxcil's Mass Traffic Test Project](https://github.com/Myxcil/MassTraffic-Test)
     - Detailed vehicle driving/traffic simulation
     - Derived from Epic's [CitySample](https://dev.epicgames.com/documentation/en-us/unreal-engine/city-sample-project-unreal-engine-demonstration)
+  - [gianmarcopicarella's crowd-simulation](https://github.com/gianmarcopicarella/crowd-simulation)
+    - UE 5.3 "Zombie Horde Shooter" Project
+    - Don't miss the [Project Report](https://github.com/gianmarcopicarella/crowd-simulation/blob/main/Assignment_Deliverables/Crowd_Simulation_Game_Report.pdf)
   - [Arkena's Mass Sample](https://github.com/arkena00/sample.mass/)
     - Example of how to replicate mass data *(SOON TO BE DEPRECATED)*
       - If you MUST have replication NOW, see this example
       - If you can wait, then **wait** for the new Iris-based replication implementation from Epic
+
+# Thanks
+
+Thanks to the `Unreal Source` Discord contributors for corrections and improvements.
