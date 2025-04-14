@@ -25,6 +25,8 @@ The Processors execute once per simulation cycle to update the data.
 - [Processors You Need to Enable](#ProcessorsToEnable)
 - [Getting the Entities to Move](#EnactingMovement)
   - [Sample C++ Code](#EnactingMovementCpp)
+- [Interesting Processors](#InterestingProcessors)
+  - [UMassNavigationObstacleGridProcessor](#MassNavigationObstacleGridProcessor)
 - [Processors You Probably Want to Disable](#ProcessorsToDisable)
 
 
@@ -155,6 +157,27 @@ toward it, avoiding obstacles along the way, including other Entities that may b
 You can also modify the `FMassMoveTargetFragment` from a custom StateTree Task, if your
 entity is set up to use a StateTree.
 See [Mass StateTree integration](./StateTree) for more details.
+
+
+<a id='InterestingProcessors'></a>
+## Interesting Processors
+
+<a id='MassNavigationObstacleGridProcessor'></a>
+### Mass Navigation Obstacle Grid Processor
+
+Source: `UMassNavigationObstacleGridProcessor`
+[ [h](https://github.com/EpicGames/UnrealEngine/blob/ue5-main/Engine/Plugins/AI/MassAI/Source/MassNavigation/Public/MassNavigationProcessors.h)
+| [cpp](https://github.com/EpicGames/UnrealEngine/blob/ue5-main/Engine/Plugins/AI/MassAI/Source/MassNavigation/Private/MassNavigationProcessors.cpp)
+]
+
+Mass maintains a 2D "obstacle grid" and keeps track of where each
+Entity is located on this grid.
+
+This allows you to run spacial queries against the grid to determine if there
+are any navigation obstacles in a given area.
+
+The underlying grid is implemented via `THierarchicalHashGrid2D`
+[ [h](https://github.com/EpicGames/UnrealEngine/blob/ue5-main/Engine/Source/Runtime/AIModule/Public/HierarchicalHashGrid2D.h) ].
 
 
 <a id='ProcessorsToDisable'></a>
