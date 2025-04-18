@@ -123,7 +123,7 @@ FMassEntityHandle Entity;  // set this to the Entity you want to move
 FMassEntityManager& EntityManager = UE::Mass::Utils::GetEntityManagerChecked(*GetWorld());
 
 EntityManager.Defer().PushCommand<FMassDeferredSetCommand>(
-	[&Entity](FMassEntityManager& System)
+	[Entity](FMassEntityManager& System)
 	{
 		check(System.IsEntityActive(Entity));  // YOU MUST set it to a valid value above before calling this
 
@@ -131,9 +131,10 @@ EntityManager.Defer().PushCommand<FMassDeferredSetCommand>(
 		FMassEntityView View(Archetype, Entity);
 
 		const FAgentRadiusFragment& AgentRadius = View.GetFragmentData<FAgentRadiusFragment>();
-		FMassMoveTargetFragment& MoveTargetFragment = View.GetFragmentData<FMassMoveTargetFragment>();
 		const FTransformFragment& TransformFragment = View.GetFragmentData<FTransformFragment>();
 		const FMassMovementParameters& MovementParams = View.GetConstSharedFragmentData<FMassMovementParameters>();
+
+		FMassMoveTargetFragment& MoveTargetFragment = View.GetFragmentData<FMassMoveTargetFragment>();
 
 		MoveTargetFragment.CreateNewAction(EMassMovementAction::Move, *System.GetWorld());
 		MoveTargetFragment.DesiredSpeed.Set(MovementParams.DefaultDesiredSpeed);
