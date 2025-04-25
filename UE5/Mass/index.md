@@ -333,6 +333,7 @@ These are some excellent sources of info related to Mass.
 - Open Source Community projects:
   - [Megafunk's Mass Sample Project](https://github.com/Megafunk/MassSample)
     - Contains some very detailed info in the README, definitely read this!
+    - **This is worth periodically re-reading as you gain experience with Mass.**
   - [Ji-Rath's Mass AI Example Project](https://github.com/Ji-Rath/MassAIExample)
     - Focuses on animation, use of State Trees and Smart Objects
   - [Myxcil's Mass Traffic Test Project](https://github.com/Myxcil/MassTraffic-Test)
@@ -341,6 +342,9 @@ These are some excellent sources of info related to Mass.
   - [gianmarcopicarella's crowd-simulation](https://github.com/gianmarcopicarella/crowd-simulation)
     - UE 5.3 "Zombie Horde Shooter" Project
     - Don't miss the [Project Report](https://github.com/gianmarcopicarella/crowd-simulation/blob/main/Assignment_Deliverables/Crowd_Simulation_Game_Report.pdf)
+  - [NonRadical's MassSlateDraw](https://github.com/NonRadical/MassSlateDraw)
+    - UE 5.1 project demonstrating the use of Mass to batch and process screenspace projections
+      and then batch and process drawing of elements in slate
   - [Arkena's Mass Sample](https://github.com/arkena00/sample.mass/)
     - Example of how to replicate mass data *(SOON TO BE DEPRECATED)*
       - If you MUST have replication NOW, see this example
