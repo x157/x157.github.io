@@ -36,7 +36,7 @@ but you need to have it installed for access to its build tools.
     - Personally I install this into my custom engine, but you can also install it into your game
   - Install [UnrealVS Extension](https://dev.epicgames.com/documentation/en-us/unreal-engine/using-the-unrealvs-extension-for-unreal-engine-cplusplus-projects)
     - Free Visual Studio extension, part of Unreal Engine Binaries, you just have to install it
-  - [Epic Options for a New Visual Studio Installation](https://docs.unrealengine.com/5.0/en-US/setting-up-visual-studio-development-environment-for-cplusplus-projects-in-unreal-engine/)
+  - [Epic Options for a New Visual Studio Installation](https://dev.epicgames.com/documentation/en-us/unreal-engine/setting-up-visual-studio-development-environment-for-cplusplus-projects-in-unreal-engine)
   - Install [VsChromium](https://chromium.github.io/vs-chromium/) extension *(Optional)*
 
 
