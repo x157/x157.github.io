@@ -7,27 +7,11 @@ breadcrumb_name: UE5
 
 # Unreal Engine 5
 
-To understand [Lyra](/UE5/LyraStarterGame/), you also need an understanding of these UE5 plugins:
 
-## Important Plugins related to Lyra
-
-- [Common UI](/UE5/CommonUI/) + CommonGame
-- [Enhanced Input Subsystem](/UE5/EnhancedInput/)
-- [Gameplay Ability System](/UE5/GameplayAbilitySystem/)
-  - Gameplay Attributes and Gameplay Effects ([Epic Documentation](https://docs.unrealengine.com/5.0/en-US/gameplay-attributes-and-gameplay-effects-for-the-gameplay-ability-system-in-unreal-engine/))
-- [GameFeature Plugins](/UE5/GameFeatures/)
-- [Modular Gameplay Plugin](/UE5/ModularGameplay/)
-- [Online Services](/UE5/OnlineServices/)
-- [UI Extension Plugin](/UE5/UIExtension/)
-
-## Mass Entity
-
-- [Mass Entity](/UE5/Mass/) Overview
-  - [Mass Data Types](/UE5/Mass/DataTypes)
-  - [How To Spawn Entities](/UE5/Mass/HowTo/SpawnEntities)
-- [Mass LOD](/UE5/Mass/LOD)
-- [Mass Navigation](/UE5/Mass/Navigation)
-- [Mass StateTree](/UE5/Mass/StateTree)
+- [UE5 Engine Overview](./Engine/) (How to build and use a Custom Engine)
+  - [Core Redirects: How to Redirect Blueprints to new/refactored C++](./Engine/Core-Redirects)
+- [Development in UE5](./Dev/)
+- [Re-save Project Assets when you Update the Engine](./Engine/Resave-Assets)
 
 ## Other Miscellaneous UE5 Stuff
 
@@ -35,15 +19,9 @@ To understand [Lyra](/UE5/LyraStarterGame/), you also need an understanding of t
 - [`FRunnable` Threads](/UE5/Threads/)
 
 
-# Using Unreal Engine
+# UE5 Dev Tips
 
-- [UE5 Engine Overview](./Engine/) (How to build and use a Custom Engine)
-  - [Core Redirects: How to Redirect Blueprints to new/refactored C++](./Engine/Core-Redirects)
-- [Development in UE5](./Dev/)
-- [Re-save Project Assets when you Update the Engine](./Engine/Resave-Assets)
-
-
-# Windows Tips
+## Windows Tips
 
 Windows Registry Keys:
 
@@ -51,18 +29,32 @@ Windows Registry Keys:
 - [Windows File Associations for `.uproject` Files: `HKEY_CLASSES_ROOT\Unreal.ProjectFile`](./Windows-Registry-Keys#UVS)
 
 
-# Linux Tips
+## Linux Tips
 
 - [Linux Tips Index](/UE5/Linux/)
   - As I organize this better I'll add more bulletpoints
 - [Installing and Using P4 on Linux](/UE5/Linux/p4)
 
-# Source Control
+
+## Source Control
 
 - [Git Overview](/Git/)
   - [Procedure: Merge Epic Source into Git](/UE5/LyraStarterGame/Tutorials/Procedure-Merge-Epic-Source-into-Git)
 - [Perforce Overview](/Perforce/)
   - [Procedure: Merge Epic Source into Perforce](/UE5/LyraStarterGame/Tutorials/Procedure-Merge-Epic-Source-into-Perforce)
+
+
+# Interesting UE5 Modules and Plugins
+
+- [Common UI](/UE5/CommonUI/)
+- [Enhanced Input Subsystem](/UE5/EnhancedInput/)
+- [Gameplay Ability System](/UE5/GameplayAbilitySystem/)
+  - Gameplay Attributes and Gameplay Effects ([Epic Documentation](https://docs.unrealengine.com/5.0/en-US/gameplay-attributes-and-gameplay-effects-for-the-gameplay-ability-system-in-unreal-engine/))
+- [GameFeature Plugins](/UE5/GameFeatures/)
+- [Mass Entity](/UE5/Mass/)
+- [Modular Gameplay Plugin](/UE5/ModularGameplay/)
+- [Online Services](/UE5/OnlineServices/)
+- [UI Extension Plugin](/UE5/UIExtension/)
 
 
 # Epic Developer Discussions

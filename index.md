@@ -10,29 +10,48 @@ integrates a number of UE5 systems, some are new in UE5;
 some are completely different and incompatible with UE4 methodologies
 *(especially CommonUI)*.
 
-### Big Picture Starting Points
+### Important Modules Integrated into Lyra
 
-- [Common UI](/UE5/CommonUI/) + CommonGame
-  - `CommonGame` is distributed in Lyra, it's amazing, someone should document it! `:-)`
+- Common Game
+- [Common UI](/UE5/CommonUI/)
 - [Enhanced Input Subsystem](/UE5/EnhancedInput/)
 - [Gameplay Ability System](/UE5/GameplayAbilitySystem/)
-- [GameFeature Plugins](/UE5/GameFeatures/)
-- [`ModularGameplay` Plugin](/UE5/ModularGameplay/)
-- [UE5 Overview](/UE5/)
+- [Game Feature Plugins](/UE5/GameFeatures/)
+- [Modular Gameplay Plugin](/UE5/ModularGameplay/)
+- [Online Services](/UE5/OnlineServices/)
+- [UI Extension Plugin](/UE5/UIExtension/)
 
-### Source Control Management
+
+# Mass Entity
+
+- [Mass Entity](/UE5/Mass/) Overview
+  - [Mass Data Types](/UE5/Mass/DataTypes)
+  - [How To Spawn Entities](/UE5/Mass/HowTo/SpawnEntities)
+- [Mass LOD](/UE5/Mass/LOD)
+- [Mass Navigation](/UE5/Mass/Navigation)
+- [Mass StateTree](/UE5/Mass/StateTree)
+
+
+# UE5 Development
+
+- [Overview of UE5](/UE5/)
+- [Development in UE5](/UE5/Dev/) (getting started, programmer tips, etc)
+  - [UE5 C++ Developer Workflow](/UE5/Dev/Workflow)
+- [Building your Custom Engine](/UE5/Engine/)
+  - [Configure your BuildConfiguration.xml](/UE5/Engine/BuildConfiguration) for an optimal dev workstation
+
+### Related Tools & Info
+
+- [UnrealXistTools](/UnrealXistTools/) -- tools to help UE5 devs
+- [github.com/XistGG](https://github.com/XistGG) -- sample projects and other MIT licensed public code and examples
+- [Linux Developer Info](/UE5/Linux/)
+- [Windows Developer Info](/Windows/)
+
+## Source Control Management
 
 - [Git SCM](/Git/) for a Lyra UProject *(for small teams where everyone compiles their own stuff)*
 - [Perforce SCM](/Perforce/) for a Lyra UProject *(for non-small teams, or teams with non-developer members)*
-  - Typically used with [UnrealGameSync](https://docs.unrealengine.com/4.26/en-US/ProductionPipelines/DeployingTheEngine/UnrealGameSync/)
-
-### Unreal Developer Topics
-
-- [Overview of Development in UE5 in general](/UE5/Dev/)
-  - [Developing UE5 on Linux](/UE5/Linux/)
-- [Software Development as a Windows user](/Windows/)
-- [UnrealXistTools](/UnrealXistTools/) -- tools to help UE5 devs
-- [github.com/XistGG](https://github.com/XistGG) -- sample projects and other MIT licensed public code and examples
+  - Typically used with [UnrealGameSync](https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-game-sync-ugs-for-unreal-engine)
 
 
 # About Me
