@@ -80,7 +80,7 @@ and other related components, allowing for streamlined entity creation and confi
 ##### Add fragments with known values
 
 ```cpp
-FEntityBuilder Builder(EntityManager);
+UE::Mass::FEntityBuilder Builder(EntityManager);
 Builder.Add<FTransformFragment>(FTransform(FVector(100, 200, 300)))
     .Commit();  // the entity gets reserved and built by this call
 ``` 
@@ -89,7 +89,7 @@ Builder.Add<FTransformFragment>(FTransform(FVector(100, 200, 300)))
 ##### Get references to added fragments for additional configuration
 
 ```cpp
-FEntityBuilder Builder(EntityManager);
+UE::Mass::FEntityBuilder Builder(EntityManager);
 FMassEntityHandle ReservedEntity = Builder; // Entity handle reserved, can be used for commands.
 Builder.Add_GetRef<FTransformFragment>().GetMutableTransform().SetTranslation(FVector(100, 200, 300));
 Builder.Commit(); // Entity creation is finalized at this point.
@@ -100,7 +100,7 @@ Builder.Commit(); // Entity creation is finalized at this point.
 
 ```cpp
 // initially:
-FEntityBuilder Builder(EntityManager);
+UE::Mass::FEntityBuilder Builder(EntityManager);
 Builder.Add<FTransformFragment>(FTransform(FVector(100, 200, 300)));
 // then sometime later, elsewhere in code:
 Builder.GetOrCreate<FTransformFragment>().GetMutableTransform().SetTranslation(FVector(111, 222, 333));
