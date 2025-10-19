@@ -64,7 +64,6 @@ in the Mass framework. It bridges multiple APIs from
 and other related components, allowing for streamlined entity creation and configuration.
 
 #### Key Features
-- Can be seamlessly used in place of `FMassEntityHandle`, allowing for consistent and intuitive usage.
 - An entity only gets created once `Commit()` is called.
 - Copyable, but copied instances represent new entities without carrying over the reserved entity handle.
 
@@ -90,7 +89,7 @@ Builder.Add<FTransformFragment>(FTransform(FVector(100, 200, 300)))
 
 ```cpp
 UE::Mass::FEntityBuilder Builder(EntityManager);
-FMassEntityHandle ReservedEntity = Builder; // Entity handle reserved, can be used for commands.
+FMassEntityHandle ReservedEntity = Builder.GetEntityHandle(); // Entity handle reserved, can be used for commands.
 Builder.Add_GetRef<FTransformFragment>().GetMutableTransform().SetTranslation(FVector(100, 200, 300));
 Builder.Commit(); // Entity creation is finalized at this point.
 ```
@@ -101,6 +100,7 @@ Builder.Commit(); // Entity creation is finalized at this point.
 ```cpp
 // initially:
 UE::Mass::FEntityBuilder Builder(EntityManager);
+FMassEntityHandle ReservedEntity = Builder.GetEntityHandle(); // Entity handle reserved, can be used for commands.
 Builder.Add<FTransformFragment>(FTransform(FVector(100, 200, 300)));
 // then sometime later, elsewhere in code:
 Builder.GetOrCreate<FTransformFragment>().GetMutableTransform().SetTranslation(FVector(111, 222, 333));
