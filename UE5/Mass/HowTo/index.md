@@ -7,6 +7,7 @@ breadcrumb_name: "HowTo"
 
 # How To Do Mass Things
 
+- [How to: Iterate over Entities in Mass Processors](/UE5/Mass/HowTo/ProcessorEntityIteration)
 - [How to: Spawn Entities](/UE5/Mass/HowTo/SpawnEntities)
 - [How Simple Navigation Works](/UE5/Mass/Navigation)
   - [How to Update Mass Entity Navigation Data from Gameplay Code](/UE5/Mass/Navigation#EnactingMovement)

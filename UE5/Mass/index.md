@@ -45,6 +45,7 @@ See also [Other Mass Resources](#SeeAlso) that I have found useful.
 
 ### How To
 
+- [How to: Iterate over Entities in Mass Processors](/UE5/Mass/HowTo/ProcessorEntityIteration)
 - [How To: Spawn Entities](/UE5/Mass/HowTo/SpawnEntities)
 - How to: Pause/Resume and Time Dilate Mass Simulations
   ( [YouTube](https://youtu.be/lUWjiRx5LkM)
