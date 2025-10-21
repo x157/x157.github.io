@@ -13,3 +13,9 @@ breadcrumb_name: "HowTo"
   - [How to Update Mass Entity Navigation Data from Gameplay Code](/UE5/Mass/Navigation#EnactingMovement)
 - [YT: How to: Pause/Resume and Time Dilate Mass Simulations](https://youtu.be/lUWjiRx5LkM)
   - [GitHub: MassTimeGame project source](https://github.com/XistGG/MassTimeGame)
+
+## How to Fix Mass Things
+
+- ["Modifying requirements before initialization is not supported"](/UE5/Mass/HowTo/FixFragmentRequirementsCheck)
+  runtime crash fix
+
