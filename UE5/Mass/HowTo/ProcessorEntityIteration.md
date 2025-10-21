@@ -2,7 +2,7 @@
 title: "How To Iterate over Entities in Processors | UE5 Mass"
 description: "Mass Entity Iteration"
 breadcrumb_path: "UE5/Mass/HowTo"
-breadcrumb_name: "ProcessorEntityIteration"
+breadcrumb_name: "Processor Entity Iteration"
 ---
 
 # How To: Iterate over Entities in Mass Processors

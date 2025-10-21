@@ -2,7 +2,7 @@
 title: "How To Spawn Entities | UE5 Mass"
 description: "Various ways to spawn Mass Entities"
 breadcrumb_path: "UE5/Mass/HowTo"
-breadcrumb_name: "SpawnEntities"
+breadcrumb_name: "Spawn Entities"
 ---
 
 # How To: Spawn Entities
