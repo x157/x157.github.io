@@ -13,8 +13,9 @@ Important code:
 
 - [`UMassSignalSubsystem`](#UMassSignalSubsystem)
 - [`UMassSignalProcessorBase`](#UMassSignalProcessorBase)
-  - [`UMassSignalProcessorBase::SignalEntities`](#UMassSignalProcessorBase_SignalEntities)
-  - [`FMassSignalNameLookup`](#FMassSignalNameLookup)
+  - [Subscribe to signals](#UMassSignalProcessorBase_Subscribe)
+  - [`SignalEntities` virtual processor](#UMassSignalProcessorBase_SignalEntities)
+  - [`FMassSignalNameLookup` helper](#FMassSignalNameLookup)
 
 <a id='UMassSignalSubsystem'></a>
 ## `UMassSignalSubsystem`
@@ -92,6 +93,7 @@ Interesting example implementations in UE 5.7:
 
 Mass Crowd also has some ZoneGraph Signal processors.
 
+<a id='UMassSignalProcessorBase_Subscribe'></a>
 ### Subscribing to signals
 
 In your derived processor, you will need to subscribe to whatever signals you want your processor to receive.
@@ -113,7 +115,6 @@ void UMySignalProcessor::InitializeInternal(UObject& Owner, const TSharedRef<FMa
 	// ... [snip] ...
 }
 ```
-
 
 <a id='UMassSignalProcessorBase_SignalEntities'></a>
 ### Pure virtual `SignalEntities`
