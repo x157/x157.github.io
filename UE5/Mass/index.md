@@ -9,7 +9,7 @@ breadcrumb_name: "Mass"
 
 Mass is a native C++ simulation processor, introduced in UE 5.0
 and marked as production-ready in 5.2.
-It is still in active development as of 5.6.
+It is still in active development as of 5.8.
 
 Before you read this, make sure you have watched the official Epic Games Video:
 [Large Numbers of Entities with Mass in Unreal Engine 5](https://www.youtube.com/watch?v=f9q8A-9DvPo)
@@ -40,6 +40,7 @@ See also [Other Mass Resources](#SeeAlso) that I have found useful.
 - [Mass Data Types](/UE5/Mass/DataTypes)
 - [Mass LOD](/UE5/Mass/LOD)
 - [Mass Navigation](/UE5/Mass/Navigation)
+- [Mass Signals](/UE5/Mass/Signals)
 - [Mass StateTree](/UE5/Mass/StateTree)
 
 
