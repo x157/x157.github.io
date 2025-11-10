@@ -129,6 +129,8 @@ Common UI "owns" player input
 
 - [Game Settings](https://docs.unrealengine.com/5.3/en-US/lyra-sample-game-settings-in-unreal-engine/)
   - Comprehensive Game Settings *(this is a beast to try to copy out due to the extensive use of UI assets, but it can be done)*
+- Lyra Audio
+  - Don't miss this comprehensive article: [Music and Environmental Audio Systems in Lyra](https://disasterpeace.com/blog/epic-games.lyra)
 
 
 ## Lyra Character
