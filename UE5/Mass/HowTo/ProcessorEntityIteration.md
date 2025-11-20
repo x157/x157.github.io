@@ -30,7 +30,7 @@ void UMyProcessor::Execute(FMassEntityManager& EntityManager, FMassExecutionCont
 
         for (FMassExecutionContext::FEntityIterator EntityIt = Context.CreateEntityIterator(); EntityIt; ++EntityIt)
         {
-            const FEntityHandle& Entity = Context.GetEntity(*EntityIt);
+            const FMassEntityHandle& Entity = Context.GetEntity(*EntityIt);
 
             // if you need the int32 Index value for some reason...
             // it's in the range: [0, NumEntities-1]
@@ -67,7 +67,7 @@ void UMyNonDebuggableProcessor::Execute(FMassEntityManager& EntityManager, FMass
         // NOTICE: Entity Breakpoints ARE NOT SUPPORTED in this loop:
         for (int32 Index = 0; Index < NumEntities; ++Index)
         {
-            const FEntityHandle& Entity = Context.GetEntity(Index);
+            const FMassEntityHandle& Entity = Context.GetEntity(Index);
 
             // Do whatever with Entity ...
         }
