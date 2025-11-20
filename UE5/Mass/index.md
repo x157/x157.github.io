@@ -20,6 +20,8 @@ Once you've decided that Mass is for you and you want to learn how to actually b
 this info should help you quickly discover where to look in C++ and how the C++ fits together
 in the big picture.
 See also [Other Mass Resources](#SeeAlso) that I have found useful.
+In particular, do not miss
+[Megafunk's Mass Sample Project](https://github.com/Megafunk/MassSample).
 
 
 ## Overview
@@ -47,6 +49,7 @@ See also [Other Mass Resources](#SeeAlso) that I have found useful.
 ### How To
 
 - [How to: Iterate over Entities in Mass Processors](/UE5/Mass/HowTo/ProcessorEntityIteration)
+- [How To: Receive Processing Phase Transition Events](/UE5/Mass/HowTo/ReceiveProcessingPhaseTransitionEvents)
 - [How To: Spawn Entities](/UE5/Mass/HowTo/SpawnEntities)
 - How to: Pause/Resume and Time Dilate Mass Simulations
   ( [YouTube](https://youtu.be/lUWjiRx5LkM)
