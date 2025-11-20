@@ -19,7 +19,7 @@ which integrates a few other subsystems and some Mass Processors.
 
 Note that Mass Representation works in conjunction with the
 [Mass LOD System](/UE5/Mass/LOD).
-The presence of various LOD Tags on Mass Entities affects how the Representation system
+The presence of various LOD Tags on Mass Entities affects if (and how) the Representation system
 represents the Entity in the world.
 
 ## Overview
@@ -30,6 +30,10 @@ represents the Entity in the world.
 - [Mass Representation Processor](#mass-representation-processor)
 - [Mass Update ISM Processor](#mass-update-ism-processor)
 
+### Other Important Related Code
+
+- Mass Actor Subsystem
+
 ## Mass Representation Subsystem
 
 `UMassRepresentationSubsystem`
@@ -37,11 +41,14 @@ represents the Entity in the world.
 | [cpp](https://github.com/EpicGames/UnrealEngine/blob/5.7/Engine/Plugins/Runtime/MassGameplay/Source/MassRepresentation/Private/MassRepresentationSubsystem.cpp)
 ]
 
-- Hooks into `UMassSimulationSubsystem` processing phases: `PrePhysics` and `PostPhysics`
-    - `PrePhysics` = "Prepare" phase
-	    - Prepare for and accept incoming information
-    - `PostPhysics` = "Commit" phase
-        - No new info is accepted; process all the info we got during `PrePhysics`
+Relevant Processor Phases:
+
+1. Before `PrePhysics`
+   - Prepare for current tick processor data
+2. During all phases from `PrePhysics` to `PostPhysics`
+   - Accept incoming processor data
+3. After `PostPhysics`
+   - Process all the data we received to update World Representation
 
 #### Per-Instance ISM Data Iterator: `FMassISMCSharedDataMap::FDirtyIterator`
 
