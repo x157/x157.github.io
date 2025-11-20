@@ -44,6 +44,7 @@ project if you are ready to dig into C++ right away.
 - [Mass Data Types](/UE5/Mass/DataTypes)
 - [Mass LOD](/UE5/Mass/LOD)
 - [Mass Navigation](/UE5/Mass/Navigation)
+- [Mass Representation](/UE5/Mass/Representation)
 - [Mass Signals](/UE5/Mass/Signals)
 - [Mass StateTree](/UE5/Mass/StateTree)
 
