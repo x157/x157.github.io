@@ -22,6 +22,9 @@ that are good for different situations.
     | [GetOrCreate](#MassEntityBuilder_GetOrCreate)
     | [Chaining](#MassEntityBuilder_Chaining)
     ]
+
+These are also valid ways to create Entities, but they're less preferred in UE 5.7+:
+
 - [Mass Spawner in Gameplay code](#MassSpawnerInCode) (UE 5.4+)
   - Use the Mass Spawner subsystem
   - Defer Spawn entities on demand from Gameplay code
@@ -53,6 +56,11 @@ of spawning a static set of entities when your Level loads.
 
 <a id='MassEntityBuilder'></a>
 ## Mass Entity Builder
+
+For a complete example of a simple C++ project using Mass Entity Builder,
+see [UE5 Mass Simple C++ Example](https://github.com/XistGG/MassSimple).
+In particular, see the [XmsEntityBuilderComponent](https://github.com/XistGG/MassSimple/blob/main/Source/Xms/EntityBuilders/XmsEntityBuilderComponent.cpp)
+`BuildEntity` method.
 
 *I copied most of this `UE::Mass::FEntityBuilder` info from UE 5.6 `MassEntityBuilder.h` header docs.*
 

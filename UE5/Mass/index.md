@@ -23,6 +23,8 @@ See also [Other Mass Resources](#SeeAlso) that I have found useful.
 In particular, do not miss
 [Megafunk's Mass Sample Project](https://github.com/Megafunk/MassSample).
 
+See my [UE5 Mass Simple C++ Example](https://github.com/XistGG/MassSimple)
+project if you are ready to dig into C++ right away.
 
 ## Overview
 
@@ -339,6 +341,8 @@ These are some excellent sources of info related to Mass.
   - [Megafunk's Mass Sample Project](https://github.com/Megafunk/MassSample)
     - Contains some very detailed info in the README, definitely read this!
     - **This is worth periodically re-reading as you gain experience with Mass.**
+  - [UE5 Mass Simple C++ Example](https://github.com/XistGG/MassSimple)
+    - UE 5.7 functional example focusing on simplified C++ without a lot of bells and whistles
   - [Ji-Rath's Mass AI Example Project](https://github.com/Ji-Rath/MassAIExample)
     - Focuses on animation, use of State Trees and Smart Objects
   - [Myxcil's Mass Traffic Test Project](https://github.com/Myxcil/MassTraffic-Test)
