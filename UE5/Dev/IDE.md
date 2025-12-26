@@ -28,16 +28,35 @@ Xcode is just plain bad for UE coding.
 <a id='VS'></a>
 ## Option 1. Visual Studio
 
-Microsoft's build environment is distributed with VS.  You don't have to use VS to edit code,
-but you need to have it installed for access to its build tools.
+⚠️️ **UE5 requires VS 2022 to build**, even if you are really using VS 2026 or Rider.
 
-- [Install Visual Studio 2022](https://visualstudio.microsoft.com/downloads/) *(Community version works)*
-  - Install [Unreal Engine plugin for Visual Studio](https://github.com/microsoft/vc-ue-extensions)
-    - Personally I install this into my custom engine, but you can also install it into your game
-  - Install [UnrealVS Extension](https://dev.epicgames.com/documentation/en-us/unreal-engine/using-the-unrealvs-extension-for-unreal-engine-cplusplus-projects)
-    - Free Visual Studio extension, part of Unreal Engine Binaries, you just have to install it
-  - [Epic Options for a New Visual Studio Installation](https://dev.epicgames.com/documentation/en-us/unreal-engine/setting-up-visual-studio-development-environment-for-cplusplus-projects-in-unreal-engine)
-  - Install [VsChromium](https://chromium.github.io/vs-chromium/) extension *(Optional)*
+From the [Visual Studio 2022 Release History](https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-history),
+I extracted this link you can use to install the latest VS 2022:
+
+📌 VS 2022 COMMUNITY INSTALLER 📌<br/>
+https://aka.ms/vs/17/release/vs_community.exe
+
+You **must** install VS 2022 Community in order for UE to build.
+You don't have to **use** VS 2022, you can use VS 2026 or Rider or whatever.
+You do need VS 2022 installed.
+
+### VS Installation and Setup
+
+1. Install **Visual Studio 2022** Community Edition *(see pinned link above)*
+2. Follow the [Epic Options for a New Visual Studio Installation](https://dev.epicgames.com/documentation/en-us/unreal-engine/setting-up-visual-studio-development-environment-for-cplusplus-projects-in-unreal-engine)
+   - Epic shows what VS options to install
+   - ℹ️ Don't miss the recommended VS Settings
+
+### VS Extensions
+
+1. [REQUIRED] Install [UnrealVS Extension](https://dev.epicgames.com/documentation/en-us/unreal-engine/using-the-unrealvs-extension-for-unreal-engine-cplusplus-projects)
+   - *Free Visual Studio extension, part of Unreal Engine Binaries; you only need to install it*
+2. *(optional)* Install [VsChromium](https://chromium.github.io/vs-chromium/) extension
+
+### VS Engine/Game Plugins
+
+1. [REQUIRED] Install [Unreal Engine plugin for Visual Studio](https://github.com/microsoft/vc-ue-extensions)
+   - *I add this into my custom engine, but you can also add it only to a specific game*
 
 
 <a id='VSPlugins'></a>
@@ -47,10 +66,10 @@ You don't need **both** of these, but **you do need one** if you value your time
 
 Choose which you prefer:
 
-*Either:* [ReSharper](https://www.jetbrains.com/lp/resharper-cpp-unreal-engine/)
+*Either:* ✅ [ReSharper](https://www.jetbrains.com/lp/resharper-cpp-unreal-engine/)
 for VS by JetBrains (gives UE support) *(works like Rider)*
 
-*OR:* [Visual Assist](https://www.wholetomato.com/visual-assist-ue4-unreal-engine)
+*OR:* ❓[Visual Assist](https://www.wholetomato.com/visual-assist-ue4-unreal-engine)
 for VS by Whole Tomato (gives UE support)
 
 

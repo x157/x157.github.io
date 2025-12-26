@@ -26,9 +26,10 @@ If you're brand new to Unreal in general:
 
 - [Unreal Engine 5 Beginner Tutorial - UE5 Starter Course 2022](https://www.youtube.com/watch?v=k-zMkzmduqI)
 
-#### Choose/Install Developer Tools
 
-- [IDE Options](./IDE) - choosing the right IDE will save you time (`time == $`)
+### Choose/Install Developer Tools
+
+- ⚡ [IDE Options](./IDE) ⚡ - choosing the right IDE will save you time (`time == $`)
 - [Source Control](./Source-Control) - Git or Perforce?
 
 If you are a Windows user, see my notes and tips regarding
