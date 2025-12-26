@@ -33,8 +33,8 @@ Xcode is just plain bad for UE coding.
 From the [Visual Studio 2022 Release History](https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-history),
 I extracted this link you can use to install the latest VS 2022:
 
-📌 VS 2022 COMMUNITY INSTALLER 📌<br/>
-https://aka.ms/vs/17/release/vs_community.exe
+📌 **VS 2022 COMMUNITY INSTALLER** 📌
+[https://aka.ms/vs/17/release/vs_community.exe](https://aka.ms/vs/17/release/vs_community.exe)
 
 You **must** install VS 2022 Community in order for UE to build.
 You don't have to **use** VS 2022, you can use VS 2026 or Rider or whatever.
