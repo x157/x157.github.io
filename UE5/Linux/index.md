@@ -54,6 +54,15 @@ sudo apt-get -y install \
 ```
 
 
+### Install media tools
+
+```bash
+sudo apt-get -y install \
+  libcurl4-openssl-dev \
+  libpipewire-0.3-dev \
+  libspa-0.2-dev
+```
+
 ### Install PowerShell for UnrealXistTools
 
 If you're using [UnrealXistTools](/UnrealXistTools/), you need to install PowerShell.
