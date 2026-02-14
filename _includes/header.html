@@ -1,35 +1,42 @@
-
 <!-- site wide header -->
 
-<div class="container back_links">
+<div class="container header-container" style="display: flex; justify-content: space-between; align-items: center;">
+    <div class="back_links">
+        &gt;&gt;
 
-    &gt;&gt;
+        {% if page.is_site_index %}
 
-{% if page.is_site_index %}
+        <span class="back_links_title">X157 Home</span>
 
-    <span class="back_links_title">X157 Home</span>
+        {% else %}
 
-{% else %}
+        <a href="{{ site.url }}">X157</a>
 
-    <a href="{{ site.url }}">X157</a>
+        {% if page.breadcrumb_path %}
+        {% assign breadcrumb_path = "/" %}
+        {% assign breadcrumb_dirs = page.breadcrumb_path | split: "/" %}
+        {% for d in breadcrumb_dirs %}
+        {% assign breadcrumb_path = breadcrumb_path | append: d | append: "/" %}
+        / <a href="{{ breadcrumb_path | absolute_url }}">{{ d }}</a>
+        {% endfor %}
+        / <span class="back_links_title">{{ page.breadcrumb_name | default: page.title }}</span>
 
-{%     if page.breadcrumb_path %}
-{%         assign breadcrumb_path = "/" %}
-{%         assign breadcrumb_dirs = page.breadcrumb_path | split: "/" %}
-{%         for d in breadcrumb_dirs %}
-{%             assign breadcrumb_path = breadcrumb_path | append: d | append: "/" %}
-    / <a href="{{ breadcrumb_path | absolute_url }}">{{ d }}</a>
-{%         endfor %}
-    / <span class="back_links_title">{{ page.breadcrumb_name | default: page.title }}</span>
+        {% else %}
 
-{%     else %}
+        {% for bl in page.back_links %}
+        / <a href="{{ bl.link | absolute_url }}">{{ bl.name }}</a>
+        {% endfor %}
+        / <span class="back_links_title">{{ page.back_link_title | default: page.breadcrumb_name | default: page.title
+            }}</span>
 
-{%         for bl in page.back_links %}
-    / <a href="{{ bl.link | absolute_url }}">{{ bl.name }}</a>
-{%         endfor %}
-    / <span class="back_links_title">{{ page.back_link_title | default: page.breadcrumb_name | default: page.title }}</span>
+        {% endif %}
+        {% endif %}
+    </div>
 
-{%     endif %}
-{% endif %}
-
+    <div class="site-search">
+        <form method="get" action="https://google.com/search">
+            <input type="hidden" name="q" value="site:x157.github.io">
+            <input type="text" name="q" placeholder="Search..." aria-label="Search this site">
+        </form>
+    </div>
 </div>

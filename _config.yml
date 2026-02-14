@@ -19,6 +19,7 @@ exclude:
   - .idea
 plugins:
   - jekyll-sitemap
+  - jekyll-redirect-from
 kramdown:
   syntax_highlighter_opts:
     disable : true

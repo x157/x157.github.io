@@ -1,4 +1,3 @@
-
 <!-- site wide footer -->
 
 <footer>
@@ -11,7 +10,7 @@
             |
             <a href="https://github.com/x157/x157.github.io/issues">issues</a>
             ||
-            <a href="https://www.xist.gg/legal/privacy.html">Privacy Policy</a>
+            <a href="{{ '/privacy' | absolute_url }}">Privacy Policy</a>
         </p>
 
         <p>
@@ -26,7 +25,7 @@
 
 <script>
     // Update the SourceUrl to be the exact url for the page currently being viewed.
-    (function(link, path) {
+    (function (link, path) {
         if (link) {
             // path is like "/foo/" for index.md
             if (path.charAt(path.length - 1) === "/") {
