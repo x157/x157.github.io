@@ -37,13 +37,15 @@ Open your WSL terminal (e.g., Ubuntu) and run:
     ```bash
     git clone https://github.com/x157/x157.github.io.git
     cd x157.github.io
+    bundle add jekyll-redirect-from
     bundle install
     ```
 
 2.  **Start Server**:
     ```bash
-    bundle exec jekyll serve
+    bundle exec jekyll serve --host 0.0.0.0 --livereload
     ```
+    *Tip: If `bundle` is not found, restart your terminal to load the new path configuration.*
 
 3.  **View Site**:
     Open [http://localhost:4000](http://localhost:4000) in your Windows browser.
