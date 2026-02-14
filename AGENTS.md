@@ -15,6 +15,7 @@ This document contains rules and guidelines for AI Agents working on the `x157.g
 - **Documentation**: Whenever new setup steps for WSL or local development are discovered, **IMMEDIATELY** update `DEVELOPMENT.md`.
 - **Consistency**: Ensure `DEVELOPMENT.md` is the single source of truth for setting up the project locally.
 - **Shell Compatibility**:
+    - **Testing**: Always run tests and the local server inside **WSL (Windows Subsystem for Linux)**, as detailed in `DEVELOPMENT.md`. Do not attempt to run `jekyll` or `bundle` commands directly in PowerShell on Windows.
     - Assume the environment is **Windows PowerShell (`pwsh`)**.
     - Do **NOT** assume POSIX commands (like `grep`, `ls`, `cat`) exist natively unless running inside WSL.
     - Use `Select-String` instead of `grep`, `Get-Content` instead of `cat`, etc.

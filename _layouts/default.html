@@ -1,42 +1,54 @@
 <!DOCTYPE html>
-<html lang="{{ site.lang | default: "en-US" }}">
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | absolute_url }}">
-    {% include head-custom.html %}
+<html lang="{{ site.lang | default: " en-US" }}">
 
-{% seo %}
-  </head>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | absolute_url }}">
+  {% include head-custom.html %}
 
-  <body>
+  {% seo %}
+</head>
 
-    <header>
-      <div class="container main-header-flex">
-        <div class="header-title">
-          <a id="a-title" href="{{ '/' | absolute_url }}">
-            <h1>{{ site.title | default: site.github.repository_name }}</h1>
-          </a>
-          <h2>{{ site.description | default: site.github.project_tagline }}</h2>
-        </div>
-        <div class="header-search">
-          <form action="{{ '/search' | relative_url }}" method="get">
-            <input type="text" name="q" placeholder="Search..." aria-label="Search" class="search-input" />
-          </form>
-        </div>
+<body>
+
+  <header>
+    <div class="container main-header-flex">
+      <div class="header-title">
+        <a id="a-title" href="{{ '/' | absolute_url }}">
+          <h1>{{ site.title | default: site.github.repository_name }}</h1>
+        </a>
+        <h2>{{ site.description | default: site.github.project_tagline }}</h2>
       </div>
-    </header>
-
-    {% include header.html %}
-
-    <div class="container">
-      <section id="main_content">
-        {{ content }}
-      </section>
+      <div class="header-search">
+        <form action="{{ '/search' | relative_url }}" method="get" target="search-frame" id="search-form">
+          <input type="text" name="q" placeholder="Search..." aria-label="Search" class="search-input" />
+        </form>
+      </div>
     </div>
+  </header>
 
-    {% include footer.html %}
+  {% include header.html %}
 
-  </body>
+  <div class="container">
+    <section id="main_content">
+      {{ content }}
+    </section>
+  </div>
+
+  {% include footer.html %}
+
+  <!-- Search Overlay -->
+  <div id="search-overlay" class="search-overlay" style="display: none;">
+    <div class="search-overlay-content">
+      <button id="close-search" class="close-search-btn">&times;</button>
+      <iframe name="search-frame" id="search-frame" src="about:blank"></iframe>
+    </div>
+  </div>
+
+  <script src="{{ '/assets/js/search.js' | relative_url }}"></script>
+
+</body>
+
 </html>

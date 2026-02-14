@@ -532,3 +532,54 @@ problem {
   display: inline-block;
   background-color: #800000
 }
+
+/* Search Overlay (Glassmorphism) */
+.search-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-overlay-content {
+  position: relative;
+  width: 90%;
+  max-width: 800px;
+  height: 80vh;
+  background: rgba(30, 30, 30, 0.9);
+  border: 1px solid #00cc00;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 204, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.close-search-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: #cccccc;
+  font-size: 28px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.close-search-btn:hover {
+  color: #00cc00;
+}
+
+#search-frame {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
