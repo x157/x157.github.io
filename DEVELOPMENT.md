@@ -42,6 +42,7 @@ Open your WSL terminal (e.g., Ubuntu) and run:
     ```
 
 2.  **Start Server**:
+    This command will NOT exit until the server is stopped. To stop the server, press `Ctrl+C`.
     ```bash
     bundle exec jekyll serve --host 0.0.0.0 --livereload
     ```
