@@ -13,11 +13,18 @@
   <body>
 
     <header>
-      <div class="container">
-        <a id="a-title" href="{{ '/' | absolute_url }}">
-          <h1>{{ site.title | default: site.github.repository_name }}</h1>
-        </a>
-        <h2>{{ site.description | default: site.github.project_tagline }}</h2>
+      <div class="container main-header-flex">
+        <div class="header-title">
+          <a id="a-title" href="{{ '/' | absolute_url }}">
+            <h1>{{ site.title | default: site.github.repository_name }}</h1>
+          </a>
+          <h2>{{ site.description | default: site.github.project_tagline }}</h2>
+        </div>
+        <div class="header-search">
+          <form action="{{ '/search' | relative_url }}" method="get">
+            <input type="text" name="q" placeholder="Search..." aria-label="Search" class="search-input" />
+          </form>
+        </div>
       </div>
     </header>
 
