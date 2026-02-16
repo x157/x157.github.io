@@ -46,25 +46,17 @@ wsl --version
 
 ### Running
 
-1.  **Clone/Setup Repo (in WSL)**:
-    ```bash
-    git clone https://github.com/x157/x157.github.io.git
-    cd x157.github.io
-    bundle add jekyll-redirect-from
-    bundle install
+1.  **Install Dependencies**:
+    Open PowerShell in the project directory:
+    ```pwsh
+    wsl bash -ic 'bundle install'
     ```
 
 2.  **Start Server**:
     This command will NOT exit until the server is stopped. To stop the server, press `Ctrl+C`.
-    ```bash
-    bundle exec jekyll serve --livereload
+    ```pwsh
+    wsl bash -ic 'bundle exec jekyll serve --livereload'
     ```
-
-    > [!IMPORTANT]
-    > **AI Agents**: You **MUST** run this command inside WSL using the following format to ensure bash starts in the home directory:
-    > `wsl bash -c 'cd; bundle exec jekyll serve --livereload'`
-
-    *Tip: If `bundle` is not found, restart your terminal to load the new path configuration.*
 
 3.  **View Site**:
     Open [http://localhost:4000](http://localhost:4000) in your Windows browser.
