@@ -1,0 +1,9 @@
+.git
+.idea
+.agent
+.gemini
+_site
+.sass-cache
+.jekyll-cache
+*.gem
+*Zone.Identifier

@@ -2,7 +2,7 @@
 
 There are three supported ways to test the site:
 1.  **Windows + WSL** (Current)
-2.  **Any + Docker** (Planned)
+2.  **Any + Docker** (Current)
 3.  **Local** (Planned)
 
 ## 1. Windows + WSL
@@ -62,7 +62,34 @@ wsl --version
     Open [http://localhost:4000](http://localhost:4000) in your Windows browser.
 
 ## 2. Any + Docker
-*Details coming soon.*
+
+### Prerequisites
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (Windows, macOS, or Linux)
+- Ensure Docker is running before proceeding
+
+### Running
+
+1.  **Start the server** (first run will build the image automatically):
+    ```sh
+    docker compose up
+    ```
+
+2.  **View Site**:
+    Open [http://localhost:4000](http://localhost:4000) in your browser.
+    LiveReload is enabled – the page will auto-refresh when you edit source files.
+
+3.  **Stop the server**:
+    Press `Ctrl+C` in the terminal, or run:
+    ```sh
+    docker compose down
+    ```
+
+### Rebuilding
+
+If you change the `Gemfile` or `jekyll-theme-hacker.gemspec`, rebuild the image:
+```sh
+docker compose up --build
+```
 
 ## 3. Local
 *Details coming soon.*

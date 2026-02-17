@@ -1,0 +1,15 @@
+services:
+  jekyll:
+    build: .
+    ports:
+      - "4000:4000" # Jekyll server
+      - "35729:35729" # LiveReload
+    volumes:
+      - .:/srv/jekyll
+      # Persist gems in a named volume so they survive container rebuilds
+      - bundle_cache:/usr/local/bundle
+    environment:
+      - JEKYLL_ENV=development
+
+volumes:
+  bundle_cache:

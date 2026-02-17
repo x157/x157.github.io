@@ -17,6 +17,9 @@ exclude:
   - Gemfile.lock
   - README.md
   - .idea
+  - Dockerfile
+  - docker-compose.yml
+  - .dockerignore
 plugins:
   - jekyll-sitemap
   - jekyll-redirect-from
